@@ -95,6 +95,9 @@ export function Navbar({ activePage, onNavigate, onOpenContact }: NavbarProps) {
           <img
             src="/assets/aistudio/Samitech_Corporation_Logo_7401e1c3.png"
             alt="SAMITECH Corporation"
+            loading="eager"
+            decoding="sync"
+            fetchPriority="high"
             className={`h-5 sm:h-8 lg:h-11 w-auto object-contain shrink-0 transition-all duration-200 ${
               overDarkSection ? 'drop-shadow-[0_0_10px_rgba(255,255,255,0.92)]' : ''
             }`}

@@ -6,6 +6,7 @@ interface ResilientImageProps {
   alt: string;
   className?: string;
   fallbackTitle?: string;
+  priority?: boolean;
 }
 
 export function ResilientImage({
@@ -13,6 +14,7 @@ export function ResilientImage({
   alt,
   className = '',
   fallbackTitle = 'SAMITECH Infrastructure',
+  priority = false,
 }: ResilientImageProps) {
   const [hasError, setHasError] = useState(false);
 
@@ -35,6 +37,9 @@ export function ResilientImage({
     <img
       src={src}
       alt={alt}
+      loading={priority ? 'eager' : 'lazy'}
+      decoding={priority ? 'sync' : 'async'}
+      fetchPriority={priority ? 'high' : 'auto'}
       referrerPolicy="no-referrer"
       onError={() => setHasError(true)}
       className={className}

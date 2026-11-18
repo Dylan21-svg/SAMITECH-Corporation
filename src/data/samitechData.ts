@@ -295,7 +295,7 @@ export const SERVICE_CATEGORY_OPTIONS = [
 ];
 
 export const ABOUT_HERO_MEDIA = {
-  image: '/assets/aistudio/Gemini_Generated_Image_na4zspna4zspna4z_bcc9cf91.jpg',
+  image: '/assets/about-hero-bg.webp',
   alt: 'SAMITECH Corporation engineer wearing a navy SAMITECH polo and headset beside a laptop in our modern office',
 };
 

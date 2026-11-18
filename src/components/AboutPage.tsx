@@ -144,6 +144,7 @@ export function AboutPage({
             src={ABOUT_HERO_MEDIA.image}
             alt={ABOUT_HERO_MEDIA.alt}
             fallbackTitle="SAMITECH Corporation About Hero"
+            priority
             className="w-full h-full object-cover object-[76%_top] sm:object-[right_top] lg:object-center"
           />
           {/* Crisp white contrast backdrop behind the left column across all aspect ratios */}

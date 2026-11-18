@@ -171,16 +171,25 @@ export default function App() {
           {/* HERO SECTION — Looping Video Background With Desktop Split Scaled Across All Devices */}
           <section id="home" className="relative overflow-x-clip bg-white">
             <div className="relative overflow-hidden bg-white">
-              {/* Full-Bleed Looping Hero Video Background */}
+              {/* Full-Bleed Looping Hero Video Background With Instant Poster First Frame */}
               <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+                <img
+                  src="/assets/hero-bg-poster.webp"
+                  alt=""
+                  loading="eager"
+                  decoding="sync"
+                  fetchPriority="high"
+                  className="absolute inset-0 w-full h-full object-cover object-[74%_center] sm:object-center"
+                />
                 <video
-                  src="/assets/aistudio/gemini_generated_video_260c7e5b_2f2e543c.mp4"
+                  src="/assets/hero-bg-optimized.mp4"
+                  poster="/assets/hero-bg-poster.webp"
                   autoPlay
                   loop
                   muted
                   playsInline
                   preload="auto"
-                  className="w-full h-full object-cover object-[74%_center] sm:object-center"
+                  className="relative w-full h-full object-cover object-[74%_center] sm:object-center"
                 />
                 {/* Crisp white safety backdrop across left column so headline and copy stay high-contrast on every viewport */}
                 <div className="absolute inset-y-0 left-0 w-[62%] sm:w-[56%] bg-gradient-to-r from-white via-white/95 to-transparent" />
@@ -774,12 +783,14 @@ export default function App() {
                   type="button"
                   onClick={() => handleNavigate('home')}
                   aria-label="SAMITECH Corporation Home"
-                  className="inline-flex items-center bg-white rounded sm:rounded-lg px-1.5 py-0.5 sm:px-2.5 sm:py-1.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white cursor-pointer"
+                  className="inline-flex items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white cursor-pointer"
                 >
                   <img
-                    src="/assets/aistudio/Samitech_Corporation_Logo_7401e1c3.png"
+                    src="/assets/aistudio/Samitech_Corporation_Logo2_7401e1c3.png"
                     alt="SAMITECH Corporation"
-                    className="h-4 sm:h-9 w-auto object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    className="h-5 sm:h-11 w-auto object-contain"
                   />
                 </button>
                 <p className="text-[7px] sm:text-xs text-neutral-300 font-medium leading-tight sm:leading-snug">
