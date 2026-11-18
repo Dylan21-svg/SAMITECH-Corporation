@@ -1,0 +1,6 @@
+{
+  "name": "SamiTech",
+  "description": "SamiTech (samitech237.com) — Software Development, Networking Solutions, Cybersecurity, Data & AI, and 24/7 technology services based in Buea, Cameroon.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
