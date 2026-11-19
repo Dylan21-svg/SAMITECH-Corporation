@@ -31,11 +31,20 @@ function AfricaContinentIcon({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
-      fill="currentColor"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className={className}
       aria-hidden="true"
     >
-      <path d="M9.6 2.5c1.5-.3 3.4-.1 4.6.8.9.7 1.3 1.7 2.2 2.2 1 .5 2.5.4 3.1 1.4.5.8-.3 2-.9 2.7-.5.6-.7 1.4-.5 2.2.3 1 .8 1.9.3 3-.5 1.1-1.6 1.7-2.2 2.8-.6 1-.8 2.4-1.5 3.4-.7 1-2.1 1.4-2.8.4-.7-1-.6-2.5-1.1-3.6-.5-1.1-1.3-2.1-1.3-3.4 0-1.1.3-2.1-.4-3-.7-.8-2-.9-2.8-1.6-.9-.8-1.5-2.1-.9-3.2.5-1 1.7-1.6 2.7-2.1.4-.3.9-1.7 1.5-2zm9.4 13.8c.4-.2.8.1.9.6.1.7-.2 1.7-.7 2-.5.2-.9-.2-.8-.9.1-.6.2-1.5.6-1.7z" />
+      <path
+        fill="currentColor"
+        fillOpacity={0.14}
+        d="M9.8 2.6c1.6-.4 3.4-.2 4.7.7.8.6 1.2 1.5 2.1 2.1.9.5 2.3.6 2.9 1.5.5.7-.2 1.8-.8 2.5-.5.6-.7 1.3-.5 2.1.3.9.7 1.8.2 2.9-.5 1.1-1.6 1.7-2.2 2.8-.6 1-.8 2.3-1.6 3.3-.6.8-1.8 1.2-2.5.4-.7-.9-.6-2.4-1.1-3.5-.5-1.1-1.2-2.1-1.2-3.3 0-1.1.3-2-.4-2.9-.7-.8-1.9-.9-2.7-1.6-.9-.8-1.4-2-.9-3.1.5-1 1.6-1.6 2.6-2.1.5-.3.8-1.1 1.2-1.8Z"
+      />
+      <path d="M19.1 16.1c.3-.2.7.1.7.6.1.7-.2 1.5-.6 1.7-.4.2-.8-.2-.7-.8.1-.5.2-1.3.6-1.5Z" />
     </svg>
   );
 }
@@ -103,40 +112,41 @@ export function AboutPage({
   };
 
   const renderHighlightIcon = (id: string) => {
-    const iconCls = 'w-3 h-3 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#0038FF]';
+    const iconCls = 'w-3.5 h-3.5 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#0038FF]';
     if (id === 'innovative-solutions') {
-      return <Laptop className={iconCls} aria-hidden="true" />;
+      return <Laptop className={iconCls} strokeWidth={1.75} aria-hidden="true" />;
     }
     if (id === 'trusted-partnership') {
-      return <ShieldCheck className={iconCls} aria-hidden="true" />;
+      return <ShieldCheck className={iconCls} strokeWidth={1.75} aria-hidden="true" />;
     }
     if (id === 'youth-led-innovation') {
-      return <Users className={iconCls} aria-hidden="true" />;
+      return <Users className={iconCls} strokeWidth={1.75} aria-hidden="true" />;
     }
     return <AfricaContinentIcon className={iconCls} />;
   };
 
   const renderKpiIcon = (id: string) => {
-    const iconCls = 'w-3.5 h-3.5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-[#3B82F6] shrink-0';
-    if (id === 'founded') return <CalendarDays className={iconCls} aria-hidden="true" />;
-    if (id === 'empowered') return <Users className={iconCls} aria-hidden="true" />;
-    if (id === 'global-vision') return <Globe className={iconCls} aria-hidden="true" />;
-    return <Trophy className={iconCls} aria-hidden="true" />;
+    const iconCls = 'w-4 h-4 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-[#60A5FA] shrink-0';
+    if (id === 'founded') return <CalendarDays className={iconCls} strokeWidth={1.75} aria-hidden="true" />;
+    if (id === 'empowered') return <Users className={iconCls} strokeWidth={1.75} aria-hidden="true" />;
+    if (id === 'global-vision') return <Globe className={iconCls} strokeWidth={1.75} aria-hidden="true" />;
+    return <Trophy className={iconCls} strokeWidth={1.75} aria-hidden="true" />;
   };
 
   const renderValueIcon = (id: string) => {
+    const cls = 'w-3 h-3 sm:w-6 sm:h-6 lg:w-7 lg:h-7';
     if (id === 'youth-driven-engineering') {
-      return <Cpu className="w-2.5 h-2.5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-[#60A5FA]" aria-hidden="true" />;
+      return <Cpu className={`${cls} text-[#60A5FA]`} strokeWidth={1.75} aria-hidden="true" />;
     }
     if (id === 'security-reliability') {
-      return <Layers className="w-2.5 h-2.5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-[#3B82F6]" aria-hidden="true" />;
+      return <Layers className={`${cls} text-[#3B82F6]`} strokeWidth={1.75} aria-hidden="true" />;
     }
-    return <ShieldCheck className="w-2.5 h-2.5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-[#EF4444]" aria-hidden="true" />;
+    return <ShieldCheck className={`${cls} text-[#EF4444]`} strokeWidth={1.75} aria-hidden="true" />;
   };
 
   return (
     <div className="bg-white text-[#07133B]">
-      {/* HERO BANNER — Identical Desktop Layout Scaled Across All Devices */}
+      {/* HERO BANNER — Identical Desktop Split Scaled Across All Devices */}
       <section className="relative overflow-hidden bg-white border-b border-[#0044FF]/10">
         {/* Full-Bleed Hero Background Image */}
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -144,36 +154,35 @@ export function AboutPage({
             src={ABOUT_HERO_MEDIA.image}
             alt={ABOUT_HERO_MEDIA.alt}
             fallbackTitle="SAMITECH Corporation About Hero"
+            width={ABOUT_HERO_MEDIA.width}
+            height={ABOUT_HERO_MEDIA.height}
             priority
             className="w-full h-full object-cover object-[76%_top] sm:object-[right_top] lg:object-center"
           />
-          {/* Crisp white contrast backdrop behind the left column across all aspect ratios */}
+          {/* Crisp white contrast backdrop behind left column */}
           <div className="absolute inset-y-0 left-0 w-[62%] sm:w-[56%] bg-gradient-to-r from-white via-white/95 to-transparent" />
         </div>
 
         {/* Foreground Hero Content + Floating Dark Stats Bar */}
-        <div className="relative z-10 max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 pt-12 sm:pt-24 lg:pt-28 pb-3 sm:pb-8 lg:pb-10">
-          <div className="grid grid-cols-12 items-center gap-1 sm:gap-4 lg:gap-6">
-            {/* Left Narrative & Cards Column (6 columns on all viewports, matching desktop) */}
+        <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-28 pb-4 sm:pb-8 lg:pb-10">
+          <div className="grid grid-cols-12 items-center gap-1.5 sm:gap-4 lg:gap-6">
+            {/* Left Narrative & Highlight Cards Column */}
             <Reveal
               direction="left"
               wrapperClassName="col-span-6"
               className="space-y-1.5 sm:space-y-3.5 lg:space-y-4"
             >
-              {/* Soft-Blue Pill Eyebrow */}
-              <div className="inline-flex items-center gap-1 sm:gap-2 px-2 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-[#DCE9FF] border border-[#0044FF]/15 text-[#002ACC] text-[7px] sm:text-xs font-semibold shadow-xs">
-                <span
-                  className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#0044FF] shrink-0"
-                  aria-hidden="true"
-                />
-                <span>About Us</span>
+              {/* Clean Eyebrow Kicker with Accent Hairline */}
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[7.5px] sm:text-xs font-semibold text-[#002BFF] tracking-tight">
+                <span className="w-3 sm:w-5 h-[2px] bg-[#0044FF] rounded-full" aria-hidden="true" />
+                <span>About SAMITECH Corporation</span>
               </div>
 
               {/* Bold Headline + Italic Tagline */}
               <div className="space-y-0.5 sm:space-y-1.5">
                 <h1
-                  className="font-extrabold tracking-tight leading-[1.03] text-balance"
-                  style={{ fontSize: 'clamp(0.88rem, 3.85vw, 3.45rem)' }}
+                  className="font-extrabold tracking-tight leading-[1.04] text-balance"
+                  style={{ fontSize: 'clamp(0.95rem, 3.85vw, 3.45rem)' }}
                 >
                   <span className="text-[#07133B] block">About</span>
                   <span className="block whitespace-nowrap">
@@ -184,9 +193,9 @@ export function AboutPage({
                 <p className="text-[7.5px] sm:text-sm md:text-base lg:text-xl font-bold italic text-[#0038FF] tracking-tight">
                   Where Technology Meets Excellence
                 </p>
-                {/* Dual-Color Blue + Crimson Accent Line */}
+                {/* Crisp Dual-Color Blue + Crimson Hairline Accent */}
                 <div
-                  className="pt-0.5 sm:pt-1 flex items-center w-14 sm:w-32 lg:w-40"
+                  className="pt-0.5 sm:pt-1 flex items-center w-16 sm:w-32 lg:w-40"
                   aria-hidden="true"
                 >
                   <span className="w-1/2 h-[2px] sm:h-[3px] bg-[#0044FF] rounded-l-full" />
@@ -209,14 +218,14 @@ export function AboutPage({
               </div>
 
               {/* 4 Highlight Mini-Cards Row */}
-              <div className="grid grid-cols-4 gap-0.5 sm:gap-2.5 lg:gap-3 pt-0.5 sm:pt-1">
+              <div className="grid grid-cols-4 gap-1 sm:gap-2.5 lg:gap-3 pt-0.5 sm:pt-1">
                 {ABOUT_HERO_HIGHLIGHTS.map((item) => (
                   <div
                     key={item.id}
-                    className="bg-white/95 backdrop-blur-sm border border-[#B3CCFF] rounded sm:rounded-xl px-0.5 py-1 sm:px-2 sm:py-2.5 lg:px-2.5 lg:py-3 text-center shadow-[0_6px_18px_rgba(0,68,255,0.08)] flex flex-col items-center justify-center gap-0.5 sm:gap-1.5 min-w-0"
+                    className="bg-white/95 backdrop-blur-sm border border-[#B3CCFF] rounded-md sm:rounded-xl px-0.5 py-1.5 sm:px-2 sm:py-2.5 lg:px-2.5 lg:py-3 text-center shadow-[0_6px_18px_rgba(0,68,255,0.08)] flex flex-col items-center justify-center gap-0.5 sm:gap-1.5 min-w-0 transition-transform duration-200 hover:-translate-y-0.5"
                   >
                     {renderHighlightIcon(item.id)}
-                    <div className="text-[5.8px] sm:text-[10.5px] lg:text-xs font-bold text-[#07133B] leading-tight">
+                    <div className="text-[6px] sm:text-[10.5px] lg:text-xs font-bold text-[#07133B] leading-tight">
                       <span className="block">{item.line1}</span>
                       <span className="block">{item.line2}</span>
                     </div>
@@ -225,57 +234,53 @@ export function AboutPage({
               </div>
 
               {/* Rounded-Full Dual Action Row */}
-              <div className="pt-0.5 sm:pt-1.5 flex flex-nowrap items-center gap-1 sm:gap-4">
+              <div className="pt-0.5 sm:pt-1.5 flex flex-nowrap items-center gap-1.5 sm:gap-4">
                 <button
                   type="button"
                   onClick={onNavigateServices}
-                  className="inline-flex items-center gap-0.5 sm:gap-2 px-2 py-1 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 text-[6.5px] sm:text-xs lg:text-sm font-semibold text-white rounded-full bg-gradient-to-r from-[#002BFF] to-[#0055FF] hover:from-[#001ACC] hover:to-[#003CE6] shadow-md shadow-[#002BFF]/25 transition-all duration-150 active:scale-[0.98] whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF]"
+                  className="inline-flex items-center gap-1 sm:gap-2 px-2.5 py-1 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 text-[7px] sm:text-xs lg:text-sm font-semibold text-white rounded-full bg-gradient-to-r from-[#002BFF] to-[#0055FF] hover:from-[#001ACC] hover:to-[#003CE6] shadow-md shadow-[#002BFF]/25 transition-all duration-150 active:scale-[0.98] whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF]"
                 >
                   <span>Our Services</span>
-                  <ArrowRight className="w-2 h-2 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4" aria-hidden="true" />
+                  <ArrowRight className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4" strokeWidth={1.75} aria-hidden="true" />
                 </button>
 
                 <button
                   type="button"
                   onClick={scrollToStoryDetails}
-                  className="inline-flex items-center gap-1 sm:gap-2.5 text-[6.5px] sm:text-xs lg:text-sm font-semibold text-[#07133B] hover:text-[#0044FF] transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF] rounded-full pr-0.5 sm:pr-1"
+                  className="inline-flex items-center gap-1 sm:gap-2.5 text-[7px] sm:text-xs lg:text-sm font-semibold text-[#07133B] hover:text-[#0044FF] transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF] rounded-full pr-0.5 sm:pr-1"
                 >
-                  <span className="w-3.5 h-3.5 sm:w-8 sm:h-8 lg:w-9 lg:h-9 rounded-full bg-white border border-[#99BDFF] shadow-sm flex items-center justify-center text-[#0038FF] shrink-0">
-                    <Play className="w-1.5 h-1.5 sm:w-3.5 sm:h-3.5 fill-current ml-0.5" aria-hidden="true" />
+                  <span className="w-4 h-4 sm:w-8 sm:h-8 lg:w-9 lg:h-9 rounded-full bg-white border border-[#99BDFF] shadow-sm flex items-center justify-center text-[#0038FF] shrink-0">
+                    <Play className="w-2 h-2 sm:w-3.5 sm:h-3.5 fill-current ml-0.5" strokeWidth={1.75} aria-hidden="true" />
                   </span>
                   <span>Learn More About Us</span>
                 </button>
               </div>
             </Reveal>
 
-            {/* Right Column Spacer (6 columns on all viewports, matching desktop) */}
-            <div className="col-span-6 h-28 sm:h-72 lg:h-[420px]" aria-hidden="true" />
+            {/* Right Column Spacer */}
+            <div className="col-span-6 h-32 sm:h-72 lg:h-[420px]" aria-hidden="true" />
           </div>
 
-          {/* Floating Dark Navy KPI Strip at Bottom of Hero */}
+          {/* Floating Dark Navy KPI Strip at Bottom of Hero with Crisp Hairline Separators */}
           <Reveal
             direction="bottom"
-            delay={0.16}
-            className="mt-2.5 sm:mt-8 lg:mt-10"
+            delay={0.1}
+            className="mt-3 sm:mt-8 lg:mt-10"
           >
-            <div className="bg-[#061233] text-white rounded-md sm:rounded-2xl border border-white/15 shadow-[0_18px_40px_rgba(4,11,41,0.28)] px-1.5 py-2 sm:px-6 sm:py-4 lg:px-8 lg:py-5">
-              <div className="grid grid-cols-4 items-center">
-                {ABOUT_KPI_STRIP.map((stat, index) => (
+            <div className="bg-[#061233] text-white rounded-lg sm:rounded-2xl border border-white/15 shadow-[0_18px_40px_rgba(4,11,41,0.28)] px-1.5 py-2.5 sm:px-6 sm:py-4 lg:px-8 lg:py-5">
+              <div className="grid grid-cols-4 items-center divide-x divide-[#3B82F6]/35">
+                {ABOUT_KPI_STRIP.map((stat) => (
                   <div
                     key={stat.id}
-                    className={`flex items-center justify-center gap-1 sm:gap-3 lg:gap-4 px-0.5 sm:px-3 lg:px-5 min-w-0 ${
-                      index < ABOUT_KPI_STRIP.length - 1
-                        ? 'border-r border-[#1D4ED8]/60'
-                        : ''
-                    }`}
+                    className="flex items-center justify-center gap-1 sm:gap-3 lg:gap-4 px-1 sm:px-3 lg:px-5 min-w-0"
                   >
                     {renderKpiIcon(stat.id)}
                     <div className="min-w-0 leading-tight">
                       <div
                         className={
                           stat.emphasizeBottom
-                            ? 'text-[6.5px] sm:text-xs text-slate-200 font-medium'
-                            : 'text-[7.5px] sm:text-sm lg:text-lg font-extrabold text-white tabular-nums truncate'
+                            ? 'text-[6.5px] sm:text-xs text-slate-300 font-medium'
+                            : 'text-[8px] sm:text-sm lg:text-lg font-extrabold text-white tabular-nums truncate'
                         }
                       >
                         {stat.topLabel}
@@ -283,8 +288,8 @@ export function AboutPage({
                       <div
                         className={
                           stat.emphasizeBottom
-                            ? 'text-[8px] sm:text-base lg:text-xl font-extrabold text-white tabular-nums mt-0.5'
-                            : 'text-[6.5px] sm:text-xs text-slate-200 font-medium mt-0.5 truncate'
+                            ? 'text-[8.5px] sm:text-base lg:text-xl font-extrabold text-white tabular-nums mt-0.5'
+                            : 'text-[6.5px] sm:text-xs text-slate-300 font-medium mt-0.5 truncate'
                         }
                       >
                         {stat.bottomLabel}
@@ -332,14 +337,14 @@ export function AboutPage({
                   className="inline-flex items-center gap-1 sm:gap-2 text-[8.5px] sm:text-xs lg:text-sm font-semibold text-[#002BFF] hover:text-[#DC0914] transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0000FF] rounded-sm"
                 >
                   <span>Connect With Our Leadership</span>
-                  <ArrowRight className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4" aria-hidden="true" />
+                  <ArrowRight className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4" strokeWidth={1.75} aria-hidden="true" />
                 </button>
               </div>
             </Reveal>
 
             <Reveal
               direction="bottom"
-              delay={0.16}
+              delay={0.08}
               wrapperClassName="col-span-4 w-full"
               className="floating-frame-hero w-full"
             >
@@ -348,15 +353,17 @@ export function AboutPage({
                   src={ABOUT_MEDIA.image}
                   alt={ABOUT_MEDIA.alt}
                   fallbackTitle="SAMITECH Corporation Engineering Atrium"
+                  width={ABOUT_MEDIA.width}
+                  height={ABOUT_MEDIA.height}
                   className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-300"
                 />
               </div>
             </Reveal>
 
             <div className="col-span-4 space-y-2.5 sm:space-y-5 lg:space-y-8">
-              <Reveal direction="right" delay={0.32} className="space-y-1 sm:space-y-2.5 lg:space-y-3">
+              <Reveal direction="right" delay={0.14} className="space-y-1 sm:space-y-2.5 lg:space-y-3">
                 <div className="inline-flex items-center justify-center w-6 h-6 sm:w-9 sm:h-9 lg:w-11 lg:h-11 rounded-md sm:rounded-xl bg-[#002BFF]/10 text-[#002BFF]">
-                  <Target className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" aria-hidden="true" />
+                  <Target className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" strokeWidth={1.75} aria-hidden="true" />
                 </div>
                 <h3 className="text-[10px] sm:text-base lg:text-xl font-bold tracking-tight text-[#07133B]">
                   Our Mission
@@ -370,11 +377,11 @@ export function AboutPage({
 
               <Reveal
                 direction="right"
-                delay={0.48}
+                delay={0.22}
                 className="pt-2.5 sm:pt-5 lg:pt-8 border-t border-[#0044FF]/15 space-y-1 sm:space-y-2.5 lg:space-y-3"
               >
                 <div className="inline-flex items-center justify-center w-6 h-6 sm:w-9 sm:h-9 lg:w-11 lg:h-11 rounded-md sm:rounded-xl bg-[#DC0914]/10 text-[#DC0914]">
-                  <Compass className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" aria-hidden="true" />
+                  <Compass className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" strokeWidth={1.75} aria-hidden="true" />
                 </div>
                 <h3 className="text-[10px] sm:text-base lg:text-xl font-bold tracking-tight text-[#07133B]">
                   Our Vision
@@ -407,9 +414,9 @@ export function AboutPage({
                     <stop offset="100%" stopColor="#060D28" />
                   </linearGradient>
                   <linearGradient id="aboutValuesStroke" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#0044FF" stopOpacity="0.35" />
-                    <stop offset="50%" stopColor="#3B82F6" stopOpacity="0.45" />
-                    <stop offset="100%" stopColor="#DC0914" stopOpacity="0.35" />
+                    <stop offset="0%" stopColor="#0044FF" stopOpacity="0.45" />
+                    <stop offset="50%" stopColor="#3B82F6" stopOpacity="0.55" />
+                    <stop offset="100%" stopColor="#DC0914" stopOpacity="0.45" />
                   </linearGradient>
                 </defs>
                 <path
@@ -417,6 +424,7 @@ export function AboutPage({
                   fill="url(#aboutValuesDarkBg)"
                   stroke="url(#aboutValuesStroke)"
                   strokeWidth="1.5"
+                  vectorEffect="non-scaling-stroke"
                 />
               </svg>
 
@@ -442,11 +450,11 @@ export function AboutPage({
                     <Reveal
                       key={pillar.id}
                       direction="left"
-                      delay={0.14 + index * 0.16}
+                      delay={0.08 + index * 0.08}
                       wrapperClassName="min-w-0"
                       className="space-y-1 sm:space-y-2.5 lg:space-y-3 min-w-0"
                     >
-                      <div className="inline-flex items-center justify-center w-4 h-4 sm:w-9 sm:h-9 lg:w-11 lg:h-11 rounded sm:rounded-lg bg-white/[0.06] border border-white/10">
+                      <div className="inline-flex items-center justify-center w-5 h-5 sm:w-9 sm:h-9 lg:w-11 lg:h-11 rounded-md sm:rounded-lg bg-white/[0.06] border border-white/15">
                         {renderValueIcon(pillar.id)}
                       </div>
                       <h3 className="text-[7.5px] sm:text-sm lg:text-lg font-bold text-white tracking-tight leading-tight sm:leading-snug">
@@ -464,19 +472,22 @@ export function AboutPage({
 
           <Reveal
             direction="left"
-            delay={0.2}
+            delay={0.14}
             wrapperClassName="relative z-10 -mt-3.5 sm:-mt-8 lg:-mt-9"
             className="flex items-center gap-2 sm:gap-5 pr-1 sm:pr-2"
           >
             <button
               type="button"
               onClick={() => onOpenContact()}
-              className="inline-flex items-center gap-1 sm:gap-2 px-2 py-1 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 text-[6.5px] sm:text-xs lg:text-sm font-semibold text-white rounded sm:rounded-lg bg-gradient-to-r from-[#DC0914] to-[#950606] hover:from-[#B90610] hover:to-[#7A0404] shadow-md transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#DC0914]"
+              className="inline-flex items-center gap-1 sm:gap-2 px-2.5 py-1 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 text-[6.5px] sm:text-xs lg:text-sm font-semibold text-white rounded sm:rounded-lg bg-gradient-to-r from-[#DC0914] to-[#950606] hover:from-[#B90610] hover:to-[#7A0404] shadow-md transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#DC0914]"
             >
               <span>Partner With Us</span>
-              <ArrowRight className="w-2 h-2 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4" aria-hidden="true" />
+              <ArrowRight className="w-2 h-2 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4" strokeWidth={1.75} aria-hidden="true" />
             </button>
-            <div className="h-[1px] flex-1 bg-slate-300/70" aria-hidden="true" />
+            <div
+              className="h-px flex-1 bg-gradient-to-r from-[#0044FF]/35 via-slate-300/80 to-transparent"
+              aria-hidden="true"
+            />
           </Reveal>
         </div>
       </section>
@@ -499,16 +510,16 @@ export function AboutPage({
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-4 gap-1 sm:gap-4 lg:gap-6">
+          <div className="grid grid-cols-4 gap-1.5 sm:gap-4 lg:gap-6">
             {ABOUT_PAGE_MILESTONES.map((milestone, index) => (
               <Reveal
                 key={milestone.year}
                 direction="bottom"
-                delay={0.14 + index * 0.15}
+                delay={0.08 + index * 0.08}
                 wrapperClassName="h-full"
                 className="h-full"
               >
-                <div className="h-full rounded sm:rounded-2xl bg-[#F2F6FF] border border-[#0044FF]/15 p-1.5 sm:p-5 lg:p-6 space-y-0.5 sm:space-y-2.5 flex flex-col justify-between">
+                <div className="h-full rounded-md sm:rounded-2xl bg-[#F2F6FF] border border-[#0044FF]/15 p-1.5 sm:p-5 lg:p-6 space-y-0.5 sm:space-y-2.5 flex flex-col justify-between transition-colors hover:border-[#0044FF]/35">
                   <div className="space-y-0.5 sm:space-y-2">
                     <div className="font-mono tabular-nums text-[7.5px] sm:text-sm lg:text-base font-bold text-[#002BFF]">
                       {milestone.year}
@@ -516,7 +527,7 @@ export function AboutPage({
                     <h3 className="text-[7px] sm:text-sm lg:text-lg font-bold text-[#07133B] leading-tight">
                       {milestone.title}
                     </h3>
-                    <p className="text-[5.8px] sm:text-xs lg:text-sm text-slate-600 leading-tight sm:leading-relaxed">
+                    <p className="text-[6px] sm:text-xs lg:text-sm text-slate-600 leading-tight sm:leading-relaxed">
                       {milestone.detail}
                     </p>
                   </div>
@@ -525,19 +536,23 @@ export function AboutPage({
             ))}
           </div>
 
-          <Reveal direction="right" delay={0.28} className="mt-4 sm:mt-10 lg:mt-12 flex flex-nowrap items-center justify-center gap-1.5 sm:gap-4">
+          <Reveal
+            direction="right"
+            delay={0.18}
+            className="mt-5 sm:mt-10 lg:mt-12 flex flex-nowrap items-center justify-center gap-2 sm:gap-4"
+          >
             <button
               type="button"
               onClick={onNavigateServices}
-              className="inline-flex items-center gap-1 sm:gap-2 px-2.5 py-1 sm:px-6 sm:py-3 text-[7.5px] sm:text-xs lg:text-sm font-semibold text-white rounded-full bg-gradient-to-r from-[#001AFF] to-[#0044FF] hover:from-[#0000CC] hover:to-[#002BFF] shadow-md shadow-[#002BFF]/20 transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer"
+              className="inline-flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-6 sm:py-3 text-[8px] sm:text-xs lg:text-sm font-semibold text-white rounded-full bg-gradient-to-r from-[#001AFF] to-[#0044FF] hover:from-[#0000CC] hover:to-[#002BFF] shadow-md shadow-[#002BFF]/20 transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer"
             >
               <span>Explore Our Services</span>
-              <ArrowRight className="w-2.5 h-2.5 sm:w-4 sm:h-4" aria-hidden="true" />
+              <ArrowRight className="w-2.5 h-2.5 sm:w-4 sm:h-4" strokeWidth={1.75} aria-hidden="true" />
             </button>
             <button
               type="button"
               onClick={onNavigateProjects}
-              className="inline-flex items-center gap-1 sm:gap-2 px-2.5 py-1 sm:px-6 sm:py-3 text-[7.5px] sm:text-xs lg:text-sm font-semibold text-[#07133B] bg-white border border-slate-200 hover:border-[#0044FF]/40 hover:bg-[#F2F6FF] rounded-full shadow-sm transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer"
+              className="inline-flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-6 sm:py-3 text-[8px] sm:text-xs lg:text-sm font-semibold text-[#07133B] bg-white border border-slate-200 hover:border-[#0044FF]/40 hover:bg-[#F2F6FF] rounded-full shadow-sm transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer"
             >
               <span>View Featured Projects</span>
             </button>

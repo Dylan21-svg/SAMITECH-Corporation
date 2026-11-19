@@ -3,9 +3,9 @@ import { motion, useInView, useReducedMotion, type Variants } from 'motion/react
 
 export type RevealDirection = 'left' | 'right' | 'top' | 'bottom' | 'none';
 
-export const SAMITECH_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
-export const SAMITECH_DURATION = 1.25;
-export const SAMITECH_STAGGER = 0.16;
+export const SAMITECH_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+export const SAMITECH_DURATION = 0.68;
+export const SAMITECH_STAGGER = 0.08;
 export const SAMITECH_VIEWPORT = { once: false, amount: 0.08 } as const;
 
 export function useMotionConfigValues() {
@@ -30,7 +30,7 @@ export function useMotionConfigValues() {
     };
   }, []);
 
-  const distance = shouldReduceMotion ? 0 : isCompactScreen ? 30 : 60;
+  const distance = shouldReduceMotion ? 0 : isCompactScreen ? 20 : 40;
 
   return { distance, shouldReduceMotion, isCompactScreen };
 }
@@ -62,7 +62,7 @@ export function createRevealVariants(
       x: initialX,
       y: initialY,
       transition: {
-        duration: 0.35,
+        duration: 0.25,
         delay: 0,
         ease: SAMITECH_EASE,
       },

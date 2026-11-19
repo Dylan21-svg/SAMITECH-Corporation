@@ -1,10 +1,9 @@
-import heroLabImg from '../assets/images/hero_samitech_lab_1794695612285.jpg';
-import aboutHqImg from '../assets/images/about_samitech_hq_1794695612230.jpg';
-import fiberCoreImg from '../assets/images/samitech_fiber_core_1794695612961.jpg';
-import softwareFloorImg from '../assets/images/samitech_software_floor_1794695612730.jpg';
-import hardwareBenchImg from '../assets/images/samitech_hardware_bench_1794695613315.jpg';
-import nocCenterImg from '../assets/images/samitech_noc_center_1794695614349.jpg';
-import campusArchImg from '../assets/images/samitech_campus_architecture_1794695614655.jpg';
+import aboutHqImg from '../assets/images/about_samitech_hq_1794695612230.webp';
+import fiberCoreImg from '../assets/images/samitech_fiber_core_1794695612961.webp';
+import softwareFloorImg from '../assets/images/samitech_software_floor_1794695612730.webp';
+import hardwareBenchImg from '../assets/images/samitech_hardware_bench_1794695613315.webp';
+import nocCenterImg from '../assets/images/samitech_noc_center_1794695614349.webp';
+import campusArchImg from '../assets/images/samitech_campus_architecture_1794695614655.webp';
 
 export interface ServiceItem {
   id: string;
@@ -13,7 +12,10 @@ export interface ServiceItem {
   shortDesc: string;
   image: string;
   imageAlt: string;
+  imageWidth: number;
+  imageHeight: number;
   serviceCategory: string;
+  detailSlug: string;
 }
 
 export interface WhyPillar {
@@ -42,6 +44,8 @@ export interface CaseStudy {
   metrics: CaseStudyMetric[];
   image: string;
   imageAlt: string;
+  imageWidth: number;
+  imageHeight: number;
 }
 
 export interface FaqItem {
@@ -52,7 +56,7 @@ export interface FaqItem {
 
 export const COMPANY_CONTACT = {
   brandName: 'SamiTech',
-  legalName: 'SamiTech',
+  legalName: 'SAMITECH Corporation',
   domain: 'samitech237.com',
   email: 'samitech237@gmail.com',
   phone: '+237 674 137 259',
@@ -62,14 +66,11 @@ export const COMPANY_CONTACT = {
   availability: '24/7 Support',
 };
 
-export const HERO_MEDIA = {
-  image: heroLabImg,
-  alt: 'SamiTech software and network engineers collaborating beside enterprise server racks in a glass-walled engineering lab',
-};
-
 export const ABOUT_MEDIA = {
   image: aboutHqImg,
-  alt: 'Multi-story SamiTech engineering atrium with glass network laboratories and structural steel framing',
+  alt: 'Multi-story SAMITECH engineering atrium with glass network laboratories and structural steel framing',
+  width: 720,
+  height: 964,
 };
 
 export const SERVICES: ServiceItem[] = [
@@ -80,7 +81,10 @@ export const SERVICES: ServiceItem[] = [
     shortDesc: 'Custom web (React, Vue, Angular), mobile apps, and scalable ERP/CRM platforms.',
     image: softwareFloorImg,
     imageAlt: 'Software engineers collaborating at dual-monitor workstations in a modern glass engineering office',
+    imageWidth: 720,
+    imageHeight: 964,
     serviceCategory: 'Software Development',
+    detailSlug: 'custom-software',
   },
   {
     id: 'networking-solutions',
@@ -89,7 +93,10 @@ export const SERVICES: ServiceItem[] = [
     shortDesc: 'LAN/WAN architecture, OpenVPN setup, cloud management, load balancing, and monitoring.',
     image: fiberCoreImg,
     imageAlt: 'High-density enterprise fiber-optic core switches with structured blue patch cabling',
+    imageWidth: 720,
+    imageHeight: 964,
     serviceCategory: 'Networking Solutions',
+    detailSlug: 'networking-solutions',
   },
   {
     id: 'cybersecurity',
@@ -98,16 +105,22 @@ export const SERVICES: ServiceItem[] = [
     shortDesc: 'Security audits, vulnerability assessments, penetration testing, and incident response.',
     image: hardwareBenchImg,
     imageAlt: 'Network systems engineer inspecting modular enterprise routing hardware and optical transceivers',
+    imageWidth: 720,
+    imageHeight: 964,
     serviceCategory: 'Cybersecurity Services',
+    detailSlug: 'cybersecurity',
   },
   {
     id: 'data-ai-ux',
     number: '04',
-    title: 'Data, AI & UI/UX',
-    shortDesc: 'Machine learning solutions, big data analytics, and user-centric digital product design.',
+    title: 'AI & UX/UI Systems',
+    shortDesc: 'Machine learning, Generative AI enablement, and user-centric digital product design.',
     image: campusArchImg,
     imageAlt: 'Contemporary glass and dark steel technology corporate facility illuminated with blue architectural light',
-    serviceCategory: 'Data & AI',
+    imageWidth: 720,
+    imageHeight: 964,
+    serviceCategory: 'AI Development & Enablement',
+    detailSlug: 'ai-development',
   },
   {
     id: 'tracking-support',
@@ -116,7 +129,10 @@ export const SERVICES: ServiceItem[] = [
     shortDesc: 'Authorized equipment tracking, recovery coordination, and 24/7 managed IT operations.',
     image: nocCenterImg,
     imageAlt: 'Enterprise Network Operations Center with engineers monitoring topology and system health',
+    imageWidth: 720,
+    imageHeight: 964,
     serviceCategory: 'Authorized Equipment Tracking',
+    detailSlug: 'tracking-support',
   },
 ];
 
@@ -169,7 +185,9 @@ export const CASE_STUDIES: CaseStudy[] = [
       { value: '24/7', label: 'Live Stock Sync' },
     ],
     image: softwareFloorImg,
-    imageAlt: 'SamiTech software engineering team collaborating on enterprise application workflows',
+    imageAlt: 'SAMITECH software engineering team collaborating on enterprise application workflows',
+    imageWidth: 720,
+    imageHeight: 964,
   },
   {
     id: 'lan-wan-vpn-fabric',
@@ -196,6 +214,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     image: fiberCoreImg,
     imageAlt: 'High-density core switching and structured blue cabling installed for enterprise networking',
+    imageWidth: 720,
+    imageHeight: 964,
   },
   {
     id: 'pentest-security-audit',
@@ -222,6 +242,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     image: hardwareBenchImg,
     imageAlt: 'Security and hardware specialist validating enterprise routing and network security appliances',
+    imageWidth: 720,
+    imageHeight: 964,
   },
   {
     id: 'authorized-tracking-system',
@@ -247,7 +269,9 @@ export const CASE_STUDIES: CaseStudy[] = [
       { value: '24/7', label: 'Intake & Case Tracking' },
     ],
     image: nocCenterImg,
-    imageAlt: 'SamiTech operations desk monitoring telemetry and authorized recovery workflows',
+    imageAlt: 'SAMITECH operations desk monitoring telemetry and authorized recovery workflows',
+    imageWidth: 720,
+    imageHeight: 964,
   },
 ];
 
@@ -260,13 +284,13 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     id: 'faq-2',
-    question: 'What core technology services does SamiTech provide?',
+    question: 'What core technology services does SAMITECH provide?',
     answer:
       'We specialize in Software Development (React, Vue, Angular, iOS, Android, Flutter, ERP/CRM), Networking Solutions (LAN/WAN, VPNs, AWS/Azure/GCP cloud infrastructure), Cybersecurity (audits, penetration testing, incident response), Data & AI, UI/UX Design, and Authorized Equipment Tracking.',
   },
   {
     id: 'faq-3',
-    question: 'How does SamiTech’s Authorized Equipment Tracking service work?',
+    question: 'How does SAMITECH’s Authorized Equipment Tracking service work?',
     answer:
       'Clients submit verified proof of ownership (receipt or original box) along with MTN Mobile Money payment: 35,000 XAF for smartphones/tablets, 45,000 XAF for laptops/desktops, 85,000 XAF for motor vehicles (including law enforcement coordination), and 25,000 XAF for IoT devices. False reporting is strictly prohibited.',
   },
@@ -274,29 +298,35 @@ export const FAQ_ITEMS: FaqItem[] = [
     id: 'faq-4',
     question: 'Do you offer internships or public developer resources?',
     answer:
-      'Yes. SamiTech runs hands-on internship programs in Software Engineering, Networking, and Cybersecurity mentored by our senior engineers, and publishes public configuration guides and tools including OpenVPN setups, Node.js installers, and API documentation.',
+      'Yes. SAMITECH runs hands-on internship programs in Software Engineering, Networking, and Cybersecurity mentored by our senior engineers, and publishes public configuration guides and tools including OpenVPN setups, Node.js installers, and API documentation.',
   },
   {
     id: 'faq-5',
-    question: 'How quickly can we reach SamiTech for project quotes or 24/7 support?',
+    question: 'How quickly can we reach SAMITECH for project quotes or 24/7 support?',
     answer:
       'Our engineering and support desk is available 24/7. Reach us directly by phone or WhatsApp at +237 674 137 259, by email at samitech237@gmail.com, or through the consultation form on this page.',
   },
 ];
 
 export const SERVICE_CATEGORY_OPTIONS = [
+  'Product Scope',
+  'MVP Builder',
+  'AI Development & Enablement',
   'Software Development',
+  'UI/UX Design',
+  'Dedicated Teams',
   'Networking Solutions',
   'Cybersecurity Services',
-  'Data & AI',
-  'UI/UX Design',
   'Authorized Equipment Tracking',
   'Internships & Training',
+  'Careers & Job Applications',
 ];
 
 export const ABOUT_HERO_MEDIA = {
   image: '/assets/about-hero-bg.webp',
   alt: 'SAMITECH Corporation engineer wearing a navy SAMITECH polo and headset beside a laptop in our modern office',
+  width: 1600,
+  height: 893,
 };
 
 export const ABOUT_PAGE_VALUES = [
