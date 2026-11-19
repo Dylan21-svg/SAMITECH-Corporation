@@ -15,7 +15,14 @@ import {
 } from './MotionPrimitives';
 import { ServiceWireframeIcon } from './ServiceWireframeIcon';
 
-export type AppPage = 'home' | 'about' | 'services' | 'service-detail' | 'careers';
+export type AppPage =
+  | 'home'
+  | 'about'
+  | 'services'
+  | 'service-detail'
+  | 'careers'
+  | 'projects'
+  | 'contact';
 
 interface NavbarProps {
   activePage: AppPage;
@@ -122,9 +129,9 @@ export function Navbar({
     ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm'
     : overDarkSection
       ? 'bg-[#070B19]/85 backdrop-blur-md border-b border-white/10'
-      : isScrolled || activePage === 'services'
+      : isScrolled || activePage === 'services' || activePage === 'projects'
         ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/75 shadow-xs'
-        : 'bg-transparent border-b border-transparent';
+        : 'bg-white/95 backdrop-blur-md border-b border-slate-200/75 shadow-xs md:bg-transparent md:backdrop-blur-none md:border-b-transparent md:shadow-none';
 
   const useDarkText = overDarkSection && !mobileMenuOpen;
 
@@ -147,7 +154,7 @@ export function Navbar({
         initial={shouldReduceMotion ? false : 'hidden'}
         animate="visible"
         variants={navVariants}
-        className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 sm:h-16 lg:h-20 flex items-center justify-between gap-4 lg:gap-8"
+        className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 sm:h-16 lg:h-20 flex items-center justify-between gap-3 lg:gap-8"
       >
         {/* Zone 1: Official SAMITECH Corporation Brand Logo */}
         <button
@@ -164,7 +171,7 @@ export function Navbar({
             loading="eager"
             decoding="sync"
             fetchPriority="high"
-            className={`h-7 sm:h-9 lg:h-11 w-auto object-contain shrink-0 transition-all duration-200 ${
+            className={`h-7 sm:h-8 lg:h-11 w-auto object-contain shrink-0 transition-all duration-200 ${
               useDarkText ? 'footer-logo-glow' : ''
             }`}
           />
@@ -173,7 +180,7 @@ export function Navbar({
         {/* Zone 2: Desktop Single-Line Navigation Links */}
         <nav
           aria-label="Primary navigation"
-          className="hidden md:flex items-center gap-5 lg:gap-7"
+          className="hidden md:flex items-center gap-4 lg:gap-7"
         >
           <button
             type="button"
@@ -277,8 +284,8 @@ export function Navbar({
 
           <button
             type="button"
-            onClick={() => handleMobileNav('home', 'projects')}
-            className={navLinkClass}
+            onClick={() => handleMobileNav('projects')}
+            className={activePage === 'projects' ? activeLinkClass : navLinkClass}
           >
             Projects
           </button>
@@ -291,9 +298,13 @@ export function Navbar({
             Careers
           </button>
 
-          <a href="#contact-footer" className={navLinkClass}>
+          <button
+            type="button"
+            onClick={() => handleMobileNav('contact')}
+            className={activePage === 'contact' ? activeLinkClass : navLinkClass}
+          >
             Contact
-          </a>
+          </button>
         </nav>
 
         {/* Zone 3: Desktop CTA + Mobile Compact Action & Animated Menu Icon */}
@@ -473,10 +484,17 @@ export function Navbar({
 
               <button
                 type="button"
-                onClick={() => handleMobileNav('home', 'projects')}
-                className="w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-sm font-semibold text-[#07133B] hover:bg-slate-50 transition-colors cursor-pointer"
+                onClick={() => handleMobileNav('projects')}
+                className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-sm font-semibold transition-colors cursor-pointer ${
+                  activePage === 'projects'
+                    ? 'bg-[#EEF3FF] text-[#002BFF]'
+                    : 'text-[#07133B] hover:bg-slate-50'
+                }`}
               >
-                <span>Featured Projects</span>
+                <span>Projects Portfolio</span>
+                {activePage === 'projects' && (
+                  <span className="text-[11px] font-medium text-[#002BFF]">Active</span>
+                )}
               </button>
 
               <button
@@ -494,13 +512,20 @@ export function Navbar({
                 )}
               </button>
 
-              <a
-                href="#contact-footer"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-sm font-semibold text-[#07133B] hover:bg-slate-50 transition-colors"
+              <button
+                type="button"
+                onClick={() => handleMobileNav('contact')}
+                className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-sm font-semibold transition-colors cursor-pointer ${
+                  activePage === 'contact'
+                    ? 'bg-[#EEF3FF] text-[#002BFF]'
+                    : 'text-[#07133B] hover:bg-slate-50'
+                }`}
               >
                 <span>Contact Us</span>
-              </a>
+                {activePage === 'contact' && (
+                  <span className="text-[11px] font-medium text-[#002BFF]">Active</span>
+                )}
+              </button>
 
               {/* Mobile Direct Contact Summary Container */}
               <div className="pt-3 mt-2 border-t border-slate-200/80 space-y-2.5">

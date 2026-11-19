@@ -100,8 +100,12 @@ export function Reveal({
   wrapperClassName,
 }: RevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, SAMITECH_VIEWPORT);
-  const { distance, shouldReduceMotion } = useMotionConfigValues();
+  const { distance, shouldReduceMotion, isCompactScreen } = useMotionConfigValues();
+  const isInView = useInView(containerRef, {
+    once: false,
+    amount: isCompactScreen ? 0.14 : 0.08,
+    margin: isCompactScreen ? '0px 0px -45px 0px' : '0px',
+  });
   const variants = createRevealVariants(direction, distance, delay, duration);
 
   if (shouldReduceMotion) {

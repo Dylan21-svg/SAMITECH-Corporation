@@ -1,275 +1,283 @@
 import { useState } from 'react';
 import {
   ArrowRight,
-  CheckCircle2,
-  Code2,
-  MapPin,
-  Network,
-  ShieldCheck,
-  TrendingUp,
+  ChevronDown,
+  Globe,
+  Rocket,
+  Star,
+  Users,
 } from 'lucide-react';
+import {
+  EXTRA_PROJECT_FILTERS,
+  PORTFOLIO_PROJECTS,
+  PRIMARY_PROJECT_FILTERS,
+  PROJECTS_PAGE_MEDIA,
+  type ProjectFilterId,
+  type ShowcaseProject,
+} from '../data/projectsData';
+import type { CaseStudy } from '../data/samitechData';
 import { Reveal } from './MotionPrimitives';
 import { ResilientImage } from './ResilientImage';
-import {
-  ABOUT_HERO_MEDIA,
-  CASE_STUDIES,
-  type CaseStudy,
-} from '../data/samitechData';
+import { ProjectGoldTrophyIcon } from './ShowcaseIcons';
 
 interface ProjectsPageProps {
-  onSelectCaseStudy: (study: CaseStudy) => void;
+  onSelectProject: (study: CaseStudy) => void;
   onOpenContact: (defaultCategory?: string) => void;
-  onNavigateServices: () => void;
 }
 
-const SECTOR_FILTERS = [
-  'All Sectors',
-  'Software Development',
-  'Networking Solutions',
-  'Cybersecurity Services',
-  'Tracking & Data Systems',
-];
-
-const PROJECTS_KPI_BAR = [
-  { label: 'Delivered Projects', value: '100+', icon: Code2 },
-  { label: 'Packet Latency Drop', value: '-58%', icon: TrendingUp },
-  { label: 'Critical CVEs Fixed', value: '100%', icon: ShieldCheck },
-  { label: 'WAN Uptime SLA', value: '99.95%', icon: Network },
+const PORTFOLIO_STATS = [
+  {
+    icon: Rocket,
+    value: '10+',
+    label: 'Completed Projects',
+  },
+  {
+    icon: Users,
+    value: '1K+',
+    label: 'Active Users',
+  },
+  {
+    icon: Globe,
+    value: '3+',
+    label: 'Countries Impacted',
+  },
 ];
 
 export function ProjectsPage({
-  onSelectCaseStudy,
+  onSelectProject,
   onOpenContact,
-  onNavigateServices,
 }: ProjectsPageProps) {
-  const [selectedSector, setSelectedSector] = useState('All Sectors');
+  const [activeFilter, setActiveFilter] = useState<ProjectFilterId>('all');
+  const [showMoreFilters, setShowMoreFilters] = useState(false);
 
-  const filteredProjects =
-    selectedSector === 'All Sectors'
-      ? CASE_STUDIES
-      : CASE_STUDIES.filter((study) => study.sector === selectedSector);
+  const visibleProjects: ShowcaseProject[] =
+    activeFilter === 'all'
+      ? PORTFOLIO_PROJECTS
+      : PORTFOLIO_PROJECTS.filter((project) => project.filterCategory === activeFilter);
 
-  const scrollToGrid = () => {
-    const el = document.getElementById('projects-catalogue');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const isExtraFilterSelected = EXTRA_PROJECT_FILTERS.some(
+    (item) => item.id === activeFilter
+  );
 
   return (
     <div className="bg-white text-[#07133B]">
-      {/* HERO BANNER */}
-      <section className="relative overflow-hidden bg-white border-b border-[#0044FF]/10">
+      {/* DARK ROYAL-BLUE HOLOGRAPHIC LAPTOP HERO + KPI BAR */}
+      <section className="relative overflow-hidden bg-[#020B2B] text-white">
+        {/* Background Glowing Code Laptop Artwork */}
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <ResilientImage
-            src={ABOUT_HERO_MEDIA.image}
-            alt={ABOUT_HERO_MEDIA.alt}
-            fallbackTitle="SAMITECH Corporation Projects"
-            width={ABOUT_HERO_MEDIA.width}
-            height={ABOUT_HERO_MEDIA.height}
+            src={PROJECTS_PAGE_MEDIA.heroLaptop.image}
+            alt={PROJECTS_PAGE_MEDIA.heroLaptop.alt}
+            fallbackTitle="SAMITECH Projects Portfolio"
+            width={PROJECTS_PAGE_MEDIA.heroLaptop.width}
+            height={PROJECTS_PAGE_MEDIA.heroLaptop.height}
             priority
-            className="w-full h-full object-cover object-[76%_top] sm:object-[right_top] lg:object-center opacity-90"
+            darkSkeleton
+            className="w-full h-full object-cover object-[78%_center] sm:object-center"
           />
-          <div className="absolute inset-y-0 left-0 w-[68%] sm:w-[60%] bg-gradient-to-r from-white via-white/95 to-transparent" />
+          {/* Scrim preserving high-contrast white headline & cyan sub-accent on left while keeping glowing laptop crisp on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#020B2B]/92 via-[#031245]/60 to-transparent sm:w-[70%]" />
+          {/* Crimson & Cyan Corner Swoosh Accent matching mockup */}
+          <svg
+            viewBox="0 0 260 120"
+            className="hidden sm:block absolute right-0 bottom-6 w-44 lg:w-64 h-auto opacity-95"
+          >
+            <path d="M 35,120 Q 170,95 260,18 L 260,120 Z" fill="#0EA5E9" fillOpacity="0.65" />
+            <path d="M 85,120 Q 190,102 260,36 L 260,120 Z" fill="#DC0914" />
+          </svg>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-28 pb-4 sm:pb-8 lg:pb-10">
-          <div className="grid grid-cols-12 items-center gap-2 sm:gap-4 lg:gap-6">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 lg:pt-36 pb-16 sm:pb-24 lg:pb-28">
+          <div className="grid grid-cols-12 items-center">
             <Reveal
               direction="left"
-              wrapperClassName="col-span-7 sm:col-span-6"
-              className="space-y-2 sm:space-y-4 lg:space-y-5"
+              wrapperClassName="col-span-12 lg:col-span-7"
+              className="space-y-4 sm:space-y-5"
             >
-              <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[9px] sm:text-xs font-semibold text-[#002BFF] tracking-tight">
-                <span className="w-4 sm:w-5 h-[2px] bg-[#0044FF] rounded-full" aria-hidden="true" />
-                <span>Featured Deployments</span>
+              {/* Dark-Mode Pill Tag ("Our Portfolio") */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B235B]/85 border border-[#38BDF8]/35 text-xs font-semibold text-white">
+                <span className="w-3.5 h-3.5 rounded-full bg-[#22D3EE]/25 border border-[#22D3EE] inline-flex items-center justify-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE]" aria-hidden="true" />
+                </span>
+                <span>Our Portfolio</span>
               </div>
 
-              <div className="space-y-1 sm:space-y-1.5">
-                <h1
-                  className="font-extrabold tracking-tight leading-[1.05] text-balance"
-                  style={{ fontSize: 'clamp(1.2rem, 3.85vw, 3.45rem)' }}
-                >
-                  <span className="text-[#07133B] block">Verified Impact</span>
-                  <span className="bg-gradient-to-r from-[#0014CC] via-[#0033FF] to-[#0055FF] bg-clip-text text-transparent block">
-                    In Production
-                  </span>
-                </h1>
-                <div className="pt-0.5 sm:pt-1 flex items-center w-20 sm:w-32 lg:w-40" aria-hidden="true">
-                  <span className="w-1/2 h-[2px] sm:h-[3px] bg-[#0044FF] rounded-l-full" />
-                  <span className="w-1/2 h-[2px] sm:h-[3px] bg-[#DC0914] rounded-r-full" />
-                </div>
-              </div>
+              <h1
+                className="font-extrabold tracking-tight leading-[1.06] text-balance"
+                style={{ fontSize: 'clamp(2rem, 4.5vw, 3.85rem)' }}
+              >
+                <span className="text-white">Our </span>
+                <span className="text-[#22D3EE]">Projects</span>
+              </h1>
 
-              <p className="max-w-xl text-[9px] sm:text-[13px] lg:text-[15.5px] font-medium text-slate-800 leading-snug sm:leading-relaxed">
-                Explore real-world enterprise software platforms, multi-site OpenVPN networks,
-                penetration testing audits, and verified device tracking portals engineered across
-                Buea, Douala, Yaoundé, and international partners.
+              <p className="max-w-lg text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed">
+                A showcase of our innovative solutions, built to solve real problems and drive
+                digital growth across Africa and beyond.
               </p>
 
-              <div className="pt-0.5 sm:pt-1 flex flex-nowrap items-center gap-1.5 sm:gap-4">
-                <button
-                  type="button"
-                  onClick={() => onOpenContact()}
-                  className="inline-flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 text-[8.5px] sm:text-xs lg:text-sm font-semibold text-white rounded-full bg-gradient-to-r from-[#002BFF] to-[#0055FF] hover:from-[#001ACC] hover:to-[#003CE6] shadow-md shadow-[#002BFF]/25 transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer"
-                >
-                  <span>Start a Project</span>
-                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" strokeWidth={1.75} aria-hidden="true" />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={scrollToGrid}
-                  className="inline-flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 text-[8.5px] sm:text-xs lg:text-sm font-semibold text-[#07133B] bg-white border border-slate-300 hover:border-[#0044FF]/50 hover:bg-[#F2F6FF] rounded-full shadow-sm transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer"
-                >
-                  <span>Browse Case Studies</span>
-                </button>
-              </div>
-            </Reveal>
-
-            <div className="col-span-5 sm:col-span-6 h-32 sm:h-72 lg:h-[390px]" aria-hidden="true" />
-          </div>
-
-          <Reveal direction="bottom" delay={0.08} className="mt-4 sm:mt-8 lg:mt-10">
-            <div className="bg-[#061233] text-white rounded-xl sm:rounded-2xl border border-white/15 shadow-[0_18px_40px_rgba(4,11,41,0.28)] px-2 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-5">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-0 sm:divide-x divide-[#3B82F6]/35">
-                {PROJECTS_KPI_BAR.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <div
-                      key={item.label}
-                      className="flex items-center sm:justify-center gap-2.5 sm:gap-3 lg:gap-4 px-2 sm:px-3 lg:px-5 min-w-0"
-                    >
-                      <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-[#60A5FA] shrink-0" strokeWidth={1.75} aria-hidden="true" />
-                      <div className="min-w-0">
-                        <div className="font-display text-xs sm:text-base lg:text-lg font-extrabold text-white tabular-nums truncate">
-                          {item.value}
+              {/* Dark Frosted Glass 3-Stat Strip ("10+ Completed Projects · 1K+ Active Users · 3+ Countries Impacted") */}
+              <div className="pt-1">
+                <div className="inline-grid grid-cols-3 divide-x divide-white/15 rounded-2xl bg-[#091A4A]/78 border border-[#38BDF8]/25 backdrop-blur-md px-3 py-3 sm:px-5 sm:py-3.5 shadow-xl max-w-full">
+                  {PORTFOLIO_STATS.map((stat) => {
+                    const Icon = stat.icon;
+                    return (
+                      <div
+                        key={stat.label}
+                        className="flex items-center gap-2 sm:gap-3 px-2 sm:px-4 first:pl-0.5 last:pr-0.5 min-w-0"
+                      >
+                        <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg bg-[#22D3EE]/12 border border-[#22D3EE]/30 text-[#22D3EE] flex items-center justify-center shrink-0">
+                          <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" strokeWidth={1.85} aria-hidden="true" />
                         </div>
-                        <div className="text-[10px] sm:text-xs text-slate-300 font-medium truncate">
-                          {item.label}
+                        <div className="min-w-0">
+                          <div className="font-display font-extrabold text-sm sm:text-lg lg:text-xl text-white tabular-nums leading-none">
+                            {stat.value}
+                          </div>
+                          <div className="mt-0.5 text-[9px] sm:text-[11px] font-medium text-slate-300 leading-tight truncate">
+                            {stat.label}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
+        </div>
+
+        {/* Bottom Smooth White Curve Transition */}
+        <div className="pointer-events-none absolute bottom-0 inset-x-0 z-10 overflow-hidden leading-none" aria-hidden="true">
+          <svg
+            viewBox="0 0 1440 84"
+            preserveAspectRatio="none"
+            className="w-full h-9 sm:h-16 lg:h-20 block"
+          >
+            <path d="M0,78 Q720,-16 1440,78 L1440,84 L0,84 Z" fill="#F8FAFF" />
+          </svg>
         </div>
       </section>
 
-      {/* FILTERABLE CASE STUDIES CATALOGUE */}
-      <section id="projects-catalogue" className="py-10 sm:py-16 lg:py-24 bg-[#F2F6FF] border-b border-[#0044FF]/10 overflow-x-clip">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
-            <Reveal direction="left" delay={0} className="space-y-2 max-w-2xl">
-              <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#07133B] text-balance">
-                Case Study{' '}
-                <span className="text-[#002BFF]">Portfolio</span>
-              </h2>
-              <p className="text-xs sm:text-sm lg:text-base text-slate-600 leading-relaxed">
-                Select a sector below or open any deployment card to inspect full challenge,
-                architecture, and deliverable metrics.
-              </p>
-            </Reveal>
-
-            <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-white rounded-xl border border-[#0044FF]/12 shadow-xs">
-              {SECTOR_FILTERS.map((sector) => {
-                const isActive = selectedSector === sector;
+      {/* FILTER BAR & 6-CARD SHOWCASE GRID */}
+      <section className="pt-4 sm:pt-6 pb-12 sm:pb-16 lg:pb-20 bg-gradient-to-b from-[#F8FAFF] via-white to-white overflow-x-clip">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-7 sm:space-y-9">
+          {/* Interactive Category Filter Row */}
+          <Reveal direction="top" className="space-y-3">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+              {PRIMARY_PROJECT_FILTERS.map((filter) => {
+                const active = activeFilter === filter.id;
                 return (
                   <button
-                    key={sector}
+                    key={filter.id}
                     type="button"
-                    onClick={() => setSelectedSector(sector)}
-                    className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
-                      isActive
-                        ? 'bg-[#07133B] text-white shadow-xs'
-                        : 'text-slate-600 hover:text-[#07133B] hover:bg-[#F2F6FF]'
+                    onClick={() => setActiveFilter(filter.id)}
+                    className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-150 cursor-pointer ${
+                      active
+                        ? 'bg-gradient-to-r from-[#002BFF] to-[#0055FF] text-white shadow-sm shadow-[#002BFF]/25'
+                        : 'bg-white border border-[#DCE8FF] text-[#07133B] hover:border-[#0044FF]/45 hover:bg-[#F2F6FF]'
                     }`}
                   >
-                    {sector}
+                    {filter.label}
                   </button>
                 );
               })}
-            </div>
-          </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-            {filteredProjects.map((study, index) => (
-              <Reveal key={study.id} direction={index % 2 === 0 ? 'left' : 'right'} delay={0.05 * index}>
-                <article className="h-full bg-white rounded-2xl border border-[#0044FF]/12 shadow-sm overflow-hidden flex flex-col sm:flex-row">
-                  <div className="sm:w-44 md:w-48 lg:w-52 shrink-0 relative min-h-[210px] bg-[#040B29]">
+              <button
+                type="button"
+                onClick={() => setShowMoreFilters((prev) => !prev)}
+                aria-expanded={showMoreFilters}
+                className={`inline-flex items-center gap-1 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold border transition-all duration-150 cursor-pointer ${
+                  showMoreFilters || isExtraFilterSelected
+                    ? 'bg-[#EEF3FF] border-[#0044FF]/35 text-[#002BFF]'
+                    : 'bg-white border-[#DCE8FF] text-[#07133B] hover:border-[#0044FF]/45 hover:bg-[#F2F6FF]'
+                }`}
+              >
+                <span>More</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    showMoreFilters ? 'rotate-180' : ''
+                  }`}
+                  strokeWidth={2}
+                  aria-hidden="true"
+                />
+              </button>
+            </div>
+
+            {showMoreFilters && (
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                {EXTRA_PROJECT_FILTERS.map((filter) => {
+                  const active = activeFilter === filter.id;
+                  return (
+                    <button
+                      key={filter.id}
+                      type="button"
+                      onClick={() => setActiveFilter(filter.id)}
+                      className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 cursor-pointer ${
+                        active
+                          ? 'bg-[#002BFF] text-white shadow-xs'
+                          : 'bg-[#EEF3FF] border border-[#DCE8FF] text-[#07133B] hover:border-[#0044FF]/45'
+                      }`}
+                    >
+                      {filter.label}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </Reveal>
+
+          {/* 3x2 Showcase Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {visibleProjects.map((project, index) => (
+              <Reveal
+                key={project.id}
+                direction="bottom"
+                delay={0.04 + (index % 3) * 0.05}
+                wrapperClassName="h-full"
+                className="h-full"
+              >
+                <article className="group h-full flex flex-col rounded-2xl bg-white border border-[#DCE8FF] hover:border-[#0044FF]/45 shadow-[0_8px_24px_rgba(4,11,41,0.06)] hover:shadow-[0_18px_36px_rgba(0,68,255,0.12)] hover:-translate-y-1 transition-all duration-200 overflow-hidden">
+                  {/* Top Project Thumbnail */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#040B29]">
                     <ResilientImage
-                      src={study.image}
-                      alt={study.imageAlt}
-                      fallbackTitle={study.title}
-                      width={study.imageWidth}
-                      height={study.imageHeight}
+                      src={project.image}
+                      alt={project.imageAlt}
+                      fallbackTitle={project.title}
+                      width={project.imageWidth}
+                      height={project.imageHeight}
                       darkSkeleton
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#040B29]/85 via-transparent to-transparent" />
-                    <div className="absolute bottom-3 left-3 right-3 text-white text-xs font-medium flex items-center gap-1.5">
-                      <MapPin className="w-3.5 h-3.5 text-[#60A5FA] shrink-0" strokeWidth={1.75} aria-hidden="true" />
-                      <span className="truncate">{study.location}</span>
-                    </div>
+                    {project.featured && (
+                      <div className="absolute top-3 right-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gradient-to-r from-[#0EA5E9] to-[#0284C7] text-white text-[11px] font-bold shadow-md">
+                        <Star className="w-3 h-3 fill-white" aria-hidden="true" />
+                        <span>Featured</span>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="flex-1 p-5 sm:p-6 flex flex-col justify-between gap-4">
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                        <span className="text-[#002BFF] font-semibold">{study.sector}</span>
-                        <span aria-hidden="true">·</span>
-                        <span>{study.year}</span>
-                      </div>
-
-                      <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[#07133B] leading-snug">
-                        {study.title}
-                      </h3>
-
+                  {/* Card Body */}
+                  <div className="flex-1 flex flex-col justify-between p-5 space-y-3">
+                    <div className="space-y-1.5">
+                      <h2 className="text-base sm:text-lg font-extrabold text-[#07133B] group-hover:text-[#002BFF] transition-colors">
+                        {project.title}
+                      </h2>
                       <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        {study.summary}
+                        {project.summary}
                       </p>
-
-                      {/* Quantified Metrics Row */}
-                      <div className="grid grid-cols-3 gap-2 p-3 rounded-xl bg-[#F4F7FF] border border-[#0044FF]/10">
-                        {study.metrics.map((metric) => (
-                          <div key={metric.label} className="min-w-0">
-                            <div className="font-mono tabular-nums text-sm sm:text-base font-bold text-[#002BFF]">
-                              {metric.value}
-                            </div>
-                            <div className="text-[10px] sm:text-[11px] text-slate-600 leading-tight truncate">
-                              {metric.label}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
-                      <ul className="space-y-1.5">
-                        {study.deliverables.map((item) => (
-                          <li key={item} className="flex items-center gap-2 text-xs text-[#07133B]">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#002BFF] shrink-0" strokeWidth={1.75} aria-hidden="true" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
                     </div>
 
-                    <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
+                    <div className="pt-1">
                       <button
                         type="button"
-                        onClick={() => onSelectCaseStudy(study)}
-                        className="text-xs sm:text-sm font-semibold text-[#002BFF] hover:text-[#DC0914] transition-colors cursor-pointer"
+                        onClick={() => onSelectProject(project)}
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0038FF] hover:text-[#DC0914] transition-colors cursor-pointer"
                       >
-                        Inspect Full Case Study
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => onOpenContact(study.serviceCategory)}
-                        className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-white rounded-full bg-[#07133B] hover:bg-[#002BFF] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
-                      >
-                        <span>Discuss Scope</span>
-                        <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden="true" />
+                        <span>View Project</span>
+                        <ArrowRight
+                          className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
+                          strokeWidth={2}
+                          aria-hidden="true"
+                        />
                       </button>
                     </div>
                   </div>
@@ -277,80 +285,40 @@ export function ProjectsPage({
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* DARK CHAMFERED DEPLOYMENT CTA CARD */}
-      <section className="py-10 sm:py-16 lg:py-24 bg-white overflow-x-clip">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <Reveal direction="none" delay={0}>
-            <div id="projects-impact-card" className="relative">
-              <svg
-                viewBox="0 0 1200 420"
-                preserveAspectRatio="none"
-                className="absolute inset-0 w-full h-full drop-shadow-[0_22px_45px_rgba(4,11,41,0.22)] pointer-events-none"
+          {/* Bottom Dark Navy "Have a Project in Mind?" Trophy CTA Banner */}
+          <Reveal direction="bottom" delay={0.1}>
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#040F34] via-[#061853] to-[#082275] text-white px-5 py-5 sm:px-8 sm:py-6 shadow-[0_18px_40px_rgba(4,11,41,0.2)] border border-[#1E3A8A]/45">
+              {/* Subtle Ambient Blue Glow */}
+              <div
+                className="pointer-events-none absolute -left-10 -top-10 w-40 h-40 rounded-full bg-[#22D3EE]/12 blur-2xl"
                 aria-hidden="true"
-              >
-                <defs>
-                  <linearGradient id="projectsDarkBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#070B19" />
-                    <stop offset="55%" stopColor="#0B1126" />
-                    <stop offset="100%" stopColor="#060D28" />
-                  </linearGradient>
-                  <linearGradient id="projectsStroke" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#0044FF" stopOpacity="0.45" />
-                    <stop offset="50%" stopColor="#3B82F6" stopOpacity="0.55" />
-                    <stop offset="100%" stopColor="#DC0914" stopOpacity="0.45" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M 4,78 Q 4,54 28,54 L 270,54 Q 290,54 303,38 L 328,14 Q 341,4 360,4 L 840,4 Q 859,4 872,14 L 897,38 Q 910,54 930,54 L 1172,54 Q 1196,54 1196,78 L 1196,392 Q 1196,416 1172,416 L 476,416 Q 456,416 442,401 L 414,369 Q 400,354 380,354 L 28,354 Q 4,354 4,330 Z"
-                  fill="url(#projectsDarkBg)"
-                  stroke="url(#projectsStroke)"
-                  strokeWidth="1.5"
-                  vectorEffect="non-scaling-stroke"
-                />
-              </svg>
-
-              <div className="relative z-10 px-5 sm:px-10 lg:px-14 pt-8 pb-20 sm:pb-24 text-white text-center space-y-4">
-                <h2 className="text-lg sm:text-2xl lg:text-4xl font-bold tracking-tight text-white text-balance">
-                  Ready to Build Your Next{' '}
-                  <span className="text-[#60A5FA]">Production System</span>
-                  <span className="text-[#EF4444]">?</span>
-                </h2>
-                <p className="text-xs sm:text-sm lg:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                  Whether modernizing multi-branch ERP operations, hardening enterprise networks, or
-                  launching secure mobile platforms, our Buea engineering team ships on schedule.
-                </p>
-                <div className="pt-2">
-                  <button
-                    type="button"
-                    onClick={onNavigateServices}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white border border-white/25 hover:border-[#60A5FA] hover:bg-white/[0.06] rounded-full transition-colors cursor-pointer"
-                  >
-                    <span>Explore All Service Capabilities</span>
-                    <ArrowRight className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
-                  </button>
+              />
+              <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <div className="shrink-0 flex items-center justify-center">
+                    <ProjectGoldTrophyIcon />
+                  </div>
+                  <div className="space-y-0.5">
+                    <h2 className="text-base sm:text-xl font-extrabold tracking-tight text-white">
+                      Have a Project in Mind?
+                    </h2>
+                    <p className="text-xs sm:text-sm text-slate-200">
+                      Let’s turn your ideas into powerful digital solutions.
+                    </p>
+                  </div>
                 </div>
+
+                <button
+                  type="button"
+                  onClick={() => onOpenContact('Software Development')}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-bold text-[#07133B] bg-white hover:bg-[#E3EEFF] rounded-full shadow-md transition-all duration-150 active:scale-[0.98] whitespace-nowrap shrink-0 cursor-pointer"
+                >
+                  <span>Start a Project</span>
+                  <ArrowRight className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
+                </button>
               </div>
             </div>
-          </Reveal>
-
-          <Reveal
-            direction="left"
-            delay={0.1}
-            wrapperClassName="relative z-10 -mt-7 sm:-mt-9"
-            className="flex items-center gap-3 sm:gap-5 pr-1 sm:pr-2"
-          >
-            <button
-              type="button"
-              onClick={() => onOpenContact()}
-              className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white rounded-lg bg-gradient-to-r from-[#DC0914] to-[#950606] hover:from-[#B90610] hover:to-[#7A0404] shadow-md transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer"
-            >
-              <span>Schedule Architecture Review</span>
-              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" strokeWidth={1.75} aria-hidden="true" />
-            </button>
-            <div className="h-px flex-1 bg-gradient-to-r from-[#0044FF]/35 via-slate-300/80 to-transparent" aria-hidden="true" />
           </Reveal>
         </div>
       </section>

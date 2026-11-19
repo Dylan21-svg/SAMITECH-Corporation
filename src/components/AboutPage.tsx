@@ -1,19 +1,16 @@
 import {
   ArrowRight,
-  CalendarDays,
-  Compass,
-  Cpu,
-  Globe,
-  Layers,
-  Laptop,
   Play,
-  ShieldCheck,
-  Target,
-  Trophy,
-  Users,
 } from 'lucide-react';
 import { Reveal } from './MotionPrimitives';
 import { ResilientImage } from './ResilientImage';
+import {
+  AboutDarkKpiIcon,
+  AboutHighlightIcon,
+  DarkPillarIcon,
+  MissionBadgeIcon,
+  VisionBadgeIcon,
+} from './ShowcaseIcons';
 import {
   ABOUT_HERO_MEDIA,
   ABOUT_MEDIA,
@@ -25,28 +22,6 @@ interface AboutPageProps {
   onNavigateServices: () => void;
   onNavigateProjects: () => void;
   onOpenContact: (defaultCategory?: string) => void;
-}
-
-function AfricaContinentIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.75}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
-      <path
-        fill="currentColor"
-        fillOpacity={0.14}
-        d="M9.8 2.6c1.6-.4 3.4-.2 4.7.7.8.6 1.2 1.5 2.1 2.1.9.5 2.3.6 2.9 1.5.5.7-.2 1.8-.8 2.5-.5.6-.7 1.3-.5 2.1.3.9.7 1.8.2 2.9-.5 1.1-1.6 1.7-2.2 2.8-.6 1-.8 2.3-1.6 3.3-.6.8-1.8 1.2-2.5.4-.7-.9-.6-2.4-1.1-3.5-.5-1.1-1.2-2.1-1.2-3.3 0-1.1.3-2-.4-2.9-.7-.8-1.9-.9-2.7-1.6-.9-.8-1.4-2-.9-3.1.5-1 1.6-1.6 2.6-2.1.5-.3.8-1.1 1.2-1.8Z"
-      />
-      <path d="M19.1 16.1c.3-.2.7.1.7.6.1.7-.2 1.5-.6 1.7-.4.2-.8-.2-.7-.8.1-.5.2-1.3.6-1.5Z" />
-    </svg>
-  );
 }
 
 const ABOUT_HERO_HIGHLIGHTS = [
@@ -111,37 +86,18 @@ export function AboutPage({
     }
   };
 
-  const renderHighlightIcon = (id: string) => {
-    const iconCls = 'w-3.5 h-3.5 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#0038FF]';
-    if (id === 'innovative-solutions') {
-      return <Laptop className={iconCls} strokeWidth={1.75} aria-hidden="true" />;
-    }
-    if (id === 'trusted-partnership') {
-      return <ShieldCheck className={iconCls} strokeWidth={1.75} aria-hidden="true" />;
-    }
-    if (id === 'youth-led-innovation') {
-      return <Users className={iconCls} strokeWidth={1.75} aria-hidden="true" />;
-    }
-    return <AfricaContinentIcon className={iconCls} />;
-  };
+  const renderHighlightIcon = (id: string) => <AboutHighlightIcon id={id} />;
 
-  const renderKpiIcon = (id: string) => {
-    const iconCls = 'w-4 h-4 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-[#60A5FA] shrink-0';
-    if (id === 'founded') return <CalendarDays className={iconCls} strokeWidth={1.75} aria-hidden="true" />;
-    if (id === 'empowered') return <Users className={iconCls} strokeWidth={1.75} aria-hidden="true" />;
-    if (id === 'global-vision') return <Globe className={iconCls} strokeWidth={1.75} aria-hidden="true" />;
-    return <Trophy className={iconCls} strokeWidth={1.75} aria-hidden="true" />;
-  };
+  const renderKpiIcon = (id: string) => <AboutDarkKpiIcon id={id} />;
 
   const renderValueIcon = (id: string) => {
-    const cls = 'w-3 h-3 sm:w-6 sm:h-6 lg:w-7 lg:h-7';
     if (id === 'youth-driven-engineering') {
-      return <Cpu className={`${cls} text-[#60A5FA]`} strokeWidth={1.75} aria-hidden="true" />;
+      return <DarkPillarIcon variant="tech" />;
     }
     if (id === 'security-reliability') {
-      return <Layers className={`${cls} text-[#3B82F6]`} strokeWidth={1.75} aria-hidden="true" />;
+      return <DarkPillarIcon variant="architecture" />;
     }
-    return <ShieldCheck className={`${cls} text-[#EF4444]`} strokeWidth={1.75} aria-hidden="true" />;
+    return <DarkPillarIcon variant="shield" />;
   };
 
   return (
@@ -361,14 +317,14 @@ export function AboutPage({
             </Reveal>
 
             <div className="col-span-4 space-y-2.5 sm:space-y-5 lg:space-y-8">
-              <Reveal direction="right" delay={0.14} className="space-y-1 sm:space-y-2.5 lg:space-y-3">
-                <div className="inline-flex items-center justify-center w-6 h-6 sm:w-9 sm:h-9 lg:w-11 lg:h-11 rounded-md sm:rounded-xl bg-[#002BFF]/10 text-[#002BFF]">
-                  <Target className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" strokeWidth={1.75} aria-hidden="true" />
+              <Reveal direction="right" delay={0.14} className="space-y-1.5 sm:space-y-2.5 lg:space-y-3">
+                <div className="inline-flex items-center justify-center w-8 h-8 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-white border border-[#DCE8FF] shadow-xs">
+                  <MissionBadgeIcon />
                 </div>
-                <h3 className="text-[10px] sm:text-base lg:text-xl font-bold tracking-tight text-[#07133B]">
+                <h3 className="text-xs sm:text-base lg:text-xl font-bold tracking-tight text-[#07133B]">
                   Our Mission
                 </h3>
-                <p className="text-[8px] sm:text-xs lg:text-base text-slate-700 leading-snug sm:leading-relaxed">
+                <p className="text-[9px] sm:text-xs lg:text-base text-slate-700 leading-snug sm:leading-relaxed">
                   To equip organizations and ambitious individuals with reliable custom software,
                   hardened networking, AI systems, and practical digital skills that accelerate
                   growth across Africa.
@@ -378,12 +334,12 @@ export function AboutPage({
               <Reveal
                 direction="right"
                 delay={0.22}
-                className="pt-2.5 sm:pt-5 lg:pt-8 border-t border-[#0044FF]/15 space-y-1 sm:space-y-2.5 lg:space-y-3"
+                className="pt-2.5 sm:pt-5 lg:pt-8 border-t border-[#0044FF]/15 space-y-1.5 sm:space-y-2.5 lg:space-y-3"
               >
-                <div className="inline-flex items-center justify-center w-6 h-6 sm:w-9 sm:h-9 lg:w-11 lg:h-11 rounded-md sm:rounded-xl bg-[#DC0914]/10 text-[#DC0914]">
-                  <Compass className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" strokeWidth={1.75} aria-hidden="true" />
+                <div className="inline-flex items-center justify-center w-8 h-8 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-white border border-[#FBCFE8]/70 shadow-xs">
+                  <VisionBadgeIcon />
                 </div>
-                <h3 className="text-[10px] sm:text-base lg:text-xl font-bold tracking-tight text-[#07133B]">
+                <h3 className="text-xs sm:text-base lg:text-xl font-bold tracking-tight text-[#07133B]">
                   Our Vision
                 </h3>
                 <p className="text-[8px] sm:text-xs lg:text-base text-slate-700 leading-snug sm:leading-relaxed">
@@ -454,7 +410,7 @@ export function AboutPage({
                       wrapperClassName="min-w-0"
                       className="space-y-1 sm:space-y-2.5 lg:space-y-3 min-w-0"
                     >
-                      <div className="inline-flex items-center justify-center w-5 h-5 sm:w-9 sm:h-9 lg:w-11 lg:h-11 rounded-md sm:rounded-lg bg-white/[0.06] border border-white/15">
+                      <div className="inline-flex items-center justify-center w-7 h-7 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-white/[0.08] border border-white/15 shadow-inner">
                         {renderValueIcon(pillar.id)}
                       </div>
                       <h3 className="text-[7.5px] sm:text-sm lg:text-lg font-bold text-white tracking-tight leading-tight sm:leading-snug">
