@@ -10,6 +10,7 @@ import {
   CORE_SERVICES_GRID_SLUGS,
   SERVICES_SHOWCASE_MEDIA,
   STUDIO_TRACK_SLUGS,
+  type ServiceDetail,
 } from '../data/servicesCatalog';
 import { Reveal } from './MotionPrimitives';
 import { ResilientImage } from './ResilientImage';
@@ -87,12 +88,14 @@ export function ServicesPage({
 }: ServicesPageProps) {
   const [showStudioTracks, setShowStudioTracks] = useState(false);
 
-  const primaryEightServices = CORE_SERVICES_GRID_SLUGS.map(
-    (slug) => ALL_SERVICES_CATALOG.find((s) => s.slug === slug)!
-  );
-  const studioServices = STUDIO_TRACK_SLUGS.map(
-    (slug) => ALL_SERVICES_CATALOG.find((s) => s.slug === slug)!
-  );
+  const primaryEightServices = CORE_SERVICES_GRID_SLUGS.flatMap((slug) => {
+    const found = ALL_SERVICES_CATALOG.find((s) => s.slug === slug);
+    return found ? [found] : [];
+  });
+  const studioServices: ServiceDetail[] = STUDIO_TRACK_SLUGS.flatMap((slug) => {
+    const found = ALL_SERVICES_CATALOG.find((s) => s.slug === slug);
+    return found ? [found] : [];
+  });
 
   const scrollToCoreGrid = () => {
     const el = document.getElementById('core-services-grid');
@@ -130,6 +133,7 @@ export function ServicesPage({
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 lg:pt-36 pb-20 sm:pb-28 lg:pb-32">
           <div className="grid grid-cols-12 items-center">
             <Reveal
+              immediate
               direction="left"
               wrapperClassName="col-span-12 sm:col-span-8 lg:col-span-7"
               className="space-y-4 sm:space-y-5"

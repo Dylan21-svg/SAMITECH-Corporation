@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import {
   AlertCircle,
@@ -78,18 +78,31 @@ export function ContactModal({
     }
   }, [defaultCategory, isOpen]);
 
+  const handleResetAndClose = useCallback(() => {
+    setSubmitted(false);
+    setErrors({});
+    setValues({
+      fullName: '',
+      workEmail: '',
+      company: '',
+      serviceCategory: SERVICE_CATEGORY_OPTIONS[0],
+      message: '',
+    });
+    onClose();
+  }, [onClose]);
+
   useEffect(() => {
     if (!isOpen) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        onClose();
+        handleResetAndClose();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
+  }, [isOpen, handleResetAndClose]);
 
   const validate = (): FormErrors => {
     const nextErrors: FormErrors = {};
@@ -119,19 +132,6 @@ export function ContactModal({
     }
     setErrors({});
     setSubmitted(true);
-  };
-
-  const handleResetAndClose = () => {
-    setSubmitted(false);
-    setErrors({});
-    setValues({
-      fullName: '',
-      workEmail: '',
-      company: '',
-      serviceCategory: SERVICE_CATEGORY_OPTIONS[0],
-      message: '',
-    });
-    onClose();
   };
 
   const handleFieldChange = (field: keyof FormValues, value: string) => {

@@ -103,8 +103,8 @@ export function Reveal({
   const { distance, shouldReduceMotion, isCompactScreen } = useMotionConfigValues();
   const isInView = useInView(containerRef, {
     once: false,
-    amount: isCompactScreen ? 0.14 : 0.08,
-    margin: isCompactScreen ? '0px 0px -45px 0px' : '0px',
+    amount: isCompactScreen ? 0.05 : 0.08,
+    margin: isCompactScreen ? '0px 0px -24px 0px' : '0px',
   });
   const variants = createRevealVariants(direction, distance, delay, duration);
 
@@ -120,7 +120,7 @@ export function Reveal({
   }
 
   if (immediate) {
-    return (
+    const content = (
       <motion.div
         initial="hidden"
         animate="visible"
@@ -130,6 +130,10 @@ export function Reveal({
         {children}
       </motion.div>
     );
+    if (wrapperClassName) {
+      return <div className={wrapperClassName}>{content}</div>;
+    }
+    return content;
   }
 
   return (

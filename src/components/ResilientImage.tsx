@@ -5,6 +5,7 @@ interface ResilientImageProps {
   src: string;
   alt: string;
   className?: string;
+  wrapperClassName?: string;
   fallbackTitle?: string;
   priority?: boolean;
   width?: number;
@@ -16,6 +17,7 @@ export function ResilientImage({
   src,
   alt,
   className = '',
+  wrapperClassName = 'relative w-full h-full',
   fallbackTitle = 'SAMITECH Infrastructure',
   priority = false,
   width,
@@ -41,7 +43,7 @@ export function ResilientImage({
       <div
         role="img"
         aria-label={alt}
-        className={`flex flex-col items-center justify-center bg-gradient-to-br from-[#060814] via-[#0000B8] to-[#950606] text-white p-6 text-center ${className}`}
+        className={`${wrapperClassName} flex flex-col items-center justify-center bg-gradient-to-br from-[#060814] via-[#0000B8] to-[#950606] text-white p-6 text-center ${className}`}
       >
         <Network className="w-8 h-8 text-[#DBEAFE] mb-3" strokeWidth={1.75} aria-hidden="true" />
         <span className="text-sm font-medium tracking-tight text-white/95">
@@ -52,7 +54,7 @@ export function ResilientImage({
   }
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div className={`${wrapperClassName} overflow-hidden`}>
       {!isLoaded && (
         <div
           aria-hidden="true"

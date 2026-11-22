@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import {
   ArrowRight,
@@ -142,6 +142,17 @@ export function CareersPage({ onOpenContact }: CareersPageProps) {
 
   const visibleJobs = showAllJobs ? CAREER_OPENINGS : CAREER_OPENINGS.slice(0, 4);
 
+  useEffect(() => {
+    if (!selectedOpening) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setSelectedOpening(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedOpening]);
+
   const scrollToOpenings = () => {
     const el = document.getElementById('current-openings');
     if (el) {
@@ -171,6 +182,7 @@ export function CareersPage({ onOpenContact }: CareersPageProps) {
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-28">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
             <Reveal
+              immediate
               direction="left"
               wrapperClassName="lg:col-span-6"
               className="space-y-4 sm:space-y-5 max-w-xl"
@@ -274,7 +286,8 @@ export function CareersPage({ onOpenContact }: CareersPageProps) {
                   width={CAREERS_SHOWCASE_MEDIA.mountainGrowth.width}
                   height={CAREERS_SHOWCASE_MEDIA.mountainGrowth.height}
                   darkSkeleton
-                  className="absolute inset-0 w-full h-full object-cover"
+                  wrapperClassName="absolute inset-0 w-full h-full"
+                  className="w-full h-full object-cover"
                 />
                 {/* Scrim on right side ensuring crisp white copy contrast */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-[#07133B]/65 to-[#07133B]/92" />

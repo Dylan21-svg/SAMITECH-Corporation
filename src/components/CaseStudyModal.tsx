@@ -72,6 +72,7 @@ export function CaseStudyModal({
                   width={caseStudy.imageWidth}
                   height={caseStudy.imageHeight}
                   darkSkeleton
+                  wrapperClassName="absolute inset-0 w-full h-full"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#060814]/90 via-[#060814]/30 to-transparent" />

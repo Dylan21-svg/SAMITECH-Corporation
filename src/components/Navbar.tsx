@@ -52,7 +52,13 @@ export function Navbar({
     const checkScrollAndSection = () => {
       setIsScrolled(window.scrollY > 18);
 
-      const darkIds = ['why-samitech-card', 'faq-card', 'about-values-card', 'contact-footer'];
+      const darkIds = [
+        'why-samitech-card',
+        'service-process-card',
+        'faq-card',
+        'about-values-card',
+        'contact-footer',
+      ];
       const isDark = darkIds.some((id) => {
         const el = document.getElementById(id);
         if (!el) return false;
@@ -63,9 +69,11 @@ export function Navbar({
     };
 
     checkScrollAndSection();
+    const settledTimer = window.setTimeout(checkScrollAndSection, 260);
     window.addEventListener('scroll', checkScrollAndSection, { passive: true });
     window.addEventListener('resize', checkScrollAndSection, { passive: true });
     return () => {
+      window.clearTimeout(settledTimer);
       window.removeEventListener('scroll', checkScrollAndSection);
       window.removeEventListener('resize', checkScrollAndSection);
     };
@@ -131,7 +139,7 @@ export function Navbar({
       ? 'bg-[#070B19]/85 backdrop-blur-md border-b border-white/10'
       : isScrolled || activePage === 'services' || activePage === 'projects'
         ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/75 shadow-xs'
-        : 'bg-white/95 backdrop-blur-md border-b border-slate-200/75 shadow-xs md:bg-transparent md:backdrop-blur-none md:border-b-transparent md:shadow-none';
+        : 'bg-white/92 backdrop-blur-md border-b border-slate-200/60 shadow-xs';
 
   const useDarkText = overDarkSection && !mobileMenuOpen;
 

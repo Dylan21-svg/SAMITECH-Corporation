@@ -346,9 +346,9 @@ export default function App() {
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.22, ease: SAMITECH_EASE }}
               >
-                {/* HERO SECTION — Crystal-Clear Video on Mobile, Balanced Split on Tablet & Desktop */}
+                {/* HERO SECTION — Crystal-Clear Full-Bleed Video Stage Across Mobile, Tablet, and Desktop */}
                 <section id="home" className="relative min-h-[92svh] md:min-h-0 flex flex-col justify-between overflow-x-clip bg-white">
-                  <div className="relative flex-1 flex items-center overflow-hidden bg-[#040B29] md:bg-[#F2F6FF]">
+                  <div className="relative flex-1 flex items-center overflow-hidden bg-[#040B29] md:bg-white md:min-h-[480px] lg:h-[calc(100svh-88px)] lg:min-h-[560px] lg:max-h-[760px]">
                     {/* Full-Bleed Looping Hero Video Background With Instant Poster First Frame */}
                     <div className="pointer-events-none absolute inset-0" aria-hidden="true">
                       <img
@@ -371,49 +371,51 @@ export default function App() {
                         preload="auto"
                         className="relative w-full h-full object-cover object-[72%_center] md:object-center contrast-[1.04] saturate-[1.06]"
                       />
+
                       {/* Mobile/Small Tablet (<768px): Deep midnight scrim with zero white cast so holographic video stays crisp & text pops */}
                       <div className="md:hidden absolute inset-0 bg-gradient-to-t from-[#030A24]/90 via-[#040E33]/50 to-[#040B29]/30" />
-                      {/* Tablet & Desktop (768px+): Crisp white readability zone strictly on left text side, leaving ST globe crystal clear */}
-                      <div className="hidden md:block absolute inset-y-0 left-0 w-[52%] lg:w-[55%] bg-gradient-to-r from-white via-white/95 via-60% to-transparent" />
+
+                      {/* Tablet & Desktop (768px+): Crisp white readability zone covering the entire left text column while leaving the ST globe unobstructed */}
+                      <div className="hidden md:block absolute inset-y-0 left-0 w-[56%] lg:w-[51%] bg-gradient-to-r from-white via-white/95 via-75% to-transparent" />
                     </div>
 
-                    <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 sm:pt-24 sm:pb-12 md:pt-20 md:pb-16 lg:pt-24 lg:pb-24 xl:pt-24 xl:pb-28">
                       <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-6 lg:gap-8">
-                        {/* Left Content Column (immediate above-the-fold reveal) */}
+                        {/* Left Content Column (positioned inside the natural upper-left white pocket on desktop) */}
                         <Reveal
                           immediate
                           direction="left"
-                          wrapperClassName="md:col-span-7 lg:col-span-6"
-                          className="pt-20 pb-10 sm:pt-24 sm:pb-12 md:pt-24 md:pb-12 lg:pt-28 lg:pb-20 max-w-xl md:max-w-[400px] lg:max-w-none space-y-4 lg:space-y-6"
+                          wrapperClassName="md:col-span-6 lg:col-span-6"
+                          className="max-w-xl md:max-w-[380px] lg:max-w-[490px] xl:max-w-[530px] space-y-4 lg:space-y-5"
                         >
                           {/* Eyebrow Kicker */}
-                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#040B29]/60 backdrop-blur-sm border border-white/20 text-xs font-semibold text-[#93C5FD] tracking-tight md:px-0 md:py-0 md:rounded-none md:bg-transparent md:backdrop-blur-none md:border-0 md:text-[#002BFF] lg:text-sm">
-                            <span className="w-4 md:w-5 h-[2px] bg-[#60A5FA] md:bg-[#0044FF] rounded-full" aria-hidden="true" />
+                          <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-[#040B29]/60 backdrop-blur-sm border border-white/20 text-xs font-semibold text-[#93C5FD] tracking-tight md:px-0 md:py-0 md:rounded-none md:bg-transparent md:backdrop-blur-none md:border-0 md:text-[#002BFF] lg:text-sm md:font-bold">
+                            <span className="w-4 md:w-6 h-[2px] bg-[#60A5FA] md:bg-[#0044FF] rounded-full" aria-hidden="true" />
                             <span>Innovative Tech Solutions for Africa</span>
                           </div>
 
                           {/* Hero Headline */}
                           <h1
-                            className="font-extrabold tracking-tight leading-[1.06] text-balance"
-                            style={{ fontSize: 'clamp(2rem, 4.1vw, 3.85rem)' }}
+                            className="font-extrabold tracking-[-0.025em] leading-[1.06]"
+                            style={{ fontSize: 'clamp(2rem, 3.65vw, 3.65rem)' }}
                           >
-                            <span className="text-white md:text-[#07133B] drop-shadow-[0_2px_10px_rgba(2,6,23,0.6)] md:drop-shadow-none block">
+                            <span className="text-white md:text-[#07133B] drop-shadow-[0_2px_10px_rgba(2,6,23,0.6)] md:drop-shadow-none block md:whitespace-nowrap">
                               Building a Smarter
                             </span>
-                            <span className="bg-gradient-to-r from-[#7DD3FC] via-[#BAE6FD] to-white md:from-[#0014CC] md:via-[#0033FF] md:to-[#0055FF] bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(2,6,23,0.45)] md:drop-shadow-none block">
+                            <span className="bg-gradient-to-r from-[#7DD3FC] via-[#BAE6FD] to-white md:from-[#0014CC] md:via-[#0033FF] md:to-[#0055FF] bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(2,6,23,0.45)] md:drop-shadow-none block md:whitespace-nowrap">
                               Digital Future
                             </span>
                           </h1>
 
                           {/* Concise Corporate Thesis */}
-                          <p className="max-w-lg text-[15px] sm:text-base md:text-[15px] lg:text-base font-medium text-slate-100 md:text-slate-800 leading-relaxed drop-shadow-[0_1px_6px_rgba(2,6,23,0.65)] md:drop-shadow-none">
+                          <p className="max-w-md lg:max-w-[470px] xl:max-w-[490px] text-[15px] sm:text-base md:text-sm lg:text-base xl:text-[17px] font-medium md:font-normal text-slate-100 md:text-[#1E293B] leading-[1.65] drop-shadow-[0_1px_6px_rgba(2,6,23,0.65)] md:drop-shadow-none">
                             At <span className="font-bold text-white md:text-[#07133B]">SAMITECH Corporation</span>, we
                             deliver cutting-edge solutions in AI, software, networking, cybersecurity, and
                             more — helping businesses and individuals achieve more.
                           </p>
 
                           {/* Rounded-Full Dual Action Row */}
-                          <div className="pt-1 flex flex-wrap items-center gap-3 sm:gap-3.5">
+                          <div className="pt-1.5 flex flex-wrap items-center gap-3 sm:gap-3.5">
                             <button
                               type="button"
                               onClick={() => handleNavigate('services')}
@@ -434,17 +436,17 @@ export default function App() {
                           </div>
                         </Reveal>
 
-                        {/* Right Column Spacer — Keeps animated holographic ST globe background visible on tablet & desktop */}
-                        <div className="hidden md:block md:col-span-5 lg:col-span-6 h-80 lg:h-[430px]" aria-hidden="true" />
+                        {/* Right Column Spacer — Keeps animated holographic ST globe unobstructed on tablet & desktop */}
+                        <div className="hidden md:block md:col-span-6 lg:col-span-6 h-72 lg:h-[320px] xl:h-[360px]" aria-hidden="true" />
                       </div>
                     </div>
                   </div>
 
                   {/* Bottom-of-Hero 4-Column KPI Proof Bar (2x2 on Mobile & Tablet, 4-Col Split on Desktop) */}
-                  <div className="relative bg-white border-b border-slate-200/80 overflow-hidden">
+                  <div className="relative bg-white border-t border-b border-slate-200/80 overflow-hidden">
                     <svg
                       viewBox="0 0 240 96"
-                      className="block pointer-events-none absolute right-0 bottom-0 w-24 sm:w-28 lg:w-52 h-auto"
+                      className="block pointer-events-none absolute right-0 bottom-0 w-24 sm:w-28 lg:w-44 xl:w-52 h-auto"
                       aria-hidden="true"
                     >
                       <defs>
@@ -463,22 +465,22 @@ export default function App() {
                       immediate
                       direction="left"
                       delay={0.08}
-                      className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 lg:py-7"
+                      className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pr-24 xl:pr-28 py-4 sm:py-5 lg:py-5"
                     >
                       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-0 lg:divide-x lg:divide-slate-200/80">
                         {HERO_KPI_ITEMS.map((item) => (
                           <div
                             key={item.label}
-                            className="flex items-center gap-3 lg:px-6 lg:first:pl-0 lg:last:pr-0 min-w-0"
+                            className="flex items-center gap-3 lg:px-5 xl:px-6 lg:first:pl-0 lg:last:pr-0 min-w-0"
                           >
-                            <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-[#EEF3FF] border border-[#0044FF]/15 flex items-center justify-center shrink-0 shadow-xs">
+                            <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-xl bg-[#EEF3FF] border border-[#0044FF]/15 flex items-center justify-center shrink-0 shadow-xs">
                               <HomeKpiIcon type={item.type} />
                             </div>
                             <div className="min-w-0">
-                              <div className="font-display font-extrabold text-lg lg:text-2xl text-[#07133B] tabular-nums leading-none">
+                              <div className="font-display font-extrabold text-lg lg:text-xl text-[#07133B] tabular-nums leading-none">
                                 {item.value}
                               </div>
-                              <div className="mt-1 text-xs lg:text-sm font-medium text-[#002BFF] leading-tight">
+                              <div className="mt-1 text-xs xl:text-sm font-medium text-[#002BFF] leading-tight">
                                 {item.label}
                               </div>
                             </div>

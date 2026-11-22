@@ -128,6 +128,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-28">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
             <Reveal
+              immediate
               direction="left"
               wrapperClassName="lg:col-span-6"
               className="space-y-4 sm:space-y-5 max-w-xl"
@@ -453,6 +454,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                   fallbackTitle="SAMITECH Buea Map"
                   width={CONTACT_PAGE_MEDIA.bueaMap.width}
                   height={CONTACT_PAGE_MEDIA.bueaMap.height}
+                  wrapperClassName="absolute inset-0 w-full h-full"
                   className="w-full h-full object-cover"
                 />
 
@@ -496,7 +498,8 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                   width={CONTACT_PAGE_MEDIA.bueaScenic.width}
                   height={CONTACT_PAGE_MEDIA.bueaScenic.height}
                   darkSkeleton
-                  className="absolute right-0 inset-y-0 w-3/4 h-full object-cover opacity-55"
+                  wrapperClassName="absolute right-0 inset-y-0 w-3/4 h-full"
+                  className="w-full h-full object-cover opacity-55"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#06133D] via-[#071952]/90 to-[#06133D]/55" />
 

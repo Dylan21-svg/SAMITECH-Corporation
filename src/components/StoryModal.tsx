@@ -67,6 +67,7 @@ export function StoryModal({ isOpen, onClose, onGetInTouch }: StoryModalProps) {
                   width={ABOUT_MEDIA.width}
                   height={ABOUT_MEDIA.height}
                   darkSkeleton
+                  wrapperClassName="absolute inset-0 w-full h-full"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#040B29]/90 via-[#040B29]/25 to-transparent" />

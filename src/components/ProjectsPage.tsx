@@ -90,6 +90,7 @@ export function ProjectsPage({
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 lg:pt-36 pb-16 sm:pb-24 lg:pb-28">
           <div className="grid grid-cols-12 items-center">
             <Reveal
+              immediate
               direction="left"
               wrapperClassName="col-span-12 lg:col-span-7"
               className="space-y-4 sm:space-y-5"

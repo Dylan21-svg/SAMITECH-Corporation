@@ -313,6 +313,7 @@ export const SERVICE_CATEGORY_OPTIONS = [
   'MVP Builder',
   'AI Development & Enablement',
   'Software Development',
+  'Mobile App Development',
   'UI/UX Design',
   'Dedicated Teams',
   'Networking Solutions',
