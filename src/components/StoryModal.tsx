@@ -95,7 +95,7 @@ export function StoryModal({ isOpen, onClose, onGetInTouch }: StoryModalProps) {
                   <div className="flex items-start gap-3">
                     <Globe2 className="w-5 h-5 text-[#002BFF] shrink-0 mt-0.5" strokeWidth={1.75} aria-hidden="true" />
                     <p className="text-sm text-[#07133B]">
-                      <span className="font-semibold">Africa-Rooted, Global Standards:</span> Delivering scalable web, mobile, and ERP software built for real business workflows.
+                      <span className="font-semibold">Africa Rooted, Global Standards:</span> Delivering scalable web, mobile, and ERP software built for real business workflows.
                     </p>
                   </div>
                   <div className="flex items-start gap-3">
@@ -107,7 +107,7 @@ export function StoryModal({ isOpen, onClose, onGetInTouch }: StoryModalProps) {
                   <div className="flex items-start gap-3">
                     <GraduationCap className="w-5 h-5 text-[#002BFF] shrink-0 mt-0.5" strokeWidth={1.75} aria-hidden="true" />
                     <p className="text-sm text-[#07133B]">
-                      <span className="font-semibold">Growing Tech Talent:</span> Training next-generation engineers through structured internships in software, networking, and cybersecurity.
+                      <span className="font-semibold">Growing Tech Talent:</span> Training next generation engineers through structured internships in software, networking, and cybersecurity.
                     </p>
                   </div>
                 </div>

@@ -26,7 +26,7 @@ import {
 } from './ServiceSharedBlocks';
 
 /* ============================================================================
-   01. WEB DEVELOPMENT — Signature Wave Studio (Matches Reference Mockup)
+   01. WEB DEVELOPMENT, Signature Wave Studio (Matches Reference Mockup)
    ============================================================================ */
 export function WebDevelopmentLayout({
   service,
@@ -45,7 +45,7 @@ export function WebDevelopmentLayout({
 
   return (
     <div className="bg-white text-[#07133B] overflow-x-clip">
-      {/* HERO — Bright Blue-White Surface With Sweeping Royal-Blue Top-Right Wave */}
+      {/* HERO, Bright Blue-White Surface With Sweeping Royal-Blue Top-Right Wave */}
       <section className="relative bg-gradient-to-br from-[#F7FAFF] via-white to-[#EAF2FF] pt-10 pb-20 sm:pt-14 sm:pb-24 lg:pt-16 lg:pb-28 overflow-hidden">
         {/* Top-Right Sweeping Royal-Blue Curve */}
         <svg
@@ -82,7 +82,7 @@ export function WebDevelopmentLayout({
               </h1>
 
               <p className="text-sm sm:text-base lg:text-lg text-slate-700 font-medium leading-relaxed max-w-lg">
-                We build modern, scalable and high-performance websites, SaaS portals, and custom web applications tailored to your needs.
+                We build modern, scalable and high performance websites, SaaS portals, and custom web applications tailored to your needs.
               </p>
 
               {/* Signature Blue + Crimson Split Underline Bar */}
@@ -126,7 +126,7 @@ export function WebDevelopmentLayout({
                       <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/85" />
                     </div>
                     <span className="font-mono text-[10px] text-[#93C5FD]">
-                      samitech-web-platform.app
+                      samitech237.com
                     </span>
                   </div>
                   <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-[#0A1845]">
@@ -189,7 +189,7 @@ export function WebDevelopmentLayout({
         </div>
       </div>
 
-      {/* WHAT WE BUILD — 4-Card Grid With Alternating Blue / Crimson Corner Waves */}
+      {/* WHAT WE BUILD, 4-Card Grid With Alternating Blue / Crimson Corner Waves */}
       <section className="py-14 sm:py-18 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal direction="top" className="text-center max-w-2xl mx-auto space-y-2 mb-10 sm:mb-12">
@@ -251,7 +251,7 @@ export function WebDevelopmentLayout({
         </div>
       </section>
 
-      {/* OUR APPROACH — Light Ice-Blue Rounded Panel With 4 Numbered Cards + Chevron Arrows */}
+      {/* OUR APPROACH, Light Ice-Blue Rounded Panel With 4 Numbered Cards + Chevron Arrows */}
       <section className="py-4 sm:py-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-3xl bg-gradient-to-br from-[#F0F6FF] via-[#F7FAFF] to-[#E6F0FF] border border-[#D5E4FF] px-5 py-10 sm:px-8 sm:py-12 lg:px-10">
@@ -301,7 +301,7 @@ export function WebDevelopmentLayout({
         </div>
       </section>
 
-      {/* TECHNOLOGIES WE USE — Crisp Bordered Tech Stack Row */}
+      {/* TECHNOLOGIES WE USE, Crisp Bordered Tech Stack Row */}
       <section className="py-12 sm:py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-7">
           <div className="space-y-1.5">
@@ -360,7 +360,7 @@ export function WebDevelopmentLayout({
               Ready to Build Something Great?
             </h2>
             <p className="text-sm sm:text-base text-blue-100">
-              Let&apos;s bring your ideas to life with world-class web development services.
+              Let&apos;s bring your ideas to life with world class web development services.
             </p>
           </div>
 
@@ -379,7 +379,7 @@ export function WebDevelopmentLayout({
 }
 
 /* ============================================================================
-   02. MOBILE APP DEVELOPMENT — Dual Device Showcase & Asymmetric Bento
+   02. MOBILE APP DEVELOPMENT, Dual Device Showcase & Asymmetric Bento
    ============================================================================ */
 export function MobileAppLayout({
   service,
@@ -389,7 +389,7 @@ export function MobileAppLayout({
 }: ServiceLayoutProps) {
   return (
     <div className="bg-white text-[#07133B] overflow-x-clip">
-      {/* HERO — Centered-Top Statement + Dual Tilted Android & iOS Device Frames */}
+      {/* HERO, Centered-Top Statement + Dual Tilted Android & iOS Device Frames */}
       <section className="relative bg-gradient-to-b from-[#EFF5FF] via-[#F7FAFF] to-white pt-10 pb-16 sm:pt-14 sm:pb-20 border-b border-[#D8E5FF]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -410,7 +410,7 @@ export function MobileAppLayout({
                         <WifiOff className="w-3.5 h-3.5" aria-hidden="true" />
                       </div>
                       <div className="text-sm font-extrabold leading-snug">
-                        Offline-First Sync Queue
+                        Offline First Sync Queue
                       </div>
                       <p className="text-[11px] text-slate-300 leading-relaxed">
                         Orders and field telemetry sync automatically when 4G returns.
@@ -478,7 +478,7 @@ export function MobileAppLayout({
                 className="font-extrabold tracking-tight leading-[1.05] text-balance text-[#07133B]"
                 style={{ fontSize: 'clamp(2.2rem, 4.4vw, 3.6rem)' }}
               >
-                Native-Speed{' '}
+                Native Speed{' '}
                 <span className="text-[#0038FF]">Android &amp; iOS</span>{' '}
                 Applications
               </h1>
@@ -589,7 +589,7 @@ export function MobileAppLayout({
         </div>
       </section>
 
-      {/* VERTICAL SPRINT RAIL — Sticky Summary Left + Milestone Timeline Right */}
+      {/* VERTICAL SPRINT RAIL, Sticky Summary Left + Milestone Timeline Right */}
       <section className="py-14 sm:py-18 bg-[#F8FAFF] border-y border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">

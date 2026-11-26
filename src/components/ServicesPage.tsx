@@ -34,13 +34,13 @@ const CORE_CARD_COPY_OVERRIDES: Record<
   'custom-software': {
     title: 'Web Development',
     description:
-      'Modern, scalable and high-performance websites and web applications.',
+      'Modern, scalable and high performance websites and web applications.',
     iconType: 'pill',
   },
   'mobile-app-development': {
     title: 'Mobile App Development',
     description:
-      'Powerful and user-friendly mobile apps for Android & iOS.',
+      'Powerful and user friendly mobile apps for Android & iOS.',
     iconType: 'pill',
   },
   'networking-solutions': {
@@ -64,7 +64,7 @@ const CORE_CARD_COPY_OVERRIDES: Record<
   'product-scope': {
     title: 'Software Consulting',
     description:
-      '15-day Product Scope & expert guidance to turn your ideas into reality.',
+      '15 day Product Scope & expert guidance to turn your ideas into reality.',
     iconType: 'plain',
   },
   'mvp-builder': {
@@ -158,7 +158,7 @@ export function ServicesPage({
               </h1>
 
               <p className="max-w-lg text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed">
-                From idea to impact, SAMITECH Corporation delivers cutting-edge technology
+                From idea to impact, SAMITECH Corporation delivers cutting edge technology
                 services to help you build, grow and scale in the digital era.
               </p>
 
@@ -203,7 +203,7 @@ export function ServicesPage({
         </div>
       </section>
 
-      {/* SECTION 2: "WHAT WE OFFER — OUR CORE SERVICES" (4x2 CARD GRID) */}
+      {/* SECTION 2: "WHAT WE OFFER, OUR CORE SERVICES" (4x2 CARD GRID) */}
       <section id="core-services-grid" className="relative pt-4 sm:pt-6 pb-12 sm:pb-16 lg:pb-20 bg-white overflow-x-clip">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Centered Header With Flanking Hairline Lines */}
@@ -276,7 +276,7 @@ export function ServicesPage({
                   Dedicated Product Studio &amp; Engineering Teams
                 </h3>
                 <p className="text-xs text-slate-600">
-                  Deep specialization tracks covering 15-Day Product Scope, Lean MVP Builder, UX/UI Design, and Embedded Pods.
+                  Deep specialization tracks covering 15 Day Product Scope, Lean MVP Builder, UX/UI Design, and Embedded Pods.
                 </p>
               </div>
               <button

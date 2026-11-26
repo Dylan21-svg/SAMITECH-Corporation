@@ -16,7 +16,7 @@ export const SERVICES_SHOWCASE_MEDIA = {
   },
   ctaHq: {
     image: servicesCtaHqImg,
-    alt: 'SAMITECH Corporation modern blue-glass technology headquarters at twilight',
+    alt: 'SAMITECH Corporation modern blue glass technology headquarters at twilight',
     width: 1200,
     height: 670,
   },
@@ -124,14 +124,14 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     group: 'product-software',
     groupLabel: 'Web & Enterprise Platforms',
     title: 'Web Development',
-    shortDesc: 'Modern, scalable and high-performance websites, SaaS portals, and custom web applications.',
+    shortDesc: 'Modern, scalable and high performance websites, SaaS portals, and custom web applications.',
     tagline: 'Enterprise React, TypeScript, Vue, and Node.js systems engineered for high speed and 99.9% uptime.',
-    heroTitle: 'High-Performance Platforms via',
+    heroTitle: 'High Performance Platforms via',
     heroAccent: 'Web & Custom Software',
     heroDescription:
-      'From responsive corporate platforms to multi-branch ERP, CRM, and fintech web portals, SAMITECH applies lean engineering frameworks and clean modular architectures built to scale smoothly across Africa and global markets.',
-    timelineLabel: '4–12 Weeks Per Phase',
-    engagementModel: 'Full-Stack Build · Modernization',
+      'From responsive corporate platforms to multi branch ERP, CRM, and fintech web portals, SAMITECH applies lean engineering frameworks and clean modular architectures built to scale smoothly across Africa and global markets.',
+    timelineLabel: '4 to 12 Weeks Per Phase',
+    engagementModel: 'Full Stack Build · Modernization',
     contactCategory: 'Software Development',
     image: softwareFloorImg,
     imageAlt: 'SAMITECH software engineers building modern scalable web platforms',
@@ -147,17 +147,17 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         title: 'Custom Web Applications (React, Vue, Angular)',
         description:
-          'Responsive single-page apps, client portals, and interactive dashboards engineered for instant load speed.',
+          'Responsive single page apps, client portals, and interactive dashboards engineered for instant load speed.',
       },
       {
         title: 'Bespoke ERP, CRM & Billing Suites',
         description:
-          'Unify inventory, payroll, invoicing, and third-party Mobile Money/card checkouts into one platform.',
+          'Unify inventory, payroll, invoicing, and third party Mobile Money/card checkouts into one platform.',
       },
       {
         title: 'Scalable Backend APIs & Microservices',
         description:
-          'Documented Node.js and Python backends with role-based permissions, audit logs, and PostgreSQL indexing.',
+          'Documented Node.js and Python backends with role based permissions, audit logs, and PostgreSQL indexing.',
       },
       {
         title: 'Legacy System Upgrades & Maintenance',
@@ -173,24 +173,24 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       },
       {
         step: '02.',
-        title: 'Agile Full-Stack Sprints',
+        title: 'Agile Full Stack Sprints',
         detail: 'Ship tested UI and backend features in weekly live staging environments.',
       },
       {
         step: '03.',
         title: 'Automated QA & Security Verification',
-        detail: 'Validate cross-device responsiveness, load handling, and OWASP security.',
+        detail: 'Validate cross device responsiveness, load handling, and OWASP security.',
       },
       {
         step: '04.',
         title: 'Cloud Launch & Continuous Support',
-        detail: 'Zero-downtime deployment with automated backups and monitoring alerts.',
+        detail: 'Zero downtime deployment with automated backups and monitoring alerts.',
       },
     ],
     deliverables: [
-      'Production-Grade Responsive Web Application & Source Code',
+      'Production Grade Responsive Web Application & Source Code',
       'REST / GraphQL Backend APIs & PostgreSQL Database',
-      'Role-Based Access Control (RBAC) & Admin Portal',
+      'Role Based Access Control (RBAC) & Admin Portal',
       'Automated CI/CD Deployment Pipeline',
       'Documentation & Technical Team Handover',
     ],
@@ -225,13 +225,13 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     group: 'product-software',
     groupLabel: 'Android & iOS Apps',
     title: 'Mobile App Development',
-    shortDesc: 'Powerful and user-friendly mobile apps engineered for Android & iOS.',
-    tagline: 'Cross-platform Flutter and native mobile experiences built for speed, offline resilience, and retention.',
+    shortDesc: 'Powerful and user friendly mobile apps engineered for Android & iOS.',
+    tagline: 'Cross platform Flutter and native mobile experiences built for speed, offline resilience, and retention.',
     heroTitle: 'Seamless Experiences With',
     heroAccent: 'Mobile App Development',
     heroDescription:
-      'Put your service directly in customers’ hands across Android and iOS. SAMITECH designs and engineers fast, battery-friendly mobile apps with offline data sync, push alerts, biometric security, and Mobile Money checkout flows tailored to African and international users.',
-    timelineLabel: '6–12 Weeks to Store Launch',
+      'Put your service directly in customers’ hands across Android and iOS. SAMITECH designs and engineers fast, battery friendly mobile apps with offline data sync, push alerts, biometric security, and Mobile Money checkout flows tailored to African and international users.',
+    timelineLabel: '6 to 12 Weeks to Store Launch',
     engagementModel: 'iOS · Android · Flutter',
     contactCategory: 'Mobile App Development',
     image: softwareFloorImg,
@@ -242,18 +242,18 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     metrics: [
       { value: '2 Platforms', label: 'Single Unified Codebase' },
       { value: '60 fps', label: 'Fluid Native Interaction' },
-      { value: 'Offline+', label: 'Sync-Ready Architecture' },
+      { value: 'Offline+', label: 'Sync Ready Architecture' },
     ],
     capabilities: [
       {
-        title: 'Cross-Platform Flutter & React Native',
+        title: 'Cross Platform Flutter & React Native',
         description:
           'Ship simultaneously to Google Play and Apple App Store with shared business logic and native performance.',
       },
       {
-        title: 'Offline-First Synchronization',
+        title: 'Offline First Synchronization',
         description:
-          'Keep field agents, riders, and customers productive even in low-connectivity zones with background queue sync.',
+          'Keep field agents, riders, and customers productive even in low connectivity zones with background queue sync.',
       },
       {
         title: 'Mobile Payments, Maps & Telemetry',
@@ -270,7 +270,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         step: '01.',
         title: 'Mobile Flow & Device Audit',
-        detail: 'Design thumb-friendly screens and map offline edge cases early.',
+        detail: 'Design thumb friendly screens and map offline edge cases early.',
       },
       {
         step: '02.',
@@ -285,7 +285,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         step: '04.',
         title: 'QA & Store Deployment',
-        detail: 'Device-matrix testing, store submission, and live crash monitoring.',
+        detail: 'Device matrix testing, store submission, and live crash monitoring.',
       },
     ],
     deliverables: [
@@ -309,7 +309,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         question: 'Do you build for both Android and iOS simultaneously?',
         answer:
-          'Yes. Using Flutter and React Native — or native Swift/Kotlin when specialized hardware is required — we deliver polished releases for both platforms.',
+          'Yes. Using Flutter and React Native, or native Swift/Kotlin when specialized hardware is required, we deliver polished releases for both platforms.',
       },
       {
         question: 'Do you handle Google Play and Apple App Store submission?',
@@ -326,44 +326,44 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     groupLabel: 'Cloud & Network Fabric',
     title: 'Cloud Solutions & Deployment',
     shortDesc: 'Secure, scalable and reliable cloud infrastructure, LAN/WAN networks, and OpenVPN setups.',
-    tagline: 'AWS, Azure, GCP cloud engineering paired with high-availability LAN/WAN and multi-site VPNs.',
+    tagline: 'AWS, Azure, GCP cloud engineering paired with high availability LAN/WAN and multi site VPNs.',
     heroTitle: 'Resilient Scale Powered by',
     heroAccent: 'Cloud & Network Solutions',
     heroDescription:
-      'Modern digital platforms depend on rock-solid infrastructure underneath. SAMITECH architects cloud deployments across AWS, Azure, and GCP alongside structured LAN/WAN topologies, hardened OpenVPN tunnels, load balancing, and continuous uptime monitoring.',
+      'Modern digital platforms depend on rock solid infrastructure underneath. SAMITECH architects cloud deployments across AWS, Azure, and GCP alongside structured LAN/WAN topologies, hardened OpenVPN tunnels, load balancing, and continuous uptime monitoring.',
     timelineLabel: 'Rapid Rollout & 24/7 Watch',
     engagementModel: 'Cloud DevOps · Networking',
     contactCategory: 'Networking Solutions',
     image: fiberCoreImg,
-    imageAlt: 'High-density enterprise fiber-optic core switches and cloud infrastructure racks',
+    imageAlt: 'High density enterprise fiber optic core switches and cloud infrastructure racks',
     imageWidth: 720,
     imageHeight: 964,
     accentColor: '#0284C7',
     metrics: [
       { value: '99.95%', label: 'Measured Link & Cloud Uptime' },
-      { value: '-58%', label: 'Packet Latency Improvement' },
+      { value: '58% Less', label: 'Packet Latency Improvement' },
       { value: '24/7', label: 'Infrastructure Telemetry' },
     ],
     capabilities: [
       {
         title: 'AWS, Azure & GCP Cloud Deployment',
         description:
-          'Containerized hosting, auto-scaling clusters, CDN caching, SSL automation, and database backups.',
+          'Containerized hosting, autoscaling clusters, CDN caching, SSL automation, and database backups.',
       },
       {
         title: 'Structured LAN / WAN & VLAN Fabrics',
         description:
-          'High-throughput office and campus routing separating corporate, guest, and critical server traffic.',
+          'High throughput office and campus routing separating corporate, guest, and critical server traffic.',
       },
       {
-        title: 'Hardened OpenVPN & Site-to-Site Tunnels',
+        title: 'Hardened OpenVPN & Site to Site Tunnels',
         description:
           'Connect offices across Buea, Douala, Yaoundé, and remote teams through encrypted private tunnels.',
       },
       {
-        title: 'Multi-ISP Load Balancing & CI/CD',
+        title: 'Multi ISP Load Balancing & CI/CD',
         description:
-          'Dual-WAN failover and automated zero-downtime deployment pipelines for uninterrupted delivery.',
+          'Dual WAN failover and automated zero downtime deployment pipelines for uninterrupted delivery.',
       },
     ],
     processSteps: [
@@ -375,30 +375,30 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         step: '02.',
         title: 'Redundant Cloud & Network Blueprint',
-        detail: 'Design multi-AZ cloud clusters, firewalls, and failover routing policies.',
+        detail: 'Design multi AZ cloud clusters, firewalls, and failover routing policies.',
       },
       {
         step: '03.',
         title: 'Automated Deployment & Cutover',
-        detail: 'Migrate workloads and configure switches/VPNs cleanly during zero-impact windows.',
+        detail: 'Migrate workloads and configure switches/VPNs cleanly during zero impact windows.',
       },
       {
         step: '04.',
         title: '24/7 Monitoring & Patching',
-        detail: 'Real-time uptime alerts, resource tuning, and scheduled disaster-recovery drills.',
+        detail: 'Real time uptime alerts, resource tuning, and scheduled disaster recovery drills.',
       },
     ],
     deliverables: [
       'AWS / Azure / GCP Production Infrastructure & Terraform/Docker Configs',
       'Structured LAN/WAN Topology Diagrams & Hardened OpenVPN Profiles',
-      'Automated SSL, Backups & Multi-ISP Failover Setup',
+      'Automated SSL, Backups & Multi ISP Failover Setup',
       '24/7 Health Check & Alerting Dashboards',
     ],
     techStack: ['AWS', 'Azure', 'GCP', 'Docker', 'OpenVPN', 'Nginx / HAProxy', 'GitHub Actions', 'VLAN / BGP'],
     idealFor: [
       {
-        audience: 'Growing SaaS & Multi-Branch Companies',
-        outcome: 'Stop outages before they happen with automated cloud scaling and dual-ISP office failover.',
+        audience: 'Growing SaaS & Multi Branch Companies',
+        outcome: 'Stop outages before they happen with automated cloud scaling and dual ISP office failover.',
       },
       {
         audience: 'Distributed Remote Engineering Teams',
@@ -409,12 +409,12 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         question: 'Can SAMITECH manage both cloud hosting and physical office networks?',
         answer:
-          'Yes. We connect on-premise switching and OpenVPN setups seamlessly with cloud environments across AWS, Azure, and GCP.',
+          'Yes. We connect on premise switching and OpenVPN setups seamlessly with cloud environments across AWS, Azure, and GCP.',
       },
       {
         question: 'Do you optimize existing cloud bills and slow servers?',
         answer:
-          'Yes. Most audits uncover over-provisioned instances and missing caching layers that cut monthly cloud spend immediately.',
+          'Yes. Most audits uncover overprovisioned instances and missing caching layers that cut monthly cloud spend immediately.',
       },
     ],
     relatedCaseStudyId: 'lan-wan-vpn-fabric',
@@ -426,12 +426,12 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     groupLabel: 'Defense & Auditing',
     title: 'Cybersecurity',
     shortDesc: 'Protect your data and business with penetration testing, vulnerability audits, and defense.',
-    tagline: 'Proactive offensive testing and defense-in-depth hardening before attackers exploit weak links.',
+    tagline: 'Proactive offensive testing and defense in depth hardening before attackers exploit weak links.',
     heroTitle: 'Safeguard Your Business With',
     heroAccent: 'Cybersecurity Services',
     heroDescription:
-      'Digital growth expands your attack surface. SAMITECH’s security specialists perform black-box and white-box penetration tests, API and infrastructure audits, remediation verification within 48 hours, and incident response — protecting client trust and sensitive financial flows.',
-    timelineLabel: '1–3 Weeks Per Audit Cycle',
+      'Digital growth expands your attack surface. SAMITECH’s security specialists perform black box and white box penetration tests, API and infrastructure audits, remediation verification within 48 hours, and incident response, protecting client trust and sensitive financial flows.',
+    timelineLabel: '1 to 3 Weeks Per Audit Cycle',
     engagementModel: 'Pentesting · Retainer Defense',
     contactCategory: 'Cybersecurity Services',
     image: hardwareBenchImg,
@@ -442,7 +442,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     metrics: [
       { value: '100%', label: 'Critical CVEs Remediated' },
       { value: '48 hrs', label: 'Fix Verification Turnaround' },
-      { value: '0', label: 'Post-Audit Breaches' },
+      { value: '0', label: 'Post Audit Breaches' },
     ],
     capabilities: [
       {
@@ -479,12 +479,12 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       },
       {
         step: '03.',
-        title: 'Developer-Ready Patch Guidance',
-        detail: 'Deliver severity-ranked proof-of-concepts and exact remediation code.',
+        title: 'Developer Ready Patch Guidance',
+        detail: 'Deliver severity ranked proofs of concept and exact remediation code.',
       },
       {
         step: '04.',
-        title: '48-Hour Re-Test & Sign-Off',
+        title: '48 Hour Retest & Sign Off',
         detail: 'Verify resolved fixes and issue an executive security audit report.',
       },
     ],
@@ -492,17 +492,17 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       'Executive & Technical Penetration Test Report',
       'CVSS Severity Matrix with Actionable Fix Snippets',
       'Cloud IAM, WAF & Firewall Hardening Rules',
-      '48-Hour Remediation Verification Summary',
+      '48 Hour Remediation Verification Summary',
     ],
-    techStack: ['OWASP Top 10', 'Burp Suite', 'Nmap / Wireshark', 'Zero-Trust IAM', 'TLS 1.3', 'WAF'],
+    techStack: ['OWASP Top 10', 'Burp Suite', 'Nmap / Wireshark', 'Zero Trust IAM', 'TLS 1.3', 'WAF'],
     idealFor: [
       {
-        audience: 'Fintech, Mobile Money & E-Commerce Teams',
+        audience: 'Fintech, Mobile Money & Ecommerce Teams',
         outcome: 'Validate payment and API integrity prior to scaling transaction volume.',
       },
       {
         audience: 'Enterprises Seeking Partner Security Assurance',
-        outcome: 'Present verified third-party penetration test compliance to enterprise clients.',
+        outcome: 'Present verified third party penetration test compliance to enterprise clients.',
       },
     ],
     faqs: [
@@ -514,7 +514,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         question: 'Do you assist developers in fixing found vulnerabilities?',
         answer:
-          'Yes. Our engineering bench works directly with your developers to patch issues and re-verify fixes within 48 hours.',
+          'Yes. Our engineering bench works directly with your developers to patch issues and reverify fixes within 48 hours.',
       },
     ],
     relatedCaseStudyId: 'pentest-security-audit',
@@ -527,11 +527,11 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     title: 'AI & Machine Learning',
     shortDesc: 'Intelligent Machine Learning and Generative AI solutions to automate and optimize your business.',
     tagline: 'From private RAG knowledge engines and bilingual copilots to predictive analytics pipelines.',
-    heroTitle: 'Future-Ready Automation With',
+    heroTitle: 'Future Ready Automation With',
     heroAccent: 'AI & Machine Learning',
     heroDescription:
-      'SAMITECH builds and embeds practical AI capabilities directly into your business systems — private document RAG assistants, English/French automated support agents, predictive demand/risk ML models, and workflow automation engineered with strict enterprise data privacy.',
-    timelineLabel: '4–10 Weeks to Production',
+      'SAMITECH builds and embeds practical AI capabilities directly into your business systems, private document RAG assistants, English/French automated support agents, predictive demand/risk ML models, and workflow automation engineered with strict enterprise data privacy.',
+    timelineLabel: '4 to 10 Weeks to Production',
     engagementModel: 'AI Enablement · Custom ML',
     contactCategory: 'AI Development & Enablement',
     image: campusArchImg,
@@ -541,7 +541,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     accentColor: '#7C3AED',
     metrics: [
       { value: '60%+', label: 'Manual Triage Time Saved' },
-      { value: 'Private', label: 'Zero-Leak Enterprise Data' },
+      { value: 'Private', label: 'Zero Leak Enterprise Data' },
       { value: '99.9%', label: 'API Inference Availability' },
     ],
     capabilities: [
@@ -563,18 +563,18 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         title: 'AI Guardrails & Cost Control',
         description:
-          'Prompt-injection defense, evaluation benchmarks, caching, and token budget governance.',
+          'Prompt injection defense, evaluation benchmarks, caching, and token budget governance.',
       },
     ],
     processSteps: [
       {
         step: '01.',
         title: 'AI Readiness & ROI Discovery',
-        detail: 'Audit internal datasets, latency targets, and high-impact automation use cases.',
+        detail: 'Audit internal datasets, latency targets, and high impact automation use cases.',
       },
       {
         step: '02.',
-        title: '2-Week Proof of Value',
+        title: '2 Week Proof of Value',
         detail: 'Benchmark accuracy directly on anonymized company records before scaling.',
       },
       {
@@ -597,7 +597,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     techStack: ['Python', 'TypeScript', 'Gemini API', 'PyTorch', 'pgvector', 'FastAPI', 'LangGraph'],
     idealFor: [
       {
-        audience: 'Operations-Heavy Companies & Support Desks',
+        audience: 'Operations Heavy Companies & Support Desks',
         outcome: 'Cut manual document review and ticket triage dramatically while keeping human oversight.',
       },
       {
@@ -609,7 +609,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         question: 'Is our company data exposed to public model training?',
         answer:
-          'Never. Enterprise APIs and private VPC deployments operate with zero-retention data isolation.',
+          'Never. Enterprise APIs and private VPC deployments operate with zero retention data isolation.',
       },
       {
         question: 'Do we need huge clean datasets to start with AI?',
@@ -625,14 +625,14 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     group: 'product-software',
     groupLabel: 'Consulting & Alignment',
     title: 'Software Consulting & Product Scope',
-    shortDesc: 'Expert guidance and a 15-day Product Scope process to turn ideas into validated technical blueprints.',
+    shortDesc: 'Expert guidance and a 15 day Product Scope process to turn ideas into validated technical blueprints.',
     tagline: 'Align stakeholders, UX wireframes, BPMN flows, and technical architecture before full build.',
-    heroTitle: 'De-Risk Every Build With',
-    heroAccent: 'Consulting & 15-Day Scope',
+    heroTitle: 'Derisk Every Build With',
+    heroAccent: 'Consulting & 15 Day Scope',
     heroDescription:
-      'Building software without verified requirements causes expensive delays. Through our 15-day Product Scope and Software Consulting advisory, SAMITECH helps founders and CTOs lock down user stories, technical architecture, cloud costs, and clickable Figma prototypes before committing full development budget.',
-    timelineLabel: '15-Day Scope Sprint',
-    engagementModel: 'Fixed-Scope Discovery',
+      'Building software without verified requirements causes expensive delays. Through our 15 day Product Scope and Software Consulting advisory, SAMITECH helps founders and CTOs lock down user stories, technical architecture, cloud costs, and clickable Figma prototypes before committing full development budget.',
+    timelineLabel: '15 Day Scope Sprint',
+    engagementModel: 'Fixed Scope Discovery',
     contactCategory: 'Product Scope',
     image: aboutHqImg,
     imageAlt: 'SAMITECH strategic software consulting and architecture workspace',
@@ -641,19 +641,19 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     accentColor: '#0284C7',
     metrics: [
       { value: '15 Days', label: 'Complete Blueprint Delivery' },
-      { value: '-35%', label: 'Avoided Rework Savings' },
+      { value: '35% Less', label: 'Avoided Rework Savings' },
       { value: '100%', label: 'Architecture & Budget Clarity' },
     ],
     capabilities: [
       {
-        title: '15-Day Product Scope Alignment',
+        title: '15 Day Product Scope Alignment',
         description:
           'Translate raw product vision into crisp user stories, release phases, and measurable KPIs.',
       },
       {
         title: 'BPMN Workflows & System Architecture',
         description:
-          'Map business rules, third-party integrations, database schemas, and cloud sizing specs.',
+          'Map business rules, third party integrations, database schemas, and cloud sizing specs.',
       },
       {
         title: 'Clickable UX Wireframe Prototypes',
@@ -670,22 +670,22 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         step: '01.',
         title: 'Value Proposition & KPI Alignment',
-        detail: 'Days 1–3: Clarify target users, revenue model, and critical operational constraints.',
+        detail: 'Days 1 to 3: Clarify target users, revenue model, and critical operational constraints.',
       },
       {
         step: '02.',
         title: 'Feature Mapping & Backlog Cut',
-        detail: 'Days 4–7: Separate Version-1 essentials from low-ROI scope bloat.',
+        detail: 'Days 4 to 7: Separate Version 1 essentials from low ROI scope bloat.',
       },
       {
         step: '03.',
         title: 'UX Flows & Interactive Wireframes',
-        detail: 'Days 8–11: Assemble testable clickable screens covering happy paths and edge cases.',
+        detail: 'Days 8 to 11: Assemble testable clickable screens covering happy paths and edge cases.',
       },
       {
         step: '04.',
         title: 'Architecture Memo & Fixed Quote',
-        detail: 'Days 12–15: Deliver complete technical specs, timeline, and engineering budget.',
+        detail: 'Days 12 to 15: Deliver complete technical specs, timeline, and engineering budget.',
       },
     ],
     deliverables: [
@@ -707,9 +707,9 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     ],
     faqs: [
       {
-        question: 'What happens after the 15-day Product Scope completes?',
+        question: 'What happens after the 15 day Product Scope completes?',
         answer:
-          'You own every diagram, user story, and prototype completely and can proceed seamlessly into our MVP Builder or Custom Software build — or hand off to any team.',
+          'You own every diagram, user story, and prototype completely and can proceed seamlessly into our MVP Builder or Custom Software build, or hand off to any team.',
       },
     ],
     relatedCaseStudyId: 'erp-inventory-cloud',
@@ -721,12 +721,12 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     groupLabel: 'MVP & Digital Modernization',
     title: 'Digital Transformation & MVP Builder',
     shortDesc: 'Upgrade legacy operations and launch fundable Minimum Viable Products rapidly.',
-    tagline: 'Lean frameworks applied to modernizing workflows and shipping v1 products in 6–10 weeks.',
+    tagline: 'Lean frameworks applied to modernizing workflows and shipping v1 products in 6 to 10 weeks.',
     heroTitle: 'Move Faster Through',
     heroAccent: 'Digital Transformation & MVPs',
     heroDescription:
-      'Whether modernizing manual paper-based enterprise operations or launching a brand-new startup MVP to capture market traction, SAMITECH strips away unnecessary complexity to ship clean, working digital products rapidly and reliably.',
-    timelineLabel: '6–10 Weeks to Go-Live',
+      'Whether modernizing manual paper based enterprise operations or launching a brand new startup MVP to capture market traction, SAMITECH strips away unnecessary complexity to ship clean, working digital products rapidly and reliably.',
+    timelineLabel: '6 to 10 Weeks to Go Live',
     engagementModel: 'Lean Agile Transformation',
     contactCategory: 'MVP Builder',
     image: softwareFloorImg,
@@ -735,7 +735,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     imageHeight: 964,
     accentColor: '#EAB308',
     metrics: [
-      { value: '6–10 Wks', label: 'Launch Window' },
+      { value: '6 to 10 Wks', label: 'Launch Window' },
       { value: '2x', label: 'Faster Market Validation' },
       { value: '0', label: 'Throwaway Prototype Debt' },
     ],
@@ -746,12 +746,12 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
           'Go from validated scope to live paying users with payments, auth, and analytics ready.',
       },
       {
-        title: 'Paper-to-Digital Workflow Automation',
+        title: 'Paper to Digital Workflow Automation',
         description:
-          'Replace disconnected spreadsheets and manual approvals with real-time cloud dashboards.',
+          'Replace disconnected spreadsheets and manual approvals with real time cloud dashboards.',
       },
       {
-        title: 'Production-Clean Modular Stack',
+        title: 'Production Clean Modular Stack',
         description:
           'Built on TypeScript, React, Flutter, and PostgreSQL so version 2 expands cleanly without rewrites.',
       },
@@ -765,7 +765,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         step: '01.',
         title: 'Bottleneck & Core Loop Lock',
-        detail: 'Identify highest-leverage features or manual workflows to digitize first.',
+        detail: 'Identify highest leverage features or manual workflows to digitize first.',
       },
       {
         step: '02.',
@@ -793,7 +793,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     idealFor: [
       {
         audience: 'Venture Founders Testing Market Fit',
-        outcome: 'Get real users onboarding and paying fast without burning multi-quarter runway.',
+        outcome: 'Get real users onboarding and paying fast without burning multiquarter runway.',
       },
       {
         audience: 'Established Businesses Digitizing Operations',
@@ -816,11 +816,11 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     groupLabel: '24/7 Operations & Recovery',
     title: 'IT Support, Maintenance & Tracking',
     shortDesc: '24/7 managed IT support, preventative maintenance, and Authorized Equipment Tracking.',
-    tagline: 'Keep servers, office systems, and high-value hardware protected with 24/7 response in Buea & beyond.',
-    heroTitle: 'Always-On Reliability With',
+    tagline: 'Keep servers, office systems, and high value hardware protected with 24/7 response in Buea & beyond.',
+    heroTitle: 'Always On Reliability With',
     heroAccent: '24/7 IT Support & Tracking',
     heroDescription:
-      'Downtime and stolen assets stall business momentum. SAMITECH’s operations desk provides round-the-clock server, software, and network maintenance alongside verified Authorized Equipment Tracking (smartphones, laptops, vehicles, IoT) integrated with MTN Mobile Money.',
+      'Downtime and stolen assets stall business momentum. SAMITECH’s operations desk provides round the clock server, software, and network maintenance alongside verified Authorized Equipment Tracking (smartphones, laptops, vehicles, IoT) integrated with MTN Mobile Money.',
     timelineLabel: '24/7 Immediate Desk',
     engagementModel: 'Retainer SLA · Recovery Tiers',
     contactCategory: 'Authorized Equipment Tracking',
@@ -832,13 +832,13 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     metrics: [
       { value: '24/7', label: 'Direct Hotline & WhatsApp' },
       { value: '4 Tiers', label: 'Authorized Device Tracking' },
-      { value: '25k–85k', label: 'XAF Transparent Tracking Fees' },
+      { value: '25k to 85k', label: 'XAF Transparent Tracking Fees' },
     ],
     capabilities: [
       {
         title: 'Preventative IT Maintenance & SLA Monitoring',
         description:
-          'OS/dependency updates, automated off-site backups, uptime probes, and rapid troubleshooting.',
+          'OS/dependency updates, automated offsite backups, uptime probes, and rapid troubleshooting.',
       },
       {
         title: 'Smartphone & Tablet Tracking (35,000 XAF)',
@@ -916,7 +916,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     heroAccent: 'UX / UI Product Design',
     heroDescription:
       'Clean typography, clear spatial hierarchy, and intuitive task flows turn complex software into everyday tools users love. SAMITECH’s designers craft responsive web and mobile interfaces, reusable Figma design systems, and tested user journeys.',
-    timelineLabel: '2–5 Weeks Per Phase',
+    timelineLabel: '2 to 5 Weeks Per Phase',
     engagementModel: 'Design Sprint · Design System',
     contactCategory: 'UI/UX Design',
     image: aboutHqImg,
@@ -926,7 +926,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     accentColor: '#DB2777',
     metrics: [
       { value: 'WCAG AA', label: 'Accessibility Contrast Rigor' },
-      { value: '100%', label: 'Developer-Ready Figma Tokens' },
+      { value: '100%', label: 'Developer Ready Figma Tokens' },
       { value: '+40%', label: 'Task Completion Lift' },
     ],
     capabilities: [
@@ -941,12 +941,12 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
           'Clickable flows that stakeholders and test users evaluate prior to full development.',
       },
       {
-        title: 'Responsive Cross-Device Design Systems',
+        title: 'Responsive Cross Device Design Systems',
         description:
           'Consistent color, typography, button states, and component libraries tailored to Tailwind & React.',
       },
       {
-        title: 'Micro-Interactions & Visual Polish',
+        title: 'Micro Interactions & Visual Polish',
         description:
           'Intentional transitions, loading skeletons, and crisp iconography across every state.',
       },
@@ -964,7 +964,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       },
       {
         step: '03.',
-        title: 'High-Fidelity Visual UI',
+        title: 'High Fidelity Visual UI',
         detail: 'Apply brand craft, contrast checks, and complete interactive states.',
       },
       {
@@ -974,7 +974,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       },
     ],
     deliverables: [
-      'Clickable High-Fidelity Figma Prototype',
+      'Clickable High Fidelity Figma Prototype',
       'Desktop, Tablet & Mobile Screen Specs',
       'Reusable UI Component & Token Library',
       'WCAG AA Contrast & Usability Review',
@@ -982,7 +982,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     techStack: ['Figma', 'Design Tokens', 'Auto Layout', 'Prototyping', 'WCAG AA', 'Tailwind Mapping'],
     idealFor: [
       {
-        audience: 'Products Seeking World-Class Brand Polish',
+        audience: 'Products Seeking World Class Brand Polish',
         outcome: 'Command instant credibility with investors and enterprise buyers from screen one.',
       },
     ],
@@ -990,7 +990,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         question: 'Can we hire SAMITECH solely for UX/UI redesign?',
         answer:
-          'Yes. You receive clean, annotated Figma prototypes and tokenized component specs ready for any front-end team.',
+          'Yes. You receive clean, annotated Figma prototypes and tokenized component specs ready for any frontend team.',
       },
     ],
     relatedCaseStudyId: 'authorized-tracking-system',
@@ -1002,12 +1002,12 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     groupLabel: 'Embedded Squads',
     title: 'Dedicated Teams',
     shortDesc: 'Scale faster with a dedicated pod of senior engineers, AI specialists, and designers.',
-    tagline: 'Co-founder mindset, transparent daily standups, and immediate engineering capacity.',
+    tagline: 'Cofounder mindset, transparent daily standups, and immediate engineering capacity.',
     heroTitle: 'Scale Engineering Speed With',
     heroAccent: 'Dedicated Teams',
     heroDescription:
-      'Skip months of solo recruiting. SAMITECH assigns an embedded pod of vetted full-stack developers, AI/ML specialists, DevOps, and UX designers directly inside your workflow — bringing ownership, architectural rigor, and WAT timezone alignment for Europe, Africa, and global partners.',
-    timelineLabel: 'Onboard in 10–14 Days',
+      'Skip months of solo recruiting. SAMITECH assigns an embedded pod of vetted full stack developers, AI/ML specialists, DevOps, and UX designers directly inside your workflow, bringing ownership, architectural rigor, and WAT timezone alignment for Europe, Africa, and global partners.',
+    timelineLabel: 'Onboard in 10 to 14 Days',
     engagementModel: 'Monthly Retainer Pod',
     contactCategory: 'Dedicated Teams',
     image: nocCenterImg,
@@ -1016,15 +1016,15 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     imageHeight: 964,
     accentColor: '#EA580C',
     metrics: [
-      { value: '10–14d', label: 'Team Onboarding Window' },
-      { value: '15+', label: 'Certified In-House Specialists' },
+      { value: '10 to 14d', label: 'Team Onboarding Window' },
+      { value: '15+', label: 'Certified In House Specialists' },
       { value: '100%', label: 'Direct Git & IP Ownership' },
     ],
     capabilities: [
       {
-        title: 'Full-Stack, AI & Mobile Squads',
+        title: 'Full Stack, AI & Mobile Squads',
         description:
-          'Pre-gelled senior pods who collaborate smoothly across React, Node.js, Python, Flutter, and cloud.',
+          'Prebuilt senior pods who collaborate smoothly across React, Node.js, Python, Flutter, and cloud.',
       },
       {
         title: 'Embedded Daily Workflow Integration',
@@ -1034,7 +1034,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         title: 'Backed by Security & Network Bench',
         description:
-          'Draw on SAMITECH’s in-house penetration testers and DevOps architects whenever launches scale.',
+          'Draw on SAMITECH’s in house penetration testers and DevOps architects whenever launches scale.',
       },
       {
         title: 'Predictable Monthly Capacity Scaling',
@@ -1067,14 +1067,14 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
     deliverables: [
       'Dedicated Multidisciplinary Pod (Engineers · UX · QA · Lead)',
       'Direct Access Inside Your Slack, Jira & GitHub',
-      'Weekly Sprint Demos & Burn-Down Transparency',
+      'Weekly Sprint Demos & Burn Down Transparency',
       '100% Source Code & Intellectual Property Ownership',
     ],
     techStack: ['React / Node.js', 'Python / AI', 'Flutter', 'AWS / Docker', 'GitHub / Jira', 'CI/CD'],
     idealFor: [
       {
         audience: 'Funded Startups & CTOs Accelerating Roadmaps',
-        outcome: 'Double shipping velocity immediately without multi-month hiring overhead.',
+        outcome: 'Double shipping velocity immediately without multimonth hiring overhead.',
       },
     ],
     faqs: [

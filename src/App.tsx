@@ -420,7 +420,7 @@ export default function App() {
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.22, ease: SAMITECH_EASE }}
               >
-                {/* HERO SECTION — Crystal-Clear Full-Bleed Video Stage Across Mobile, Tablet, and Desktop */}
+                {/* HERO SECTION, Crystal-Clear Full-Bleed Video Stage Across Mobile, Tablet, and Desktop */}
                 <section id="home" className="relative min-h-[92svh] md:min-h-0 flex flex-col justify-between overflow-x-clip bg-white">
                   <div className="relative flex-1 flex items-center overflow-hidden bg-[#040B29] md:bg-white md:min-h-[480px] lg:h-[calc(100svh-88px)] lg:min-h-[560px] lg:max-h-[760px]">
                     {/* Full-Bleed Looping Hero Video Background With Instant Poster First Frame */}
@@ -484,8 +484,8 @@ export default function App() {
                           {/* Concise Corporate Thesis */}
                           <p className="max-w-md lg:max-w-[470px] xl:max-w-[490px] text-[15px] sm:text-base md:text-sm lg:text-base xl:text-[17px] font-medium md:font-normal text-slate-100 md:text-[#1E293B] leading-[1.65] drop-shadow-[0_1px_6px_rgba(2,6,23,0.65)] md:drop-shadow-none">
                             At <span className="font-bold text-white md:text-[#07133B]">SAMITECH Corporation</span>, we
-                            deliver cutting-edge solutions in AI, software, networking, cybersecurity, and
-                            more — helping businesses and individuals achieve more.
+                            deliver cutting edge solutions in AI, software, networking, cybersecurity, and
+                            more, helping businesses and individuals achieve more.
                           </p>
 
                           {/* Rounded-Full Dual Action Row */}
@@ -510,7 +510,7 @@ export default function App() {
                           </div>
                         </Reveal>
 
-                        {/* Right Column Spacer — Keeps animated holographic ST globe unobstructed on tablet & desktop */}
+                        {/* Right Column Spacer, Keeps animated holographic ST globe unobstructed on tablet & desktop */}
                         <div className="hidden md:block md:col-span-6 lg:col-span-6 h-72 lg:h-[320px] xl:h-[360px]" aria-hidden="true" />
                       </div>
                     </div>
@@ -565,7 +565,7 @@ export default function App() {
                   </div>
                 </section>
 
-                {/* ABOUT SECTION — Vertical Mobile Flow Reveals As You Scroll; 3-Column Split on Desktop */}
+                {/* ABOUT SECTION, Vertical Mobile Flow Reveals As You Scroll; 3-Column Split on Desktop */}
                 <section id="about" className="py-14 sm:py-16 lg:py-24 bg-[#F2F6FF] border-b border-[#0044FF]/10 overflow-x-clip">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 lg:gap-12 items-center">
@@ -576,7 +576,7 @@ export default function App() {
                           <span className="text-[#002BFF]">SAMITECH</span>
                         </h2>
                         <p className="text-sm lg:text-base text-slate-700 leading-relaxed">
-                          Founded in 2019 in Buea, Cameroon, SAMITECH Corporation is a remote-first
+                          Founded in 2019 in Buea, Cameroon, SAMITECH Corporation is a remote first
                           technology partner serving enterprises across Douala, Yaoundé, and global markets.
                         </p>
                         <p className="text-sm lg:text-base text-slate-700 leading-relaxed">
@@ -659,7 +659,7 @@ export default function App() {
                   </div>
                 </section>
 
-                {/* SERVICES SECTION — Staggered 5-Column Cards on Desktop, Scroll-Revealed Grid on Mobile */}
+                {/* SERVICES SECTION, Staggered 5-Column Cards on Desktop, Scroll-Revealed Grid on Mobile */}
                 <section id="services" className="py-14 sm:py-16 lg:py-24 bg-white overflow-x-clip">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <Reveal direction="top" delay={0} className="max-w-2xl mx-auto text-center space-y-2.5 sm:space-y-3 mb-8 sm:mb-12 lg:mb-14">
@@ -668,7 +668,7 @@ export default function App() {
                         <span className="text-[#002BFF]">Services</span>
                       </h2>
                       <p className="text-sm lg:text-base text-slate-600 leading-relaxed">
-                        End-to-end delivery across Software Development, Networking Solutions, Cybersecurity,
+                        End to end delivery across Software Development, Networking Solutions, Cybersecurity,
                         Data &amp; AI, and 24/7 Infrastructure Support.
                       </p>
                     </Reveal>
@@ -729,7 +729,7 @@ export default function App() {
                   </div>
                 </section>
 
-                {/* WHY CHOOSE SAMITECH — Clean Dark Card on Mobile, Chamfered Folder-Tab Cutout on Desktop */}
+                {/* WHY CHOOSE SAMITECH, Clean Dark Card on Mobile, Chamfered Folder-Tab Cutout on Desktop */}
                 <section id="why-samitech" className="py-14 sm:py-16 lg:py-24 bg-[#F8FAFF] overflow-x-clip">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <Reveal direction="none" delay={0}>
@@ -834,7 +834,7 @@ export default function App() {
                   </div>
                 </section>
 
-                {/* PROJECTS / CASE STUDIES SECTION — Scroll-Revealed 1->2->4 Columns */}
+                {/* PROJECTS / CASE STUDIES SECTION, Scroll-Revealed 1->2->4 Columns */}
                 <section id="projects" className="py-14 sm:py-16 lg:py-24 bg-white overflow-x-clip">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <Reveal direction="right" delay={0} className="max-w-2xl mx-auto text-center space-y-2.5 sm:space-y-3 mb-8 sm:mb-10 lg:mb-12">
@@ -928,7 +928,7 @@ export default function App() {
                         <Reveal direction="left" delay={0.08}>
                           <p className="text-sm lg:text-base text-slate-700 leading-relaxed">
                             Our structured internship and engineering mentorship programs in Buea give
-                            emerging technologists hands-on experience shipping real production systems alongside
+                            emerging technologists hands on experience shipping real production systems alongside
                             senior specialists.
                           </p>
                         </Reveal>
@@ -976,7 +976,7 @@ export default function App() {
                   </div>
                 </section>
 
-                {/* FAQ SECTION — Responsive Dark Card on Mobile, Chamfered Asymmetric Folder-Tab on Desktop */}
+                {/* FAQ SECTION, Responsive Dark Card on Mobile, Chamfered Asymmetric Folder-Tab on Desktop */}
                 <section id="faq" className="py-14 sm:py-16 lg:py-24 bg-white overflow-x-clip">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <Reveal direction="none" delay={0}>
@@ -1114,7 +1114,7 @@ export default function App() {
           </AnimatePresence>
         </main>
 
-        {/* COMPACT CORPORATE FOOTER — Sleek & Proportional Across Mobile, Tablet, and Desktop */}
+        {/* COMPACT CORPORATE FOOTER, Sleek & Proportional Across Mobile, Tablet, and Desktop */}
         <footer id="contact-footer" className="relative bg-[#071235] text-white border-t border-white/10 overflow-hidden">
           {/* Bottom-Right Signature Crimson & Royal-Blue Corner Ribbon Accent */}
           <svg

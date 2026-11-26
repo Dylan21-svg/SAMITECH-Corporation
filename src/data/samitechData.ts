@@ -68,7 +68,7 @@ export const COMPANY_CONTACT = {
 
 export const ABOUT_MEDIA = {
   image: aboutHqImg,
-  alt: 'Multi-story SAMITECH engineering atrium with glass network laboratories and structural steel framing',
+  alt: 'Multistory SAMITECH engineering atrium with glass network laboratories and structural steel framing',
   width: 720,
   height: 964,
 };
@@ -80,7 +80,7 @@ export const SERVICES: ServiceItem[] = [
     title: 'Software Development',
     shortDesc: 'Custom web (React, Vue, Angular), mobile apps, and scalable ERP/CRM platforms.',
     image: softwareFloorImg,
-    imageAlt: 'Software engineers collaborating at dual-monitor workstations in a modern glass engineering office',
+    imageAlt: 'Software engineers collaborating at dual monitor workstations in a modern glass engineering office',
     imageWidth: 720,
     imageHeight: 964,
     serviceCategory: 'Software Development',
@@ -92,7 +92,7 @@ export const SERVICES: ServiceItem[] = [
     title: 'Networking Solutions',
     shortDesc: 'LAN/WAN architecture, OpenVPN setup, cloud management, load balancing, and monitoring.',
     image: fiberCoreImg,
-    imageAlt: 'High-density enterprise fiber-optic core switches with structured blue patch cabling',
+    imageAlt: 'High density enterprise fiber optic core switches with structured blue patch cabling',
     imageWidth: 720,
     imageHeight: 964,
     serviceCategory: 'Networking Solutions',
@@ -114,7 +114,7 @@ export const SERVICES: ServiceItem[] = [
     id: 'data-ai-ux',
     number: '04',
     title: 'AI & UX/UI Systems',
-    shortDesc: 'Machine learning, Generative AI enablement, and user-centric digital product design.',
+    shortDesc: 'Machine learning, Generative AI enablement, and user centric digital product design.',
     image: campusArchImg,
     imageAlt: 'Contemporary glass and dark steel technology corporate facility illuminated with blue architectural light',
     imageWidth: 720,
@@ -155,7 +155,7 @@ export const WHY_PILLARS: WhyPillar[] = [
     id: 'always-on-support',
     title: '24/7 Support & Security First',
     description:
-      'Round-the-clock operational support (+237 674 137 259), defense-in-depth penetration testing, and hands-on engineering mentorship programs.',
+      'Round the clock operational support (+237 674 137 259), defense in depth penetration testing, and hands on engineering mentorship programs.',
     accent: 'red',
   },
 ];
@@ -163,21 +163,21 @@ export const WHY_PILLARS: WhyPillar[] = [
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'erp-inventory-cloud',
-    title: 'Cloud-Backed Inventory & ERP Workflow Platform',
+    title: 'Cloud Backed Inventory & ERP Workflow Platform',
     sector: 'Software Development',
     location: 'Buea & Douala',
     year: '2025',
     serviceCategory: 'Software Development',
     summary:
-      'Engineered a scalable React and Node.js enterprise inventory and CRM platform with automated third-party payment and warehouse integrations.',
+      'Engineered a scalable React and Node.js enterprise inventory and CRM platform with automated third party payment and warehouse integrations.',
     challenge:
       'Distributed retail and wholesale branches relied on disconnected spreadsheets, causing stock discrepancies and slow order reconciliation.',
     solution:
-      'Built a cloud-native web and mobile application suite with real-time stock synchronization, role-based permissions, and automated reporting.',
+      'Built a cloud native web and mobile application suite with real time stock synchronization, role based permissions, and automated reporting.',
     deliverables: [
       'React & Node.js Web Platform',
-      'Cross-Platform Mobile Sync App',
-      'Third-Party API & ERP Integration',
+      'Cross Platform Mobile Sync App',
+      'Third Party API & ERP Integration',
     ],
     metrics: [
       { value: '99.9%', label: 'Platform Availability' },
@@ -191,7 +191,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: 'lan-wan-vpn-fabric',
-    title: 'Multi-Site LAN/WAN & OpenVPN Enterprise Network',
+    title: 'Multi Site LAN/WAN & OpenVPN Enterprise Network',
     sector: 'Networking Solutions',
     location: 'Douala & Yaoundé',
     year: '2025',
@@ -199,21 +199,21 @@ export const CASE_STUDIES: CaseStudy[] = [
     summary:
       'Designed and deployed structured LAN/WAN switching, redundant OpenVPN tunnels, and automated load balancing across regional corporate offices.',
     challenge:
-      'Frequent link drops and unsegmented office traffic disrupted access to cloud-hosted applications across AWS and Azure environments.',
+      'Frequent link drops and unsegmented office traffic disrupted access to cloud hosted applications across AWS and Azure environments.',
     solution:
-      'Configured dual-WAN failover, hardened OpenVPN site-to-site configurations, and continuous traffic monitoring for predictable throughput.',
+      'Configured dual WAN failover, hardened OpenVPN site to site configurations, and continuous traffic monitoring for predictable throughput.',
     deliverables: [
       'Structured LAN/WAN Topology',
       'Hardened OpenVPN Configs & Routing',
       'Cloud Load Balancing & Monitoring',
     ],
     metrics: [
-      { value: '-58%', label: 'Packet Latency Drop' },
+      { value: '58% Less', label: 'Packet Latency Drop' },
       { value: '99.95%', label: 'WAN Link Uptime' },
       { value: '24/7', label: 'Managed NOC Watch' },
     ],
     image: fiberCoreImg,
-    imageAlt: 'High-density core switching and structured blue cabling installed for enterprise networking',
+    imageAlt: 'High density core switching and structured blue cabling installed for enterprise networking',
     imageWidth: 720,
     imageHeight: 964,
   },
@@ -225,11 +225,11 @@ export const CASE_STUDIES: CaseStudy[] = [
     year: '2026',
     serviceCategory: 'Cybersecurity Services',
     summary:
-      'Executed comprehensive vulnerability assessments, ethical hacking simulations, and incident-response playbooks for a financial services portal.',
+      'Executed comprehensive vulnerability assessments, ethical hacking simulations, and incident response playbooks for a financial services portal.',
     challenge:
       'Rapid digital product expansion exposed unpatched API endpoints and weak internal network segmentation.',
     solution:
-      'Conducted full-scope black-box and white-box penetration testing, remediated critical CVEs, and trained internal staff on security awareness.',
+      'Conducted full scope black box and white box penetration testing, remediated critical CVEs, and trained internal staff on security awareness.',
     deliverables: [
       'Full Vulnerability & API Audit',
       'Penetration Testing & Remediation',
@@ -237,7 +237,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     metrics: [
       { value: '100%', label: 'Critical CVEs Resolved' },
-      { value: '0', label: 'Post-Audit Breaches' },
+      { value: '0', label: 'Post Audit Breaches' },
       { value: '48 hrs', label: 'Remediation Verification' },
     ],
     image: hardwareBenchImg,
@@ -253,11 +253,11 @@ export const CASE_STUDIES: CaseStudy[] = [
     year: '2026',
     serviceCategory: 'Authorized Equipment Tracking',
     summary:
-      'Built a verified asset-tracing intake and recovery workflow supporting smartphones, laptops, vehicles, and IoT devices with MTN Mobile Money billing.',
+      'Built a verified asset tracing intake and recovery workflow supporting smartphones, laptops, vehicles, and IoT devices with MTN Mobile Money billing.',
     challenge:
       'Clients needed a compliant, documented channel to trace lost or stolen equipment alongside local carriers and law enforcement.',
     solution:
-      'Implemented strict proof-of-ownership verification, automated MTN Mobile Money intake across device tiers, and structured case coordination.',
+      'Implemented strict proof of ownership verification, automated MTN Mobile Money intake across device tiers, and structured case coordination.',
     deliverables: [
       'Ownership Verification Portal',
       'MTN Mobile Money Checkout Flow',
@@ -265,7 +265,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     metrics: [
       { value: '4 Tiers', label: 'Device Coverage Categories' },
-      { value: '25k–85k', label: 'XAF Transparent Pricing' },
+      { value: '25k to 85k', label: 'XAF Transparent Pricing' },
       { value: '24/7', label: 'Intake & Case Tracking' },
     ],
     image: nocCenterImg,
@@ -298,7 +298,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     id: 'faq-4',
     question: 'Do you offer internships or public developer resources?',
     answer:
-      'Yes. SAMITECH runs hands-on internship programs in Software Engineering, Networking, and Cybersecurity mentored by our senior engineers, and publishes public configuration guides and tools including OpenVPN setups, Node.js installers, and API documentation.',
+      'Yes. SAMITECH runs hands on internship programs in Software Engineering, Networking, and Cybersecurity mentored by our senior engineers, and publishes public configuration guides and tools including OpenVPN setups, Node.js installers, and API documentation.',
   },
   {
     id: 'faq-5',
@@ -333,9 +333,9 @@ export const ABOUT_HERO_MEDIA = {
 export const ABOUT_PAGE_VALUES = [
   {
     id: 'youth-driven-engineering',
-    title: 'Youth-Driven Engineering',
+    title: 'Youth Driven Engineering',
     description:
-      'Founded by young Cameroonian engineers in Buea, SAMITECH channels fresh technical energy into production-ready software, hardware, and AI platforms built for African realities.',
+      'Founded by young Cameroonian engineers in Buea, SAMITECH channels fresh technical energy into production ready software, hardware, and AI platforms built for African realities.',
   },
   {
     id: 'security-reliability',
@@ -347,7 +347,7 @@ export const ABOUT_PAGE_VALUES = [
     id: 'bridging-digital-divide',
     title: 'Bridging the Digital Divide',
     description:
-      'We combine enterprise project delivery with hands-on digital skills mentorship and community programs that have already reached over 10,000 learners and professionals.',
+      'We combine enterprise project delivery with hands on digital skills mentorship and community programs that have already reached over 10,000 learners and professionals.',
   },
 ];
 
@@ -355,7 +355,7 @@ export const ABOUT_PAGE_MILESTONES = [
   {
     year: '2022',
     title: 'Founded in Buea',
-    detail: 'Launched in Cameroon’s Silicon Mountain hub to unite youth engineering talent around real-world software and hardware challenges.',
+    detail: 'Launched in Cameroon’s Silicon Mountain hub to unite youth engineering talent around real world software and hardware challenges.',
   },
   {
     year: '2023',
@@ -365,10 +365,10 @@ export const ABOUT_PAGE_MILESTONES = [
   {
     year: '2024',
     title: 'Security & Tracking Division',
-    detail: 'Introduced full-scope cybersecurity penetration testing alongside Authorized Equipment Tracking integrated with MTN Mobile Money.',
+    detail: 'Introduced full scope cybersecurity penetration testing alongside Authorized Equipment Tracking integrated with MTN Mobile Money.',
   },
   {
-    year: '2025–2026',
+    year: '2025 to 2026',
     title: '10K+ Empowered & AI Systems',
     detail: 'Crossed 100+ delivered solutions and 10,000+ empowered community members while scaling modern AI, software, and mentorship tracks.',
   },

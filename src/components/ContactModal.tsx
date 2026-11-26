@@ -45,7 +45,7 @@ export function ContactModal({
       return {
         category: 'Careers & Job Applications',
         prefillMessage: roleTitle
-          ? `Applying for ${roleTitle} — portfolio/GitHub link & relevant experience: `
+          ? `Applying for ${roleTitle}, portfolio/GitHub link & relevant experience: `
           : '',
       };
     }

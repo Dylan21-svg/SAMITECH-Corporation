@@ -204,7 +204,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                       {COMPANY_CONTACT.phone}
                     </div>
                     <div className="text-[11px] sm:text-xs text-slate-500">
-                      Mon – Fri: 8AM – 6PM (WAT)
+                      Mon to Fri: 8AM to 6PM (WAT)
                     </div>
                   </a>
                 </Reveal>

@@ -13,7 +13,7 @@ export type ProjectFilterId =
   | 'web-apps'
   | 'ai-automation'
   | 'business-tools'
-  | 'e-commerce'
+  | 'ecommerce'
   | 'cloud-networking'
   | 'education-dev';
 
@@ -34,7 +34,7 @@ export const PROJECTS_PAGE_MEDIA = {
 export const CONTACT_PAGE_MEDIA = {
   hqHero: {
     image: contactHqHeroImg,
-    alt: 'SAMITECH Corporation sleek blue-glass and white architectural corporate headquarters in bright daylight',
+    alt: 'SAMITECH Corporation sleek blue glass and white architectural corporate headquarters in bright daylight',
     width: 1376,
     height: 768,
   },
@@ -57,7 +57,7 @@ export const PRIMARY_PROJECT_FILTERS: { id: ProjectFilterId; label: string }[] =
   { id: 'web-apps', label: 'Web Apps' },
   { id: 'ai-automation', label: 'AI & Automation' },
   { id: 'business-tools', label: 'Business Tools' },
-  { id: 'e-commerce', label: 'E-commerce' },
+  { id: 'ecommerce', label: 'Ecommerce' },
 ];
 
 export const EXTRA_PROJECT_FILTERS: { id: ProjectFilterId; label: string }[] = [
@@ -75,13 +75,13 @@ export const PORTFOLIO_PROJECTS: ShowcaseProject[] = [
     serviceCategory: 'AI Development & Enablement',
     filterCategory: 'ai-automation',
     featured: true,
-    summary: 'AI CRO & Business Intelligence SaaS for e-commerce brands.',
+    summary: 'AI CRO & Business Intelligence SaaS for ecommerce brands.',
     challenge:
-      'High-growth e-commerce storefronts lacked automated funnel diagnostics to pinpoint checkout drop-offs and personalize product recommendations in real time.',
+      'High growth ecommerce storefronts lacked automated funnel diagnostics to pinpoint checkout dropoffs and personalize product recommendations in real time.',
     solution:
       'Engineered an AI conversion rate optimization & BI analytics suite with predictive cohort insights, automated experimentation alerts, and live revenue attribution dashboards.',
     deliverables: [
-      'Real-Time Funnel & BI Telemetry Engine',
+      'Real Time Funnel & BI Telemetry Engine',
       'AI Conversion Audit & Anomaly Alerts',
       'React & TypeScript SaaS Executive Console',
     ],
@@ -107,9 +107,9 @@ export const PORTFOLIO_PROJECTS: ShowcaseProject[] = [
     challenge:
       'Universities and polytechnics struggled with fragmented paper transcripts, manual fee reconciliation, and delayed semester GPA publication.',
     solution:
-      'Built an end-to-end academic ERP portal supporting course registration, Mobile Money tuition verification, attendance tracking, and instant automated transcript generation.',
+      'Built an end to end academic ERP portal supporting course registration, Mobile Money tuition verification, attendance tracking, and instant automated transcript generation.',
     deliverables: [
-      'Student & Faculty Self-Service Portal',
+      'Student & Faculty Self Service Portal',
       'MTN / Orange Mobile Money Tuition Sync',
       'Automated GPA & Transcript Engine',
     ],
@@ -126,18 +126,18 @@ export const PORTFOLIO_PROJECTS: ShowcaseProject[] = [
   {
     id: 'velora-store',
     title: 'VELORA Store',
-    sector: 'E-commerce Platform',
+    sector: 'Ecommerce Platform',
     location: 'Douala & Online',
     year: '2025',
     serviceCategory: 'Software Development',
-    filterCategory: 'e-commerce',
-    summary: 'Modern e-commerce platform with seamless shopping.',
+    filterCategory: 'ecommerce',
+    summary: 'Modern ecommerce platform with seamless shopping.',
     challenge:
-      'Growing retail brands needed an ultra-fast mobile storefront integrated directly with local Mobile Money wallets and real-time courier dispatch.',
+      'Growing retail brands needed an ultra fast mobile storefront integrated directly with local Mobile Money wallets and real time courier dispatch.',
     solution:
-      'Designed and shipped a conversion-focused progressive storefront with instant catalog filtering, unified MTN MoMo & card checkout, and live warehouse stock synchronization.',
+      'Designed and shipped a conversion focused progressive storefront with instant catalog filtering, unified MTN MoMo & card checkout, and live warehouse stock synchronization.',
     deliverables: [
-      'High-Speed React Retail Storefront',
+      'High Speed React Retail Storefront',
       'Mobile Money & Card Payment Gateway',
       'Merchant Inventory & Dispatch Console',
     ],
@@ -159,14 +159,14 @@ export const PORTFOLIO_PROJECTS: ShowcaseProject[] = [
     year: '2025',
     serviceCategory: 'Software Development',
     filterCategory: 'education-dev',
-    summary: 'Offline coding platform for LeetCode-style practice.',
+    summary: 'Offline coding platform for LeetCode style practice.',
     challenge:
-      'Computer science students and bootcamp cohorts in bandwidth-constrained areas needed a reliable local platform to practice algorithmic interviews without constant internet.',
+      'Computer science students and bootcamp cohorts in bandwidth constrained areas needed a reliable local platform to practice algorithmic interviews without constant internet.',
     solution:
-      'Created an offline-first containerized code runner and problem judge supporting Python, JavaScript, C++, and Go with automated test-case grading and cohort leaderboards.',
+      'Created an offline first containerized code runner and problem judge supporting Python, JavaScript, C++, and Go with automated test case grading and cohort leaderboards.',
     deliverables: [
-      'Sandboxed Multi-Language Code Judge',
-      'Offline-First Desktop & LAN Mode',
+      'Sandboxed Multi Language Code Judge',
+      'Offline First Desktop & LAN Mode',
       'Curated Data Structures Problem Bank',
     ],
     metrics: [
@@ -193,13 +193,13 @@ export const PORTFOLIO_PROJECTS: ShowcaseProject[] = [
     solution:
       'Built an intelligent email routing & deliverability analytics workspace featuring DKIM/DMARC health telemetry, AI thread triage, and automated SLA escalation tracking.',
     deliverables: [
-      'Unified Multi-Inbox Triage Console',
+      'Unified Multi Inbox Triage Console',
       'DMARC / SPF / DKIM Reputation Monitor',
-      'Real-Time SLA & Engagement Analytics',
+      'Real Time SLA & Engagement Analytics',
     ],
     metrics: [
       { value: '99.4%', label: 'Inbox Deliverability Rate' },
-      { value: '-48%', label: 'First-Response Time' },
+      { value: '48% Faster', label: 'First Response Time' },
       { value: '1K+', label: 'Daily Team Threads' },
     ],
     image: mailConsoleImg,
@@ -217,17 +217,17 @@ export const PORTFOLIO_PROJECTS: ShowcaseProject[] = [
     filterCategory: 'cloud-networking',
     summary: 'Network solutions for a connected Africa.',
     challenge:
-      'Multi-site regional enterprises suffered frequent ISP outages, unsegmented branch traffic, and vulnerable remote VPN tunnels.',
+      'Multi site regional enterprises suffered frequent ISP outages, unsegmented branch traffic, and vulnerable remote VPN tunnels.',
     solution:
-      'Architected redundant dual-WAN fiber failover, hardened OpenVPN site-to-site mesh routing, automated cloud load balancing, and 24/7 NOC telemetry.',
+      'Architected redundant dual WAN fiber failover, hardened OpenVPN site to site mesh routing, automated cloud load balancing, and 24/7 NOC telemetry.',
     deliverables: [
-      'Multi-Site Fiber & LAN/WAN Architecture',
-      'Zero-Trust OpenVPN & Firewall Hardening',
+      'Multi Site Fiber & LAN/WAN Architecture',
+      'Zero Trust OpenVPN & Firewall Hardening',
       '24/7 Proactive Network Monitoring',
     ],
     metrics: [
-      { value: '99.95%', label: 'Multi-Site WAN Uptime' },
-      { value: '-58%', label: 'Cross-Branch Latency' },
+      { value: '99.95%', label: 'Multi Site WAN Uptime' },
+      { value: '58% Less', label: 'Cross Branch Latency' },
       { value: '24/7', label: 'NOC Security Watch' },
     ],
     image: '/assets/aistudio/Screenshot_2026-08-21_044502_30c24a0e.png',

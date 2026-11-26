@@ -22,7 +22,7 @@ export function TeamPage({
 }: TeamPageProps) {
   return (
     <div className="bg-white text-[#07133B]">
-      {/* HERO SECTION — Editorial Split With Full-Bleed SAMITECH Team Backdrop */}
+      {/* HERO SECTION, Editorial Split With Full-Bleed SAMITECH Team Backdrop */}
       <section className="relative overflow-hidden bg-[#EBF2FF] border-b border-[#0044FF]/10">
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <ResilientImage
@@ -59,8 +59,8 @@ export function TeamPage({
               </h1>
 
               <p className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed max-w-lg">
-                Guided by hands-on technologists across telecommunications, scalable Python &amp;
-                SaaS operations, full-stack architecture, data engineering, AI, and IoT systems.
+                Guided by hands on technologists across telecommunications, scalable Python &amp;
+                SaaS operations, full stack architecture, data engineering, AI, and IoT systems.
               </p>
 
               <div className="pt-1 flex flex-wrap items-center gap-3">
@@ -86,7 +86,7 @@ export function TeamPage({
         </div>
       </section>
 
-      {/* PROOF BAR — Unboxed 4-Column Tabular Metrics */}
+      {/* PROOF BAR, Unboxed 4-Column Tabular Metrics */}
       <section className="bg-white border-b border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-0 lg:divide-x lg:divide-slate-200/80">
@@ -117,7 +117,7 @@ export function TeamPage({
             </h2>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
               Every engagement at SAMITECH Corporation is anchored directly by our founding and
-              executive leadership—combining telecommunications infrastructure, operational software
+              executive leadership, combining telecommunications infrastructure, operational software
               engineering, and multidisciplinary systems architecture.
             </p>
           </Reveal>
@@ -199,7 +199,7 @@ export function TeamPage({
         </div>
       </section>
 
-      {/* DARK CORPORATE CTA BAND — Partner or Join */}
+      {/* DARK CORPORATE CTA BAND, Partner or Join */}
       <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal direction="bottom">

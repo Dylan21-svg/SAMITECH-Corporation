@@ -25,7 +25,7 @@ import {
 } from './ServiceSharedBlocks';
 
 /* ============================================================================
-   03. CLOUD SOLUTIONS & DEPLOYMENT — Dark NOC & Fiber Topology Architecture
+   03. CLOUD SOLUTIONS & DEPLOYMENT, Dark NOC & Fiber Topology Architecture
    ============================================================================ */
 export function CloudNetworkingLayout({
   service,
@@ -117,8 +117,8 @@ export function CloudNetworkingLayout({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#040B29]/90 via-transparent to-transparent" />
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-[#93C5FD] font-mono">
-                    <span>Multi-Region Fabric</span>
-                    <span>Dual-WAN Failover</span>
+                    <span>Multi Region Fabric</span>
+                    <span>Dual WAN Failover</span>
                   </div>
                 </div>
 
@@ -127,7 +127,7 @@ export function CloudNetworkingLayout({
                   <div className="rounded-xl bg-white/5 border border-white/10 p-3 space-y-1">
                     <Cloud className="w-4 h-4 text-[#38BDF8] mx-auto" aria-hidden="true" />
                     <div className="text-[11px] font-bold text-white">AWS / GCP</div>
-                    <div className="text-[10px] text-slate-400">Auto-Scale</div>
+                    <div className="text-[10px] text-slate-400">Auto Scale</div>
                   </div>
                   <div className="rounded-xl bg-[#0EA5E9]/15 border border-[#38BDF8]/40 p-3 space-y-1">
                     <Network className="w-4 h-4 text-[#38BDF8] mx-auto" aria-hidden="true" />
@@ -157,7 +157,7 @@ export function CloudNetworkingLayout({
               </h2>
             </div>
             <p className="text-sm text-slate-600 max-w-md">
-              Built for uninterrupted availability across multi-branch offices and cloud clusters.
+              Built for uninterrupted availability across multi branch offices and cloud clusters.
             </p>
           </div>
 
@@ -200,7 +200,7 @@ export function CloudNetworkingLayout({
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <div className="text-xs font-mono font-bold text-[#0284C7]">Deployment Pipeline</div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#07133B]">
-              Zero-Impact Cutover &amp; 24/7 Operations
+              Zero Impact Cutover &amp; 24/7 Operations
             </h2>
           </div>
 
@@ -278,7 +278,7 @@ export function CloudNetworkingLayout({
 }
 
 /* ============================================================================
-   04. CYBERSECURITY — Crimson Shield & Tactical Defense Architecture
+   04. CYBERSECURITY, Crimson Shield & Tactical Defense Architecture
    ============================================================================ */
 export function CybersecurityLayout({
   service,
@@ -352,7 +352,7 @@ export function CybersecurityLayout({
                 <div className="p-5 space-y-3.5">
                   <div className="flex items-center justify-between text-xs font-mono text-slate-300">
                     <span>Attack Surface Scope</span>
-                    <span className="text-[#FF5C66] font-bold">OWASP · Zero-Trust</span>
+                    <span className="text-[#FF5C66] font-bold">OWASP · Zero Trust</span>
                   </div>
                   <div className="grid grid-cols-3 gap-2.5">
                     {service.metrics.map((m) => (
@@ -416,7 +416,7 @@ export function CybersecurityLayout({
             <div className="space-y-1.5">
               <div className="text-xs font-mono font-bold text-[#FF5C66]">Audit Protocol</div>
               <h2 className="text-2xl sm:text-3xl font-extrabold">
-                4-Stage Security Assessment &amp; 48-Hour Re-Test
+                4 Stage Security Assessment &amp; 48 Hour Retest
               </h2>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -467,7 +467,7 @@ export function CybersecurityLayout({
               Harden Your Attack Surface Today
             </h2>
             <p className="text-sm text-red-100">
-              Request a scoped penetration test or vulnerability review with developer-ready remediation guidance.
+              Request a scoped penetration test or vulnerability review with developer ready remediation guidance.
             </p>
           </div>
           <button
@@ -486,7 +486,7 @@ export function CybersecurityLayout({
 }
 
 /* ============================================================================
-   08. IT SUPPORT, MAINTENANCE & TRACKING — 24/7 Operations & Recovery Matrix
+   08. IT SUPPORT, MAINTENANCE & TRACKING, 24/7 Operations & Recovery Matrix
    ============================================================================ */
 export function TrackingSupportLayout({
   service,
@@ -560,7 +560,7 @@ export function TrackingSupportLayout({
                   <div className="absolute inset-0 bg-gradient-to-t from-[#07133B]/95 via-[#07133B]/25 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4 text-white">
                     <div className="text-xs font-mono text-teal-300">Buea Operations Center</div>
-                    <div className="text-base font-extrabold">Round-the-Clock System Watch &amp; Recovery</div>
+                    <div className="text-base font-extrabold">Round the Clock System Watch &amp; Recovery</div>
                   </div>
                 </div>
                 <div className="p-4 grid grid-cols-3 gap-2 text-center bg-[#07133B] text-white">

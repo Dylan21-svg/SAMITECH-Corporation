@@ -74,7 +74,7 @@ const CAREER_OPENINGS: CareerOpening[] = [
     summary:
       'Design private RAG knowledge pipelines, predictive analytics models, and intelligent workflow agents.',
     requirements: [
-      'Hands-on Python, vector indexing (pgvector), and modern LLM orchestration experience',
+      'Hands on Python, vector indexing (pgvector), and modern LLM orchestration experience',
       'Track record evaluating model accuracy, latency, and safety guardrails',
       'Familiarity wrapping AI workflows behind clean FastAPI or TypeScript endpoints',
     ],
@@ -86,7 +86,7 @@ const CAREER_OPENINGS: CareerOpening[] = [
     department: 'Web & UX Engineering',
     type: 'Full-Time',
     summary:
-      'Craft accessible, smooth, pixel-precise React and Tailwind interfaces with clean motion design.',
+      'Craft accessible, smooth, pixel precise React and Tailwind interfaces with clean motion design.',
     requirements: [
       'Strong command of React, TypeScript, Tailwind CSS, and responsive design systems',
       'Eye for WCAG AA contrast, SVG craft, and fast Core Web Vitals performance',
@@ -100,11 +100,11 @@ const CAREER_OPENINGS: CareerOpening[] = [
     department: 'Cloud & Network Ops',
     type: 'Full-Time',
     summary:
-      'Architect high-availability AWS/Azure deployments, OpenVPN networks, failover routing, and 24/7 telemetry.',
+      'Architect high availability AWS/Azure deployments, OpenVPN networks, failover routing, and 24/7 telemetry.',
     requirements: [
       'Solid Linux administration, Docker, Nginx, and cloud VPC configuration',
-      'Experience setting up automated backups, CI/CD, and multi-ISP VPN stability',
-      'Security-first mindset around IAM least privilege and firewall hardening',
+      'Experience setting up automated backups, CI/CD, and multi ISP VPN stability',
+      'Security first mindset around IAM least privilege and firewall hardening',
     ],
   },
   {
@@ -118,7 +118,7 @@ const CAREER_OPENINGS: CareerOpening[] = [
     requirements: [
       'Practical vulnerability assessment & ethical hacking methodology (OWASP Top 10)',
       'Clear technical reporting and developer remediation collaboration',
-      'Network protocol analysis and defense-in-depth hardening experience',
+      'Network protocol analysis and defense in depth hardening experience',
     ],
   },
   {
@@ -126,9 +126,9 @@ const CAREER_OPENINGS: CareerOpening[] = [
     title: 'Engineering & Security Internships',
     location: 'Buea, Cameroon',
     department: 'Mentorship Cohort',
-    type: 'Internship (3–6 Mo)',
+    type: 'Internship (3 to 6 Mo)',
     summary:
-      'Structured hands-on cohorts across Software Engineering, Networking Solutions, and Cybersecurity.',
+      'Structured hands on cohorts across Software Engineering, Networking Solutions, and Cybersecurity.',
     requirements: [
       'Strong foundational coding or networking passion and eagerness to ship real projects',
       'Collaborative communication and commitment to weekly mentor code reviews',
@@ -205,7 +205,7 @@ export function CareersPage({ onOpenContact, onNavigateTeam }: CareersPageProps)
               </h1>
 
               <p className="max-w-md text-xs sm:text-sm lg:text-base text-slate-800 font-medium leading-relaxed">
-                Be part of a forward-thinking company where innovation thrives, talent grows,
+                Be part of a forward thinking company where innovation thrives, talent grows,
                 and ideas matter.
               </p>
 
@@ -291,7 +291,7 @@ export function CareersPage({ onOpenContact, onNavigateTeam }: CareersPageProps)
         </div>
       </section>
 
-      {/* SECTION 3: "MORE THAN A JOB — A PLACE TO GROW" + "CURRENT OPENINGS" */}
+      {/* SECTION 3: "MORE THAN A JOB, A PLACE TO GROW" + "CURRENT OPENINGS" */}
       <section id="current-openings" className="pb-14 sm:pb-20 lg:pb-24 bg-white overflow-x-clip">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-7 items-stretch">
@@ -313,7 +313,7 @@ export function CareersPage({ onOpenContact, onNavigateTeam }: CareersPageProps)
 
                 <div className="relative z-10 ml-auto w-full sm:w-[58%] p-6 sm:p-8 text-white space-y-3 sm:space-y-4">
                   <h2 className="text-xl sm:text-2xl lg:text-[26px] font-extrabold tracking-tight leading-tight text-balance">
-                    More Than a Job —
+                    More Than a Job,
                     <span className="block">A Place to Grow</span>
                   </h2>
                   <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">

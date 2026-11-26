@@ -49,7 +49,7 @@ const TECH_ACCENT_MAP: Record<string, string> = {
   'OWASP Top 10': '#DC0914',
   'Burp Suite': '#EA580C',
   'Nmap / Wireshark': '#0284C7',
-  'Zero-Trust IAM': '#0F172A',
+  'Zero Trust IAM': '#0F172A',
   'TLS 1.3': '#15803D',
   WAF: '#DC0914',
   'Gemini API': '#4F46E5',

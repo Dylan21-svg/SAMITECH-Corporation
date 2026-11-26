@@ -325,7 +325,7 @@ export function Navbar({
                         All SAMITECH Services
                       </div>
                       <div className="text-[11px] text-slate-600">
-                        From 15-day Product Scope to AI, Custom Software &amp; Cybersecurity
+                        From 15 day Product Scope to AI, Custom Software &amp; Cybersecurity
                       </div>
                     </div>
                     <button
@@ -502,7 +502,7 @@ export function Navbar({
                     : 'text-[#07133B] hover:bg-slate-50'
                 }`}
               >
-                <span>About Us — Our Story</span>
+                <span>About Us, Our Story</span>
                 {activePage === 'about' && (
                   <span className="text-[11px] font-medium text-[#002BFF]">Active</span>
                 )}

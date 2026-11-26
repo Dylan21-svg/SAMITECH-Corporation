@@ -76,7 +76,7 @@ export function TeamMemberProfilePage({
 
   return (
     <div className="bg-white text-[#07133B] overflow-x-clip">
-      {/* HERO BANNER — Light Blue-White Surface, Layered Portrait Frames, Faded Right Silhouette & Curved Ribbon */}
+      {/* HERO BANNER, Light Blue-White Surface, Layered Portrait Frames, Faded Right Silhouette & Curved Ribbon */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#F2F7FF] via-[#F7FAFF] to-[#E3EEFF] border-b border-[#D5E4FF]">
         {/* Top-Left Signature Subtle Blue/Crimson Architectural Ribbon Accent */}
         <svg
@@ -445,7 +445,7 @@ export function TeamMemberProfilePage({
                         <div className="flex flex-wrap items-center justify-between gap-2">
                           <h3 className="text-sm sm:text-base font-extrabold text-[#07133B]">
                             {item.role}{' '}
-                            <span className="font-normal text-slate-400">—</span>{' '}
+                            <span className="font-normal text-slate-400">·</span>{' '}
                             <span className={item.highlightOrg ? 'text-[#0038FF]' : 'font-semibold text-slate-700'}>
                               {item.organization}
                             </span>
@@ -526,7 +526,7 @@ export function TeamMemberProfilePage({
             </div>
           </div>
 
-          {/* EXECUTIVE SWITCHER — Quickly Jump to the Other 2 Leaders */}
+          {/* EXECUTIVE SWITCHER, Quickly Jump to the Other 2 Leaders */}
           <Reveal direction="bottom" delay={0.1} className="mt-10 pt-8 border-t border-slate-200/80">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
               <div>

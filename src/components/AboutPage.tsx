@@ -40,7 +40,7 @@ const ABOUT_HERO_HIGHLIGHTS = [
   },
   {
     id: 'youth-led-innovation',
-    line1: 'Youth-Led',
+    line1: 'Youth Led',
     line2: 'Innovation',
   },
   {
@@ -107,7 +107,7 @@ export function AboutPage({
 
   return (
     <div className="bg-white text-[#07133B]">
-      {/* HERO BANNER — Identical Desktop Split Scaled Across All Devices */}
+      {/* HERO BANNER, Identical Desktop Split Scaled Across All Devices */}
       <section className="relative overflow-hidden bg-white border-b border-[#0044FF]/10">
         {/* Full-Bleed Hero Background Image */}
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -167,7 +167,7 @@ export function AboutPage({
               {/* Corporate Narrative Paragraphs */}
               <div className="space-y-1 sm:space-y-2.5 lg:space-y-3 max-w-xl">
                 <p className="text-[7.5px] sm:text-[13px] lg:text-[15.5px] font-medium text-slate-800 leading-snug sm:leading-relaxed">
-                  SAMITECH Corporation is a youth-driven technology company based in Buea, Cameroon,
+                  SAMITECH Corporation is a youth driven technology company based in Buea, Cameroon,
                   committed to building innovative digital solutions, empowering individuals and
                   businesses through technology, and shaping a smarter, more connected Africa.
                 </p>
@@ -290,7 +290,7 @@ export function AboutPage({
                 <span className="text-[#002BFF]">Buea</span>
               </h2>
               <p className="text-[8.5px] sm:text-xs lg:text-base text-slate-700 leading-snug sm:leading-relaxed">
-                Operating from Buea’s Silicon Mountain ecosystem, our remote-first engineers build
+                Operating from Buea’s Silicon Mountain ecosystem, our remote first engineers build
                 resilient digital platforms for enterprises across Douala, Yaoundé, and international
                 partners.
               </p>
@@ -364,7 +364,7 @@ export function AboutPage({
                 </h3>
                 <p className="text-[8px] sm:text-xs lg:text-base text-slate-700 leading-snug sm:leading-relaxed">
                   To bridge Africa’s digital divide as a globally trusted technology partner known
-                  for engineering rigor, youth empowerment, and mission-critical excellence.
+                  for engineering rigor, youth empowerment, and mission critical excellence.
                 </p>
               </Reveal>
             </div>

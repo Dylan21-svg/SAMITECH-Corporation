@@ -26,7 +26,7 @@ import {
 } from './ServiceSharedBlocks';
 
 /* ============================================================================
-   05. AI & MACHINE LEARNING — Centered Editorial Hero + Interactive Use-Case Lab
+   05. AI & MACHINE LEARNING, Centered Editorial Hero + Interactive Use-Case Lab
    ============================================================================ */
 export function AiMachineLearningLayout({
   service,
@@ -39,7 +39,7 @@ export function AiMachineLearningLayout({
       id: 'rag',
       label: 'Private RAG Copilot',
       headline: 'Query internal contracts, policies & ERP tables with citations',
-      outcome: '60%+ faster document lookup with zero-retention VPC data isolation.',
+      outcome: '60%+ faster document lookup with zero retention VPC data isolation.',
       stack: 'Gemini API · pgvector · FastAPI',
     },
     {
@@ -90,7 +90,7 @@ export function AiMachineLearningLayout({
               onClick={() => onOpenContact(service.contactCategory)}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] hover:from-[#4338CA] hover:to-[#6D28D9] text-white text-sm font-bold shadow-lg shadow-indigo-600/25 transition-all whitespace-nowrap cursor-pointer"
             >
-              <span>Start 2-Week AI Proof of Value</span>
+              <span>Start 2 Week AI Proof of Value</span>
               <ArrowRight className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
             </button>
             <button
@@ -286,7 +286,7 @@ export function AiMachineLearningLayout({
 }
 
 /* ============================================================================
-   06. SOFTWARE CONSULTING & PRODUCT SCOPE — 15-Day Editorial Blueprint Dossier
+   06. SOFTWARE CONSULTING & PRODUCT SCOPE, 15 Day Editorial Blueprint Dossier
    ============================================================================ */
 export function ProductScopeLayout({
   service,
@@ -310,7 +310,7 @@ export function ProductScopeLayout({
             <Reveal immediate direction="left" wrapperClassName="lg:col-span-7" className="space-y-5">
               <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#0284C7]">
                 <Compass className="w-4 h-4" aria-hidden="true" />
-                <span>{service.number} · Fixed 15-Day Blueprint · {service.engagementModel}</span>
+                <span>{service.number} · Fixed 15 Day Blueprint · {service.engagementModel}</span>
               </div>
 
               <h1
@@ -331,7 +331,7 @@ export function ProductScopeLayout({
                   onClick={() => onOpenContact(service.contactCategory)}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#07133B] hover:bg-[#0284C7] text-white text-sm font-bold shadow-md transition-colors whitespace-nowrap cursor-pointer"
                 >
-                  <span>Book 15-Day Product Scope</span>
+                  <span>Book 15 Day Product Scope</span>
                   <ArrowRight className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
                 </button>
                 <button
@@ -344,13 +344,13 @@ export function ProductScopeLayout({
               </div>
             </Reveal>
 
-            {/* Right 15-Day Sprint Calendar Card */}
+            {/* Right 15 Day Sprint Calendar Card */}
             <Reveal immediate direction="right" delay={0.06} wrapperClassName="lg:col-span-5">
               <div className="rounded-2xl bg-white border border-sky-200 shadow-[0_18px_40px_rgba(4,11,41,0.08)] p-6 space-y-4">
                 <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                   <div className="flex items-center gap-2 text-sm font-extrabold text-[#07133B]">
                     <CalendarDays className="w-4 h-4 text-[#0284C7]" aria-hidden="true" />
-                    <span>15-Day Blueprint Schedule</span>
+                    <span>15 Day Blueprint Schedule</span>
                   </div>
                   <span className="font-mono text-xs font-bold text-[#0284C7]">Fixed Scope</span>
                 </div>
@@ -362,7 +362,7 @@ export function ProductScopeLayout({
                       className="flex items-start gap-3 p-3 rounded-xl bg-[#F8FBFF] border border-sky-100"
                     >
                       <div className="font-mono text-xs font-extrabold text-[#0284C7] bg-white border border-sky-200 rounded-md px-2 py-1 shrink-0 tabular-nums">
-                        D{i * 4 + 1}–{Math.min(15, (i + 1) * 4)}
+                        Day {i * 4 + 1} to {Math.min(15, (i + 1) * 4)}
                       </div>
                       <div className="min-w-0">
                         <div className="text-sm font-bold text-[#07133B]">{step.title}</div>
@@ -431,7 +431,7 @@ export function ProductScopeLayout({
               100% Portable Technical Deliverables
             </h2>
             <p className="text-sm text-slate-600 leading-relaxed">
-              Every diagram, Figma wireframe, and architecture specification belongs to your organization outright—ready for SAMITECH or any engineering team to build from immediately.
+              Every diagram, Figma wireframe, and architecture specification belongs to your organization outright, ready for SAMITECH or any engineering team to build from immediately.
             </p>
             <div className="flex flex-wrap gap-2">
               {service.techStack.map((tech) => (
@@ -466,7 +466,7 @@ export function ProductScopeLayout({
               Turn Your Concept Into an Unambiguous Blueprint
             </h2>
             <p className="text-sm text-sky-200">
-              Reserve your 15-day Product Scope workshop and walk away with wireframes, BPMN flows, and a locked build quote.
+              Reserve your 15 day Product Scope workshop and walk away with wireframes, BPMN flows, and a locked build quote.
             </p>
           </div>
           <button
@@ -475,7 +475,7 @@ export function ProductScopeLayout({
             className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-[#0EA5E9] hover:bg-[#0284C7] text-white text-sm font-extrabold shadow-lg transition-colors whitespace-nowrap shrink-0 self-start md:self-auto cursor-pointer"
           >
             <FileCode2 className="w-4 h-4" aria-hidden="true" />
-            <span>Start 15-Day Scope</span>
+            <span>Start 15 Day Scope</span>
           </button>
         </div>
       </section>
@@ -484,7 +484,7 @@ export function ProductScopeLayout({
 }
 
 /* ============================================================================
-   07. DIGITAL TRANSFORMATION & MVP BUILDER — Velocity Launchpad (Navy & Gold)
+   07. DIGITAL TRANSFORMATION & MVP BUILDER, Velocity Launchpad (Navy & Gold)
    ============================================================================ */
 export function MvpBuilderLayout({
   service,
@@ -552,7 +552,7 @@ export function MvpBuilderLayout({
                   <div className="absolute inset-0 bg-gradient-to-t from-[#07133B]/90 via-transparent to-transparent" />
                   <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
                     <span className="text-xs font-bold text-amber-300">Weekly Live Staging Builds</span>
-                    <span className="font-mono text-xs text-white font-bold">6–10 Weeks</span>
+                    <span className="font-mono text-xs text-white font-bold">6 to 10 Weeks</span>
                   </div>
                 </div>
 
@@ -622,7 +622,7 @@ export function MvpBuilderLayout({
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <div className="text-xs font-mono font-bold text-amber-400">Sprint Cadence</div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold">6–10 Week Go-Live Rhythm</h2>
+              <h2 className="text-2xl sm:text-3xl font-extrabold">6 to 10 Week Go Live Rhythm</h2>
             </div>
             <div className="flex flex-wrap gap-2">
               {service.techStack.map((tech) => (
@@ -672,7 +672,7 @@ export function MvpBuilderLayout({
               Launch Your V1 Without Technical Debt
             </h2>
             <p className="text-sm text-amber-100">
-              Ship paying-ready web or mobile software in 6–10 weeks with clean TypeScript and PostgreSQL foundations.
+              Ship launch ready web or mobile software in 6 to 10 weeks with clean TypeScript and PostgreSQL foundations.
             </p>
           </div>
           <button
@@ -690,7 +690,7 @@ export function MvpBuilderLayout({
 }
 
 /* ============================================================================
-   09. UX / UI DESIGN — Editorial Design Studio & Live Token Specimen
+   09. UX / UI DESIGN, Editorial Design Studio & Live Token Specimen
    ============================================================================ */
 export function UxUiDesignLayout({
   service,
@@ -880,7 +880,7 @@ export function UxUiDesignLayout({
               Design an Interface Users Remember
             </h2>
             <p className="text-sm text-pink-100">
-              Ship clickable Figma prototypes and developer-ready Tailwind design tokens in 2–5 weeks.
+              Ship clickable Figma prototypes and developer ready Tailwind design tokens in 2 to 5 weeks.
             </p>
           </div>
           <button
@@ -898,7 +898,7 @@ export function UxUiDesignLayout({
 }
 
 /* ============================================================================
-   10. DEDICATED TEAMS — Embedded Engineering Pod & Retainer Studio
+   10. DEDICATED TEAMS, Embedded Engineering Pod & Retainer Studio
    ============================================================================ */
 export function DedicatedTeamsLayout({
   service,
@@ -907,7 +907,7 @@ export function DedicatedTeamsLayout({
   onOpenCaseStudy,
 }: ServiceLayoutProps) {
   const podRoles = [
-    { role: 'Senior Full-Stack Engineer', focus: 'React · TypeScript · Node.js' },
+    { role: 'Senior Full Stack Engineer', focus: 'React · TypeScript · Node.js' },
     { role: 'Backend / AI Specialist', focus: 'Python · PostgreSQL · APIs' },
     { role: 'UI/UX & QA Partner', focus: 'Figma · Automated Testing' },
     { role: 'Security & DevOps Bench', focus: 'AWS · CI/CD · OWASP Audits' },
@@ -1059,7 +1059,7 @@ export function DedicatedTeamsLayout({
       <section className="py-14 sm:py-16 bg-[#F8FAFF] border-y border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="max-w-2xl space-y-1.5">
-            <div className="text-xs font-bold text-[#EA580C]">10–14 Day Ramp-Up</div>
+            <div className="text-xs font-bold text-[#EA580C]">10 to 14 Day Ramp Up</div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#07133B]">
               How Your Dedicated Pod Integrates Into Daily Sprints
             </h2>
@@ -1114,7 +1114,7 @@ export function DedicatedTeamsLayout({
               Double Your Engineering Velocity in 14 Days
             </h2>
             <p className="text-sm text-orange-100">
-              Meet vetted SAMITECH full-stack, AI, and design engineers ready to join your daily standups.
+              Meet vetted SAMITECH full stack, AI, and design engineers ready to join your daily standups.
             </p>
           </div>
           <button
