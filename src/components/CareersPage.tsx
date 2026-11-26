@@ -14,6 +14,7 @@ import { CareerFeatureIcon, SolidBriefcaseIcon } from './ShowcaseIcons';
 
 interface CareersPageProps {
   onOpenContact: (defaultCategory?: string) => void;
+  onNavigateTeam: () => void;
 }
 
 interface CareerOpening {
@@ -136,7 +137,7 @@ const CAREER_OPENINGS: CareerOpening[] = [
   },
 ];
 
-export function CareersPage({ onOpenContact }: CareersPageProps) {
+export function CareersPage({ onOpenContact, onNavigateTeam }: CareersPageProps) {
   const [showAllJobs, setShowAllJobs] = useState(false);
   const [selectedOpening, setSelectedOpening] = useState<CareerOpening | null>(null);
 
@@ -208,14 +209,22 @@ export function CareersPage({ onOpenContact }: CareersPageProps) {
                 and ideas matter.
               </p>
 
-              <div className="pt-1">
+              <div className="pt-1 flex flex-wrap items-center gap-3">
                 <button
                   type="button"
                   onClick={scrollToOpenings}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white rounded-full bg-gradient-to-r from-[#002BFF] to-[#0055FF] hover:from-[#001ACC] hover:to-[#003CE6] shadow-md shadow-[#002BFF]/25 transition-all duration-150 active:scale-[0.98] whitespace-nowrap cursor-pointer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white rounded-full bg-gradient-to-r from-[#002BFF] to-[#0055FF] hover:from-[#001ACC] hover:to-[#003CE6] shadow-md shadow-[#002BFF]/25 transition-all duration-150 active:scale-[0.98] whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF]"
                 >
                   <span>Browse Open Positions</span>
                   <ArrowRight className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={onNavigateTeam}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-[#07133B] bg-white/95 border border-slate-300 hover:border-[#0044FF]/50 hover:bg-[#F2F6FF] rounded-full shadow-xs transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF]"
+                >
+                  <span>Meet the Team</span>
                 </button>
               </div>
             </Reveal>
@@ -265,6 +274,16 @@ export function CareersPage({ onOpenContact }: CareersPageProps) {
                   <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">
                     {item.description}
                   </p>
+                  {item.id === 'supportive-team' && (
+                    <button
+                      type="button"
+                      onClick={onNavigateTeam}
+                      className="pt-1 inline-flex items-center gap-1 text-xs font-semibold text-[#002BFF] hover:text-[#DC0914] transition-colors whitespace-nowrap cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0000FF] rounded-sm"
+                    >
+                      <span>Meet the team</span>
+                      <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden="true" />
+                    </button>
+                  )}
                 </div>
               </Reveal>
             ))}
@@ -301,14 +320,21 @@ export function CareersPage({ onOpenContact }: CareersPageProps) {
                     At SAMITECH, you’ll work on exciting projects, learn from industry experts,
                     and be part of a dynamic team.
                   </p>
-                  <div className="pt-1">
+                  <div className="pt-1 flex flex-wrap items-center gap-2.5">
                     <button
                       type="button"
                       onClick={() => onOpenContact('Internships & Training')}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-bold text-[#07133B] bg-white hover:bg-[#E3EEFF] rounded-full shadow-md transition-all duration-150 cursor-pointer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-bold text-[#07133B] bg-white hover:bg-[#E3EEFF] rounded-full shadow-md transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer"
                     >
                       <span>Join Our Team</span>
                       <ArrowRight className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={onNavigateTeam}
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs sm:text-sm font-semibold text-white bg-white/12 hover:bg-white/20 border border-white/25 rounded-full transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer"
+                    >
+                      <span>Meet the Team</span>
                     </button>
                   </div>
                 </div>

@@ -14,6 +14,8 @@ import { ContactPage } from './components/ContactPage';
 import { ProjectsPage } from './components/ProjectsPage';
 import { ServicesPage } from './components/ServicesPage';
 import { ServiceDetailPage } from './components/ServiceDetailPage';
+import { TeamPage } from './components/TeamPage';
+import { TeamMemberProfilePage } from './components/TeamMemberProfilePage';
 import { Navbar, type AppPage } from './components/Navbar';
 import { Reveal, SAMITECH_EASE } from './components/MotionPrimitives';
 import { ResilientImage } from './components/ResilientImage';
@@ -28,6 +30,7 @@ import {
   VisionBadgeIcon,
 } from './components/ShowcaseIcons';
 import { getServiceBySlug, ALL_SERVICES_CATALOG } from './data/servicesCatalog';
+import { getTeamMemberBySlug, TEAM_MEMBERS } from './data/teamData';
 import {
   ABOUT_MEDIA,
   CASE_STUDIES,
@@ -83,45 +86,58 @@ const INTERNSHIP_TRACKS = [
 interface RouteResolution {
   page: AppPage;
   serviceSlug: string | null;
+  memberSlug: string | null;
 }
 
 function resolveRouteFromLocation(): RouteResolution {
   if (typeof window === 'undefined') {
-    return { page: 'home', serviceSlug: null };
+    return { page: 'home', serviceSlug: null, memberSlug: null };
   }
   const hash = window.location.hash.toLowerCase();
   const path = window.location.pathname.toLowerCase();
   const combined = hash.startsWith('#/') ? hash.slice(1) : path;
 
   if (combined === '/about' || hash === '#/about') {
-    return { page: 'about', serviceSlug: null };
+    return { page: 'about', serviceSlug: null, memberSlug: null };
+  }
+
+  if (combined.startsWith('/team/')) {
+    const slug = combined.replace('/team/', '').replace(/\/+$/, '');
+    if (getTeamMemberBySlug(slug)) {
+      return { page: 'team-member', serviceSlug: null, memberSlug: slug };
+    }
+    return { page: 'team', serviceSlug: null, memberSlug: null };
+  }
+
+  if (combined === '/team' || hash === '#/team') {
+    return { page: 'team', serviceSlug: null, memberSlug: null };
   }
 
   if (combined === '/projects' || hash === '#/projects') {
-    return { page: 'projects', serviceSlug: null };
+    return { page: 'projects', serviceSlug: null, memberSlug: null };
   }
 
   if (combined === '/contact' || hash === '#/contact') {
-    return { page: 'contact', serviceSlug: null };
+    return { page: 'contact', serviceSlug: null, memberSlug: null };
   }
 
   if (combined === '/careers' || hash === '#/careers') {
-    return { page: 'careers', serviceSlug: null };
+    return { page: 'careers', serviceSlug: null, memberSlug: null };
   }
 
   if (combined.startsWith('/services/')) {
     const slug = combined.replace('/services/', '').replace(/\/+$/, '');
     if (getServiceBySlug(slug)) {
-      return { page: 'service-detail', serviceSlug: slug };
+      return { page: 'service-detail', serviceSlug: slug, memberSlug: null };
     }
-    return { page: 'services', serviceSlug: null };
+    return { page: 'services', serviceSlug: null, memberSlug: null };
   }
 
   if (combined === '/services' || hash === '#/services') {
-    return { page: 'services', serviceSlug: null };
+    return { page: 'services', serviceSlug: null, memberSlug: null };
   }
 
-  return { page: 'home', serviceSlug: null };
+  return { page: 'home', serviceSlug: null, memberSlug: null };
 }
 
 export default function App() {
@@ -135,6 +151,7 @@ export default function App() {
 
   const activePage = routeState.page;
   const selectedServiceSlug = routeState.serviceSlug;
+  const selectedMemberSlug = routeState.memberSlug;
 
   useEffect(() => {
     const syncRouteFromLocation = () => {
@@ -151,7 +168,7 @@ export default function App() {
 
   const handleNavigate = (page: AppPage, target?: string) => {
     if (page === 'about') {
-      setRouteState({ page: 'about', serviceSlug: null });
+      setRouteState({ page: 'about', serviceSlug: null, memberSlug: null });
       if (window.location.hash !== '#/about') {
         window.history.pushState(null, '', '#/about');
       }
@@ -159,8 +176,29 @@ export default function App() {
       return;
     }
 
+    if (page === 'team-member') {
+      const validMember = target ? getTeamMemberBySlug(target) : TEAM_MEMBERS[0];
+      const slug = validMember ? validMember.id : TEAM_MEMBERS[0].id;
+      setRouteState({ page: 'team-member', serviceSlug: null, memberSlug: slug });
+      const nextHash = `#/team/${slug}`;
+      if (window.location.hash !== nextHash) {
+        window.history.pushState(null, '', nextHash);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (page === 'team') {
+      setRouteState({ page: 'team', serviceSlug: null, memberSlug: null });
+      if (window.location.hash !== '#/team') {
+        window.history.pushState(null, '', '#/team');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     if (page === 'projects') {
-      setRouteState({ page: 'projects', serviceSlug: null });
+      setRouteState({ page: 'projects', serviceSlug: null, memberSlug: null });
       if (window.location.hash !== '#/projects') {
         window.history.pushState(null, '', '#/projects');
       }
@@ -169,7 +207,7 @@ export default function App() {
     }
 
     if (page === 'contact') {
-      setRouteState({ page: 'contact', serviceSlug: null });
+      setRouteState({ page: 'contact', serviceSlug: null, memberSlug: null });
       if (window.location.hash !== '#/contact') {
         window.history.pushState(null, '', '#/contact');
       }
@@ -178,7 +216,7 @@ export default function App() {
     }
 
     if (page === 'careers') {
-      setRouteState({ page: 'careers', serviceSlug: null });
+      setRouteState({ page: 'careers', serviceSlug: null, memberSlug: null });
       if (window.location.hash !== '#/careers') {
         window.history.pushState(null, '', '#/careers');
       }
@@ -187,7 +225,7 @@ export default function App() {
     }
 
     if (page === 'services') {
-      setRouteState({ page: 'services', serviceSlug: null });
+      setRouteState({ page: 'services', serviceSlug: null, memberSlug: null });
       if (window.location.hash !== '#/services') {
         window.history.pushState(null, '', '#/services');
       }
@@ -198,7 +236,7 @@ export default function App() {
     if (page === 'service-detail') {
       const validService = target ? getServiceBySlug(target) : ALL_SERVICES_CATALOG[0];
       const slug = validService ? validService.slug : ALL_SERVICES_CATALOG[0].slug;
-      setRouteState({ page: 'service-detail', serviceSlug: slug });
+      setRouteState({ page: 'service-detail', serviceSlug: slug, memberSlug: null });
       const nextHash = `#/services/${slug}`;
       if (window.location.hash !== nextHash) {
         window.history.pushState(null, '', nextHash);
@@ -207,7 +245,7 @@ export default function App() {
       return;
     }
 
-    setRouteState({ page: 'home', serviceSlug: null });
+    setRouteState({ page: 'home', serviceSlug: null, memberSlug: null });
     const targetHash = target ? `#${target}` : '#home';
     if (window.location.hash !== targetHash) {
       window.history.pushState(null, '', targetHash);
@@ -272,6 +310,39 @@ export default function App() {
                 <AboutPage
                   onNavigateServices={() => handleNavigate('services')}
                   onNavigateProjects={() => handleNavigate('home', 'projects')}
+                  onNavigateTeam={() => handleNavigate('team')}
+                  onSelectTeamMember={(slug) => handleNavigate('team-member', slug)}
+                  onOpenContact={handleOpenContact}
+                />
+              </motion.div>
+            ) : activePage === 'team' ? (
+              <motion.div
+                key="team-page"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.22, ease: SAMITECH_EASE }}
+              >
+                <TeamPage
+                  onSelectMember={(slug) => handleNavigate('team-member', slug)}
+                  onOpenContact={handleOpenContact}
+                  onNavigateCareers={() => handleNavigate('careers')}
+                  onNavigateAbout={() => handleNavigate('about')}
+                />
+              </motion.div>
+            ) : activePage === 'team-member' ? (
+              <motion.div
+                key={`team-member-${selectedMemberSlug || TEAM_MEMBERS[0].id}`}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.22, ease: SAMITECH_EASE }}
+              >
+                <TeamMemberProfilePage
+                  member={getTeamMemberBySlug(selectedMemberSlug || '') ?? TEAM_MEMBERS[0]}
+                  onBackToTeam={() => handleNavigate('team')}
+                  onSelectMember={(slug) => handleNavigate('team-member', slug)}
+                  onNavigateHome={() => handleNavigate('home')}
                   onOpenContact={handleOpenContact}
                 />
               </motion.div>
@@ -306,7 +377,10 @@ export default function App() {
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.22, ease: SAMITECH_EASE }}
               >
-                <CareersPage onOpenContact={handleOpenContact} />
+                <CareersPage
+                  onOpenContact={handleOpenContact}
+                  onNavigateTeam={() => handleNavigate('team')}
+                />
               </motion.div>
             ) : activePage === 'services' ? (
               <motion.div
@@ -510,21 +584,29 @@ export default function App() {
                           networking, cybersecurity audits, Data &amp; AI systems, and 24/7 operational
                           support.
                         </p>
-                        <div className="pt-1 flex flex-wrap items-center gap-4">
+                        <div className="pt-1 flex flex-wrap items-center gap-x-5 gap-y-2">
                           <button
                             type="button"
                             onClick={() => handleNavigate('about')}
-                            className="inline-flex items-center gap-2 text-sm font-semibold text-[#002BFF] hover:text-[#DC0914] transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0000FF] rounded-sm"
+                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#002BFF] hover:text-[#DC0914] transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0000FF] rounded-sm"
                           >
                             <span>Explore About Page</span>
                             <ArrowRight className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
                           </button>
                           <button
                             type="button"
+                            onClick={() => handleNavigate('team')}
+                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#07133B] hover:text-[#002BFF] transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0000FF] rounded-sm"
+                          >
+                            <span>Meet the Team</span>
+                            <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden="true" />
+                          </button>
+                          <button
+                            type="button"
                             onClick={() => handleOpenContact()}
                             className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 hover:text-[#07133B] transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0000FF] rounded-sm"
                           >
-                            <span>Speak with Our Team</span>
+                            <span>Speak with Us</span>
                           </button>
                         </div>
                       </Reveal>
@@ -713,6 +795,16 @@ export default function App() {
                                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                                   {pillar.description}
                                 </p>
+                                {pillar.id === 'certified-team' && (
+                                  <button
+                                    type="button"
+                                    onClick={() => handleNavigate('team')}
+                                    className="pt-1 inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#93C5FD] hover:text-white transition-colors whitespace-nowrap cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm"
+                                  >
+                                    <span>Meet the engineers</span>
+                                    <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden="true" />
+                                  </button>
+                                )}
                               </Reveal>
                             ))}
                           </div>
@@ -1090,6 +1182,11 @@ export default function App() {
                     <li>
                       <button type="button" onClick={() => handleNavigate('about')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">
                         About
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" onClick={() => handleNavigate('team')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">
+                        Team
                       </button>
                     </li>
                     <li>

@@ -17,10 +17,13 @@ import {
   ABOUT_PAGE_MILESTONES,
   ABOUT_PAGE_VALUES,
 } from '../data/samitechData';
+import { TEAM_MEMBERS } from '../data/teamData';
 
 interface AboutPageProps {
   onNavigateServices: () => void;
   onNavigateProjects: () => void;
+  onNavigateTeam: () => void;
+  onSelectTeamMember: (slug: string) => void;
   onOpenContact: (defaultCategory?: string) => void;
 }
 
@@ -77,6 +80,8 @@ const ABOUT_KPI_STRIP = [
 export function AboutPage({
   onNavigateServices,
   onNavigateProjects,
+  onNavigateTeam,
+  onSelectTeamMember,
   onOpenContact,
 }: AboutPageProps) {
   const scrollToStoryDetails = () => {
@@ -189,8 +194,8 @@ export function AboutPage({
                 ))}
               </div>
 
-              {/* Rounded-Full Dual Action Row */}
-              <div className="pt-0.5 sm:pt-1.5 flex flex-nowrap items-center gap-1.5 sm:gap-4">
+              {/* Rounded-Full Action Row */}
+              <div className="pt-0.5 sm:pt-1.5 flex flex-wrap items-center gap-1.5 sm:gap-3.5">
                 <button
                   type="button"
                   onClick={onNavigateServices}
@@ -202,13 +207,21 @@ export function AboutPage({
 
                 <button
                   type="button"
+                  onClick={onNavigateTeam}
+                  className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 py-1 sm:px-4 sm:py-2.5 lg:px-5 lg:py-3 text-[7px] sm:text-xs lg:text-sm font-semibold text-[#07133B] bg-white border border-slate-300 hover:border-[#0044FF]/50 hover:bg-[#F2F6FF] rounded-full shadow-xs transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF]"
+                >
+                  <span>Meet the Team</span>
+                </button>
+
+                <button
+                  type="button"
                   onClick={scrollToStoryDetails}
-                  className="inline-flex items-center gap-1 sm:gap-2.5 text-[7px] sm:text-xs lg:text-sm font-semibold text-[#07133B] hover:text-[#0044FF] transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF] rounded-full pr-0.5 sm:pr-1"
+                  className="inline-flex items-center gap-1 sm:gap-2 text-[7px] sm:text-xs lg:text-sm font-semibold text-[#07133B] hover:text-[#0044FF] transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF] rounded-full pr-0.5 sm:pr-1"
                 >
                   <span className="w-4 h-4 sm:w-8 sm:h-8 lg:w-9 lg:h-9 rounded-full bg-white border border-[#99BDFF] shadow-sm flex items-center justify-center text-[#0038FF] shrink-0">
                     <Play className="w-2 h-2 sm:w-3.5 sm:h-3.5 fill-current ml-0.5" strokeWidth={1.75} aria-hidden="true" />
                   </span>
-                  <span>Learn More About Us</span>
+                  <span>Learn More</span>
                 </button>
               </div>
             </Reveal>
@@ -286,14 +299,21 @@ export function AboutPage({
                 to eliminate downtime, protect critical operations, and cultivate Africa’s next
                 wave of technology leaders.
               </p>
-              <div className="pt-0.5 sm:pt-1">
+              <div className="pt-0.5 sm:pt-1 flex flex-wrap items-center gap-x-4 gap-y-1.5">
+                <button
+                  type="button"
+                  onClick={onNavigateTeam}
+                  className="inline-flex items-center gap-1 sm:gap-2 text-[8.5px] sm:text-xs lg:text-sm font-semibold text-[#002BFF] hover:text-[#DC0914] transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0000FF] rounded-sm"
+                >
+                  <span>Meet Our Leadership Team</span>
+                  <ArrowRight className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4" strokeWidth={1.75} aria-hidden="true" />
+                </button>
                 <button
                   type="button"
                   onClick={() => onOpenContact()}
-                  className="inline-flex items-center gap-1 sm:gap-2 text-[8.5px] sm:text-xs lg:text-sm font-semibold text-[#002BFF] hover:text-[#DC0914] transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0000FF] rounded-sm"
+                  className="inline-flex items-center gap-1 text-[8.5px] sm:text-xs lg:text-sm font-medium text-slate-600 hover:text-[#07133B] transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0000FF] rounded-sm"
                 >
-                  <span>Connect With Our Leadership</span>
-                  <ArrowRight className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4" strokeWidth={1.75} aria-hidden="true" />
+                  <span>Contact Us</span>
                 </button>
               </div>
             </Reveal>
@@ -445,6 +465,75 @@ export function AboutPage({
               aria-hidden="true"
             />
           </Reveal>
+        </div>
+      </section>
+
+      {/* SECTION 3.5: LEADERSHIP & ENGINEERING TEAM PREVIEW */}
+      <section className="py-12 sm:py-16 lg:py-20 bg-white border-b border-slate-200/75 overflow-x-clip">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
+            <Reveal direction="left" className="space-y-2 max-w-xl">
+              <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#07133B] text-balance">
+                The People Behind{' '}
+                <span className="text-[#002BFF]">SAMITECH</span>
+              </h2>
+              <p className="text-xs sm:text-sm lg:text-base text-slate-600 leading-relaxed">
+                Meet the architects, AI engineers, network leads, and security specialists driving
+                our delivery from Buea and across Africa.
+              </p>
+            </Reveal>
+
+            <Reveal direction="right" delay={0.08}>
+              <button
+                type="button"
+                onClick={onNavigateTeam}
+                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white rounded-full bg-gradient-to-r from-[#002BFF] to-[#0055FF] hover:from-[#001ACC] hover:to-[#003CE6] shadow-md shadow-[#002BFF]/20 transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF]"
+              >
+                <span>Meet the Full Team</span>
+                <ArrowRight className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
+              </button>
+            </Reveal>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
+            {TEAM_MEMBERS.map((member, index) => (
+              <Reveal
+                key={member.id}
+                direction="bottom"
+                delay={0.05 + index * 0.06}
+                wrapperClassName="h-full"
+                className="h-full"
+              >
+                <button
+                  type="button"
+                  onClick={() => onSelectTeamMember(member.id)}
+                  className="group w-full h-full text-left rounded-2xl bg-[#F8FAFF] border border-[#0044FF]/12 hover:border-[#0044FF]/35 overflow-hidden transition-all duration-200 hover:-translate-y-1 flex flex-col cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF]"
+                >
+                  <div className="aspect-[4/4.3] w-full overflow-hidden bg-[#EEF3FF]">
+                    <ResilientImage
+                      src={member.image}
+                      alt={member.imageAlt}
+                      fallbackTitle={member.name}
+                      width={member.width}
+                      height={member.height}
+                      className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-4 sm:p-5 space-y-1">
+                    <div className="text-[11px] font-bold text-[#002BFF]">
+                      {member.executiveTitle} · {member.focusLabel}
+                    </div>
+                    <h3 className="text-sm sm:text-base font-bold text-[#07133B] group-hover:text-[#002BFF] transition-colors leading-snug">
+                      {member.name}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-snug line-clamp-2">
+                      {member.role}
+                    </p>
+                  </div>
+                </button>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 

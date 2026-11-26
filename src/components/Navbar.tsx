@@ -18,6 +18,8 @@ import { ServiceWireframeIcon } from './ServiceWireframeIcon';
 export type AppPage =
   | 'home'
   | 'about'
+  | 'team'
+  | 'team-member'
   | 'services'
   | 'service-detail'
   | 'careers'
@@ -37,12 +39,14 @@ export function Navbar({
   onNavigate,
   onOpenContact,
 }: NavbarProps) {
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [overDarkSection, setOverDarkSection] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const aboutDropdownRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
   const { distance, shouldReduceMotion } = useMotionConfigValues();
@@ -55,8 +59,12 @@ export function Navbar({
       const darkIds = [
         'why-samitech-card',
         'service-process-card',
+        'service-dark-top',
+        'service-dark-hero',
+        'service-dark-cta',
         'faq-card',
         'about-values-card',
+        'team-cta-card',
         'contact-footer',
       ];
       const isDark = darkIds.some((id) => {
@@ -81,6 +89,9 @@ export function Navbar({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      if (aboutDropdownRef.current && !aboutDropdownRef.current.contains(event.target as Node)) {
+        setAboutDropdownOpen(false);
+      }
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setServicesDropdownOpen(false);
       }
@@ -91,6 +102,7 @@ export function Navbar({
 
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
+        setAboutDropdownOpen(false);
         setServicesDropdownOpen(false);
         setMobileMenuOpen(false);
       }
@@ -113,6 +125,7 @@ export function Navbar({
   }, []);
 
   const handleOpenServicesOverview = () => {
+    setAboutDropdownOpen(false);
     setServicesDropdownOpen(false);
     setMobileMenuOpen(false);
     setMobileServicesOpen(false);
@@ -120,6 +133,7 @@ export function Navbar({
   };
 
   const handleOpenServiceDetail = (slug: string) => {
+    setAboutDropdownOpen(false);
     setServicesDropdownOpen(false);
     setMobileMenuOpen(false);
     setMobileServicesOpen(false);
@@ -129,6 +143,7 @@ export function Navbar({
   const handleMobileNav = (page: AppPage, target?: string) => {
     setMobileMenuOpen(false);
     setMobileServicesOpen(false);
+    setAboutDropdownOpen(false);
     setServicesDropdownOpen(false);
     onNavigate(page, target);
   };
@@ -151,6 +166,8 @@ export function Navbar({
     ? "text-xs lg:text-sm font-semibold relative py-1.5 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:rounded-full whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 rounded-sm transition-colors text-white after:bg-white focus-visible:outline-white cursor-pointer"
     : "text-xs lg:text-sm font-semibold relative py-1.5 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:rounded-full whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 rounded-sm transition-colors text-[#002BFF] after:bg-[#002BFF] focus-visible:outline-[#0000FF] cursor-pointer";
 
+  const isAboutActive =
+    activePage === 'about' || activePage === 'team' || activePage === 'team-member';
   const isServicesActive = activePage === 'services' || activePage === 'service-detail';
 
   return (
@@ -198,19 +215,85 @@ export function Navbar({
             Home
           </button>
 
-          <button
-            type="button"
-            onClick={() => handleMobileNav('about')}
-            className={activePage === 'about' ? activeLinkClass : navLinkClass}
-          >
-            About
-          </button>
+          {/* Lightweight 2-Item About Dropdown (Our Story + Meet the Team) */}
+          <div className="relative" ref={aboutDropdownRef}>
+            <button
+              type="button"
+              onClick={() => {
+                setServicesDropdownOpen(false);
+                setAboutDropdownOpen((prev) => !prev);
+              }}
+              aria-expanded={aboutDropdownOpen}
+              aria-haspopup="true"
+              className={`inline-flex items-center gap-1 ${
+                isAboutActive ? activeLinkClass : navLinkClass
+              }`}
+            >
+              <span>About</span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 lg:w-4 lg:h-4 transition-transform duration-200 ${
+                  aboutDropdownOpen ? 'rotate-180' : ''
+                }`}
+                strokeWidth={1.75}
+                aria-hidden="true"
+              />
+            </button>
+
+            <AnimatePresence>
+              {aboutDropdownOpen && (
+                <motion.div
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: -8, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -6, scale: 0.98 }}
+                  transition={{ duration: 0.16, ease: SAMITECH_EASE }}
+                  className="absolute left-0 top-full mt-3 w-64 rounded-2xl bg-white border border-[#0044FF]/15 shadow-2xl p-2 z-50 origin-top"
+                >
+                  <button
+                    type="button"
+                    onClick={() => handleMobileNav('about')}
+                    className={`w-full text-left px-3 py-2.5 rounded-xl transition-colors cursor-pointer group ${
+                      activePage === 'about'
+                        ? 'bg-[#EEF3FF] border border-[#0044FF]/20'
+                        : 'hover:bg-[#F2F6FF]'
+                    }`}
+                  >
+                    <div className="text-xs font-bold text-[#07133B] group-hover:text-[#002BFF] transition-colors">
+                      Our Story
+                    </div>
+                    <div className="text-[11px] text-slate-500 mt-0.5">
+                      Mission, vision &amp; milestones since 2022
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleMobileNav('team')}
+                    className={`mt-1 w-full text-left px-3 py-2.5 rounded-xl transition-colors cursor-pointer group ${
+                      activePage === 'team'
+                        ? 'bg-[#EEF3FF] border border-[#0044FF]/20'
+                        : 'hover:bg-[#F2F6FF]'
+                    }`}
+                  >
+                    <div className="text-xs font-bold text-[#07133B] group-hover:text-[#002BFF] transition-colors">
+                      Meet the Team
+                    </div>
+                    <div className="text-[11px] text-slate-500 mt-0.5">
+                      Leadership &amp; certified engineers in Buea
+                    </div>
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
           {/* Desktop Services Mega-Dropdown (9 Deep Service Pages + General Overview) */}
           <div className="relative" ref={dropdownRef}>
             <button
               type="button"
-              onClick={() => setServicesDropdownOpen((prev) => !prev)}
+              onClick={() => {
+                setAboutDropdownOpen(false);
+                setServicesDropdownOpen((prev) => !prev);
+              }}
               aria-expanded={servicesDropdownOpen}
               aria-haspopup="true"
               className={`inline-flex items-center gap-1 ${
@@ -419,8 +502,23 @@ export function Navbar({
                     : 'text-[#07133B] hover:bg-slate-50'
                 }`}
               >
-                <span>About Us</span>
+                <span>About Us — Our Story</span>
                 {activePage === 'about' && (
+                  <span className="text-[11px] font-medium text-[#002BFF]">Active</span>
+                )}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => handleMobileNav('team')}
+                className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-sm font-semibold transition-colors cursor-pointer ${
+                  activePage === 'team'
+                    ? 'bg-[#EEF3FF] text-[#002BFF]'
+                    : 'text-[#07133B] hover:bg-slate-50'
+                }`}
+              >
+                <span>Meet the Team</span>
+                {activePage === 'team' && (
                   <span className="text-[11px] font-medium text-[#002BFF]">Active</span>
                 )}
               </button>

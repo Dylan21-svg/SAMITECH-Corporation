@@ -1,10 +1,8 @@
 import projectsHeroLaptopImg from '../assets/images/projects_hero_laptop.webp';
-import sylvesterAiImg from '../assets/images/projects_sylvester_ai.webp';
 import campusProImg from '../assets/images/projects_campuspro.webp';
 import veloraStoreImg from '../assets/images/projects_velora_store.webp';
 import codeForgeImg from '../assets/images/projects_codeforge.webp';
 import mailConsoleImg from '../assets/images/projects_mail_console.webp';
-import netcomImg from '../assets/images/samitech_fiber_core_1794695612961.webp';
 import contactHqHeroImg from '../assets/images/contact_hq_hero.webp';
 import contactBueaMapImg from '../assets/images/contact_buea_map.webp';
 import contactMountainImg from '../assets/images/careers_mountain_growth.webp';
@@ -92,10 +90,10 @@ export const PORTFOLIO_PROJECTS: ShowcaseProject[] = [
       { value: '1.2M+', label: 'Events Processed / Day' },
       { value: '99.9%', label: 'SaaS Platform Uptime' },
     ],
-    image: sylvesterAiImg,
-    imageAlt: 'Sylvester AI conversion optimization and business intelligence analytics dashboard',
-    imageWidth: 960,
-    imageHeight: 536,
+    image: '/assets/aistudio/Screenshot_2026-11-06_044025_f15f1f41.png',
+    imageAlt: 'Sylvester AI autonomous business growth operating system landing interface',
+    imageWidth: 733,
+    imageHeight: 324,
   },
   {
     id: 'campuspro',
@@ -232,9 +230,9 @@ export const PORTFOLIO_PROJECTS: ShowcaseProject[] = [
       { value: '-58%', label: 'Cross-Branch Latency' },
       { value: '24/7', label: 'NOC Security Watch' },
     ],
-    image: netcomImg,
-    imageAlt: 'NETCOM high-density blue illuminated enterprise fiber network server racks',
-    imageWidth: 720,
-    imageHeight: 964,
+    image: '/assets/aistudio/Screenshot_2026-08-21_044502_30c24a0e.png',
+    imageAlt: 'NETCOM engineering community platform for networking, security, cloud, and software labs',
+    imageWidth: 1363,
+    imageHeight: 582,
   },
 ];
