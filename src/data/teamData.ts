@@ -192,7 +192,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     heroTagline:
       'I specialize in backend architecture where speed, security, and scalability converge, building distributed Python systems and SaaS platforms.',
     focusLabel: 'Backend & Distributed Systems',
-    location: 'Bonduma Gate, Buea, Cameroon',
+    location: 'Buea, Cameroon',
     email: 'ngwadiland68@gmail.com',
     phone: '+237 672 344 814',
     website: 'che-amah-diland-ngwa.vercel.app',
