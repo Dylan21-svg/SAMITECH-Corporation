@@ -243,7 +243,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                       {COMPANY_CONTACT.location}
                     </div>
                     <div className="text-[11px] sm:text-xs text-slate-500">
-                      Silicon Mountain Tech Hub
+                      Nationwide Technology Hub
                     </div>
                   </button>
                 </Reveal>
@@ -451,7 +451,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                 <ResilientImage
                   src={CONTACT_PAGE_MEDIA.bueaMap.image}
                   alt={CONTACT_PAGE_MEDIA.bueaMap.alt}
-                  fallbackTitle="SAMITECH Buea Map"
+                  fallbackTitle="SAMITECH Cameroon Map"
                   width={CONTACT_PAGE_MEDIA.bueaMap.width}
                   height={CONTACT_PAGE_MEDIA.bueaMap.height}
                   wrapperClassName="absolute inset-0 w-full h-full"
@@ -464,7 +464,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                     <div className="flex flex-col items-center">
                       <MapMarkerPinIcon />
                       <span className="mt-0.5 px-2 py-0.5 rounded bg-white/90 text-[10px] font-bold text-[#07133B] shadow-xs">
-                        Buea
+                        Cameroon
                       </span>
                     </div>
 
@@ -476,7 +476,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                         {COMPANY_CONTACT.location}
                       </div>
                       <a
-                        href="https://www.google.com/maps/search/?api=1&query=Buea,Cameroon"
+                        href="https://www.google.com/maps/search/?api=1&query=Cameroon"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 pt-0.5 text-[11px] sm:text-xs font-bold text-[#0038FF] hover:text-[#DC0914] transition-colors"
@@ -494,7 +494,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                 <ResilientImage
                   src={CONTACT_PAGE_MEDIA.bueaScenic.image}
                   alt={CONTACT_PAGE_MEDIA.bueaScenic.alt}
-                  fallbackTitle="Buea Mountain Innovation Hub"
+                  fallbackTitle="Cameroon Innovation Hub"
                   width={CONTACT_PAGE_MEDIA.bueaScenic.width}
                   height={CONTACT_PAGE_MEDIA.bueaScenic.height}
                   darkSkeleton

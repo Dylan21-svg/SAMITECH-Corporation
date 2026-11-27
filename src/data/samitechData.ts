@@ -60,8 +60,8 @@ export const COMPANY_CONTACT = {
   domain: 'samitech237.com',
   email: 'samitech237@gmail.com',
   phone: '+237 674 137 259',
-  location: 'Buea, Cameroon',
-  regions: 'Buea · Douala · Yaoundé',
+  location: 'Cameroon',
+  regions: 'Cameroon · Remote Global',
   founded: '2019',
   availability: '24/7 Support',
 };
@@ -83,56 +83,56 @@ export const SERVICES: ServiceItem[] = [
     imageAlt: 'Software engineers collaborating at dual monitor workstations in a modern glass engineering office',
     imageWidth: 720,
     imageHeight: 964,
-    serviceCategory: 'Software Development',
-    detailSlug: 'custom-software',
+    serviceCategory: 'Software Services',
+    detailSlug: 'software-services',
   },
   {
     id: 'networking-solutions',
     number: '02',
-    title: 'Networking Solutions',
-    shortDesc: 'LAN/WAN architecture, OpenVPN setup, cloud management, load balancing, and monitoring.',
+    title: 'Network Services',
+    shortDesc: 'Starlink installation, outdoor Wi-Fi & hotspots, PtP/PtMP wireless, MikroTik config, and network optimization.',
     image: fiberCoreImg,
     imageAlt: 'High density enterprise fiber optic core switches with structured blue patch cabling',
     imageWidth: 720,
     imageHeight: 964,
-    serviceCategory: 'Networking Solutions',
-    detailSlug: 'networking-solutions',
+    serviceCategory: 'Network Services',
+    detailSlug: 'network-services',
   },
   {
     id: 'cybersecurity',
     number: '03',
-    title: 'Cybersecurity Services',
-    shortDesc: 'Security audits, vulnerability assessments, penetration testing, and incident response.',
+    title: 'Cybersecurity',
+    shortDesc: 'CCTV & smart security installation, camera maintenance, security audits, and defense.',
     image: hardwareBenchImg,
     imageAlt: 'Network systems engineer inspecting modular enterprise routing hardware and optical transceivers',
     imageWidth: 720,
     imageHeight: 964,
-    serviceCategory: 'Cybersecurity Services',
+    serviceCategory: 'Cybersecurity',
     detailSlug: 'cybersecurity',
   },
   {
     id: 'data-ai-ux',
     number: '04',
-    title: 'AI & UX/UI Systems',
-    shortDesc: 'Machine learning, Generative AI enablement, and user centric digital product design.',
+    title: 'Maintenance (IT Support)',
+    shortDesc: 'Professional installation & technical support, computer maintenance, and full computer lab setup.',
     image: campusArchImg,
     imageAlt: 'Contemporary glass and dark steel technology corporate facility illuminated with blue architectural light',
     imageWidth: 720,
     imageHeight: 964,
-    serviceCategory: 'AI Development & Enablement',
-    detailSlug: 'ai-development',
+    serviceCategory: 'Maintenance (IT Support)',
+    detailSlug: 'it-support-maintenance',
   },
   {
     id: 'tracking-support',
     number: '05',
-    title: 'Tracking & 24/7 Support',
-    shortDesc: 'Authorized equipment tracking, recovery coordination, and 24/7 managed IT operations.',
+    title: 'Tracking & Dedicated Teams',
+    shortDesc: 'Authorized equipment tracking, recovery coordination, and embedded dedicated technical teams.',
     image: nocCenterImg,
     imageAlt: 'Enterprise Network Operations Center with engineers monitoring topology and system health',
     imageWidth: 720,
     imageHeight: 964,
-    serviceCategory: 'Authorized Equipment Tracking',
-    detailSlug: 'tracking-support',
+    serviceCategory: 'Tracking',
+    detailSlug: 'tracking',
   },
 ];
 
@@ -141,7 +141,7 @@ export const WHY_PILLARS: WhyPillar[] = [
     id: 'proven-experience',
     title: 'Proven Track Record Since 2019',
     description:
-      'Over 5 years delivering custom web, mobile, ERP, and enterprise network infrastructure from Buea across Douala, Yaoundé, and global remote clients.',
+      'Over 5 years delivering custom web, mobile, ERP, and enterprise network infrastructure across Cameroon and for global remote clients.',
     accent: 'blue',
   },
   {
@@ -165,7 +165,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     id: 'erp-inventory-cloud',
     title: 'Cloud Backed Inventory & ERP Workflow Platform',
     sector: 'Software Development',
-    location: 'Buea & Douala',
+    location: 'Cameroon',
     year: '2025',
     serviceCategory: 'Software Development',
     summary:
@@ -193,7 +193,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     id: 'lan-wan-vpn-fabric',
     title: 'Multi Site LAN/WAN & OpenVPN Enterprise Network',
     sector: 'Networking Solutions',
-    location: 'Douala & Yaoundé',
+    location: 'Cameroon',
     year: '2025',
     serviceCategory: 'Networking Solutions',
     summary:
@@ -221,7 +221,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     id: 'pentest-security-audit',
     title: 'Enterprise Penetration Testing & Defense Hardening',
     sector: 'Cybersecurity Services',
-    location: 'Yaoundé, Cameroon',
+    location: 'Cameroon',
     year: '2026',
     serviceCategory: 'Cybersecurity Services',
     summary:
@@ -249,7 +249,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     id: 'authorized-tracking-system',
     title: 'Authorized Device Recovery & Telemetry Portal',
     sector: 'Tracking & Data Systems',
-    location: 'Buea, Cameroon',
+    location: 'Cameroon',
     year: '2026',
     serviceCategory: 'Authorized Equipment Tracking',
     summary:
@@ -264,8 +264,8 @@ export const CASE_STUDIES: CaseStudy[] = [
       'Law Enforcement Case Documentation',
     ],
     metrics: [
-      { value: '4 Tiers', label: 'Device Coverage Categories' },
-      { value: '25k to 85k', label: 'XAF Transparent Pricing' },
+      { value: '4 Categories', label: 'Device Coverage' },
+      { value: 'Verified', label: 'Ownership Proof Intake' },
       { value: '24/7', label: 'Intake & Case Tracking' },
     ],
     image: nocCenterImg,
@@ -280,19 +280,19 @@ export const FAQ_ITEMS: FaqItem[] = [
     id: 'faq-1',
     question: 'Where is SAMITECH based and who do you serve?',
     answer:
-      'Headquartered in Buea, Cameroon, SAMITECH serves clients in Douala, Yaoundé, and worldwide remotely since 2019.',
+      'Headquartered in Cameroon, SAMITECH serves clients nationwide and worldwide remotely since 2019.',
   },
   {
     id: 'faq-2',
     question: 'What core technology services does SAMITECH provide?',
     answer:
-      'We specialize in Software Development (React, Vue, Angular, iOS, Android, Flutter, ERP/CRM), Networking Solutions (LAN/WAN, VPNs, AWS/Azure/GCP cloud infrastructure), Cybersecurity (audits, penetration testing, incident response), Data & AI, UI/UX Design, and Authorized Equipment Tracking.',
+      'We specialize in Software Services (UI/UX, web and app development, graphics design), Network Services (Starlink installation, extension & expansion, Wi-Fi zone installation, LAN setup), Maintenance & IT Support (computer maintenance, computer lab setup), Cybersecurity (CCTV camera installation & maintenance, audits, pentesting), Dedicated Teams, and Authorized Equipment Tracking.',
   },
   {
     id: 'faq-3',
     question: 'How does SAMITECH’s Authorized Equipment Tracking service work?',
     answer:
-      'Clients submit verified proof of ownership (receipt or original box) along with MTN Mobile Money payment: 35,000 XAF for smartphones/tablets, 45,000 XAF for laptops/desktops, 85,000 XAF for motor vehicles (including law enforcement coordination), and 25,000 XAF for IoT devices. False reporting is strictly prohibited.',
+      'Clients submit verified proof of ownership (receipt or original box) to initiate authorized tracking for smartphones/tablets, laptops/desktops, motor vehicles (including law enforcement coordination), and IoT devices. False reporting is strictly prohibited.',
   },
   {
     id: 'faq-4',
@@ -309,16 +309,12 @@ export const FAQ_ITEMS: FaqItem[] = [
 ];
 
 export const SERVICE_CATEGORY_OPTIONS = [
-  'Product Scope',
-  'MVP Builder',
-  'AI Development & Enablement',
-  'Software Development',
-  'Mobile App Development',
-  'UI/UX Design',
+  'Software Services',
+  'Network Services',
+  'Maintenance (IT Support)',
+  'Cybersecurity',
   'Dedicated Teams',
-  'Networking Solutions',
-  'Cybersecurity Services',
-  'Authorized Equipment Tracking',
+  'Tracking',
   'Internships & Training',
   'Careers & Job Applications',
 ];
@@ -335,7 +331,7 @@ export const ABOUT_PAGE_VALUES = [
     id: 'youth-driven-engineering',
     title: 'Youth Driven Engineering',
     description:
-      'Founded by young Cameroonian engineers in Buea, SAMITECH channels fresh technical energy into production ready software, hardware, and AI platforms built for African realities.',
+      'Founded by young Cameroonian engineers, SAMITECH channels fresh technical energy into production ready software, hardware, and AI platforms built for African realities.',
   },
   {
     id: 'security-reliability',
@@ -354,13 +350,13 @@ export const ABOUT_PAGE_VALUES = [
 export const ABOUT_PAGE_MILESTONES = [
   {
     year: '2022',
-    title: 'Founded in Buea',
-    detail: 'Launched in Cameroon’s Silicon Mountain hub to unite youth engineering talent around real world software and hardware challenges.',
+    title: 'Founded in Cameroon',
+    detail: 'Launched in Cameroon to unite youth engineering talent around real world software and hardware challenges.',
   },
   {
     year: '2023',
     title: 'Regional Enterprise Growth',
-    detail: 'Expanded software, cloud, and enterprise LAN/WAN networking deployments across Buea, Douala, Yaoundé, and international remote teams.',
+    detail: 'Expanded software, cloud, and enterprise LAN/WAN networking deployments across Cameroon and international remote teams.',
   },
   {
     year: '2024',

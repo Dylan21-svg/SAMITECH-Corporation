@@ -2,15 +2,21 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion } from 'motion/react';
 import {
   ArrowRight,
+  ArrowUpRight,
+  Globe,
   Mail,
+  MessageCircle,
   Minus,
   Phone,
   PlayCircle,
   Plus,
+  Radio,
 } from 'lucide-react';
 import { AboutPage } from './components/AboutPage';
 import { CareersPage } from './components/CareersPage';
+import { CommunitiesPage } from './components/CommunitiesPage';
 import { ContactPage } from './components/ContactPage';
+import { ProductsPage } from './components/ProductsPage';
 import { ProjectsPage } from './components/ProjectsPage';
 import { ServicesPage } from './components/ServicesPage';
 import { ServiceDetailPage } from './components/ServiceDetailPage';
@@ -22,6 +28,7 @@ import { ResilientImage } from './components/ResilientImage';
 import { CaseStudyModal } from './components/CaseStudyModal';
 import { ContactModal } from './components/ContactModal';
 import { StoryModal } from './components/StoryModal';
+import { BackToTopButton } from './components/BackToTopButton';
 import {
   CareersCapIcon,
   DarkPillarIcon,
@@ -30,6 +37,7 @@ import {
   VisionBadgeIcon,
 } from './components/ShowcaseIcons';
 import { getServiceBySlug, ALL_SERVICES_CATALOG } from './data/servicesCatalog';
+import { SAMITECH_COMMUNITIES } from './data/communitiesData';
 import { getTeamMemberBySlug, TEAM_MEMBERS } from './data/teamData';
 import {
   ABOUT_MEDIA,
@@ -123,6 +131,14 @@ function resolveRouteFromLocation(): RouteResolution {
 
   if (combined === '/careers' || hash === '#/careers') {
     return { page: 'careers', serviceSlug: null, memberSlug: null };
+  }
+
+  if (combined === '/communities' || hash === '#/communities') {
+    return { page: 'communities', serviceSlug: null, memberSlug: null };
+  }
+
+  if (combined === '/products' || hash === '#/products') {
+    return { page: 'products', serviceSlug: null, memberSlug: null };
   }
 
   if (combined.startsWith('/services/')) {
@@ -219,6 +235,24 @@ export default function App() {
       setRouteState({ page: 'careers', serviceSlug: null, memberSlug: null });
       if (window.location.hash !== '#/careers') {
         window.history.pushState(null, '', '#/careers');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (page === 'communities') {
+      setRouteState({ page: 'communities', serviceSlug: null, memberSlug: null });
+      if (window.location.hash !== '#/communities') {
+        window.history.pushState(null, '', '#/communities');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (page === 'products') {
+      setRouteState({ page: 'products', serviceSlug: null, memberSlug: null });
+      if (window.location.hash !== '#/products') {
+        window.history.pushState(null, '', '#/products');
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
@@ -380,6 +414,32 @@ export default function App() {
                 <CareersPage
                   onOpenContact={handleOpenContact}
                   onNavigateTeam={() => handleNavigate('team')}
+                />
+              </motion.div>
+            ) : activePage === 'communities' ? (
+              <motion.div
+                key="communities-page"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.22, ease: SAMITECH_EASE }}
+              >
+                <CommunitiesPage
+                  onOpenContact={handleOpenContact}
+                  onNavigateCareers={() => handleNavigate('careers')}
+                />
+              </motion.div>
+            ) : activePage === 'products' ? (
+              <motion.div
+                key="products-page"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.22, ease: SAMITECH_EASE }}
+              >
+                <ProductsPage
+                  onNavigateServices={() => handleNavigate('services')}
+                  onOpenContact={handleOpenContact}
                 />
               </motion.div>
             ) : activePage === 'services' ? (
@@ -576,8 +636,8 @@ export default function App() {
                           <span className="text-[#002BFF]">SAMITECH</span>
                         </h2>
                         <p className="text-sm lg:text-base text-slate-700 leading-relaxed">
-                          Founded in 2019 in Buea, Cameroon, SAMITECH Corporation is a remote first
-                          technology partner serving enterprises across Douala, Yaoundé, and global markets.
+                          Founded in 2019 in Cameroon, SAMITECH Corporation is a remote first
+                          technology partner serving enterprises nationwide and across global markets.
                         </p>
                         <p className="text-sm lg:text-base text-slate-700 leading-relaxed">
                           Our certified engineering team delivers custom web and mobile software, enterprise
@@ -689,7 +749,7 @@ export default function App() {
                               <button
                                 type="button"
                                 onClick={() => handleNavigate('service-detail', service.detailSlug)}
-                                className="floating-frame-card group relative aspect-[16/10] sm:aspect-[3/4] w-full rounded-2xl overflow-hidden bg-[#040B29] text-center cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF]"
+                                className="floating-frame-card group relative aspect-[16/10] sm:aspect-[3/4] w-full rounded-2xl overflow-hidden bg-[#040B29] text-center cursor-pointer hover:scale-[1.03] active:scale-[0.98] motion-reduce:hover:scale-100 motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF]"
                               >
                                 <ResilientImage
                                   src={service.image}
@@ -722,7 +782,7 @@ export default function App() {
                         onClick={() => handleNavigate('services')}
                         className="inline-flex items-center gap-2 px-5 py-3 sm:px-6 text-xs sm:text-sm font-semibold text-white rounded-full bg-gradient-to-r from-[#001AFF] to-[#0044FF] hover:from-[#0000CC] hover:to-[#002BFF] shadow-md shadow-[#002BFF]/20 transition-all duration-150 active:scale-[0.98] whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF]"
                       >
-                        <span>Explore All 10 Services (Product Scope, AI, MVP &amp; More)</span>
+                        <span>Explore All Services</span>
                         <ArrowRight className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
                       </button>
                     </Reveal>
@@ -773,7 +833,7 @@ export default function App() {
                             </h2>
                             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl mx-auto">
                               Over 5 years of engineering excellence across Software Development, Networking,
-                              Cybersecurity, and 24/7 operational support from Buea, Cameroon.
+                              Cybersecurity, and 24/7 operational support from Cameroon.
                             </p>
                           </Reveal>
 
@@ -927,7 +987,7 @@ export default function App() {
                         </Reveal>
                         <Reveal direction="left" delay={0.08}>
                           <p className="text-sm lg:text-base text-slate-700 leading-relaxed">
-                            Our structured internship and engineering mentorship programs in Buea give
+                            Our structured internship and engineering mentorship programs in Cameroon give
                             emerging technologists hands on experience shipping real production systems alongside
                             senior specialists.
                           </p>
@@ -972,6 +1032,124 @@ export default function App() {
                           </Reveal>
                         ))}
                       </div>
+                    </div>
+                  </div>
+                </section>
+
+                {/* OUR COMMUNITIES SECTION */}
+                <section id="communities" className="py-14 sm:py-16 lg:py-20 bg-white border-b border-slate-200/70 overflow-x-clip">
+                  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-10">
+                      <Reveal direction="left" className="space-y-2 max-w-2xl">
+                        <div className="text-xs sm:text-sm font-semibold text-[#002BFF]">
+                          Our Communities
+                        </div>
+                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#07133B] text-balance">
+                          Connect With SAMITECH{' '}
+                          <span className="text-[#002BFF]">Ecosystems</span>
+                        </h2>
+                        <p className="text-sm lg:text-base text-slate-600 leading-relaxed">
+                          Join our independent tech portals, WhatsApp engineering groups, and official
+                          announcement channels.
+                        </p>
+                      </Reveal>
+
+                      <Reveal direction="right" delay={0.08}>
+                        <button
+                          type="button"
+                          onClick={() => handleNavigate('communities')}
+                          className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold text-[#07133B] hover:text-[#002BFF] bg-[#F2F6FF] hover:bg-[#E4EEFF] border border-[#DCE8FF] rounded-full transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                        >
+                          <span>Explore Communities</span>
+                          <ArrowRight className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
+                        </button>
+                      </Reveal>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+                      {SAMITECH_COMMUNITIES.map((community, index) => (
+                        <Reveal
+                          key={community.id}
+                          direction="bottom"
+                          delay={0.05 + index * 0.06}
+                          wrapperClassName="h-full"
+                          className="h-full"
+                        >
+                          <article className="group h-full flex flex-col justify-between rounded-2xl bg-[#F8FAFF] border border-[#DCE8FF] hover:border-[#0044FF]/45 p-6 shadow-[0_6px_20px_rgba(4,11,41,0.04)] hover:shadow-[0_14px_30px_rgba(0,68,255,0.10)] hover:scale-[1.02] transition-all duration-200 ease-out">
+                            <div className="space-y-3.5">
+                              {community.image && (
+                                <div
+                                  className="aspect-[16/9] rounded-xl overflow-hidden border border-[#DCE8FF]"
+                                  style={{ backgroundColor: community.imageBg ?? '#040B29' }}
+                                >
+                                  <ResilientImage
+                                    src={community.image}
+                                    alt={community.imageAlt || community.name}
+                                    fallbackTitle={community.name}
+                                    width={community.imageWidth}
+                                    height={community.imageHeight}
+                                    darkSkeleton={community.imageBg !== '#FFFFFF'}
+                                    className={`w-full h-full ${
+                                      community.imageFit === 'contain' ? 'object-contain p-2.5' : 'object-cover'
+                                    } group-hover:scale-[1.03] transition-transform duration-300`}
+                                  />
+                                </div>
+                              )}
+
+                              <div className="flex items-center justify-between gap-3">
+                                <div
+                                  className="w-10 h-10 rounded-xl bg-white border border-[#DCE8FF] flex items-center justify-center shrink-0"
+                                  style={{ color: community.accentColor }}
+                                >
+                                  {community.platform === 'website' ? (
+                                    <Globe className="w-5 h-5" strokeWidth={1.85} aria-hidden="true" />
+                                  ) : community.platform === 'whatsapp-channel' ? (
+                                    <Radio className="w-5 h-5" strokeWidth={1.85} aria-hidden="true" />
+                                  ) : (
+                                    <MessageCircle className="w-5 h-5" strokeWidth={1.85} aria-hidden="true" />
+                                  )}
+                                </div>
+                                <span className="font-mono text-xs font-bold text-slate-400 tabular-nums">
+                                  {community.number}
+                                </span>
+                              </div>
+
+                              <div className="space-y-1">
+                                <div className="flex items-center gap-2 text-xs text-slate-500">
+                                  <span style={{ color: community.accentColor }} className="font-semibold">
+                                    {community.platformLabel}
+                                  </span>
+                                  <span aria-hidden="true">·</span>
+                                  <span className="font-mono truncate">{community.domainOrHandle}</span>
+                                </div>
+                                <h3 className="text-lg font-extrabold text-[#07133B] group-hover:text-[#002BFF] transition-colors">
+                                  {community.name}
+                                </h3>
+                                <p className="text-xs font-semibold text-[#07133B]/80">
+                                  {community.subtitle}
+                                </p>
+                              </div>
+
+                              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                {community.description}
+                              </p>
+                            </div>
+
+                            <div className="pt-5 mt-5 border-t border-slate-200/75">
+                              <a
+                                href={community.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold transition-colors whitespace-nowrap"
+                                style={{ color: community.accentColor }}
+                              >
+                                <span>{community.ctaLabel}</span>
+                                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" strokeWidth={2} aria-hidden="true" />
+                              </a>
+                            </div>
+                          </article>
+                        </Reveal>
+                      ))}
                     </div>
                   </div>
                 </section>
@@ -1092,7 +1270,7 @@ export default function App() {
                                             transition={{ duration: 0.22, ease: SAMITECH_EASE }}
                                             className="overflow-hidden"
                                           >
-                                            <div className="pl-[58px] pr-5 pb-4 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/10 pt-2.5">
+                                            <div className="pl-11 sm:pl-[58px] pr-4 sm:pr-5 pb-4 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/10 pt-2.5">
                                               {item.answer}
                                             </div>
                                           </motion.div>
@@ -1114,27 +1292,26 @@ export default function App() {
           </AnimatePresence>
         </main>
 
-        {/* COMPACT CORPORATE FOOTER, Sleek & Proportional Across Mobile, Tablet, and Desktop */}
+        {/* ULTRA-COMPACT CORPORATE FOOTER, Slim & Proportional Across Every Device */}
         <footer id="contact-footer" className="relative bg-[#071235] text-white border-t border-white/10 overflow-hidden">
-          {/* Bottom-Right Signature Crimson & Royal-Blue Corner Ribbon Accent */}
           <svg
             viewBox="0 0 260 110"
-            className="pointer-events-none absolute right-0 bottom-0 w-24 sm:w-36 lg:w-44 h-auto opacity-95"
+            className="pointer-events-none absolute right-0 bottom-0 w-14 sm:w-24 lg:w-28 h-auto opacity-85"
             aria-hidden="true"
           >
             <path d="M 110,110 L 260,30 L 260,110 Z" fill="#0038FF" fillOpacity="0.65" />
             <path d="M 145,110 L 260,46 L 260,110 Z" fill="#DC0914" />
           </svg>
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-7 lg:py-8">
-            <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 sm:gap-6 items-start">
-              {/* Brand Lockup & Compact Direct Contact */}
-              <div className="sm:col-span-5 lg:col-span-4 space-y-2.5 min-w-0">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3.5 lg:gap-6">
+              {/* Brand & Direct Contact */}
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 min-w-0">
                 <button
                   type="button"
                   onClick={() => handleNavigate('home')}
                   aria-label="SAMITECH Corporation Home"
-                  className="inline-flex items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white cursor-pointer"
+                  className="inline-flex items-center shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white cursor-pointer"
                 >
                   <img
                     src="/assets/aistudio/Samitech_Corporation_Logo2_7401e1c3.png"
@@ -1143,131 +1320,63 @@ export default function App() {
                     height={724}
                     loading="lazy"
                     decoding="async"
-                    className="h-8 sm:h-9 w-auto object-contain footer-logo-glow"
+                    className="h-6 sm:h-7 w-auto object-contain footer-logo-glow"
                   />
                 </button>
-                <p className="text-[11px] sm:text-xs text-slate-300/85 leading-snug">
-                  Buea · Douala · Yaoundé · 24/7 Support
-                </p>
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-200 pt-0.5">
+
+                <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1 text-[11px] sm:text-xs text-slate-200/90">
                   <a
                     href={`tel:${COMPANY_CONTACT.phone.replace(/\s+/g, '')}`}
-                    className="inline-flex items-center gap-1.5 hover:text-[#60A5FA] transition-colors whitespace-nowrap tabular-nums"
+                    className="inline-flex items-center gap-1 hover:text-[#60A5FA] transition-colors whitespace-nowrap tabular-nums"
                   >
-                    <Phone className="w-3.5 h-3.5 text-[#60A5FA] shrink-0" strokeWidth={1.75} aria-hidden="true" />
+                    <Phone className="w-3 h-3 text-[#60A5FA] shrink-0" strokeWidth={1.75} aria-hidden="true" />
                     <span>{COMPANY_CONTACT.phone}</span>
                   </a>
                   <a
                     href={`mailto:${COMPANY_CONTACT.email}`}
-                    className="inline-flex items-center gap-1.5 hover:text-[#60A5FA] transition-colors whitespace-nowrap"
+                    className="inline-flex items-center gap-1 hover:text-[#60A5FA] transition-colors whitespace-nowrap"
                   >
-                    <Mail className="w-3.5 h-3.5 text-[#60A5FA] shrink-0" strokeWidth={1.75} aria-hidden="true" />
+                    <Mail className="w-3 h-3 text-[#60A5FA] shrink-0" strokeWidth={1.75} aria-hidden="true" />
                     <span>{COMPANY_CONTACT.email}</span>
                   </a>
                 </div>
               </div>
 
-              {/* Quick Links & Services */}
-              <div className="sm:col-span-7 lg:col-span-5 grid grid-cols-2 gap-4 sm:gap-6">
-                <div className="min-w-0 space-y-2">
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-300/80">
-                    Quick Links
-                  </h3>
-                  <ul className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs text-slate-200/90">
-                    <li>
-                      <button type="button" onClick={() => handleNavigate('home')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">
-                        Home
-                      </button>
-                    </li>
-                    <li>
-                      <button type="button" onClick={() => handleNavigate('about')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">
-                        About
-                      </button>
-                    </li>
-                    <li>
-                      <button type="button" onClick={() => handleNavigate('team')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">
-                        Team
-                      </button>
-                    </li>
-                    <li>
-                      <button type="button" onClick={() => handleNavigate('services')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">
-                        Services
-                      </button>
-                    </li>
-                    <li>
-                      <button type="button" onClick={() => handleNavigate('projects')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">
-                        Projects
-                      </button>
-                    </li>
-                    <li>
-                      <button type="button" onClick={() => handleNavigate('careers')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">
-                        Careers
-                      </button>
-                    </li>
-                    <li>
-                      <button type="button" onClick={() => handleNavigate('contact')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">
-                        Contact
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="min-w-0 space-y-2">
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-300/80">
-                    Services
-                  </h3>
-                  <ul className="space-y-1 text-xs text-slate-200/90">
-                    <li>
-                      <button type="button" onClick={() => handleNavigate('service-detail', 'custom-software')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">
-                        Web &amp; Software
-                      </button>
-                    </li>
-                    <li>
-                      <button type="button" onClick={() => handleNavigate('service-detail', 'mobile-app-development')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">
-                        Mobile Apps
-                      </button>
-                    </li>
-                    <li>
-                      <button type="button" onClick={() => handleNavigate('service-detail', 'networking-solutions')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">
-                        Networking &amp; Cloud
-                      </button>
-                    </li>
-                    <li>
-                      <button type="button" onClick={() => handleNavigate('service-detail', 'ai-development')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">
-                        AI &amp; ML
-                      </button>
-                    </li>
-                    <li>
-                      <button type="button" onClick={() => handleNavigate('service-detail', 'cybersecurity')} className="hover:text-[#60A5FA] transition-colors cursor-pointer">
-                        Cybersecurity
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Desktop Action & Tagline */}
-              <div className="hidden lg:flex lg:col-span-3 flex-col items-end justify-between text-right space-y-4">
-                <button
-                  type="button"
-                  onClick={() => handleOpenContact()}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#93C5FD] hover:text-white transition-colors cursor-pointer"
-                >
-                  <span>Start a Project</span>
-                  <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.75} aria-hidden="true" />
+              {/* Inline Compact Site Links */}
+              <nav aria-label="Footer navigation" className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-[11px] sm:text-xs text-slate-200/90">
+                <button type="button" onClick={() => handleNavigate('home')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                  Home
                 </button>
-                <div className="inline-block -rotate-2">
-                  <div className="text-sm font-bold tracking-tight text-white">
-                    Let&apos;s Build Together
-                  </div>
-                  <div className="h-[2px] w-full bg-gradient-to-r from-[#DC0914] to-[#60A5FA] rounded-full mt-0.5" />
-                </div>
-              </div>
+                <button type="button" onClick={() => handleNavigate('about')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                  About
+                </button>
+                <button type="button" onClick={() => handleNavigate('team')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                  Team
+                </button>
+                <button type="button" onClick={() => handleNavigate('services')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                  Services
+                </button>
+                <button type="button" onClick={() => handleNavigate('products')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                  Products
+                </button>
+                <button type="button" onClick={() => handleNavigate('projects')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                  Projects
+                </button>
+                <button type="button" onClick={() => handleNavigate('communities')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                  Communities
+                </button>
+                <button type="button" onClick={() => handleNavigate('careers')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                  Careers
+                </button>
+                <button type="button" onClick={() => handleNavigate('contact')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                  Contact
+                </button>
+              </nav>
             </div>
 
-            {/* Compact Legal Bar */}
-            <div className="mt-5 pt-3.5 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] sm:text-xs text-slate-300/75 pr-12 sm:pr-24">
-              <div>© 2026 SAMITECH Corporation. All rights reserved.</div>
+            {/* Slim Legal Bar */}
+            <div className="mt-3 pt-2.5 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-300/75 pr-12 sm:pr-20">
+              <div>© 2026 SAMITECH Corporation · Cameroon · 24/7 Support</div>
               <div className="flex items-center gap-4 shrink-0">
                 <button
                   type="button"
@@ -1287,6 +1396,8 @@ export default function App() {
             </div>
           </div>
         </footer>
+
+        <BackToTopButton />
 
         {/* INTERACTIVE MODALS */}
         <CaseStudyModal

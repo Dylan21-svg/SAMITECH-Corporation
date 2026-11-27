@@ -36,7 +36,7 @@ const WHY_WORK_ITEMS = [
   {
     id: 'supportive-team',
     title: 'Supportive Team',
-    description: 'Collaborate with curious, approachable senior engineers in Buea and remotely.',
+    description: 'Collaborate with curious, approachable senior engineers in Cameroon and remotely.',
   },
   {
     id: 'career-growth',
@@ -52,96 +52,37 @@ const WHY_WORK_ITEMS = [
 
 const CAREER_OPENINGS: CareerOpening[] = [
   {
-    id: 'fullstack-developer',
-    title: 'Fullstack Developer',
-    location: 'Remote / Buea',
-    department: 'Product Engineering',
-    type: 'Full-Time',
-    summary:
-      'Build scalable React, TypeScript, Node.js, and PostgreSQL web applications and client API integrations.',
-    requirements: [
-      '2+ years shipping production TypeScript, React, and Node.js applications',
-      'Strong relational database design (PostgreSQL) & REST/GraphQL API skills',
-      'Experience deploying Dockerized services and CI/CD pipelines',
-    ],
-  },
-  {
-    id: 'ai-ml-engineer',
-    title: 'AI/ML Engineer',
-    location: 'Remote',
-    department: 'Data & Applied AI',
-    type: 'Full-Time',
-    summary:
-      'Design private RAG knowledge pipelines, predictive analytics models, and intelligent workflow agents.',
-    requirements: [
-      'Hands on Python, vector indexing (pgvector), and modern LLM orchestration experience',
-      'Track record evaluating model accuracy, latency, and safety guardrails',
-      'Familiarity wrapping AI workflows behind clean FastAPI or TypeScript endpoints',
-    ],
-  },
-  {
-    id: 'frontend-developer',
-    title: 'Frontend Developer',
-    location: 'Remote / Buea',
-    department: 'Web & UX Engineering',
-    type: 'Full-Time',
-    summary:
-      'Craft accessible, smooth, pixel precise React and Tailwind interfaces with clean motion design.',
-    requirements: [
-      'Strong command of React, TypeScript, Tailwind CSS, and responsive design systems',
-      'Eye for WCAG AA contrast, SVG craft, and fast Core Web Vitals performance',
-      'Ability to translate Figma designs cleanly without visual drift',
-    ],
-  },
-  {
-    id: 'devops-engineer',
-    title: 'DevOps Engineer',
-    location: 'Infrastructure',
-    department: 'Cloud & Network Ops',
-    type: 'Full-Time',
-    summary:
-      'Architect high availability AWS/Azure deployments, OpenVPN networks, failover routing, and 24/7 telemetry.',
-    requirements: [
-      'Solid Linux administration, Docker, Nginx, and cloud VPC configuration',
-      'Experience setting up automated backups, CI/CD, and multi ISP VPN stability',
-      'Security first mindset around IAM least privilege and firewall hardening',
-    ],
-  },
-  {
-    id: 'cybersecurity-analyst',
-    title: 'Cybersecurity Analyst',
-    location: 'Buea / Remote',
-    department: 'Security & Auditing',
-    type: 'Full-Time',
-    summary:
-      'Conduct web, mobile, and network penetration tests alongside OWASP security audits and incident response.',
-    requirements: [
-      'Practical vulnerability assessment & ethical hacking methodology (OWASP Top 10)',
-      'Clear technical reporting and developer remediation collaboration',
-      'Network protocol analysis and defense in depth hardening experience',
-    ],
-  },
-  {
-    id: 'engineering-internships',
-    title: 'Engineering & Security Internships',
-    location: 'Buea, Cameroon',
-    department: 'Mentorship Cohort',
+    id: 'software-department-internship',
+    title: 'Software Department Internship',
+    location: 'Cameroon / Hybrid',
+    department: 'Software Department',
     type: 'Internship (3 to 6 Mo)',
     summary:
-      'Structured hands on cohorts across Software Engineering, Networking Solutions, and Cybersecurity.',
+      'Join our Software Department to assist with real web, mobile, and UI/UX engineering projects using React, TypeScript, Node.js, and Flutter under senior mentor guidance.',
     requirements: [
-      'Strong foundational coding or networking passion and eagerness to ship real projects',
-      'Collaborative communication and commitment to weekly mentor code reviews',
-      'Available in Buea Silicon Mountain ecosystem or structured hybrid schedule',
+      'Foundational knowledge of HTML, CSS, JavaScript/TypeScript, or mobile app development',
+      'Eagerness to learn Git workflows, component architecture, and clean UI implementation',
+      'Enrolled in or recently graduated from a Computer Science / Software Engineering track in Cameroon',
+    ],
+  },
+  {
+    id: 'networking-department-internship',
+    title: 'Networking Department Internship',
+    location: 'Cameroon / On-Site',
+    department: 'Networking Department',
+    type: 'Internship (3 to 6 Mo)',
+    summary:
+      'Train alongside our field engineers on Starlink deployments, Wi-Fi hotspot zones, MikroTik/UniFi routing, structured LAN cabling, and network maintenance.',
+    requirements: [
+      'Basic understanding of IP addressing, LAN/WLAN fundamentals, and network hardware',
+      'Willingness to participate in hands on field installations and hardware diagnostics',
+      'Studying or recently trained in Networking, Telecoms, or IT Systems Administration',
     ],
   },
 ];
 
 export function CareersPage({ onOpenContact, onNavigateTeam }: CareersPageProps) {
-  const [showAllJobs, setShowAllJobs] = useState(false);
   const [selectedOpening, setSelectedOpening] = useState<CareerOpening | null>(null);
-
-  const visibleJobs = showAllJobs ? CAREER_OPENINGS : CAREER_OPENINGS.slice(0, 4);
 
   useEffect(() => {
     if (!selectedOpening) return;
@@ -215,7 +156,7 @@ export function CareersPage({ onOpenContact, onNavigateTeam }: CareersPageProps)
                   onClick={scrollToOpenings}
                   className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white rounded-full bg-gradient-to-r from-[#002BFF] to-[#0055FF] hover:from-[#001ACC] hover:to-[#003CE6] shadow-md shadow-[#002BFF]/25 transition-all duration-150 active:scale-[0.98] whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF]"
                 >
-                  <span>Browse Open Positions</span>
+                  <span>Browse Open Internships</span>
                   <ArrowRight className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
                 </button>
 
@@ -353,31 +294,36 @@ export function CareersPage({ onOpenContact, onNavigateTeam }: CareersPageProps)
                       </h2>
                     </div>
                     <p className="text-xs sm:text-sm text-slate-600">
-                      Find your next opportunity at SAMITECH.
+                      Currently accepting applications for Software and Networking department internships.
                     </p>
                   </div>
 
-                  {/* Clean Bordered Job Rows */}
-                  <div className="space-y-2.5">
-                    {visibleJobs.map((job) => (
+                  {/* Clean Bordered Internship Rows */}
+                  <div className="space-y-3">
+                    {CAREER_OPENINGS.map((job) => (
                       <button
                         key={job.id}
                         type="button"
                         onClick={() => setSelectedOpening(job)}
-                        className="group w-full px-3.5 py-3 rounded-xl bg-white hover:bg-[#F2F6FF] border border-slate-200/90 hover:border-[#0044FF]/40 flex items-center justify-between gap-3 text-left transition-all duration-150 cursor-pointer"
+                        className="group w-full px-3.5 py-3.5 rounded-xl bg-white hover:bg-[#F2F6FF] border border-slate-200/90 hover:border-[#0044FF]/40 flex items-center justify-between gap-3 text-left transition-all duration-150 cursor-pointer"
                       >
                         <div className="flex items-center gap-3 min-w-0">
                           <div className="flex items-center justify-center shrink-0">
                             <SolidBriefcaseIcon />
                           </div>
-                          <span className="text-xs sm:text-sm font-bold text-[#07133B] group-hover:text-[#002BFF] transition-colors truncate">
-                            {job.title}
-                          </span>
+                          <div className="min-w-0">
+                            <div className="text-xs sm:text-sm font-bold text-[#07133B] group-hover:text-[#002BFF] transition-colors truncate">
+                              {job.title}
+                            </div>
+                            <div className="text-[11px] font-medium text-slate-500 truncate">
+                              {job.department} · {job.type}
+                            </div>
+                          </div>
                         </div>
 
                         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-                          <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-medium text-slate-500">
-                            <MapPin className="w-3.5 h-3.5 text-[#3B82F6]" strokeWidth={1.85} aria-hidden="true" />
+                          <span className="hidden sm:inline-flex items-center gap-1 text-xs font-medium text-slate-500">
+                            <MapPin className="w-3.5 h-3.5 text-[#3B82F6] shrink-0" strokeWidth={1.85} aria-hidden="true" />
                             <span>{job.location}</span>
                           </span>
                           <ChevronRight
@@ -391,18 +337,17 @@ export function CareersPage({ onOpenContact, onNavigateTeam }: CareersPageProps)
                   </div>
                 </div>
 
-                <div className="pt-2 border-t border-slate-100 text-center">
+                <div className="pt-3 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+                  <span className="text-xs text-slate-500">
+                    No full-time positions are open right now. Select a department internship above to apply.
+                  </span>
                   <button
                     type="button"
-                    onClick={() => setShowAllJobs((prev) => !prev)}
-                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#002BFF] hover:text-[#DC0914] transition-colors cursor-pointer"
+                    onClick={() => onOpenContact('Internships & Training')}
+                    className="inline-flex items-center gap-1 text-xs font-bold text-[#002BFF] hover:text-[#DC0914] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
                   >
-                    <span>
-                      {showAllJobs
-                        ? 'Show Featured Roles Only'
-                        : `View All Jobs (${CAREER_OPENINGS.length})`}
-                    </span>
-                    <ArrowRight className="w-4 h-4" strokeWidth={1.85} aria-hidden="true" />
+                    <span>Apply Now</span>
+                    <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.85} aria-hidden="true" />
                   </button>
                 </div>
               </div>
@@ -491,7 +436,7 @@ export function CareersPage({ onOpenContact, onNavigateTeam }: CareersPageProps)
                     }}
                     className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-[#001AFF] to-[#0044FF] hover:from-[#0000CC] hover:to-[#002BFF] transition-all cursor-pointer"
                   >
-                    <span>Apply for This Role</span>
+                    <span>Apply for Internship</span>
                     <ArrowRight className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
                   </button>
                 </div>

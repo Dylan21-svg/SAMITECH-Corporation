@@ -62,8 +62,8 @@ export function CloudNetworkingLayout({
                 className="font-extrabold tracking-tight leading-[1.04] text-balance text-white"
                 style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.7rem)' }}
               >
-                Cloud Infrastructure &amp;{' '}
-                <span className="text-[#38BDF8]">Resilient Networks</span>
+                Starlink, Wi-Fi Zones &amp;{' '}
+                <span className="text-[#38BDF8]">Network Services</span>
               </h1>
 
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
@@ -71,13 +71,13 @@ export function CloudNetworkingLayout({
               </p>
 
               {/* Inline Dark Spec Bar */}
-              <div className="grid grid-cols-3 gap-4 pt-2 border-t border-white/12 max-w-xl">
+              <div className="grid grid-cols-3 gap-2.5 sm:gap-4 pt-2 border-t border-white/12 max-w-xl">
                 {service.metrics.map((metric) => (
                   <div key={metric.label}>
-                    <div className="font-mono text-xl sm:text-2xl font-extrabold text-[#38BDF8] tabular-nums">
+                    <div className="font-mono text-lg sm:text-2xl font-extrabold text-[#38BDF8] tabular-nums">
                       {metric.value}
                     </div>
-                    <div className="text-xs text-slate-300 mt-0.5">{metric.label}</div>
+                    <div className="text-[11px] sm:text-xs text-slate-300 mt-0.5 leading-tight">{metric.label}</div>
                   </div>
                 ))}
               </div>
@@ -88,7 +88,7 @@ export function CloudNetworkingLayout({
                   onClick={() => onOpenContact(service.contactCategory)}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#0EA5E9] hover:bg-[#0284C7] text-white text-sm font-bold shadow-lg shadow-[#0EA5E9]/25 transition-colors whitespace-nowrap cursor-pointer"
                 >
-                  <span>Architect Your Cloud</span>
+                  <span>Book Network Survey</span>
                   <ArrowRight className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
                 </button>
                 <button
@@ -117,8 +117,8 @@ export function CloudNetworkingLayout({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#040B29]/90 via-transparent to-transparent" />
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-[#93C5FD] font-mono">
-                    <span>Multi Region Fabric</span>
-                    <span>Dual WAN Failover</span>
+                    <span>Starlink &amp; Fiber Fabric</span>
+                    <span>Wi-Fi Zone Ready</span>
                   </div>
                 </div>
 
@@ -126,18 +126,18 @@ export function CloudNetworkingLayout({
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="rounded-xl bg-white/5 border border-white/10 p-3 space-y-1">
                     <Cloud className="w-4 h-4 text-[#38BDF8] mx-auto" aria-hidden="true" />
-                    <div className="text-[11px] font-bold text-white">AWS / GCP</div>
-                    <div className="text-[10px] text-slate-400">Auto Scale</div>
+                    <div className="text-[11px] font-bold text-white">Starlink</div>
+                    <div className="text-[10px] text-slate-400">Install &amp; Extend</div>
                   </div>
                   <div className="rounded-xl bg-[#0EA5E9]/15 border border-[#38BDF8]/40 p-3 space-y-1">
                     <Network className="w-4 h-4 text-[#38BDF8] mx-auto" aria-hidden="true" />
-                    <div className="text-[11px] font-bold text-white">OpenVPN</div>
-                    <div className="text-[10px] text-[#93C5FD]">Encrypted Mesh</div>
+                    <div className="text-[11px] font-bold text-white">Wi-Fi Zones</div>
+                    <div className="text-[10px] text-[#93C5FD]">Hotspot Mesh</div>
                   </div>
                   <div className="rounded-xl bg-white/5 border border-white/10 p-3 space-y-1">
                     <Server className="w-4 h-4 text-[#38BDF8] mx-auto" aria-hidden="true" />
-                    <div className="text-[11px] font-bold text-white">LAN / WAN</div>
-                    <div className="text-[10px] text-slate-400">Buea · Douala</div>
+                    <div className="text-[11px] font-bold text-white">LAN Setup</div>
+                    <div className="text-[10px] text-slate-400">Cameroon · Nationwide</div>
                   </div>
                 </div>
               </div>
@@ -146,18 +146,18 @@ export function CloudNetworkingLayout({
         </div>
       </section>
 
-      {/* EDITORIAL NUMBERED SPECIFICATION TABLE (No Cloned Boxes!) */}
+      {/* EDITORIAL NUMBERED SPECIFICATION TABLE */}
       <section className="py-14 sm:py-18 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 border-b border-slate-200">
             <div className="space-y-1.5">
-              <div className="text-xs font-mono font-bold text-[#0284C7]">Infrastructure Specifications</div>
+              <div className="text-xs font-mono font-bold text-[#0284C7]">Network Specifications</div>
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#07133B]">
-                Core Cloud &amp; Networking Architecture
+                Starlink, Wi-Fi Zones &amp; LAN Capabilities
               </h2>
             </div>
             <p className="text-sm text-slate-600 max-w-md">
-              Built for uninterrupted availability across multi branch offices and cloud clusters.
+              Built for uninterrupted high-speed connectivity across homes, campuses, hotels, and multi-branch offices.
             </p>
           </div>
 
@@ -168,7 +168,7 @@ export function CloudNetworkingLayout({
                 className="py-6 sm:py-7 grid grid-cols-1 md:grid-cols-12 gap-4 items-center"
               >
                 <div className="md:col-span-1 font-mono text-sm font-extrabold text-[#0284C7] tabular-nums">
-                  0{index + 1}
+                  {String(index + 1).padStart(2, '0')}
                 </div>
                 <div className="md:col-span-4">
                   <h3 className="text-base sm:text-lg font-extrabold text-[#07133B]">
@@ -257,10 +257,10 @@ export function CloudNetworkingLayout({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-1.5 max-w-xl">
             <h2 className="text-2xl sm:text-3xl font-extrabold">
-              Eliminate Single Points of Failure
+              Eliminate Dead Zones &amp; Downtime
             </h2>
             <p className="text-sm text-sky-100">
-              Audit your office network, OpenVPN tunnels, and cloud clusters with SAMITECH&apos;s infrastructure engineers.
+              Schedule Starlink installation, Wi-Fi zone deployment, or structured LAN setup with SAMITECH&apos;s field network engineers.
             </p>
           </div>
           <button
@@ -305,8 +305,8 @@ export function CybersecurityLayout({
                 className="font-extrabold tracking-tight leading-[1.04] text-balance"
                 style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.7rem)' }}
               >
-                Proactive Defense &amp;{' '}
-                <span className="text-[#FF4754]">Penetration Testing</span>
+                CCTV Surveillance &amp;{' '}
+                <span className="text-[#FF4754]">Cybersecurity Defense</span>
               </h1>
 
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
@@ -354,13 +354,13 @@ export function CybersecurityLayout({
                     <span>Attack Surface Scope</span>
                     <span className="text-[#FF5C66] font-bold">OWASP · Zero Trust</span>
                   </div>
-                  <div className="grid grid-cols-3 gap-2.5">
+                  <div className="grid grid-cols-3 gap-1.5 sm:gap-2.5">
                     {service.metrics.map((m) => (
                       <div
                         key={m.label}
-                        className="rounded-lg bg-white/5 border border-white/10 p-2.5 text-center"
+                        className="rounded-lg bg-white/5 border border-white/10 p-2 sm:p-2.5 text-center"
                       >
-                        <div className="font-mono text-base sm:text-lg font-extrabold text-white tabular-nums">
+                        <div className="font-mono text-sm sm:text-lg font-extrabold text-white tabular-nums">
                           {m.value}
                         </div>
                         <div className="text-[10px] text-slate-300 leading-tight mt-0.5">
@@ -380,9 +380,9 @@ export function CybersecurityLayout({
       <section className="py-14 sm:py-18 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl space-y-2 mb-10">
-            <div className="text-xs font-mono font-bold text-[#DC0914]">Offensive &amp; Defensive Security</div>
+            <div className="text-xs font-mono font-bold text-[#DC0914]">Physical &amp; Digital Security</div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#07133B]">
-              Find Vulnerabilities Before Adversaries Do
+              CCTV Camera Systems &amp; Cyber Hardening
             </h2>
           </div>
 
@@ -467,7 +467,7 @@ export function CybersecurityLayout({
               Harden Your Attack Surface Today
             </h2>
             <p className="text-sm text-red-100">
-              Request a scoped penetration test or vulnerability review with developer ready remediation guidance.
+              Request CCTV installation, ongoing camera maintenance, or a security audit for your facilities and networks.
             </p>
           </div>
           <button
@@ -486,30 +486,22 @@ export function CybersecurityLayout({
 }
 
 /* ============================================================================
-   08. IT SUPPORT, MAINTENANCE & TRACKING, 24/7 Operations & Recovery Matrix
+   03B. MAINTENANCE (IT SUPPORT), Computer Maintenance & Computer Lab Setup
    ============================================================================ */
-export function TrackingSupportLayout({
+export function MaintenanceSupportLayout({
   service,
   relatedStudy,
   onOpenContact,
   onOpenCaseStudy,
 }: ServiceLayoutProps) {
-  const tiers = [
-    { icon: Cpu, name: 'IoT & Tracker Devices', fee: '25,000 XAF', note: 'Authorized telemetry recovery' },
-    { icon: Smartphone, name: 'Smartphones & Tablets', fee: '35,000 XAF', note: 'Receipt or IMEI box verified' },
-    { icon: Laptop, name: 'Laptops & Workstations', fee: '45,000 XAF', note: 'Corporate & personal devices' },
-    { icon: Car, name: 'Vehicles & Fleet Assets', fee: '85,000 XAF', note: 'Includes law enforcement liaison' },
-  ];
-
   return (
     <div className="bg-white text-[#07133B] overflow-x-clip">
-      {/* 24/7 OPERATIONS DESK SPLIT HERO */}
       <section className="bg-gradient-to-br from-[#F0FDFB] via-white to-[#EEF5FF] pt-10 pb-14 sm:pt-14 sm:pb-18 border-b border-teal-200/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             <Reveal immediate direction="left" wrapperClassName="lg:col-span-7" className="space-y-5">
-              <div className="inline-flex items-center gap-2 text-xs font-bold text-[#0F766E]">
-                <Wrench className="w-4 h-4" aria-hidden="true" />
+              <div className="inline-flex flex-wrap items-center gap-2 text-xs font-bold text-[#0F766E]">
+                <Wrench className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>{service.number} · {service.groupLabel} · Hotline +237 674 137 259</span>
               </div>
 
@@ -517,8 +509,8 @@ export function TrackingSupportLayout({
                 className="font-extrabold tracking-tight leading-[1.05] text-balance text-[#07133B]"
                 style={{ fontSize: 'clamp(2.1rem, 4.3vw, 3.5rem)' }}
               >
-                24/7 IT Maintenance &amp;{' '}
-                <span className="text-[#0F766E]">Authorized Tracking</span>
+                Computer Maintenance &amp;{' '}
+                <span className="text-[#0F766E]">Computer Lab Setup</span>
               </h1>
 
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
@@ -531,7 +523,7 @@ export function TrackingSupportLayout({
                   onClick={() => onOpenContact(service.contactCategory)}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0F766E] hover:bg-[#115E59] text-white text-sm font-bold shadow-md transition-colors whitespace-nowrap cursor-pointer"
                 >
-                  <span>Open Support or Tracking File</span>
+                  <span>Book Maintenance or Lab Setup</span>
                   <ArrowRight className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
                 </button>
                 <a
@@ -559,17 +551,197 @@ export function TrackingSupportLayout({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#07133B]/95 via-[#07133B]/25 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <div className="text-xs font-mono text-teal-300">Buea Operations Center</div>
+                    <div className="text-xs font-mono text-teal-300">Hardware &amp; Lab Engineering</div>
+                    <div className="text-base font-extrabold">Workstation Care &amp; Turnkey Labs</div>
+                  </div>
+                </div>
+                <div className="p-3 sm:p-4 grid grid-cols-3 gap-1.5 sm:gap-2 text-center bg-[#07133B] text-white">
+                  {service.metrics.map((m) => (
+                    <div key={m.label} className="rounded-lg bg-white/6 p-2 sm:p-2.5">
+                      <div className="font-mono text-xs sm:text-base font-extrabold text-teal-300 tabular-nums">
+                        {m.value}
+                      </div>
+                      <div className="text-[10px] text-slate-300 mt-0.5 leading-tight">{m.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 sm:py-18 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="max-w-2xl space-y-1.5">
+            <div className="text-xs font-bold text-[#0F766E]">IT Support Scope</div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#07133B]">
+              Maintenance &amp; Lab Deployment Capabilities
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {service.capabilities.map((cap, index) => (
+              <div
+                key={cap.title}
+                className="rounded-2xl bg-[#F8FAFF] border border-slate-200 hover:border-teal-500/45 p-6 sm:p-7 space-y-3 transition-colors"
+              >
+                <div className="font-mono text-xs font-bold text-[#0F766E]">0{index + 1}.</div>
+                <h3 className="text-lg font-extrabold text-[#07133B]">{cap.title}</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{cap.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 sm:py-16 bg-[#F0FDFB] border-y border-teal-200/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="max-w-2xl space-y-1.5">
+            <div className="text-xs font-bold text-[#0F766E]">Workflow</div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#07133B]">
+              How We Service Fleets &amp; Build Computer Labs
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {service.processSteps.map((step, index) => (
+              <div
+                key={step.step}
+                className="rounded-2xl bg-white border border-teal-200/80 p-5 space-y-2.5"
+              >
+                <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#0F766E]">
+                  <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
+                  <span>Step 0{index + 1}</span>
+                </div>
+                <h3 className="text-base font-extrabold text-[#07133B]">{step.title}</h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{step.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <ServiceProofAndFaqBand
+        service={service}
+        relatedStudy={relatedStudy}
+        accentColor="#0F766E"
+        surfaceClass="bg-white"
+        onOpenCaseStudy={onOpenCaseStudy}
+      />
+
+      <section
+        id="service-dark-cta"
+        className="bg-gradient-to-r from-[#07133B] via-[#0B3B49] to-[#0F766E] text-white py-12 sm:py-16"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="space-y-1.5 max-w-xl">
+            <h2 className="text-2xl sm:text-3xl font-extrabold">
+              Need Workstation Maintenance or a New Computer Lab?
+            </h2>
+            <p className="text-sm text-teal-100">
+              Schedule diagnostics, upgrades, or turnkey school and office lab installation with our support team.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => onOpenContact(service.contactCategory)}
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white hover:bg-teal-50 text-[#07133B] text-sm font-extrabold shadow-lg transition-colors whitespace-nowrap cursor-pointer"
+          >
+            <Wrench className="w-4 h-4 text-[#0F766E]" aria-hidden="true" />
+            <span>Request IT Support</span>
+          </button>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+/* ============================================================================
+   06. TRACKING, Authorized Equipment & Vehicle Recovery Matrix
+   ============================================================================ */
+export function TrackingSupportLayout({
+  service,
+  relatedStudy,
+  onOpenContact,
+  onOpenCaseStudy,
+}: ServiceLayoutProps) {
+  const tiers = [
+    { icon: Cpu, name: 'IoT & Tracker Devices', note: 'Authorized telemetry recovery' },
+    { icon: Smartphone, name: 'Smartphones & Tablets', note: 'Receipt or IMEI box verified' },
+    { icon: Laptop, name: 'Laptops & Workstations', note: 'Corporate & personal devices' },
+    { icon: Car, name: 'Vehicles & Fleet Assets', note: 'Includes law enforcement liaison' },
+  ];
+
+  return (
+    <div className="bg-white text-[#07133B] overflow-x-clip">
+      {/* 24/7 OPERATIONS DESK SPLIT HERO */}
+      <section className="bg-gradient-to-br from-[#F0FDFB] via-white to-[#EEF5FF] pt-10 pb-14 sm:pt-14 sm:pb-18 border-b border-teal-200/70">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            <Reveal immediate direction="left" wrapperClassName="lg:col-span-7" className="space-y-5">
+              <div className="inline-flex flex-wrap items-center gap-2 text-xs font-bold text-[#0F766E]">
+                <ShieldCheck className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <span>{service.number} · {service.groupLabel} · Hotline +237 674 137 259</span>
+              </div>
+
+              <h1
+                className="font-extrabold tracking-tight leading-[1.05] text-balance text-[#07133B]"
+                style={{ fontSize: 'clamp(2.1rem, 4.3vw, 3.5rem)' }}
+              >
+                Authorized Equipment{' '}
+                <span className="text-[#0F766E]">Tracking</span>
+              </h1>
+
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
+                {service.heroDescription}
+              </p>
+
+              <div className="pt-1 flex flex-wrap items-center gap-3.5">
+                <button
+                  type="button"
+                  onClick={() => onOpenContact(service.contactCategory)}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0F766E] hover:bg-[#115E59] text-white text-sm font-bold shadow-md transition-colors whitespace-nowrap cursor-pointer"
+                >
+                  <span>Open Tracking Case</span>
+                  <ArrowRight className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
+                </button>
+                <a
+                  href="tel:+237674137259"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-teal-50 border border-teal-300 text-[#07133B] text-sm font-bold tabular-nums transition-colors whitespace-nowrap"
+                >
+                  <PhoneCall className="w-4 h-4 text-[#0F766E]" aria-hidden="true" />
+                  <span>+237 674 137 259</span>
+                </a>
+              </div>
+            </Reveal>
+
+            <Reveal immediate direction="right" delay={0.06} wrapperClassName="lg:col-span-5">
+              <div className="rounded-2xl overflow-hidden bg-[#07133B] border border-teal-500/30 shadow-xl">
+                <div className="relative aspect-[16/10]">
+                  <ResilientImage
+                    src={service.image}
+                    alt={service.imageAlt}
+                    fallbackTitle={service.title}
+                    width={service.imageWidth}
+                    height={service.imageHeight}
+                    priority
+                    darkSkeleton
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#07133B]/95 via-[#07133B]/25 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <div className="text-xs font-mono text-teal-300">Cameroon Operations Center</div>
                     <div className="text-base font-extrabold">Round the Clock System Watch &amp; Recovery</div>
                   </div>
                 </div>
-                <div className="p-4 grid grid-cols-3 gap-2 text-center bg-[#07133B] text-white">
+                <div className="p-3 sm:p-4 grid grid-cols-3 gap-1.5 sm:gap-2 text-center bg-[#07133B] text-white">
                   {service.metrics.map((m) => (
-                    <div key={m.label} className="rounded-lg bg-white/6 p-2.5">
-                      <div className="font-mono text-sm sm:text-base font-extrabold text-teal-300 tabular-nums">
+                    <div key={m.label} className="rounded-lg bg-white/6 p-2 sm:p-2.5">
+                      <div className="font-mono text-xs sm:text-base font-extrabold text-teal-300 tabular-nums">
                         {m.value}
                       </div>
-                      <div className="text-[10px] text-slate-300 mt-0.5">{m.label}</div>
+                      <div className="text-[10px] text-slate-300 mt-0.5 leading-tight">{m.label}</div>
                     </div>
                   ))}
                 </div>
@@ -584,9 +756,9 @@ export function TrackingSupportLayout({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="space-y-1.5">
-              <div className="text-xs font-bold text-[#0F766E]">MTN Mobile Money Transparent Fees</div>
+              <div className="text-xs font-bold text-[#0F766E]">Device &amp; Fleet Coverage</div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#07133B]">
-                Authorized Equipment Tracking Tiers
+                Authorized Equipment Tracking Categories
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-slate-600 max-w-md">
@@ -607,9 +779,6 @@ export function TrackingSupportLayout({
                       <Icon className="w-5 h-5" aria-hidden="true" />
                     </div>
                     <h3 className="text-base font-extrabold text-[#07133B]">{tier.name}</h3>
-                    <div className="font-mono text-2xl font-extrabold text-[#0F766E] tabular-nums">
-                      {tier.fee}
-                    </div>
                     <p className="text-xs text-slate-600">{tier.note}</p>
                   </div>
                   <button
@@ -674,7 +843,7 @@ export function TrackingSupportLayout({
               Need Immediate Maintenance or Device Recovery?
             </h2>
             <p className="text-sm text-teal-100">
-              Reach our Buea operations team 24/7 for server SLA support or authorized equipment tracking.
+              Reach our Cameroon operations team 24/7 for server SLA support or authorized equipment tracking.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">

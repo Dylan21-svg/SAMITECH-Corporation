@@ -3,7 +3,6 @@ import fiberCoreImg from '../assets/images/samitech_fiber_core_1794695612961.web
 import softwareFloorImg from '../assets/images/samitech_software_floor_1794695612730.webp';
 import hardwareBenchImg from '../assets/images/samitech_hardware_bench_1794695613315.webp';
 import nocCenterImg from '../assets/images/samitech_noc_center_1794695614349.webp';
-import campusArchImg from '../assets/images/samitech_campus_architecture_1794695614655.webp';
 import servicesCtaHqImg from '../assets/images/services_cta_hq.webp';
 import careersMountainGrowthImg from '../assets/images/careers_mountain_growth.webp';
 
@@ -37,7 +36,7 @@ export const CAREERS_SHOWCASE_MEDIA = {
   },
 };
 
-export type ServiceGroup = 'product-software' | 'ai-design' | 'infrastructure-security';
+export type ServiceGroup = 'software-teams' | 'networks-support' | 'security-tracking';
 
 export interface ServiceMetric {
   value: string;
@@ -67,6 +66,7 @@ export interface ServiceDetail {
   groupLabel: string;
   title: string;
   shortDesc: string;
+  offerings: string[];
   tagline: string;
   heroTitle: string;
   heroAccent: string;
@@ -92,329 +92,354 @@ export interface ServiceDetail {
   relatedCaseStudyId: string;
 }
 
-export const CORE_SERVICES_GRID_SLUGS = [
-  'custom-software',
-  'mobile-app-development',
-  'networking-solutions',
-  'cybersecurity',
-  'ai-development',
-  'product-scope',
-  'mvp-builder',
-  'tracking-support',
-] as const;
-
-export const STUDIO_TRACK_SLUGS = [
-  'product-scope',
-  'mvp-builder',
-  'ux-ui',
-  'dedicated-teams',
-] as const;
-
 export const SERVICE_GROUPS: { id: 'all' | ServiceGroup; label: string }[] = [
   { id: 'all', label: 'All Services' },
-  { id: 'product-software', label: 'Web, Mobile & Studio' },
-  { id: 'ai-design', label: 'AI & UX/UI' },
-  { id: 'infrastructure-security', label: 'Cloud, Security & Support' },
+  { id: 'software-teams', label: 'Software & Dedicated Teams' },
+  { id: 'networks-support', label: 'Networks & IT Maintenance' },
+  { id: 'security-tracking', label: 'Cybersecurity & Tracking' },
 ];
 
 export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
   {
-    slug: 'custom-software',
+    slug: 'software-services',
     number: '01',
-    group: 'product-software',
-    groupLabel: 'Web & Enterprise Platforms',
-    title: 'Web Development',
-    shortDesc: 'Modern, scalable and high performance websites, SaaS portals, and custom web applications.',
-    tagline: 'Enterprise React, TypeScript, Vue, and Node.js systems engineered for high speed and 99.9% uptime.',
-    heroTitle: 'High Performance Platforms via',
-    heroAccent: 'Web & Custom Software',
+    group: 'software-teams',
+    groupLabel: 'Design, Web & App Engineering',
+    title: 'Software Services',
+    shortDesc: 'UI/UX design, web and mobile app development, graphics design, and custom digital platforms.',
+    offerings: [
+      'UI/UX Design & Prototyping',
+      'Web & Mobile App Development',
+      'Graphics Design & Brand Identity',
+      'Custom Software, APIs & AI Integration',
+    ],
+    tagline: 'End to end product craft from brand graphics and UI/UX wireframes to scalable web and mobile systems.',
+    heroTitle: 'End to End Digital Craft With',
+    heroAccent: 'Software Services',
     heroDescription:
-      'From responsive corporate platforms to multi branch ERP, CRM, and fintech web portals, SAMITECH applies lean engineering frameworks and clean modular architectures built to scale smoothly across Africa and global markets.',
-    timelineLabel: '4 to 12 Weeks Per Phase',
-    engagementModel: 'Full Stack Build · Modernization',
-    contactCategory: 'Software Development',
+      'From intuitive UI/UX design and crisp graphics design to full stack web platforms and Android/iOS mobile applications, SAMITECH designs and engineers dependable digital products built for speed, usability, and scale.',
+    timelineLabel: '2 to 12 Weeks Per Release',
+    engagementModel: 'UI/UX · Web & App Dev · Graphics',
+    contactCategory: 'Software Services',
     image: softwareFloorImg,
-    imageAlt: 'SAMITECH software engineers building modern scalable web platforms',
+    imageAlt: 'SAMITECH software engineers and designers building UI/UX, web, and mobile applications',
     imageWidth: 720,
     imageHeight: 964,
     accentColor: '#002BFF',
     metrics: [
-      { value: '100+', label: 'Web Platforms Delivered' },
+      { value: '100+', label: 'Digital Products Shipped' },
       { value: '99.9%', label: 'Target Uptime SLA' },
-      { value: '3x', label: 'Faster Workflow Processing' },
+      { value: 'WCAG AA', label: 'UI/UX Accessibility Standard' },
     ],
     capabilities: [
       {
-        title: 'Custom Web Applications (React, Vue, Angular)',
+        title: 'UI/UX Design & Interactive Prototyping',
         description:
-          'Responsive single page apps, client portals, and interactive dashboards engineered for instant load speed.',
+          'User journey mapping, clickable Figma prototypes, and responsive design systems crafted for clarity across desktop and mobile.',
       },
       {
-        title: 'Bespoke ERP, CRM & Billing Suites',
+        title: 'Web & Mobile App Development',
         description:
-          'Unify inventory, payroll, invoicing, and third party Mobile Money/card checkouts into one platform.',
+          'Scalable React, TypeScript, Next.js, Node.js, and Flutter/native apps with MTN & Orange Mobile Money integrations.',
       },
       {
-        title: 'Scalable Backend APIs & Microservices',
+        title: 'Graphics Design & Visual Branding',
         description:
-          'Documented Node.js and Python backends with role based permissions, audit logs, and PostgreSQL indexing.',
+          'Logos, marketing collateral, social media kits, pitch decks, and cohesive brand identity systems that stand out.',
       },
       {
-        title: 'Legacy System Upgrades & Maintenance',
+        title: 'Custom Platforms, APIs & AI Enablement',
         description:
-          'Eliminate slow spreadsheets and aging codebases with clean migrations and zero operational downtime.',
+          'Bespoke ERP/CRM dashboards, automated workflows, and private AI assistants tailored around your business rules.',
       },
     ],
     processSteps: [
       {
         step: '01.',
-        title: 'Architecture & Schema Blueprint',
-        detail: 'Define normalized databases, user roles, and clean REST/GraphQL API specs.',
+        title: 'Discovery & Visual Direction',
+        detail: 'Align on user flows, brand identity, UI/UX wireframes, and technical requirements.',
       },
       {
         step: '02.',
-        title: 'Agile Full Stack Sprints',
-        detail: 'Ship tested UI and backend features in weekly live staging environments.',
+        title: 'Design Systems & Graphics',
+        detail: 'Craft high-fidelity Figma screens, visual assets, and developer-ready tokens.',
       },
       {
         step: '03.',
-        title: 'Automated QA & Security Verification',
-        detail: 'Validate cross device responsiveness, load handling, and OWASP security.',
+        title: 'Web & App Engineering Sprints',
+        detail: 'Build frontend interfaces, mobile apps, and secure backend APIs in weekly live builds.',
       },
       {
         step: '04.',
-        title: 'Cloud Launch & Continuous Support',
-        detail: 'Zero downtime deployment with automated backups and monitoring alerts.',
+        title: 'QA, Launch & Iteration',
+        detail: 'Cross-device testing, store/cloud deployment, and continuous post-launch support.',
       },
     ],
     deliverables: [
-      'Production Grade Responsive Web Application & Source Code',
-      'REST / GraphQL Backend APIs & PostgreSQL Database',
-      'Role Based Access Control (RBAC) & Admin Portal',
-      'Automated CI/CD Deployment Pipeline',
-      'Documentation & Technical Team Handover',
+      'High-Fidelity UI/UX Prototypes & Design Systems',
+      'Production Web & Android/iOS Mobile Applications',
+      'Brand Graphics, Logos & Marketing Design Kits',
+      'Backend APIs, Databases & Cloud Deployment',
+      'Documentation & Technical Handover',
     ],
-    techStack: ['React', 'TypeScript', 'Next.js', 'Vue', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'Docker'],
+    techStack: ['Figma', 'React', 'TypeScript', 'Flutter', 'Node.js', 'PostgreSQL', 'Adobe Creative Cloud', 'Tailwind CSS'],
     idealFor: [
       {
-        audience: 'Businesses Scaling Beyond Templates & Spreadsheets',
-        outcome: 'Operate on tailored web software built specifically around your billing and branch workflows.',
+        audience: 'Businesses Launching Digital Products & Brands',
+        outcome: 'Get unified UI/UX, brand graphics, and web/mobile engineering from one accountable studio.',
       },
       {
-        audience: 'Startups Launching Web SaaS Products',
-        outcome: 'Ship maintainable, fast TypeScript applications ready for high customer concurrency.',
+        audience: 'Organizations Modernizing Workflows',
+        outcome: 'Replace manual spreadsheets and fragmented tools with tailored web and mobile software.',
       },
     ],
     faqs: [
       {
-        question: 'Which web stacks does SAMITECH build with most often?',
+        question: 'Can we hire SAMITECH for UI/UX or graphics design alone?',
         answer:
-          'We specialize in React, TypeScript, Next.js, Vue, Angular, Node.js, Python, and PostgreSQL deployed cleanly across AWS, Azure, GCP, or Vercel.',
+          'Yes. You can engage us specifically for UI/UX product design, brand graphics design, or a complete package combining design with web and mobile app development.',
       },
       {
-        question: 'Can you integrate MTN Mobile Money, Orange Money, or Stripe?',
+        question: 'Do you integrate MTN Mobile Money, Orange Money, or international cards?',
         answer:
-          'Yes. We routinely implement local Mobile Money APIs alongside international card and bank payment providers.',
+          'Yes. We routinely build local Mobile Money APIs alongside international card and bank payment flows into web and mobile apps.',
       },
     ],
     relatedCaseStudyId: 'erp-inventory-cloud',
   },
   {
-    slug: 'mobile-app-development',
+    slug: 'network-services',
     number: '02',
-    group: 'product-software',
-    groupLabel: 'Android & iOS Apps',
-    title: 'Mobile App Development',
-    shortDesc: 'Powerful and user friendly mobile apps engineered for Android & iOS.',
-    tagline: 'Cross platform Flutter and native mobile experiences built for speed, offline resilience, and retention.',
-    heroTitle: 'Seamless Experiences With',
-    heroAccent: 'Mobile App Development',
+    group: 'networks-support',
+    groupLabel: 'Starlink, Wi-Fi Zones & LAN',
+    title: 'Network Services',
+    shortDesc:
+      'Starlink installation & configuration, outdoor Wi-Fi & AP deployment, PtP/PtMP wireless networks, Wi-Fi hotspots, MikroTik configuration, and network optimization.',
+    offerings: [
+      'Starlink Installation & Configuration',
+      'Outdoor Wi-Fi & Access Point Deployment',
+      'Network Coverage Expansion',
+      'Point-to-Point & Point-to-Multipoint Wireless Networks',
+      'Wi-Fi Hotspot Infrastructure',
+      'Community & Business Internet Solutions',
+      'Network Design, Configuration & Optimization',
+      'MikroTik Network Configuration',
+    ],
+    tagline: 'High-speed Starlink deployments, wide-coverage Wi-Fi zones, and structured office/campus LAN cabling.',
+    heroTitle: 'Reliable Connectivity Through',
+    heroAccent: 'Network Services',
     heroDescription:
-      'Put your service directly in customers’ hands across Android and iOS. SAMITECH designs and engineers fast, battery friendly mobile apps with offline data sync, push alerts, biometric security, and Mobile Money checkout flows tailored to African and international users.',
-    timelineLabel: '6 to 12 Weeks to Store Launch',
-    engagementModel: 'iOS · Android · Flutter',
-    contactCategory: 'Mobile App Development',
-    image: softwareFloorImg,
-    imageAlt: 'SAMITECH mobile application engineers testing Android and iOS interfaces',
-    imageWidth: 720,
-    imageHeight: 964,
-    accentColor: '#002BFF',
-    metrics: [
-      { value: '2 Platforms', label: 'Single Unified Codebase' },
-      { value: '60 fps', label: 'Fluid Native Interaction' },
-      { value: 'Offline+', label: 'Sync Ready Architecture' },
-    ],
-    capabilities: [
-      {
-        title: 'Cross Platform Flutter & React Native',
-        description:
-          'Ship simultaneously to Google Play and Apple App Store with shared business logic and native performance.',
-      },
-      {
-        title: 'Offline First Synchronization',
-        description:
-          'Keep field agents, riders, and customers productive even in low connectivity zones with background queue sync.',
-      },
-      {
-        title: 'Mobile Payments, Maps & Telemetry',
-        description:
-          'Integrate MTN/Orange Mobile Money prompts, live GPS tracking, QR scanning, and push notifications.',
-      },
-      {
-        title: 'App Store & Play Store Publishing',
-        description:
-          'Full compliance review, signing key management, crash analytics, and smooth phased releases.',
-      },
-    ],
-    processSteps: [
-      {
-        step: '01.',
-        title: 'Mobile Flow & Device Audit',
-        detail: 'Design thumb friendly screens and map offline edge cases early.',
-      },
-      {
-        step: '02.',
-        title: 'Interactive UI Prototyping',
-        detail: 'Validate navigation and onboarding speed on real Android and iOS devices.',
-      },
-      {
-        step: '03.',
-        title: 'App & API Integration Sprints',
-        detail: 'Connect secure mobile APIs, push messaging, and encrypted local storage.',
-      },
-      {
-        step: '04.',
-        title: 'QA & Store Deployment',
-        detail: 'Device matrix testing, store submission, and live crash monitoring.',
-      },
-    ],
-    deliverables: [
-      'Published Android (.aab) & iOS App Store Builds',
-      'Clean Flutter / React Native Source Repository',
-      'Offline Storage & Background API Sync Engine',
-      'Push Notification & Analytics Instrumentation',
-    ],
-    techStack: ['Flutter', 'React Native', 'Swift', 'Kotlin', 'TypeScript', 'Firebase FCM', 'REST / GraphQL'],
-    idealFor: [
-      {
-        audience: 'Delivery, Fintech & Field Operations',
-        outcome: 'Equip customers and field staff with reliable Android and iOS apps that work smoothly anywhere.',
-      },
-      {
-        audience: 'Consumer Startups Scaling Mobile Reach',
-        outcome: 'Reach both Android and iOS users faster from one maintainable engineering budget.',
-      },
-    ],
-    faqs: [
-      {
-        question: 'Do you build for both Android and iOS simultaneously?',
-        answer:
-          'Yes. Using Flutter and React Native, or native Swift/Kotlin when specialized hardware is required, we deliver polished releases for both platforms.',
-      },
-      {
-        question: 'Do you handle Google Play and Apple App Store submission?',
-        answer:
-          'Yes, including store metadata guidance, compliance checks, and automated build pipelines.',
-      },
-    ],
-    relatedCaseStudyId: 'authorized-tracking-system',
-  },
-  {
-    slug: 'networking-solutions',
-    number: '03',
-    group: 'infrastructure-security',
-    groupLabel: 'Cloud & Network Fabric',
-    title: 'Cloud Solutions & Deployment',
-    shortDesc: 'Secure, scalable and reliable cloud infrastructure, LAN/WAN networks, and OpenVPN setups.',
-    tagline: 'AWS, Azure, GCP cloud engineering paired with high availability LAN/WAN and multi site VPNs.',
-    heroTitle: 'Resilient Scale Powered by',
-    heroAccent: 'Cloud & Network Solutions',
-    heroDescription:
-      'Modern digital platforms depend on rock solid infrastructure underneath. SAMITECH architects cloud deployments across AWS, Azure, and GCP alongside structured LAN/WAN topologies, hardened OpenVPN tunnels, load balancing, and continuous uptime monitoring.',
-    timelineLabel: 'Rapid Rollout & 24/7 Watch',
-    engagementModel: 'Cloud DevOps · Networking',
-    contactCategory: 'Networking Solutions',
+      'From Starlink installation & configuration, outdoor Wi-Fi & access point deployment, and point-to-point/multipoint wireless links to Wi-Fi hotspot infrastructure, MikroTik configuration, and full network design & optimization, SAMITECH delivers fast, stable connectivity for communities, campuses, and businesses.',
+    timelineLabel: '1 to 7 Days Field Deployment',
+    engagementModel: 'Starlink · Wi-Fi Zones · MikroTik · LAN',
+    contactCategory: 'Network Services',
     image: fiberCoreImg,
-    imageAlt: 'High density enterprise fiber optic core switches and cloud infrastructure racks',
+    imageAlt: 'Enterprise network switching racks and structured cabling deployed by SAMITECH engineers',
     imageWidth: 720,
     imageHeight: 964,
     accentColor: '#0284C7',
     metrics: [
-      { value: '99.95%', label: 'Measured Link & Cloud Uptime' },
-      { value: '58% Less', label: 'Packet Latency Improvement' },
-      { value: '24/7', label: 'Infrastructure Telemetry' },
+      { value: '99.95%', label: 'Target Link Availability' },
+      { value: 'Multi-Site', label: 'Starlink Mesh & PtP Links' },
+      { value: '24/7', label: 'Network Health Monitoring' },
     ],
     capabilities: [
       {
-        title: 'AWS, Azure & GCP Cloud Deployment',
+        title: 'Starlink Installation & Configuration',
         description:
-          'Containerized hosting, autoscaling clusters, CDN caching, SSL automation, and database backups.',
+          'Obstruction-free roof or mast mounting, weatherproof cabling, bypass-mode router setup, and high-throughput configuration.',
       },
       {
-        title: 'Structured LAN / WAN & VLAN Fabrics',
+        title: 'Outdoor Wi-Fi & Access Point Deployment',
         description:
-          'High throughput office and campus routing separating corporate, guest, and critical server traffic.',
+          'Weather-rated outdoor access points and directional antennas engineered for yards, compounds, hotels, and open campuses.',
       },
       {
-        title: 'Hardened OpenVPN & Site to Site Tunnels',
+        title: 'Network Coverage Expansion',
         description:
-          'Connect offices across Buea, Douala, Yaoundé, and remote teams through encrypted private tunnels.',
+          'Eliminate dead zones across multi-story buildings, annexes, and large properties with seamless mesh and wired backhaul extensions.',
       },
       {
-        title: 'Multi ISP Load Balancing & CI/CD',
+        title: 'Point-to-Point & Point-to-Multipoint Wireless Networks',
         description:
-          'Dual WAN failover and automated zero downtime deployment pipelines for uninterrupted delivery.',
+          'Long-range line-of-sight wireless bridges linking headquarters, remote branches, and distributed sites reliably.',
+      },
+      {
+        title: 'Wi-Fi Hotspot Infrastructure',
+        description:
+          'Commercial hotspot zones featuring captive portals, voucher or Mobile Money billing, bandwidth quotas, and fair-use shaping.',
+      },
+      {
+        title: 'Community & Business Internet Solutions',
+        description:
+          'Shared high-speed internet distribution architectures built for residential estates, schools, offices, and community hubs.',
+      },
+      {
+        title: 'Network Design, Configuration & Optimization',
+        description:
+          'Structured Cat6a/fiber LAN setups, VLAN segmentation, dual-WAN failover, and latency tuning for peak reliability.',
+      },
+      {
+        title: 'MikroTik Network Configuration',
+        description:
+          'Advanced MikroTik RouterOS routing, firewall hardening, hotspot management, QoS traffic shaping, and OpenVPN tunneling.',
       },
     ],
     processSteps: [
       {
         step: '01.',
-        title: 'Infrastructure & Traffic Audit',
-        detail: 'Pinpoint latency bottlenecks, single points of failure, and cloud spending waste.',
+        title: 'Site & RF Signal Survey',
+        detail: 'Assess sky visibility for Starlink, wall attenuation, cable runs, and user density.',
       },
       {
         step: '02.',
-        title: 'Redundant Cloud & Network Blueprint',
-        detail: 'Design multi AZ cloud clusters, firewalls, and failover routing policies.',
+        title: 'Topology & Hardware Blueprint',
+        detail: 'Specify mounts, outdoor APs, MikroTik/Ubiquiti routers, PoE switches, and surge protection.',
       },
       {
         step: '03.',
-        title: 'Automated Deployment & Cutover',
-        detail: 'Migrate workloads and configure switches/VPNs cleanly during zero impact windows.',
+        title: 'Precision Field Installation',
+        detail: 'Mount dishes, terminate structured LAN runs, configure Wi-Fi zones, and extend coverage.',
       },
       {
         step: '04.',
-        title: '24/7 Monitoring & Patching',
-        detail: 'Real time uptime alerts, resource tuning, and scheduled disaster recovery drills.',
+        title: 'Speed Testing & Handover',
+        detail: 'Verify throughput across every zone, label ports cleanly, and enable remote monitoring.',
       },
     ],
     deliverables: [
-      'AWS / Azure / GCP Production Infrastructure & Terraform/Docker Configs',
-      'Structured LAN/WAN Topology Diagrams & Hardened OpenVPN Profiles',
-      'Automated SSL, Backups & Multi ISP Failover Setup',
-      '24/7 Health Check & Alerting Dashboards',
+      'Mounted & Weatherproofed Starlink Kit with Optimal Sky Alignment',
+      'Point-to-Point Extension & Multi-Zone Wi-Fi Coverage Map',
+      'Neatly Terminated, Tested & Labeled Structured LAN Cabling',
+      'Configured Router Firewall, Captive Portal & Backup Profiles',
     ],
-    techStack: ['AWS', 'Azure', 'GCP', 'Docker', 'OpenVPN', 'Nginx / HAProxy', 'GitHub Actions', 'VLAN / BGP'],
+    techStack: ['Starlink', 'Ubiquiti UniFi', 'MikroTik', 'Cat6a / Fiber', 'OpenVPN', 'PoE+ Switching', 'Captive Portals'],
     idealFor: [
       {
-        audience: 'Growing SaaS & Multi Branch Companies',
-        outcome: 'Stop outages before they happen with automated cloud scaling and dual ISP office failover.',
+        audience: 'Offices, Hotels, Campuses & Estates',
+        outcome: 'Eliminate dead zones and extend single Starlink or fiber connections cleanly across entire properties.',
       },
       {
-        audience: 'Distributed Remote Engineering Teams',
-        outcome: 'Collaborate inside encrypted internal staging and server networks effortlessly.',
+        audience: 'Entrepreneurs Launching Commercial Wi-Fi Zones',
+        outcome: 'Deploy reliable outdoor hotspots with fair bandwidth limits and voucher or Mobile Money access.',
       },
     ],
     faqs: [
       {
-        question: 'Can SAMITECH manage both cloud hosting and physical office networks?',
+        question: 'Can you extend one Starlink connection to multiple buildings or apartments?',
         answer:
-          'Yes. We connect on premise switching and OpenVPN setups seamlessly with cloud environments across AWS, Azure, and GCP.',
+          'Yes. Using bypass mode, enterprise routing, outdoor fiber or point-to-point wireless bridges, and mesh access points, we expand one Starlink dish across compounds, hostels, and offices.',
       },
       {
-        question: 'Do you optimize existing cloud bills and slow servers?',
+        question: 'Do you handle both small office LAN setups and large Wi-Fi zones?',
         answer:
-          'Yes. Most audits uncover overprovisioned instances and missing caching layers that cut monthly cloud spend immediately.',
+          'Yes. We design and install everything from 10-desk office LANs to multi-acre campus and commercial Wi-Fi zones.',
+      },
+    ],
+    relatedCaseStudyId: 'lan-wan-vpn-fabric',
+  },
+  {
+    slug: 'it-support-maintenance',
+    number: '03',
+    group: 'networks-support',
+    groupLabel: 'Hardware & Lab Operations',
+    title: 'Maintenance (IT Support)',
+    shortDesc: 'Computer maintenance, full computer lab setup, professional installation, and 24/7 technical support.',
+    offerings: [
+      'Professional Installation & Technical Support',
+      'Computer Maintenance & Diagnostics',
+      'Complete Computer Lab Setup',
+      'OS Deployment, Imaging & Preventative Servicing',
+    ],
+    tagline: 'Keep workstations, school labs, and office IT fleets running at peak speed with zero unplanned downtime.',
+    heroTitle: 'Peak Performance With',
+    heroAccent: 'Maintenance & IT Support',
+    heroDescription:
+      'Slow, overheating, or poorly configured machines drain productivity. SAMITECH provides professional installation & technical support, proactive computer maintenance, turnkey computer lab setup for schools and training centers, hardware repairs, and 24/7 assistance.',
+    timelineLabel: 'Same-Day Support & Scheduled SLAs',
+    engagementModel: 'Computer Maintenance · Lab Setup',
+    contactCategory: 'Maintenance (IT Support)',
+    image: nocCenterImg,
+    imageAlt: 'SAMITECH engineers managing workstations, computer labs, and IT infrastructure',
+    imageWidth: 720,
+    imageHeight: 964,
+    accentColor: '#0F766E',
+    metrics: [
+      { value: '24/7', label: 'Direct Support Desk' },
+      { value: 'Same Day', label: 'Workstation Diagnostics' },
+      { value: 'Turnkey', label: 'School & Office Lab Setup' },
+    ],
+    capabilities: [
+      {
+        title: 'Professional Installation & Technical Support',
+        description:
+          'On-site and remote hardware/software installation, workstation commissioning, troubleshooting, and responsive 24/7 technical support via +237 674 137 259.',
+      },
+      {
+        title: 'Computer Maintenance & Hardware Servicing',
+        description:
+          'Thermal cleaning, SSD/RAM upgrades, power diagnostics, motherboard/component repair, and malware removal for desktops and laptops.',
+      },
+      {
+        title: 'Turnkey Computer Lab Setup',
+        description:
+          'End-to-end setup of school, university, and training center computer labs—desks, power protection, LAN cabling, OS imaging, and teacher controls.',
+      },
+      {
+        title: 'OS Deployment, Licensing & Backup Policies',
+        description:
+          'Standardized Windows/Linux installations, automated system images, office productivity suites, and scheduled data backups.',
+      },
+    ],
+    processSteps: [
+      {
+        step: '01.',
+        title: 'Asset Audit & Health Check',
+        detail: 'Inspect hardware condition, storage health, power backup, and room layout requirements.',
+      },
+      {
+        step: '02.',
+        title: 'Lab Layout or Repair Plan',
+        detail: 'Prepare power/network schematics for new labs or component upgrade lists for existing PCs.',
+      },
+      {
+        step: '03.',
+        title: 'Servicing, Imaging & Cabling',
+        detail: 'Clean, upgrade, clone standard OS images across machines, and secure power/LAN drops.',
+      },
+      {
+        step: '04.',
+        title: 'Testing & Ongoing Support',
+        detail: 'Stress-test every workstation and establish preventative maintenance schedules.',
+      },
+    ],
+    deliverables: [
+      'Fully Tested, Serviced & Upgraded Workstations',
+      'Complete Networked Computer Lab with Surge/UPS Protection',
+      'Standardized OS Images, Essential Software & Antivirus',
+      'Asset Inventory Sheet & Scheduled Maintenance Plan',
+    ],
+    techStack: ['Windows / Linux', 'SSD & RAM Upgrades', 'PXE / Clonezilla Imaging', 'UPS & Power Protection', 'LAN Cabling', 'Remote Helpdesk'],
+    idealFor: [
+      {
+        audience: 'Schools, Training Institutes & Cybercafés',
+        outcome: 'Launch clean, reliable, centrally managed computer labs built to withstand heavy daily student use.',
+      },
+      {
+        audience: 'Offices & Growing Teams',
+        outcome: 'Extend laptop and desktop lifespans while resolving technical glitches immediately.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is included in a turnkey Computer Lab Setup?',
+        answer:
+          'We handle workstation sourcing/inspection, physical desk and power/UPS layout, structured LAN networking, OS imaging across all PCs, and classroom management software.',
+      },
+      {
+        question: 'Do you offer recurring computer maintenance contracts for offices?',
+        answer:
+          'Yes. We provide scheduled monthly/quarterly servicing alongside priority on-call IT support.',
       },
     ],
     relatedCaseStudyId: 'lan-wan-vpn-fabric',
@@ -422,636 +447,172 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
   {
     slug: 'cybersecurity',
     number: '04',
-    group: 'infrastructure-security',
-    groupLabel: 'Defense & Auditing',
+    group: 'security-tracking',
+    groupLabel: 'CCTV Surveillance & Digital Defense',
     title: 'Cybersecurity',
-    shortDesc: 'Protect your data and business with penetration testing, vulnerability audits, and defense.',
-    tagline: 'Proactive offensive testing and defense in depth hardening before attackers exploit weak links.',
-    heroTitle: 'Safeguard Your Business With',
-    heroAccent: 'Cybersecurity Services',
+    shortDesc: 'CCTV & smart security installation, camera maintenance, network security audits, firewall hardening, and defense.',
+    offerings: [
+      'CCTV & Smart Security Installation',
+      'CCTV Camera Maintenance & NVR Storage Setup',
+      'Remote Mobile Viewing & Access Control',
+      'Network Security Audits & Incident Defense',
+    ],
+    tagline: 'Complete physical and digital protection combining smart CCTV surveillance with proactive cyber defense.',
+    heroTitle: 'Physical & Digital Protection With',
+    heroAccent: 'Cybersecurity & CCTV',
     heroDescription:
-      'Digital growth expands your attack surface. SAMITECH’s security specialists perform black box and white box penetration tests, API and infrastructure audits, remediation verification within 48 hours, and incident response, protecting client trust and sensitive financial flows.',
-    timelineLabel: '1 to 3 Weeks Per Audit Cycle',
-    engagementModel: 'Pentesting · Retainer Defense',
-    contactCategory: 'Cybersecurity Services',
+      'Protecting your organization requires both physical visibility and hardened digital systems. SAMITECH delivers CCTV & smart security installation and ongoing maintenance with remote phone access alongside network security audits, firewall hardening, and incident defense.',
+    timelineLabel: 'Rapid CCTV Setup & Security Audits',
+    engagementModel: 'CCTV Systems · Cyber Defense',
+    contactCategory: 'Cybersecurity',
     image: hardwareBenchImg,
-    imageAlt: 'SAMITECH cybersecurity specialist auditing enterprise routing and network security systems',
+    imageAlt: 'SAMITECH security specialist configuring enterprise security hardware and surveillance systems',
     imageWidth: 720,
     imageHeight: 964,
     accentColor: '#DC0914',
     metrics: [
-      { value: '100%', label: 'Critical CVEs Remediated' },
-      { value: '48 hrs', label: 'Fix Verification Turnaround' },
-      { value: '0', label: 'Post Audit Breaches' },
+      { value: '24/7', label: 'HD / Night-Vision Recording' },
+      { value: '100%', label: 'Critical Risks Remediated' },
+      { value: '48 hrs', label: 'Security Retest Turnaround' },
     ],
     capabilities: [
       {
-        title: 'Web, Mobile & API Penetration Testing',
+        title: 'CCTV & Smart Security Installation',
         description:
-          'Simulate realistic exploits across auth flows, payment endpoints, RBAC permissions, and API logic.',
+          'Indoor/outdoor IP & PoE camera placement, smart motion alerts, NVR/DVR storage sizing, clean concealed cabling, night-vision tuning, and ongoing camera servicing.',
       },
       {
-        title: 'Cloud & Network Vulnerability Audits',
+        title: 'Remote Mobile & Multi-Site Surveillance Access',
         description:
-          'Inspect open ports, firewall configurations, IAM roles, TLS certificates, and server hardening.',
+          'Encrypted mobile and desktop viewing apps, motion alert zones, and power-backup integration so feeds stay live during outages.',
       },
       {
-        title: 'Incident Response & Threat Containment',
+        title: 'Network & Infrastructure Security Audits',
         description:
-          'Rapid forensic investigation, key rotation, and clean recovery playbooks during live incidents.',
+          'Comprehensive review of firewalls, Wi-Fi/LAN segmentation, user access controls, and server configurations to close security gaps.',
       },
       {
-        title: 'Developer & Staff Security Awareness',
+        title: 'Network Hardening & Incident Response',
         description:
-          'Train internal staff against social engineering and equip developers on OWASP Top 10 defenses.',
+          'Firewall policies, VLAN camera isolation, malware containment, and staff security awareness training.',
       },
     ],
     processSteps: [
       {
         step: '01.',
-        title: 'Attack Surface Mapping',
-        detail: 'Inventory domains, APIs, cloud buckets, and privilege boundaries.',
+        title: 'Site & Security Survey',
+        detail: 'Map blind spots, entry points, lighting conditions, and network endpoints.',
       },
       {
         step: '02.',
-        title: 'Controlled Exploitation',
-        detail: 'Execute manual ethical hacking alongside automated scanners across OWASP vectors.',
+        title: 'Camera Layout or Audit Execution',
+        detail: 'Install weatherproof PoE/IP cameras & NVR, or conduct comprehensive security assessments.',
       },
       {
         step: '03.',
-        title: 'Developer Ready Patch Guidance',
-        detail: 'Deliver severity ranked proofs of concept and exact remediation code.',
+        title: 'Hardening & Encrypted Access',
+        detail: 'Lock down camera VLANs/passwords, apply patches, and configure secure remote viewing.',
       },
       {
         step: '04.',
-        title: '48 Hour Retest & Sign Off',
-        detail: 'Verify resolved fixes and issue an executive security audit report.',
+        title: 'Verification & Ongoing Maintenance',
+        detail: 'Test retention storage, verify fixes, and schedule periodic CCTV health checks.',
       },
     ],
     deliverables: [
-      'Executive & Technical Penetration Test Report',
-      'CVSS Severity Matrix with Actionable Fix Snippets',
-      'Cloud IAM, WAF & Firewall Hardening Rules',
-      '48 Hour Remediation Verification Summary',
+      'Installed & Calibrated HD/IP CCTV System with NVR Storage',
+      'Encrypted Mobile & Desktop Live Viewing Setup',
+      'Scheduled CCTV Cleaning, Firmware & Storage Maintenance',
+      'Security Audit & Network Hardening Report',
     ],
-    techStack: ['OWASP Top 10', 'Burp Suite', 'Nmap / Wireshark', 'Zero Trust IAM', 'TLS 1.3', 'WAF'],
+    techStack: ['IP / PoE CCTV', 'Hikvision / Dahua / UniFi', 'NVR & Solar Backup', 'VLAN Isolation', 'Zero Trust Firewalls'],
     idealFor: [
       {
-        audience: 'Fintech, Mobile Money & Ecommerce Teams',
-        outcome: 'Validate payment and API integrity prior to scaling transaction volume.',
+        audience: 'Homes, Offices, Warehouses & Shops',
+        outcome: 'Monitor premises clearly day and night from anywhere with reliable maintenance support.',
       },
       {
-        audience: 'Enterprises Seeking Partner Security Assurance',
-        outcome: 'Present verified third party penetration test compliance to enterprise clients.',
+        audience: 'Fintech, SaaS & Enterprise Platforms',
+        outcome: 'Identify and patch security gaps before attackers can exploit customer or financial data.',
       },
     ],
     faqs: [
       {
-        question: 'Will penetration testing disrupt our live users?',
+        question: 'Can we view our CCTV cameras remotely from our phones?',
         answer:
-          'No. Tests are carefully scoped and scheduled cleanly with staging replication for intrusive checks.',
+          'Yes. Every CCTV installation includes secure mobile and desktop app configuration with encrypted credentials and isolated network rules.',
       },
       {
-        question: 'Do you assist developers in fixing found vulnerabilities?',
+        question: 'Do you maintain or repair existing CCTV camera systems?',
         answer:
-          'Yes. Our engineering bench works directly with your developers to patch issues and reverify fixes within 48 hours.',
+          'Yes. We diagnose failed cameras, replace damaged power supplies or cables, upgrade NVR hard drives, and clean lenses under maintenance plans.',
       },
     ],
     relatedCaseStudyId: 'pentest-security-audit',
   },
   {
-    slug: 'ai-development',
-    number: '05',
-    group: 'ai-design',
-    groupLabel: 'Artificial Intelligence',
-    title: 'AI & Machine Learning',
-    shortDesc: 'Intelligent Machine Learning and Generative AI solutions to automate and optimize your business.',
-    tagline: 'From private RAG knowledge engines and bilingual copilots to predictive analytics pipelines.',
-    heroTitle: 'Future Ready Automation With',
-    heroAccent: 'AI & Machine Learning',
-    heroDescription:
-      'SAMITECH builds and embeds practical AI capabilities directly into your business systems, private document RAG assistants, English/French automated support agents, predictive demand/risk ML models, and workflow automation engineered with strict enterprise data privacy.',
-    timelineLabel: '4 to 10 Weeks to Production',
-    engagementModel: 'AI Enablement · Custom ML',
-    contactCategory: 'AI Development & Enablement',
-    image: campusArchImg,
-    imageAlt: 'SAMITECH corporate AI research and machine learning engineering facility',
-    imageWidth: 720,
-    imageHeight: 964,
-    accentColor: '#7C3AED',
-    metrics: [
-      { value: '60%+', label: 'Manual Triage Time Saved' },
-      { value: 'Private', label: 'Zero Leak Enterprise Data' },
-      { value: '99.9%', label: 'API Inference Availability' },
-    ],
-    capabilities: [
-      {
-        title: 'Generative AI & Private RAG Copilots',
-        description:
-          'Query company handbooks, invoices, contracts, and ERP databases instantaneously with source citations.',
-      },
-      {
-        title: 'Predictive Machine Learning Analytics',
-        description:
-          'Demand forecasting, anomaly detection, credit risk scoring, and customer churn insights.',
-      },
-      {
-        title: 'Workflow & Support Automation',
-        description:
-          'Automate bilingual French/English customer triage, PDF data extraction, and executive reporting.',
-      },
-      {
-        title: 'AI Guardrails & Cost Control',
-        description:
-          'Prompt injection defense, evaluation benchmarks, caching, and token budget governance.',
-      },
-    ],
-    processSteps: [
-      {
-        step: '01.',
-        title: 'AI Readiness & ROI Discovery',
-        detail: 'Audit internal datasets, latency targets, and high impact automation use cases.',
-      },
-      {
-        step: '02.',
-        title: '2 Week Proof of Value',
-        detail: 'Benchmark accuracy directly on anonymized company records before scaling.',
-      },
-      {
-        step: '03.',
-        title: 'Production Model & API Integration',
-        detail: 'Embed vector search, structured tool calling, and fallback safety inside your apps.',
-      },
-      {
-        step: '04.',
-        title: 'Telemetry & Team Enablement',
-        detail: 'Launch monitoring dashboards and train staff on practical daily workflows.',
-      },
-    ],
-    deliverables: [
-      'AI Readiness & ROI Assessment Blueprint',
-      'Private RAG / LLM API Microservice with Guardrails',
-      'Custom ML Training & Evaluation Pipeline',
-      'Admin Cost & Accuracy Monitoring Dashboard',
-    ],
-    techStack: ['Python', 'TypeScript', 'Gemini API', 'PyTorch', 'pgvector', 'FastAPI', 'LangGraph'],
-    idealFor: [
-      {
-        audience: 'Operations Heavy Companies & Support Desks',
-        outcome: 'Cut manual document review and ticket triage dramatically while keeping human oversight.',
-      },
-      {
-        audience: 'Digital Products Adding Smart Intelligence',
-        outcome: 'Ship dependable AI search, summaries, and forecasting natively inside your product.',
-      },
-    ],
-    faqs: [
-      {
-        question: 'Is our company data exposed to public model training?',
-        answer:
-          'Never. Enterprise APIs and private VPC deployments operate with zero retention data isolation.',
-      },
-      {
-        question: 'Do we need huge clean datasets to start with AI?',
-        answer:
-          'Not always. Private RAG workflows work immediately with existing PDFs, policies, and structured databases.',
-      },
-    ],
-    relatedCaseStudyId: 'erp-inventory-cloud',
-  },
-  {
-    slug: 'product-scope',
-    number: '06',
-    group: 'product-software',
-    groupLabel: 'Consulting & Alignment',
-    title: 'Software Consulting & Product Scope',
-    shortDesc: 'Expert guidance and a 15 day Product Scope process to turn ideas into validated technical blueprints.',
-    tagline: 'Align stakeholders, UX wireframes, BPMN flows, and technical architecture before full build.',
-    heroTitle: 'Derisk Every Build With',
-    heroAccent: 'Consulting & 15 Day Scope',
-    heroDescription:
-      'Building software without verified requirements causes expensive delays. Through our 15 day Product Scope and Software Consulting advisory, SAMITECH helps founders and CTOs lock down user stories, technical architecture, cloud costs, and clickable Figma prototypes before committing full development budget.',
-    timelineLabel: '15 Day Scope Sprint',
-    engagementModel: 'Fixed Scope Discovery',
-    contactCategory: 'Product Scope',
-    image: aboutHqImg,
-    imageAlt: 'SAMITECH strategic software consulting and architecture workspace',
-    imageWidth: 720,
-    imageHeight: 964,
-    accentColor: '#0284C7',
-    metrics: [
-      { value: '15 Days', label: 'Complete Blueprint Delivery' },
-      { value: '35% Less', label: 'Avoided Rework Savings' },
-      { value: '100%', label: 'Architecture & Budget Clarity' },
-    ],
-    capabilities: [
-      {
-        title: '15 Day Product Scope Alignment',
-        description:
-          'Translate raw product vision into crisp user stories, release phases, and measurable KPIs.',
-      },
-      {
-        title: 'BPMN Workflows & System Architecture',
-        description:
-          'Map business rules, third party integrations, database schemas, and cloud sizing specs.',
-      },
-      {
-        title: 'Clickable UX Wireframe Prototypes',
-        description:
-          'Preview and validate every user screen in Figma prior to writing production code.',
-      },
-      {
-        title: 'CTO Advisory & Codebase Audits',
-        description:
-          'Objective second opinions on vendor proposals, scaling bottlenecks, and security readiness.',
-      },
-    ],
-    processSteps: [
-      {
-        step: '01.',
-        title: 'Value Proposition & KPI Alignment',
-        detail: 'Days 1 to 3: Clarify target users, revenue model, and critical operational constraints.',
-      },
-      {
-        step: '02.',
-        title: 'Feature Mapping & Backlog Cut',
-        detail: 'Days 4 to 7: Separate Version 1 essentials from low ROI scope bloat.',
-      },
-      {
-        step: '03.',
-        title: 'UX Flows & Interactive Wireframes',
-        detail: 'Days 8 to 11: Assemble testable clickable screens covering happy paths and edge cases.',
-      },
-      {
-        step: '04.',
-        title: 'Architecture Memo & Fixed Quote',
-        detail: 'Days 12 to 15: Deliver complete technical specs, timeline, and engineering budget.',
-      },
-    ],
-    deliverables: [
-      'Complete User Stories & Prioritized Release Backlog',
-      'BPMN 2.0 Operational Workflow Diagrams',
-      'Interactive Clickable Figma Wireframe Prototype',
-      'Technical Architecture Memorandum & Build Estimate',
-    ],
-    techStack: ['Figma', 'BPMN 2.0', 'OpenAPI', 'System Design', 'AWS Sizing', 'Technical Due Diligence'],
-    idealFor: [
-      {
-        audience: 'Founders Preparing Fundable Builds',
-        outcome: 'Enter engineering or investor rooms with unambiguous blueprints instead of vague decks.',
-      },
-      {
-        audience: 'Enterprises Procuring Custom Systems',
-        outcome: 'Unite finance, operations, and IT leadership around a single locked specification.',
-      },
-    ],
-    faqs: [
-      {
-        question: 'What happens after the 15 day Product Scope completes?',
-        answer:
-          'You own every diagram, user story, and prototype completely and can proceed seamlessly into our MVP Builder or Custom Software build, or hand off to any team.',
-      },
-    ],
-    relatedCaseStudyId: 'erp-inventory-cloud',
-  },
-  {
-    slug: 'mvp-builder',
-    number: '07',
-    group: 'product-software',
-    groupLabel: 'MVP & Digital Modernization',
-    title: 'Digital Transformation & MVP Builder',
-    shortDesc: 'Upgrade legacy operations and launch fundable Minimum Viable Products rapidly.',
-    tagline: 'Lean frameworks applied to modernizing workflows and shipping v1 products in 6 to 10 weeks.',
-    heroTitle: 'Move Faster Through',
-    heroAccent: 'Digital Transformation & MVPs',
-    heroDescription:
-      'Whether modernizing manual paper based enterprise operations or launching a brand new startup MVP to capture market traction, SAMITECH strips away unnecessary complexity to ship clean, working digital products rapidly and reliably.',
-    timelineLabel: '6 to 10 Weeks to Go Live',
-    engagementModel: 'Lean Agile Transformation',
-    contactCategory: 'MVP Builder',
-    image: softwareFloorImg,
-    imageAlt: 'SAMITECH engineers accelerating digital transformation and MVP delivery',
-    imageWidth: 720,
-    imageHeight: 964,
-    accentColor: '#EAB308',
-    metrics: [
-      { value: '6 to 10 Wks', label: 'Launch Window' },
-      { value: '2x', label: 'Faster Market Validation' },
-      { value: '0', label: 'Throwaway Prototype Debt' },
-    ],
-    capabilities: [
-      {
-        title: 'Rapid Minimum Viable Product (MVP) Build',
-        description:
-          'Go from validated scope to live paying users with payments, auth, and analytics ready.',
-      },
-      {
-        title: 'Paper to Digital Workflow Automation',
-        description:
-          'Replace disconnected spreadsheets and manual approvals with real time cloud dashboards.',
-      },
-      {
-        title: 'Production Clean Modular Stack',
-        description:
-          'Built on TypeScript, React, Flutter, and PostgreSQL so version 2 expands cleanly without rewrites.',
-      },
-      {
-        title: 'Team Onboarding & Change Management',
-        description:
-          'Guided staff training so digital tools stick across branches and leadership.',
-      },
-    ],
-    processSteps: [
-      {
-        step: '01.',
-        title: 'Bottleneck & Core Loop Lock',
-        detail: 'Identify highest leverage features or manual workflows to digitize first.',
-      },
-      {
-        step: '02.',
-        title: 'Streamlined UI & Data Migration',
-        detail: 'Design clean everyday interfaces and import historical client/inventory data cleanly.',
-      },
-      {
-        step: '03.',
-        title: 'Weekly Staging Increments',
-        detail: 'Test real builds every week with founders and department leads.',
-      },
-      {
-        step: '04.',
-        title: 'Live Rollout & Telemetry Tracking',
-        detail: 'Measure adoption, conversion, and time saved from day one.',
-      },
-    ],
-    deliverables: [
-      'Live Web or Mobile MVP / Modernized Operations Portal',
-      'Clean Modular Git Codebase & Automated Backups',
-      'Payment Integrations (MTN MoMo, Orange Money, Stripe)',
-      'Staff Training Guides & Analytics Dashboard',
-    ],
-    techStack: ['React', 'TypeScript', 'Flutter', 'Node.js', 'PostgreSQL', 'MTN MoMo API', 'Cloud CI/CD'],
-    idealFor: [
-      {
-        audience: 'Venture Founders Testing Market Fit',
-        outcome: 'Get real users onboarding and paying fast without burning multiquarter runway.',
-      },
-      {
-        audience: 'Established Businesses Digitizing Operations',
-        outcome: 'Eliminate manual reporting delays and scattered files across offices.',
-      },
-    ],
-    faqs: [
-      {
-        question: 'Will we have to rebuild our MVP from scratch once users grow?',
-        answer:
-          'No. Every MVP uses clean TypeScript and relational database architecture meant to scale into full enterprise volume.',
-      },
-    ],
-    relatedCaseStudyId: 'erp-inventory-cloud',
-  },
-  {
-    slug: 'tracking-support',
-    number: '08',
-    group: 'infrastructure-security',
-    groupLabel: '24/7 Operations & Recovery',
-    title: 'IT Support, Maintenance & Tracking',
-    shortDesc: '24/7 managed IT support, preventative maintenance, and Authorized Equipment Tracking.',
-    tagline: 'Keep servers, office systems, and high value hardware protected with 24/7 response in Buea & beyond.',
-    heroTitle: 'Always On Reliability With',
-    heroAccent: '24/7 IT Support & Tracking',
-    heroDescription:
-      'Downtime and stolen assets stall business momentum. SAMITECH’s operations desk provides round the clock server, software, and network maintenance alongside verified Authorized Equipment Tracking (smartphones, laptops, vehicles, IoT) integrated with MTN Mobile Money.',
-    timelineLabel: '24/7 Immediate Desk',
-    engagementModel: 'Retainer SLA · Recovery Tiers',
-    contactCategory: 'Authorized Equipment Tracking',
-    image: nocCenterImg,
-    imageAlt: 'SAMITECH 24/7 Network Operations Center supporting infrastructure maintenance and asset tracking',
-    imageWidth: 720,
-    imageHeight: 964,
-    accentColor: '#07133B',
-    metrics: [
-      { value: '24/7', label: 'Direct Hotline & WhatsApp' },
-      { value: '4 Tiers', label: 'Authorized Device Tracking' },
-      { value: '25k to 85k', label: 'XAF Transparent Tracking Fees' },
-    ],
-    capabilities: [
-      {
-        title: 'Preventative IT Maintenance & SLA Monitoring',
-        description:
-          'OS/dependency updates, automated offsite backups, uptime probes, and rapid troubleshooting.',
-      },
-      {
-        title: 'Smartphone & Tablet Tracking (35,000 XAF)',
-        description:
-          'Verified device recovery coordination upon receipt or original packaging proof of ownership.',
-      },
-      {
-        title: 'Laptop & Workstation Recovery (45,000 XAF)',
-        description:
-          'Authorized hardware tracing for misplaced or stolen corporate and personal computers.',
-      },
-      {
-        title: 'Vehicle (85,000 XAF) & IoT (25,000 XAF) Tracing',
-        description:
-          'Telemetry recovery coordination including law enforcement documentation on vehicle cases.',
-      },
-    ],
-    processSteps: [
-      {
-        step: '01.',
-        title: 'Rapid SLA or Ownership Intake',
-        detail: 'Verify system baseline or original device ownership proof (no false reports permitted).',
-      },
-      {
-        step: '02.',
-        title: 'Immediate Desk Activation',
-        detail: 'Assign certified support specialist or initiate MTN MoMo tracking file.',
-      },
-      {
-        step: '03.',
-        title: 'Active Resolution & Coordination',
-        detail: 'Patch outages proactively or execute carrier & law enforcement tracing workflows.',
-      },
-      {
-        step: '04.',
-        title: 'Status Reporting & Prevention',
-        detail: 'Direct progress updates via +237 674 137 259 and hardening recommendations.',
-      },
-    ],
-    deliverables: [
-      '24/7 Direct Operations Escalation (+237 674 137 259)',
-      'Automated Backup, Uptime & Security Patch Reports',
-      'Verified Equipment Tracking Case Documentation',
-      'MTN Mobile Money Transparent Tier Receipting',
-    ],
-    techStack: ['24/7 Monitoring', 'MTN MoMo Intake', 'IMEI Telemetry', 'Automated Backups', 'Linux / Cloud Ops'],
-    idealFor: [
-      {
-        audience: 'Businesses Requiring Guaranteed System Uptime',
-        outcome: 'Focus on growth knowing certified engineers monitor, patch, and back up your stack 24/7.',
-      },
-      {
-        audience: 'Device Owners & Fleet Managers',
-        outcome: 'Access structured, legal, transparent equipment recovery support.',
-      },
-    ],
-    faqs: [
-      {
-        question: 'What proof is needed for Authorized Equipment Tracking?',
-        answer:
-          'Original purchase receipt or matching serial/IMEI device packaging is strictly required; false reporting is prohibited.',
-      },
-    ],
-    relatedCaseStudyId: 'authorized-tracking-system',
-  },
-  {
-    slug: 'ux-ui',
-    number: '09',
-    group: 'ai-design',
-    groupLabel: 'Product Design Studio',
-    title: 'UX / UI Design',
-    shortDesc: 'Design intuitive, engaging, and accessible digital products backed by user research.',
-    tagline: 'Clickable Figma prototypes, design systems, and WCAG AA interfaces ready for engineering.',
-    heroTitle: 'Effortless Usability Through',
-    heroAccent: 'UX / UI Product Design',
-    heroDescription:
-      'Clean typography, clear spatial hierarchy, and intuitive task flows turn complex software into everyday tools users love. SAMITECH’s designers craft responsive web and mobile interfaces, reusable Figma design systems, and tested user journeys.',
-    timelineLabel: '2 to 5 Weeks Per Phase',
-    engagementModel: 'Design Sprint · Design System',
-    contactCategory: 'UI/UX Design',
-    image: aboutHqImg,
-    imageAlt: 'SAMITECH UI/UX product designers crafting intuitive interfaces',
-    imageWidth: 720,
-    imageHeight: 964,
-    accentColor: '#DB2777',
-    metrics: [
-      { value: 'WCAG AA', label: 'Accessibility Contrast Rigor' },
-      { value: '100%', label: 'Developer Ready Figma Tokens' },
-      { value: '+40%', label: 'Task Completion Lift' },
-    ],
-    capabilities: [
-      {
-        title: 'User Journey & Friction Audits',
-        description:
-          'Map user behavior and streamline onboarding, forms, and navigation hierarchies.',
-      },
-      {
-        title: 'Interactive Figma Prototypes',
-        description:
-          'Clickable flows that stakeholders and test users evaluate prior to full development.',
-      },
-      {
-        title: 'Responsive Cross Device Design Systems',
-        description:
-          'Consistent color, typography, button states, and component libraries tailored to Tailwind & React.',
-      },
-      {
-        title: 'Micro Interactions & Visual Polish',
-        description:
-          'Intentional transitions, loading skeletons, and crisp iconography across every state.',
-      },
-    ],
-    processSteps: [
-      {
-        step: '01.',
-        title: 'UX Audit & Screen Architecture',
-        detail: 'Define navigation, screen hierarchy, and primary conversion paths.',
-      },
-      {
-        step: '02.',
-        title: 'Structural Wireframing',
-        detail: 'Lock content priority and mobile responsiveness before styling.',
-      },
-      {
-        step: '03.',
-        title: 'High Fidelity Visual UI',
-        detail: 'Apply brand craft, contrast checks, and complete interactive states.',
-      },
-      {
-        step: '04.',
-        title: 'Design Tokens & Handoff',
-        detail: 'Deliver organized Figma systems synced cleanly for developers.',
-      },
-    ],
-    deliverables: [
-      'Clickable High Fidelity Figma Prototype',
-      'Desktop, Tablet & Mobile Screen Specs',
-      'Reusable UI Component & Token Library',
-      'WCAG AA Contrast & Usability Review',
-    ],
-    techStack: ['Figma', 'Design Tokens', 'Auto Layout', 'Prototyping', 'WCAG AA', 'Tailwind Mapping'],
-    idealFor: [
-      {
-        audience: 'Products Seeking World Class Brand Polish',
-        outcome: 'Command instant credibility with investors and enterprise buyers from screen one.',
-      },
-    ],
-    faqs: [
-      {
-        question: 'Can we hire SAMITECH solely for UX/UI redesign?',
-        answer:
-          'Yes. You receive clean, annotated Figma prototypes and tokenized component specs ready for any frontend team.',
-      },
-    ],
-    relatedCaseStudyId: 'authorized-tracking-system',
-  },
-  {
     slug: 'dedicated-teams',
-    number: '10',
-    group: 'product-software',
-    groupLabel: 'Embedded Squads',
+    number: '05',
+    group: 'software-teams',
+    groupLabel: 'Embedded Engineering & Design Pods',
     title: 'Dedicated Teams',
-    shortDesc: 'Scale faster with a dedicated pod of senior engineers, AI specialists, and designers.',
-    tagline: 'Cofounder mindset, transparent daily standups, and immediate engineering capacity.',
-    heroTitle: 'Scale Engineering Speed With',
+    shortDesc: 'Scale faster with dedicated pods of software engineers, UI/UX & graphics designers, and network specialists.',
+    offerings: [
+      'Full-Stack & Mobile Engineering Pods',
+      'Dedicated UI/UX & Graphics Designers',
+      'Embedded Network & IT Support Staff',
+      'Full Git, Tooling & IP Ownership',
+    ],
+    tagline: 'Cofounder mindset, transparent daily standups, and immediate technical capacity aligned to your schedule.',
+    heroTitle: 'Scale Capacity Fast With',
     heroAccent: 'Dedicated Teams',
     heroDescription:
-      'Skip months of solo recruiting. SAMITECH assigns an embedded pod of vetted full stack developers, AI/ML specialists, DevOps, and UX designers directly inside your workflow, bringing ownership, architectural rigor, and WAT timezone alignment for Europe, Africa, and global partners.',
+      'Skip months of solo recruiting. SAMITECH assigns an embedded pod of vetted software developers, UI/UX & graphics designers, network engineers, and IT support specialists directly inside your workflow with full IP ownership and reliable WAT timezone collaboration.',
     timelineLabel: 'Onboard in 10 to 14 Days',
     engagementModel: 'Monthly Retainer Pod',
     contactCategory: 'Dedicated Teams',
-    image: nocCenterImg,
-    imageAlt: 'SAMITECH dedicated engineering team collaborating across active sprints',
+    image: aboutHqImg,
+    imageAlt: 'SAMITECH dedicated engineering and design pod collaborating on client projects',
     imageWidth: 720,
     imageHeight: 964,
     accentColor: '#EA580C',
     metrics: [
       { value: '10 to 14d', label: 'Team Onboarding Window' },
-      { value: '15+', label: 'Certified In House Specialists' },
+      { value: '15+', label: 'Certified In-House Specialists' },
       { value: '100%', label: 'Direct Git & IP Ownership' },
     ],
     capabilities: [
       {
-        title: 'Full Stack, AI & Mobile Squads',
+        title: 'Full-Stack, Mobile & AI Squads',
         description:
-          'Prebuilt senior pods who collaborate smoothly across React, Node.js, Python, Flutter, and cloud.',
+          'Prebuilt senior pods collaborating smoothly across React, TypeScript, Node.js, Python, Flutter, and cloud.',
       },
       {
-        title: 'Embedded Daily Workflow Integration',
+        title: 'Embedded UI/UX & Graphics Designers',
+        description:
+          'Keep your product interfaces, marketing visuals, and design systems shipping every single week.',
+      },
+      {
+        title: 'Daily Workflow & Tooling Integration',
         description:
           'Work inside your Slack, Jira/Linear, GitHub, and weekly sprint demos with zero handoff friction.',
       },
       {
-        title: 'Backed by Security & Network Bench',
+        title: 'Backed by Network, CCTV & Security Bench',
         description:
-          'Draw on SAMITECH’s in house penetration testers and DevOps architects whenever launches scale.',
-      },
-      {
-        title: 'Predictable Monthly Capacity Scaling',
-        description:
-          'Scale pod size up or down cleanly as product priorities evolve.',
+          'Tap SAMITECH’s in-house networking, IT maintenance, and cybersecurity specialists whenever needed.',
       },
     ],
     processSteps: [
       {
         step: '01.',
-        title: 'Skill & Culture Calibration',
-        detail: 'Define exact stack, seniority, and sprint cadence requirements.',
+        title: 'Skill & Role Calibration',
+        detail: 'Define exact stack, design or support needs, and sprint cadence requirements.',
       },
       {
         step: '02.',
-        title: 'Engineer Selection',
-        detail: 'Meet your assigned engineers and review prior production architectures.',
+        title: 'Specialist Selection',
+        detail: 'Meet your assigned engineers and designers and review prior production work.',
       },
       {
         step: '03.',
@@ -1061,33 +622,160 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         step: '04.',
         title: 'Sprint Velocity & Reviews',
-        detail: 'Deliver weekly shipping milestones with continuous code quality metrics.',
+        detail: 'Deliver weekly shipping milestones with clear progress reporting.',
       },
     ],
     deliverables: [
-      'Dedicated Multidisciplinary Pod (Engineers · UX · QA · Lead)',
+      'Dedicated Multidisciplinary Pod (Developers · Designers · QA · Lead)',
       'Direct Access Inside Your Slack, Jira & GitHub',
-      'Weekly Sprint Demos & Burn Down Transparency',
+      'Weekly Sprint Demos & Transparent Reporting',
       '100% Source Code & Intellectual Property Ownership',
     ],
-    techStack: ['React / Node.js', 'Python / AI', 'Flutter', 'AWS / Docker', 'GitHub / Jira', 'CI/CD'],
+    techStack: ['React / Node.js', 'Flutter', 'Figma', 'Python / AI', 'AWS / Docker', 'GitHub / Jira'],
     idealFor: [
       {
         audience: 'Funded Startups & CTOs Accelerating Roadmaps',
-        outcome: 'Double shipping velocity immediately without multimonth hiring overhead.',
+        outcome: 'Double shipping velocity immediately without multi-month hiring overhead.',
+      },
+      {
+        audience: 'Enterprises Needing Ongoing Tech & Design Ops',
+        outcome: 'Maintain predictable monthly capacity across software, design, and IT support.',
       },
     ],
     faqs: [
       {
-        question: 'Are Dedicated Team engineers exclusive to our roadmap?',
+        question: 'Are Dedicated Team members exclusive to our roadmap?',
         answer:
-          'Yes. Assigned engineers focus 100% on your codebase and sprint backlog.',
+          'Yes. Assigned specialists focus 100% on your projects, tools, and sprint backlog.',
+      },
+      {
+        question: 'Can we scale the team size up or down as priorities shift?',
+        answer:
+          'Yes. Monthly retainer pods can expand with extra developers or designers or adjust cleanly between project phases.',
       },
     ],
     relatedCaseStudyId: 'erp-inventory-cloud',
   },
+  {
+    slug: 'tracking',
+    number: '06',
+    group: 'security-tracking',
+    groupLabel: 'Authorized Asset Recovery & Telemetry',
+    title: 'Tracking',
+    shortDesc: 'Authorized equipment, device, and vehicle tracking with verified ownership intake and recovery coordination.',
+    offerings: [
+      'Smartphone & Tablet Tracking',
+      'Laptop & Workstation Tracking',
+      'Vehicle & Fleet Tracking',
+      'IoT & Asset Telemetry',
+    ],
+    tagline: 'Structured, lawful equipment and vehicle tracking backed by proof-of-ownership verification.',
+    heroTitle: 'Verified Asset Recovery With',
+    heroAccent: 'Authorized Tracking',
+    heroDescription:
+      'Misplaced or stolen hardware disrupts work and personal security. SAMITECH operates a strict, verified Authorized Equipment Tracking desk supporting smartphones, laptops, motor vehicles, and IoT trackers with proof-of-ownership intake and law enforcement coordination.',
+    timelineLabel: '24/7 Immediate Case Intake',
+    engagementModel: 'Verified Recovery Categories',
+    contactCategory: 'Tracking',
+    image: nocCenterImg,
+    imageAlt: 'SAMITECH tracking operations desk monitoring telemetry and recovery workflows',
+    imageWidth: 720,
+    imageHeight: 964,
+    accentColor: '#07133B',
+    metrics: [
+      { value: '24/7', label: 'Direct Hotline & WhatsApp' },
+      { value: '4 Categories', label: 'Device & Fleet Coverage' },
+      { value: 'Verified', label: 'Proof-of-Ownership Intake' },
+    ],
+    capabilities: [
+      {
+        title: 'Smartphone & Tablet Tracking',
+        description:
+          'Verified device recovery coordination upon original purchase receipt or IMEI packaging proof of ownership.',
+      },
+      {
+        title: 'Laptop & Workstation Recovery',
+        description:
+          'Authorized hardware tracing for misplaced or stolen corporate and personal computers.',
+      },
+      {
+        title: 'Motor Vehicle & Fleet Tracking',
+        description:
+          'GPS telemetry installation and recovery coordination including formal law enforcement documentation.',
+      },
+      {
+        title: 'IoT & Equipment Telemetry',
+        description:
+          'Continuous asset monitoring and location alerts for field tools, generators, and high-value gear.',
+      },
+    ],
+    processSteps: [
+      {
+        step: '01.',
+        title: 'Ownership Proof Verification',
+        detail: 'Submit original purchase receipt or matching serial/IMEI packaging (no false reports permitted).',
+      },
+      {
+        step: '02.',
+        title: 'Case Activation & Intake',
+        detail: 'Open your verified tracking file and assign a dedicated recovery specialist.',
+      },
+      {
+        step: '03.',
+        title: 'Active Telemetry & Tracing',
+        detail: 'Execute carrier, device telemetry, and law enforcement coordination workflows.',
+      },
+      {
+        step: '04.',
+        title: 'Status Updates & Recovery',
+        detail: 'Receive direct progress updates via +237 674 137 259 through case closure.',
+      },
+    ],
+    deliverables: [
+      '24/7 Direct Operations Escalation (+237 674 137 259)',
+      'Verified Equipment Tracking Case Documentation',
+      'Structured Case Intake & Progress Reporting',
+      'Law Enforcement Liaison (Vehicle Recovery Cases)',
+    ],
+    techStack: ['IMEI Telemetry', 'GPS Fleet Trackers', 'Case Documentation', 'Ownership Verification', '24/7 Ops Desk'],
+    idealFor: [
+      {
+        audience: 'Individuals & Corporate Device Owners',
+        outcome: 'Access a lawful, transparent channel to trace misplaced or stolen smartphones and laptops.',
+      },
+      {
+        audience: 'Fleet & Logistics Managers',
+        outcome: 'Protect vehicles and field equipment with reliable GPS tracking and recovery support.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What proof is required for Authorized Equipment Tracking?',
+        answer:
+          'Original purchase receipt or matching serial/IMEI device packaging is strictly mandatory; false reporting is prohibited.',
+      },
+      {
+        question: 'How do I start a tracking case quickly?',
+        answer:
+          'Call or WhatsApp +237 674 137 259 or submit your device details through our contact form with your proof of ownership ready.',
+      },
+    ],
+    relatedCaseStudyId: 'authorized-tracking-system',
+  },
 ];
 
+const LEGACY_SLUG_ALIASES: Record<string, string> = {
+  'custom-software': 'software-services',
+  'mobile-app-development': 'software-services',
+  'ux-ui': 'software-services',
+  'ai-development': 'software-services',
+  'product-scope': 'software-services',
+  'mvp-builder': 'software-services',
+  'networking-solutions': 'network-services',
+  'tracking-support': 'tracking',
+};
+
 export function getServiceBySlug(slug: string): ServiceDetail | undefined {
-  return ALL_SERVICES_CATALOG.find((s) => s.slug === slug);
+  const normalized = LEGACY_SLUG_ALIASES[slug] ?? slug;
+  return ALL_SERVICES_CATALOG.find((s) => s.slug === normalized);
 }

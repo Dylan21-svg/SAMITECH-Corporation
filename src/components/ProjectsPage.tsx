@@ -18,6 +18,7 @@ import {
 import type { CaseStudy } from '../data/samitechData';
 import { Reveal } from './MotionPrimitives';
 import { ResilientImage } from './ResilientImage';
+import { ServiceImpactCharts } from './ServiceImpactCharts';
 import { ProjectGoldTrophyIcon } from './ShowcaseIcons';
 
 interface ProjectsPageProps {
@@ -118,13 +119,13 @@ export function ProjectsPage({
 
               {/* Dark Frosted Glass 3-Stat Strip ("10+ Completed Projects · 1K+ Active Users · 3+ Countries Impacted") */}
               <div className="pt-1">
-                <div className="inline-grid grid-cols-3 divide-x divide-white/15 rounded-2xl bg-[#091A4A]/78 border border-[#38BDF8]/25 backdrop-blur-md px-3 py-3 sm:px-5 sm:py-3.5 shadow-xl max-w-full">
+                <div className="grid grid-cols-3 divide-x divide-white/15 rounded-2xl bg-[#091A4A]/78 border border-[#38BDF8]/25 backdrop-blur-md px-2.5 py-3 sm:px-5 sm:py-3.5 shadow-xl max-w-lg">
                   {PORTFOLIO_STATS.map((stat) => {
                     const Icon = stat.icon;
                     return (
                       <div
                         key={stat.label}
-                        className="flex items-center gap-2 sm:gap-3 px-2 sm:px-4 first:pl-0.5 last:pr-0.5 min-w-0"
+                        className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 px-2 sm:px-4 first:pl-0.5 last:pr-0.5 min-w-0"
                       >
                         <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg bg-[#22D3EE]/12 border border-[#22D3EE]/30 text-[#22D3EE] flex items-center justify-center shrink-0">
                           <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" strokeWidth={1.85} aria-hidden="true" />
@@ -133,7 +134,7 @@ export function ProjectsPage({
                           <div className="font-display font-extrabold text-sm sm:text-lg lg:text-xl text-white tabular-nums leading-none">
                             {stat.value}
                           </div>
-                          <div className="mt-0.5 text-[9px] sm:text-[11px] font-medium text-slate-300 leading-tight truncate">
+                          <div className="mt-0.5 text-[10px] sm:text-[11px] font-medium text-slate-300 leading-tight">
                             {stat.label}
                           </div>
                         </div>
@@ -287,6 +288,11 @@ export function ProjectsPage({
             ))}
           </div>
 
+          {/* Recharts Service Impact & Reliability Showcase */}
+          <Reveal direction="bottom" delay={0.08}>
+            <ServiceImpactCharts />
+          </Reveal>
+
           {/* Bottom Dark Navy "Have a Project in Mind?" Trophy CTA Banner */}
           <Reveal direction="bottom" delay={0.1}>
             <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#040F34] via-[#061853] to-[#082275] text-white px-5 py-5 sm:px-8 sm:py-6 shadow-[0_18px_40px_rgba(4,11,41,0.2)] border border-[#1E3A8A]/45">
@@ -312,7 +318,7 @@ export function ProjectsPage({
 
                 <button
                   type="button"
-                  onClick={() => onOpenContact('Software Development')}
+                  onClick={() => onOpenContact('Software Services (Web, App, UI/UX, Graphics)')}
                   className="inline-flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-bold text-[#07133B] bg-white hover:bg-[#E3EEFF] rounded-full shadow-md transition-all duration-150 active:scale-[0.98] whitespace-nowrap shrink-0 cursor-pointer"
                 >
                   <span>Start a Project</span>

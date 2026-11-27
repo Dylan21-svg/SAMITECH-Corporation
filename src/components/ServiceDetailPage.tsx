@@ -15,14 +15,11 @@ import {
 import {
   CloudNetworkingLayout,
   CybersecurityLayout,
+  MaintenanceSupportLayout,
   TrackingSupportLayout,
 } from './service-layouts/InfraAndSecurityLayouts';
 import {
-  AiMachineLearningLayout,
   DedicatedTeamsLayout,
-  MvpBuilderLayout,
-  ProductScopeLayout,
-  UxUiDesignLayout,
 } from './service-layouts/AiAndStudioLayouts';
 
 interface ServiceDetailPageProps {
@@ -33,28 +30,29 @@ interface ServiceDetailPageProps {
   onOpenCaseStudy: (study: CaseStudy) => void;
 }
 
-const DARK_TOP_BAR_SLUGS = new Set(['networking-solutions', 'cybersecurity']);
+const DARK_TOP_BAR_SLUGS = new Set(['network-services', 'networking-solutions', 'cybersecurity']);
 
 function renderServiceLayout(slug: string, props: ServiceLayoutProps) {
   switch (slug) {
+    case 'software-services':
     case 'custom-software':
+    case 'ai-development':
+    case 'product-scope':
+    case 'mvp-builder':
+    case 'ux-ui':
       return <WebDevelopmentLayout {...props} />;
     case 'mobile-app-development':
       return <MobileAppLayout {...props} />;
+    case 'network-services':
     case 'networking-solutions':
       return <CloudNetworkingLayout {...props} />;
+    case 'it-support-maintenance':
+      return <MaintenanceSupportLayout {...props} />;
     case 'cybersecurity':
       return <CybersecurityLayout {...props} />;
-    case 'ai-development':
-      return <AiMachineLearningLayout {...props} />;
-    case 'product-scope':
-      return <ProductScopeLayout {...props} />;
-    case 'mvp-builder':
-      return <MvpBuilderLayout {...props} />;
+    case 'tracking':
     case 'tracking-support':
       return <TrackingSupportLayout {...props} />;
-    case 'ux-ui':
-      return <UxUiDesignLayout {...props} />;
     case 'dedicated-teams':
       return <DedicatedTeamsLayout {...props} />;
     default:

@@ -32,34 +32,38 @@ const TECH_ACCENT_MAP: Record<string, string> = {
   'Tailwind CSS': '#0EA5E9',
   Docker: '#2563EB',
   Python: '#2563EB',
-  Django: '#15803D',
-  Flask: '#0F172A',
-  FastAPI: '#0D9488',
   Flutter: '#0284C7',
   'React Native': '#0284C7',
-  Swift: '#EA580C',
-  Kotlin: '#7C3AED',
-  'Firebase FCM': '#D97706',
-  AWS: '#D97706',
-  Azure: '#0078D4',
-  GCP: '#2563EB',
-  OpenVPN: '#EA580C',
-  'Nginx / HAProxy': '#15803D',
-  'GitHub Actions': '#1E293B',
-  'OWASP Top 10': '#DC0914',
-  'Burp Suite': '#EA580C',
-  'Nmap / Wireshark': '#0284C7',
-  'Zero Trust IAM': '#0F172A',
-  'TLS 1.3': '#15803D',
-  WAF: '#DC0914',
-  'Gemini API': '#4F46E5',
-  PyTorch: '#DC2626',
-  pgvector: '#2563EB',
-  LangGraph: '#6D28D9',
   Figma: '#DB2777',
-  'BPMN 2.0': '#0284C7',
-  OpenAPI: '#16A34A',
-  'MTN MoMo API': '#CA8A04',
+  'Adobe Illustrator': '#EA580C',
+  Starlink: '#0284C7',
+  'Ubiquiti UniFi': '#0038FF',
+  MikroTik: '#0F172A',
+  'Cat6 / Fiber LAN': '#0284C7',
+  'PtP Wireless Bridges': '#0EA5E9',
+  OpenVPN: '#EA580C',
+  'VLAN Segmentation': '#1D4ED8',
+  'Windows / Linux / macOS': '#0F766E',
+  'NVMe SSD & RAM Upgrades': '#0284C7',
+  'PXE / Lab OS Imaging': '#0F766E',
+  'UPS Power Protection': '#D97706',
+  'Cat6 Lab LAN': '#0038FF',
+  'Preventative Diagnostics': '#0F766E',
+  'PoE IP Cameras': '#DC0914',
+  'NVR / DVR Storage': '#07133B',
+  'Color Night Vision': '#0284C7',
+  'Mobile Remote View': '#0038FF',
+  'Firewall & Zero Trust': '#DC0914',
+  'OWASP Pentesting': '#DC0914',
+  'React / Node.js': '#0284C7',
+  'Figma & Graphics': '#DB2777',
+  'Starlink & LAN Ops': '#0284C7',
+  'IT & CCTV Support': '#EA580C',
+  'GitHub / Jira': '#1E293B',
+  '24/7 Operations Desk': '#07133B',
+  'MTN MoMo Intake': '#CA8A04',
+  'IMEI Telemetry': '#0038FF',
+  'GPS / IoT Tracing': '#DC0914',
 };
 
 export function getTechBadgeColor(tech: string, fallback = '#0038FF'): string {
@@ -246,7 +250,7 @@ export function ServiceProofAndFaqBand({
                             transition={{ duration: 0.2, ease: SAMITECH_EASE }}
                             className="overflow-hidden"
                           >
-                            <div className="pl-13 pr-4 pb-4 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-2.5">
+                            <div className="pl-4 sm:pl-13 pr-4 pb-4 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-2.5">
                               {faq.answer}
                             </div>
                           </motion.div>
@@ -301,19 +305,19 @@ export function ServiceBottomPager({
         <button
           type="button"
           onClick={() => onSelectService(prevService.slug)}
-          className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-600 hover:text-[#0038FF] transition-colors cursor-pointer"
+          className="inline-flex items-center gap-2 text-left text-xs sm:text-sm font-semibold text-slate-600 hover:text-[#0038FF] transition-colors cursor-pointer min-w-0"
         >
-          <ArrowLeft className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
+          <ArrowLeft className="w-4 h-4 shrink-0" strokeWidth={1.75} aria-hidden="true" />
           <span>Previous: {prevService.title}</span>
         </button>
 
         <button
           type="button"
           onClick={() => onSelectService(nextService.slug)}
-          className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#0038FF] hover:text-[#DC0914] transition-colors cursor-pointer"
+          className="inline-flex items-center gap-2 text-right text-xs sm:text-sm font-semibold text-[#0038FF] hover:text-[#DC0914] transition-colors cursor-pointer min-w-0 ml-auto"
         >
           <span>Next: {nextService.title}</span>
-          <ArrowRight className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
+          <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={1.75} aria-hidden="true" />
         </button>
       </div>
     </div>

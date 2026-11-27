@@ -391,7 +391,7 @@ export function TeamMemberProfilePage({
                     </h2>
                   </div>
 
-                  <div className="grid grid-cols-4 gap-2 text-center">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-2 text-center">
                     {member.interests.map((interest) => (
                       <div key={interest.label} className="flex flex-col items-center gap-1.5">
                         <div className="w-11 h-11 rounded-full bg-[#EBF2FF] border border-[#D4E4FF] flex items-center justify-center">
@@ -615,23 +615,23 @@ export function TeamMemberProfilePage({
           />
         </svg>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-end justify-between pb-4 sm:pb-5">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-end justify-between gap-2 pb-4 sm:pb-5">
           <button
             type="button"
             onClick={() => onOpenContact(member.contactTopic)}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#07133B] hover:bg-[#EBF2FF] text-xs sm:text-sm font-bold shadow-md transition-colors whitespace-nowrap cursor-pointer"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2 rounded-full bg-white text-[#07133B] hover:bg-[#EBF2FF] text-xs sm:text-sm font-bold shadow-md transition-colors whitespace-nowrap cursor-pointer"
           >
-            <Cpu className="w-3.5 h-3.5 text-[#0038FF]" strokeWidth={2} aria-hidden="true" />
+            <Cpu className="w-3.5 h-3.5 text-[#0038FF] shrink-0" strokeWidth={2} aria-hidden="true" />
             <span>Work With {member.firstNamePart.split(' ')[0]}</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#0038FF]" strokeWidth={2} aria-hidden="true" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#0038FF] shrink-0" strokeWidth={2} aria-hidden="true" />
           </button>
 
-          <div className="-rotate-6 text-right pr-1 sm:pr-3">
-            <div className="text-base sm:text-xl font-extrabold italic tracking-tight text-white drop-shadow-xs leading-none">
+          <div className="-rotate-6 text-right pr-1 sm:pr-3 shrink-0">
+            <div className="text-sm sm:text-xl font-extrabold italic tracking-tight text-white drop-shadow-xs leading-none">
               Let&apos;s Build
               <span className="block">Together</span>
             </div>
-            <div className="h-[2.5px] w-24 sm:w-28 ml-auto bg-[#DC0914] rounded-full mt-1" />
+            <div className="h-[2.5px] w-20 sm:w-28 ml-auto bg-[#DC0914] rounded-full mt-1" />
           </div>
         </div>
       </div>

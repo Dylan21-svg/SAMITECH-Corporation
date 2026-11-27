@@ -49,8 +49,20 @@ export function ContactModal({
           : '',
       };
     }
-    const matched = SERVICE_CATEGORY_OPTIONS.includes(rawCategory)
-      ? rawCategory
+    const legacyCategoryMap: Record<string, string> = {
+      'Software Development': 'Software Services',
+      'Mobile App Development': 'Software Services',
+      'UI/UX Design': 'Software Services',
+      'AI Development & Enablement': 'Software Services',
+      'Product Scope': 'Software Services',
+      'MVP Builder': 'Software Services',
+      'Networking Solutions': 'Network Services',
+      'Cybersecurity Services': 'Cybersecurity',
+      'Authorized Equipment Tracking': 'Tracking',
+    };
+    const normalizedCategory = legacyCategoryMap[rawCategory] ?? rawCategory;
+    const matched = SERVICE_CATEGORY_OPTIONS.includes(normalizedCategory)
+      ? normalizedCategory
       : SERVICE_CATEGORY_OPTIONS[0];
     return { category: matched, prefillMessage: '' };
   };
@@ -192,7 +204,7 @@ export function ContactModal({
                     Inquiry Received
                   </h3>
                   <p className="text-sm sm:text-base text-slate-600 max-w-md mx-auto leading-relaxed">
-                    Thank you, <span className="font-semibold text-[#07133B]">{values.fullName}</span>. Our engineering team in Buea has logged your inquiry regarding{' '}
+                    Thank you, <span className="font-semibold text-[#07133B]">{values.fullName}</span>. Our engineering team in Cameroon has logged your inquiry regarding{' '}
                     <span className="font-semibold text-[#002BFF]">{values.serviceCategory}</span> and will respond to{' '}
                     <span className="font-medium text-[#07133B]">{values.workEmail}</span> shortly. For urgent 24/7 assistance, call{' '}
                     <span className="font-semibold text-[#DC0914]">{COMPANY_CONTACT.phone}</span>.
@@ -392,7 +404,7 @@ export function ContactModal({
                 <div className="pt-3 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200">
                   <div className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500">
                     <Clock className="w-3.5 h-3.5 text-[#002BFF]" strokeWidth={1.75} aria-hidden="true" />
-                    <span>24/7 Support Desk · Buea, Cameroon</span>
+                    <span>24/7 Support Desk · Cameroon</span>
                   </div>
                   <div className="flex items-center gap-2.5 ml-auto">
                     <button

@@ -86,21 +86,22 @@ export function ServiceWireframeIcon({
         </svg>
       );
 
+    case 'software-services':
     case 'custom-software':
-      // Faceted crystal octahedron wireframe (teal)
+      // Faceted crystal octahedron wireframe (teal/blue)
       return (
         <svg viewBox="0 0 36 36" fill="none" className={className} aria-hidden="true">
           <polygon
             points="18,3 31,18 18,33 5,18"
-            stroke="#0D9488"
+            stroke="#002BFF"
             strokeWidth="1.65"
             strokeLinejoin="round"
           />
-          <line x1="5" y1="18" x2="31" y2="18" stroke="#0D9488" strokeWidth="1.45" />
-          <line x1="18" y1="3" x2="18" y2="33" stroke="#0D9488" strokeWidth="1.45" />
+          <line x1="5" y1="18" x2="31" y2="18" stroke="#002BFF" strokeWidth="1.45" />
+          <line x1="18" y1="3" x2="18" y2="33" stroke="#002BFF" strokeWidth="1.45" />
           <polyline
             points="12,11 18,18 24,11"
-            stroke="#0D9488"
+            stroke="#002BFF"
             strokeWidth="1.3"
             strokeLinejoin="round"
           />
@@ -141,20 +142,37 @@ export function ServiceWireframeIcon({
         </svg>
       );
 
+    case 'network-services':
     case 'networking-solutions':
       // Interconnected routing mesh hexagon (electric blue)
       return (
         <svg viewBox="0 0 36 36" fill="none" className={className} aria-hidden="true">
           <polygon
             points="18,4 30,11 30,25 18,32 6,25 6,11"
-            stroke="#002BFF"
+            stroke="#0284C7"
             strokeWidth="1.6"
             strokeLinejoin="round"
           />
-          <line x1="18" y1="4" x2="18" y2="32" stroke="#002BFF" strokeWidth="1.35" />
-          <line x1="6" y1="11" x2="30" y2="25" stroke="#002BFF" strokeWidth="1.35" />
-          <line x1="30" y1="11" x2="6" y2="25" stroke="#002BFF" strokeWidth="1.35" />
-          <circle cx="18" cy="18" r="3" fill="#EEF3FF" stroke="#002BFF" strokeWidth="1.5" />
+          <line x1="18" y1="4" x2="18" y2="32" stroke="#0284C7" strokeWidth="1.35" />
+          <line x1="6" y1="11" x2="30" y2="25" stroke="#0284C7" strokeWidth="1.35" />
+          <line x1="30" y1="11" x2="6" y2="25" stroke="#0284C7" strokeWidth="1.35" />
+          <circle cx="18" cy="18" r="3" fill="#EEF3FF" stroke="#0284C7" strokeWidth="1.5" />
+        </svg>
+      );
+
+    case 'it-support-maintenance':
+      // Precision maintenance gear & calibration core (teal)
+      return (
+        <svg viewBox="0 0 36 36" fill="none" className={className} aria-hidden="true">
+          <polygon
+            points="18,4 28,8 32,18 28,28 18,32 8,28 4,18 8,8"
+            stroke="#0F766E"
+            strokeWidth="1.6"
+            strokeLinejoin="round"
+          />
+          <circle cx="18" cy="18" r="5" stroke="#0F766E" strokeWidth="1.6" />
+          <line x1="18" y1="4" x2="18" y2="13" stroke="#0F766E" strokeWidth="1.35" />
+          <line x1="18" y1="23" x2="18" y2="32" stroke="#0F766E" strokeWidth="1.35" />
         </svg>
       );
 
@@ -178,8 +196,10 @@ export function ServiceWireframeIcon({
         </svg>
       );
 
+    case 'tracking':
+    case 'tracking-support':
     default:
-      // Authorized Equipment Tracking & 24/7 Support geometric radar node (navy/blue)
+      // Authorized Equipment Tracking geometric radar node (navy/blue)
       return (
         <svg viewBox="0 0 36 36" fill="none" className={className} aria-hidden="true">
           <circle cx="18" cy="18" r="13" stroke="#07133B" strokeWidth="1.6" />

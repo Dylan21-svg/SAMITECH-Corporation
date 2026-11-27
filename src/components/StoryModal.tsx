@@ -72,7 +72,7 @@ export function StoryModal({ isOpen, onClose, onGetInTouch }: StoryModalProps) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#040B29]/90 via-[#040B29]/25 to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5 text-white">
-                  <div className="text-xs font-medium text-[#93C5FD]">Founded 2019 · Buea, Cameroon</div>
+                  <div className="text-xs font-medium text-[#93C5FD]">Founded 2019 · Cameroon</div>
                   <div className="text-lg font-bold leading-snug mt-1">
                     Where Technology Meets Excellence
                   </div>
@@ -85,9 +85,9 @@ export function StoryModal({ isOpen, onClose, onGetInTouch }: StoryModalProps) {
                     The SAMITECH Corporation Story
                   </h3>
                   <p className="mt-2.5 text-sm sm:text-base text-slate-600 leading-relaxed">
-                    Since 2019, SAMITECH Corporation has grown from Buea, Cameroon into a trusted
-                    software engineering, networking, cybersecurity, and Data &amp; AI partner across
-                    Douala, Yaoundé, and international remote teams.
+                    Since 2019, SAMITECH Corporation has grown in Cameroon into a trusted
+                    software engineering, networking, cybersecurity, and Data &amp; AI partner serving
+                    clients nationwide and international remote teams.
                   </p>
                 </div>
 

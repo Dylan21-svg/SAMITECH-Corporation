@@ -71,7 +71,7 @@ export interface TeamMember {
 
 export const TEAM_HERO_MEDIA = {
   image: '/assets/aistudio/SAMITECH_Team_Collaboration_in_Modern_Office_a64eb672.png',
-  alt: 'SAMITECH Corporation leadership and engineering collaboration in Buea',
+  alt: 'SAMITECH Corporation leadership and engineering collaboration in Cameroon',
   width: 1376,
   height: 768,
 };
@@ -79,7 +79,7 @@ export const TEAM_HERO_MEDIA = {
 export const TEAM_PROOF_STATS = [
   { value: '3', label: 'Executive Leaders · CEO, COO & CTO' },
   { value: '6+', label: 'Core Domains · Telecom, SaaS, AI & IoT' },
-  { value: '3', label: 'Hubs · Buea, Douala & Yaoundé' },
+  { value: 'Cameroon', label: 'Nationwide & Remote Global Delivery' },
   { value: '24/7', label: 'Operations, Support & Delivery' },
 ];
 
@@ -95,7 +95,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     heroTagline:
       'Connecting people, businesses and possibilities through networking, telecommunications and dependable digital infrastructure.',
     focusLabel: 'Networking & Telecommunications',
-    location: 'Buea, Cameroon',
+    location: 'Cameroon',
     email: 'samitech237@gmail.com',
     phone: '+237 6 95 20 03 61',
     website: 'foshongsamuel.com',
@@ -192,7 +192,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     heroTagline:
       'I specialize in backend architecture where speed, security, and scalability converge, building distributed Python systems and SaaS platforms.',
     focusLabel: 'Backend & Distributed Systems',
-    location: 'Buea, Cameroon',
+    location: 'Cameroon',
     email: 'ngwadiland68@gmail.com',
     phone: '+237 672 344 814',
     website: 'che-amah-diland-ngwa.vercel.app',
@@ -305,7 +305,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     heroTagline:
       'Multidisciplinary technologist specializing in full stack development, data engineering, scalable system architecture, AI, and IoT.',
     focusLabel: 'Full Stack, Data & Systems Engineering',
-    location: 'Buea, Cameroon',
+    location: 'Cameroon',
     email: 'samitech237@gmail.com',
     phone: '+237 6 95 20 03 61',
     website: 'samitech237.com/team/nji-prosper',

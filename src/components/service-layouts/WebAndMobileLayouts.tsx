@@ -77,12 +77,12 @@ export function WebDevelopmentLayout({
                 className="font-extrabold tracking-tight leading-[1.03] text-balance"
                 style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4rem)' }}
               >
-                <span className="block text-[#07133B]">Web</span>
-                <span className="block text-[#0038FF]">Development</span>
+                <span className="block text-[#07133B]">Software</span>
+                <span className="block text-[#0038FF]">Services</span>
               </h1>
 
               <p className="text-sm sm:text-base lg:text-lg text-slate-700 font-medium leading-relaxed max-w-lg">
-                We build modern, scalable and high performance websites, SaaS portals, and custom web applications tailored to your needs.
+                {service.heroDescription}
               </p>
 
               {/* Signature Blue + Crimson Split Underline Bar */}
@@ -143,13 +143,13 @@ export function WebDevelopmentLayout({
                     <div className="absolute inset-0 bg-gradient-to-r from-[#07133B]/85 via-[#07133B]/45 to-transparent" />
                     <div className="absolute inset-y-0 left-0 p-5 sm:p-7 flex flex-col justify-center max-w-[260px] text-white space-y-2.5">
                       <div className="text-[11px] font-bold text-[#93C5FD]">
-                        SAMITECH Web Studio
+                        SAMITECH Software Studio
                       </div>
                       <div className="text-lg sm:text-2xl font-extrabold leading-tight">
-                        Grow Your Business Online
+                        UI/UX, Web, Apps &amp; Graphics
                       </div>
                       <div className="text-xs text-slate-200">
-                        Fast. Secure. Scalable React &amp; Node.js platforms.
+                        Design-first digital products engineered for speed and scale.
                       </div>
                     </div>
                   </div>
@@ -360,7 +360,7 @@ export function WebDevelopmentLayout({
               Ready to Build Something Great?
             </h2>
             <p className="text-sm sm:text-base text-blue-100">
-              Let&apos;s bring your ideas to life with world class web development services.
+              Let&apos;s bring your ideas to life with UI/UX design, web &amp; app development, and brand graphics.
             </p>
           </div>
 
@@ -402,27 +402,27 @@ export function MobileAppLayout({
                 />
 
                 {/* Back Phone (Android Offline Field View) */}
-                <div className="relative -mr-8 -rotate-6 w-48 sm:w-56 rounded-[30px] bg-[#07133B] p-2.5 shadow-2xl border border-white/20">
-                  <div className="rounded-[22px] bg-[#0F215E] p-4 text-white space-y-3 min-h-[300px] flex flex-col justify-between">
+                <div className="relative -mr-6 sm:-mr-8 -rotate-6 w-36 sm:w-56 rounded-[26px] sm:rounded-[30px] bg-[#07133B] p-2 sm:p-2.5 shadow-2xl border border-white/20">
+                  <div className="rounded-[20px] sm:rounded-[22px] bg-[#0F215E] p-3 sm:p-4 text-white space-y-2.5 sm:space-y-3 min-h-[250px] sm:min-h-[300px] flex flex-col justify-between">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between text-[10px] text-[#93C5FD] font-semibold">
                         <span>Android · Flutter</span>
                         <WifiOff className="w-3.5 h-3.5" aria-hidden="true" />
                       </div>
-                      <div className="text-sm font-extrabold leading-snug">
+                      <div className="text-xs sm:text-sm font-extrabold leading-snug">
                         Offline First Sync Queue
                       </div>
-                      <p className="text-[11px] text-slate-300 leading-relaxed">
+                      <p className="text-[10px] sm:text-[11px] text-slate-300 leading-relaxed">
                         Orders and field telemetry sync automatically when 4G returns.
                       </p>
                     </div>
                     <div className="space-y-1.5">
-                      <div className="rounded-lg bg-white/10 p-2 text-[11px] flex justify-between">
-                        <span>Cached Records</span>
+                      <div className="rounded-lg bg-white/10 p-1.5 sm:p-2 text-[10px] sm:text-[11px] flex justify-between gap-1">
+                        <span>Cached</span>
                         <span className="font-mono font-bold text-[#93C5FD]">100%</span>
                       </div>
-                      <div className="rounded-lg bg-white/10 p-2 text-[11px] flex justify-between">
-                        <span>Frame Rate</span>
+                      <div className="rounded-lg bg-white/10 p-1.5 sm:p-2 text-[10px] sm:text-[11px] flex justify-between gap-1">
+                        <span>Rate</span>
                         <span className="font-mono font-bold text-emerald-300">60 fps</span>
                       </div>
                     </div>
@@ -430,8 +430,8 @@ export function MobileAppLayout({
                 </div>
 
                 {/* Front Phone (iOS Checkout & Live App View) */}
-                <div className="relative z-10 rotate-3 translate-y-4 w-52 sm:w-60 rounded-[32px] bg-white p-2.5 shadow-[0_24px_50px_rgba(4,11,41,0.22)] border border-[#D0E0FF]">
-                  <div className="rounded-[24px] bg-gradient-to-b from-[#0038FF] to-[#061854] p-4 text-white space-y-3.5 min-h-[320px] flex flex-col justify-between">
+                <div className="relative z-10 rotate-3 translate-y-4 w-40 sm:w-60 rounded-[28px] sm:rounded-[32px] bg-white p-2 sm:p-2.5 shadow-[0_24px_50px_rgba(4,11,41,0.22)] border border-[#D0E0FF]">
+                  <div className="rounded-[22px] sm:rounded-[24px] bg-gradient-to-b from-[#0038FF] to-[#061854] p-3 sm:p-4 text-white space-y-2.5 sm:space-y-3.5 min-h-[270px] sm:min-h-[320px] flex flex-col justify-between">
                     <div className="space-y-2">
                       <div className="mx-auto w-14 h-1.5 rounded-full bg-white/30" aria-hidden="true" />
                       <div className="pt-1 flex items-center justify-between text-[10px] text-blue-100 font-semibold">
@@ -488,16 +488,16 @@ export function MobileAppLayout({
               </p>
 
               {/* Inline 3-Metric Strip */}
-              <div className="grid grid-cols-3 gap-3 pt-1">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-1">
                 {service.metrics.map((metric) => (
                   <div
                     key={metric.label}
-                    className="rounded-xl bg-white border border-[#D8E5FF] p-3.5"
+                    className="rounded-xl bg-white border border-[#D8E5FF] p-2.5 sm:p-3.5"
                   >
-                    <div className="text-lg sm:text-xl font-extrabold text-[#0038FF] tabular-nums">
+                    <div className="text-base sm:text-xl font-extrabold text-[#0038FF] tabular-nums">
                       {metric.value}
                     </div>
-                    <div className="text-[11px] sm:text-xs font-medium text-slate-600 mt-0.5">
+                    <div className="text-[10px] sm:text-xs font-medium text-slate-600 mt-0.5 leading-tight">
                       {metric.label}
                     </div>
                   </div>
