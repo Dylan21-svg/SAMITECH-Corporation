@@ -1,9 +1,9 @@
 import { ArrowRight, MapPin } from 'lucide-react';
 import {
   TEAM_HERO_MEDIA,
-  TEAM_MEMBERS,
   TEAM_PROOF_STATS,
 } from '../data/teamData';
+import { useSiteContent } from '../context/SiteContentContext';
 import { Reveal } from './MotionPrimitives';
 import { ResilientImage } from './ResilientImage';
 
@@ -20,6 +20,8 @@ export function TeamPage({
   onNavigateCareers,
   onNavigateAbout,
 }: TeamPageProps) {
+  const { teamMembers } = useSiteContent();
+
   return (
     <div className="bg-white text-[#07133B]">
       {/* HERO SECTION, Editorial Split With Full-Bleed SAMITECH Team Backdrop */}
@@ -37,7 +39,7 @@ export function TeamPage({
           <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/30 lg:from-white/95 lg:via-white/75 lg:to-transparent" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-8">
             <Reveal
               immediate
@@ -52,7 +54,7 @@ export function TeamPage({
 
               <h1
                 className="font-extrabold tracking-tight leading-[1.06] text-balance text-[#07133B]"
-                style={{ fontSize: 'clamp(2rem, 4.2vw, 3.6rem)' }}
+                style={{ fontSize: 'clamp(1.6rem, 4.2vw, 3.6rem)' }}
               >
                 Meet the Leadership Behind{' '}
                 <span className="text-[#002BFF]">SAMITECH</span>
@@ -105,7 +107,7 @@ export function TeamPage({
       </section>
 
       {/* EXECUTIVE LEADERSHIP SHOWCASE (CEO · COO · CTO) */}
-      <section className="py-14 sm:py-18 lg:py-24 bg-[#F8FAFF] overflow-x-clip">
+      <section className="py-10 sm:py-18 lg:py-24 bg-[#F8FAFF] overflow-x-clip">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal direction="top" className="max-w-2xl mx-auto text-center space-y-2.5 mb-10 sm:mb-14">
             <div className="text-xs sm:text-sm font-semibold text-[#002BFF]">
@@ -123,7 +125,7 @@ export function TeamPage({
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {TEAM_MEMBERS.map((member, index) => (
+            {teamMembers.map((member, index) => (
               <Reveal
                 key={member.id}
                 direction="bottom"
@@ -200,7 +202,7 @@ export function TeamPage({
       </section>
 
       {/* DARK CORPORATE CTA BAND, Partner or Join */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-white">
+      <section className="py-9 sm:py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal direction="bottom">
             <div

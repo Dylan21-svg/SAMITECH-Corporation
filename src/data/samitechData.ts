@@ -59,12 +59,20 @@ export const COMPANY_CONTACT = {
   legalName: 'SAMITECH Corporation',
   domain: 'samitech237.com',
   email: 'samitech237@gmail.com',
-  phone: '+237 674 137 259',
+  phone: '+237 6 95 20 03 61',
+  whatsappNumber: '237695200361',
+  whatsappUrl: 'https://wa.me/237695200361',
   location: 'Cameroon',
   regions: 'Cameroon · Remote Global',
   founded: '2019',
   availability: '24/7 Support',
 };
+
+export function buildCompanyWhatsAppUrl(
+  message = 'Hello SAMITECH Corporation, I would like to inquire about your services.'
+): string {
+  return `${COMPANY_CONTACT.whatsappUrl}?text=${encodeURIComponent(message)}`;
+}
 
 export const ABOUT_MEDIA = {
   image: aboutHqImg,
@@ -155,7 +163,7 @@ export const WHY_PILLARS: WhyPillar[] = [
     id: 'always-on-support',
     title: '24/7 Support & Security First',
     description:
-      'Round the clock operational support (+237 674 137 259), defense in depth penetration testing, and hands on engineering mentorship programs.',
+      'Round the clock operational support (+237 6 95 20 03 61), defense in depth penetration testing, and hands on engineering mentorship programs.',
     accent: 'red',
   },
 ];
@@ -304,7 +312,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     id: 'faq-5',
     question: 'How quickly can we reach SAMITECH for project quotes or 24/7 support?',
     answer:
-      'Our engineering and support desk is available 24/7. Reach us directly by phone or WhatsApp at +237 674 137 259, by email at samitech237@gmail.com, or through the consultation form on this page.',
+      'Our engineering and support desk is available 24/7. Reach us directly by phone or WhatsApp at +237 6 95 20 03 61, by email at samitech237@gmail.com, or through the consultation form on this page.',
   },
 ];
 

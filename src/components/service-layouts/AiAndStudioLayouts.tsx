@@ -32,7 +32,7 @@ export function DedicatedTeamsLayout({
   return (
     <div className="bg-white text-[#07133B] overflow-x-clip">
       {/* WIDE SPLIT HERO WITH EMBEDDED POD ROSTER */}
-      <section className="bg-gradient-to-br from-[#FFF7ED] via-white to-[#F2F6FF] pt-10 pb-16 sm:pt-14 sm:pb-20 border-b border-orange-200/70">
+      <section className="bg-gradient-to-br from-[#FFF7ED] via-white to-[#F2F6FF] pt-7 pb-12 sm:pt-14 sm:pb-20 border-b border-orange-200/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <Reveal immediate direction="left" wrapperClassName="lg:col-span-6" className="space-y-5">
@@ -43,7 +43,7 @@ export function DedicatedTeamsLayout({
 
               <h1
                 className="font-extrabold tracking-tight leading-[1.04] text-balance text-[#07133B]"
-                style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.65rem)' }}
+                style={{ fontSize: 'clamp(1.65rem, 4.5vw, 3.65rem)' }}
               >
                 Embedded Tech{' '}
                 <span className="text-[#EA580C]">Pods on Demand</span>

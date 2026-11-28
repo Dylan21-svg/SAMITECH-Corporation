@@ -16,8 +16,10 @@ import {
   Terminal,
   Wrench,
 } from 'lucide-react';
+import { useSiteContent } from '../../context/SiteContentContext';
 import { Reveal } from '../MotionPrimitives';
 import { ResilientImage } from '../ResilientImage';
+import { WhatsAppBrandIcon } from '../WhatsAppFloatingButton';
 import {
   getTechBadgeColor,
   ServiceProofAndFaqBand,
@@ -38,7 +40,7 @@ export function CloudNetworkingLayout({
       {/* DARK ARCHITECTURAL CLOUD & FIBER TOPOLOGY HERO */}
       <section
         id="service-dark-hero"
-        className="relative bg-[#040B29] text-white pt-10 pb-16 sm:pt-14 sm:pb-20 overflow-hidden"
+        className="relative bg-[#040B29] text-white pt-7 pb-12 sm:pt-14 sm:pb-20 overflow-hidden"
       >
         {/* Subtle Architectural Fiber Grid */}
         <div
@@ -60,7 +62,7 @@ export function CloudNetworkingLayout({
 
               <h1
                 className="font-extrabold tracking-tight leading-[1.04] text-balance text-white"
-                style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.7rem)' }}
+                style={{ fontSize: 'clamp(1.6rem, 4.5vw, 3.7rem)' }}
               >
                 Starlink, Wi-Fi Zones &amp;{' '}
                 <span className="text-[#38BDF8]">Network Services</span>
@@ -291,7 +293,7 @@ export function CybersecurityLayout({
       {/* DARK CHARCOAL + CRIMSON TACTICAL HERO */}
       <section
         id="service-dark-hero"
-        className="relative bg-gradient-to-br from-[#090B14] via-[#111526] to-[#1E0A12] text-white pt-10 pb-16 sm:pt-14 sm:pb-20 border-b border-[#DC0914]/30"
+        className="relative bg-gradient-to-br from-[#090B14] via-[#111526] to-[#1E0A12] text-white pt-7 pb-12 sm:pt-14 sm:pb-20 border-b border-[#DC0914]/30"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -303,7 +305,7 @@ export function CybersecurityLayout({
 
               <h1
                 className="font-extrabold tracking-tight leading-[1.04] text-balance"
-                style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.7rem)' }}
+                style={{ fontSize: 'clamp(1.6rem, 4.5vw, 3.7rem)' }}
               >
                 CCTV Surveillance &amp;{' '}
                 <span className="text-[#FF4754]">Cybersecurity Defense</span>
@@ -494,20 +496,22 @@ export function MaintenanceSupportLayout({
   onOpenContact,
   onOpenCaseStudy,
 }: ServiceLayoutProps) {
+  const { settings, buildWhatsAppUrl } = useSiteContent();
+
   return (
     <div className="bg-white text-[#07133B] overflow-x-clip">
-      <section className="bg-gradient-to-br from-[#F0FDFB] via-white to-[#EEF5FF] pt-10 pb-14 sm:pt-14 sm:pb-18 border-b border-teal-200/70">
+      <section className="bg-gradient-to-br from-[#F0FDFB] via-white to-[#EEF5FF] pt-7 pb-11 sm:pt-14 sm:pb-18 border-b border-teal-200/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             <Reveal immediate direction="left" wrapperClassName="lg:col-span-7" className="space-y-5">
               <div className="inline-flex flex-wrap items-center gap-2 text-xs font-bold text-[#0F766E]">
                 <Wrench className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span>{service.number} · {service.groupLabel} · Hotline +237 674 137 259</span>
+                <span>{service.number} · {service.groupLabel} · Hotline {settings.phone}</span>
               </div>
 
               <h1
                 className="font-extrabold tracking-tight leading-[1.05] text-balance text-[#07133B]"
-                style={{ fontSize: 'clamp(2.1rem, 4.3vw, 3.5rem)' }}
+                style={{ fontSize: 'clamp(1.6rem, 4.3vw, 3.5rem)' }}
               >
                 Computer Maintenance &amp;{' '}
                 <span className="text-[#0F766E]">Computer Lab Setup</span>
@@ -527,11 +531,20 @@ export function MaintenanceSupportLayout({
                   <ArrowRight className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
                 </button>
                 <a
-                  href="tel:+237674137259"
+                  href={`tel:${settings.phone.replace(/\s+/g, '')}`}
                   className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-teal-50 border border-teal-300 text-[#07133B] text-sm font-bold tabular-nums transition-colors whitespace-nowrap"
                 >
                   <PhoneCall className="w-4 h-4 text-[#0F766E]" aria-hidden="true" />
-                  <span>+237 674 137 259</span>
+                  <span>{settings.phone}</span>
+                </a>
+                <a
+                  href={buildWhatsAppUrl('Hello SAMITECH, I need assistance with Computer Maintenance / Computer Lab Setup.')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#25D366] hover:bg-[#1EBE5D] text-white text-sm font-bold shadow-sm transition-colors whitespace-nowrap"
+                >
+                  <WhatsAppBrandIcon className="w-4 h-4" />
+                  <span>WhatsApp</span>
                 </a>
               </div>
             </Reveal>
@@ -666,6 +679,7 @@ export function TrackingSupportLayout({
   onOpenContact,
   onOpenCaseStudy,
 }: ServiceLayoutProps) {
+  const { settings, buildWhatsAppUrl } = useSiteContent();
   const tiers = [
     { icon: Cpu, name: 'IoT & Tracker Devices', note: 'Authorized telemetry recovery' },
     { icon: Smartphone, name: 'Smartphones & Tablets', note: 'Receipt or IMEI box verified' },
@@ -676,18 +690,18 @@ export function TrackingSupportLayout({
   return (
     <div className="bg-white text-[#07133B] overflow-x-clip">
       {/* 24/7 OPERATIONS DESK SPLIT HERO */}
-      <section className="bg-gradient-to-br from-[#F0FDFB] via-white to-[#EEF5FF] pt-10 pb-14 sm:pt-14 sm:pb-18 border-b border-teal-200/70">
+      <section className="bg-gradient-to-br from-[#F0FDFB] via-white to-[#EEF5FF] pt-7 pb-11 sm:pt-14 sm:pb-18 border-b border-teal-200/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             <Reveal immediate direction="left" wrapperClassName="lg:col-span-7" className="space-y-5">
               <div className="inline-flex flex-wrap items-center gap-2 text-xs font-bold text-[#0F766E]">
                 <ShieldCheck className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span>{service.number} · {service.groupLabel} · Hotline +237 674 137 259</span>
+                <span>{service.number} · {service.groupLabel} · Hotline {settings.phone}</span>
               </div>
 
               <h1
                 className="font-extrabold tracking-tight leading-[1.05] text-balance text-[#07133B]"
-                style={{ fontSize: 'clamp(2.1rem, 4.3vw, 3.5rem)' }}
+                style={{ fontSize: 'clamp(1.6rem, 4.3vw, 3.5rem)' }}
               >
                 Authorized Equipment{' '}
                 <span className="text-[#0F766E]">Tracking</span>
@@ -707,11 +721,20 @@ export function TrackingSupportLayout({
                   <ArrowRight className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
                 </button>
                 <a
-                  href="tel:+237674137259"
+                  href={`tel:${settings.phone.replace(/\s+/g, '')}`}
                   className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-teal-50 border border-teal-300 text-[#07133B] text-sm font-bold tabular-nums transition-colors whitespace-nowrap"
                 >
                   <PhoneCall className="w-4 h-4 text-[#0F766E]" aria-hidden="true" />
-                  <span>+237 674 137 259</span>
+                  <span>{settings.phone}</span>
+                </a>
+                <a
+                  href={buildWhatsAppUrl('Hello SAMITECH, I would like to open an Authorized Equipment Tracking case.')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#25D366] hover:bg-[#1EBE5D] text-white text-sm font-bold shadow-sm transition-colors whitespace-nowrap"
+                >
+                  <WhatsAppBrandIcon className="w-4 h-4" />
+                  <span>WhatsApp</span>
                 </a>
               </div>
             </Reveal>

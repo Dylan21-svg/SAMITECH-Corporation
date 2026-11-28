@@ -8,10 +8,8 @@ import {
   Plus,
 } from 'lucide-react';
 import { type CaseStudy } from '../../data/samitechData';
-import {
-  ALL_SERVICES_CATALOG,
-  type ServiceDetail,
-} from '../../data/servicesCatalog';
+import { type ServiceDetail } from '../../data/servicesCatalog';
+import { useSiteContent } from '../../context/SiteContentContext';
 import { SAMITECH_EASE } from '../MotionPrimitives';
 import { ResilientImage } from '../ResilientImage';
 
@@ -81,6 +79,8 @@ export function ServiceTopSwitcher({
   onBackToServices: () => void;
   onSelectService: (slug: string) => void;
 }) {
+  const { services } = useSiteContent();
+
   return (
     <div
       id={darkMode ? 'service-dark-top' : undefined}
@@ -105,7 +105,7 @@ export function ServiceTopSwitcher({
         </button>
 
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
-          {ALL_SERVICES_CATALOG.map((item) => {
+          {services.map((item) => {
             const isCurrent = item.slug === service.slug;
             return (
               <button

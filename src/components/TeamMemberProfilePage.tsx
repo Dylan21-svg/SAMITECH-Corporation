@@ -25,10 +25,10 @@ import {
   Users,
 } from 'lucide-react';
 import {
-  TEAM_MEMBERS,
   type InterestIconKey,
   type TeamMember,
 } from '../data/teamData';
+import { useSiteContent } from '../context/SiteContentContext';
 import { Reveal } from './MotionPrimitives';
 import { ResilientImage } from './ResilientImage';
 
@@ -72,7 +72,8 @@ export function TeamMemberProfilePage({
   onNavigateHome,
   onOpenContact,
 }: TeamMemberProfilePageProps) {
-  const otherLeaders = TEAM_MEMBERS.filter((item) => item.id !== member.id);
+  const { teamMembers } = useSiteContent();
+  const otherLeaders = teamMembers.filter((item) => item.id !== member.id);
 
   return (
     <div className="bg-white text-[#07133B] overflow-x-clip">
@@ -125,14 +126,14 @@ export function TeamMemberProfilePage({
         </svg>
 
         {/* Foreground Hero Content */}
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-28 sm:pb-14 lg:pt-32 lg:pb-16">
-          <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-8 lg:gap-12">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-9 sm:pt-28 sm:pb-14 lg:pt-32 lg:pb-16">
+          <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-7 lg:gap-12">
             {/* Left Portrait Stack With Tilted Blue-Cyan Backing Cards */}
             <Reveal
               immediate
               direction="left"
               wrapperClassName="md:col-span-5 lg:col-span-4 flex justify-center md:justify-start"
-              className="relative w-[240px] sm:w-[270px] lg:w-[295px]"
+              className="relative w-[195px] sm:w-[270px] lg:w-[295px]"
             >
               {/* Back-most glowing cyan/blue tilted plate */}
               <div
@@ -194,7 +195,7 @@ export function TeamMemberProfilePage({
               <div className="space-y-1">
                 <h1
                   className="font-extrabold tracking-tight leading-[1.06] text-balance"
-                  style={{ fontSize: 'clamp(2.1rem, 4.4vw, 3.65rem)' }}
+                  style={{ fontSize: 'clamp(1.65rem, 4.4vw, 3.65rem)' }}
                 >
                   <span className="text-[#07133B]">{member.firstNamePart} </span>
                   <span className="text-[#0038FF]">{member.accentNamePart}</span>

@@ -5,11 +5,11 @@ import {
   Play,
 } from 'lucide-react';
 import {
-  ALL_SERVICES_CATALOG,
   SERVICE_GROUPS,
   SERVICES_SHOWCASE_MEDIA,
   type ServiceGroup,
 } from '../data/servicesCatalog';
+import { useSiteContent } from '../context/SiteContentContext';
 import { Reveal } from './MotionPrimitives';
 import { ResilientImage } from './ResilientImage';
 import { ServiceGridIcon } from './ShowcaseIcons';
@@ -25,12 +25,13 @@ export function ServicesPage({
   onOpenContact,
   onOpenStory,
 }: ServicesPageProps) {
+  const { services } = useSiteContent();
   const [activeGroup, setActiveGroup] = useState<'all' | ServiceGroup>('all');
 
   const filteredServices =
     activeGroup === 'all'
-      ? ALL_SERVICES_CATALOG
-      : ALL_SERVICES_CATALOG.filter((service) => service.group === activeGroup);
+      ? services
+      : services.filter((service) => service.group === activeGroup);
 
   const scrollToCoreGrid = () => {
     const el = document.getElementById('core-services-grid');
@@ -61,22 +62,22 @@ export function ServicesPage({
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 lg:pt-36 pb-20 sm:pb-28 lg:pb-32">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-32 lg:pt-36 pb-14 sm:pb-28 lg:pb-32">
           <div className="grid grid-cols-12 items-center">
             <Reveal
               immediate
               direction="left"
               wrapperClassName="col-span-12 sm:col-span-8 lg:col-span-7"
-              className="space-y-4 sm:space-y-5"
+              className="space-y-3.5 sm:space-y-5"
             >
-              <div className="inline-flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-[#7DD3FC] tracking-tight">
-                <span className="w-5 h-[2px] bg-[#22D3EE]" aria-hidden="true" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#09215E]/85 border border-[#38BDF8]/30 text-xs font-semibold text-white">
+                <span className="w-2 h-2 rounded-full bg-[#0070FF]" aria-hidden="true" />
                 <span>Our Services</span>
               </div>
 
               <h1
                 className="font-extrabold tracking-tight leading-[1.06] text-balance"
-                style={{ fontSize: 'clamp(1.85rem, 4.3vw, 3.6rem)' }}
+                style={{ fontSize: 'clamp(1.6rem, 4.3vw, 3.6rem)' }}
               >
                 <span className="text-white block">Innovative Solutions</span>
                 <span className="text-white block">
@@ -181,8 +182,8 @@ export function ServicesPage({
             </div>
           </div>
 
-          {/* 6-Card Main Services Grid (3x2 on Desktop) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          {/* 6-Card Main Services Grid (2-col Compact on Mobile, 3x2 on Desktop) */}
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-5 lg:gap-6">
             {filteredServices.map((service, index) => (
               <Reveal
                 key={service.slug}
@@ -191,33 +192,33 @@ export function ServicesPage({
                 wrapperClassName="h-full"
                 className="h-full"
               >
-                <article className="group h-full flex flex-col justify-between rounded-2xl bg-gradient-to-b from-[#F4F8FF]/85 to-[#FFFFFF] border border-[#DCE8FF] hover:border-[#0044FF]/45 p-6 sm:p-7 shadow-[0_8px_24px_rgba(4,11,41,0.04)] hover:shadow-[0_18px_36px_rgba(0,68,255,0.12)] hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.99] motion-reduce:hover:scale-100 motion-reduce:hover:translate-y-0 motion-reduce:active:scale-100 transition-all duration-200 ease-out">
-                  <div className="space-y-4">
+                <article className="group h-full flex flex-col justify-between rounded-2xl bg-gradient-to-b from-[#F4F8FF]/95 to-[#FFFFFF] border border-[#DCE8FF] hover:border-[#0044FF]/45 p-3 sm:p-6 lg:p-7 shadow-[0_8px_24px_rgba(4,11,41,0.04)] hover:shadow-[0_18px_36px_rgba(0,68,255,0.12)] hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.99] motion-reduce:hover:scale-100 motion-reduce:hover:translate-y-0 motion-reduce:active:scale-100 transition-all duration-200 ease-out">
+                  <div className="space-y-2 sm:space-y-4">
                     {/* Number & Icon Row */}
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="h-11 flex items-center">
+                    <div className="flex items-center justify-between gap-2 sm:gap-4">
+                      <div className="h-9 sm:h-11 flex items-center origin-left scale-[0.82] sm:scale-100">
                         <ServiceGridIcon slug={service.slug} />
                       </div>
-                      <span className="font-mono text-xs font-bold text-slate-400 tabular-nums">
+                      <span className="font-mono text-[10px] sm:text-xs font-bold text-slate-400 tabular-nums">
                         {service.number}
                       </span>
                     </div>
 
                     {/* Title & Summary */}
-                    <div className="space-y-2">
-                      <div className="text-xs font-medium text-[#002BFF]">
+                    <div className="space-y-1 sm:space-y-2">
+                      <div className="hidden sm:block text-xs font-medium text-[#002BFF]">
                         {service.groupLabel}
                       </div>
-                      <h3 className="text-lg sm:text-xl font-extrabold text-[#07133B] group-hover:text-[#002BFF] transition-colors leading-snug">
+                      <h3 className="text-xs sm:text-xl font-extrabold text-[#07133B] group-hover:text-[#002BFF] transition-colors leading-snug">
                         {service.title}
                       </h3>
-                      <p className="text-sm text-slate-600 leading-relaxed">
+                      <p className="text-[11px] sm:text-sm text-slate-600 leading-snug sm:leading-relaxed line-clamp-3 sm:line-clamp-none">
                         {service.shortDesc}
                       </p>
                     </div>
 
-                    {/* Hairline-Separated Specific Offerings (Top 4 Preview) */}
-                    <div className="pt-4 border-t border-slate-200/75 space-y-2">
+                    {/* Hairline-Separated Specific Offerings (Desktop & Tablet Detail View) */}
+                    <div className="hidden sm:block pt-4 border-t border-slate-200/75 space-y-2">
                       <div className="text-xs font-semibold text-slate-500">
                         Key Capabilities
                       </div>
@@ -249,15 +250,16 @@ export function ServicesPage({
                   </div>
 
                   {/* Card Action Bar */}
-                  <div className="pt-6 mt-6 border-t border-slate-200/75 flex items-center justify-between gap-3">
+                  <div className="pt-2.5 mt-2.5 sm:pt-6 sm:mt-6 border-t border-slate-200/75 flex items-center justify-between gap-2 sm:gap-3">
                     <button
                       type="button"
                       onClick={() => onSelectService(service.slug)}
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#002BFF] hover:text-[#DC0914] transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#002BFF] rounded-sm"
+                      className="inline-flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-sm font-bold text-[#002BFF] hover:text-[#DC0914] transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#002BFF] rounded-sm"
                     >
-                      <span>Explore Service</span>
+                      <span className="sm:hidden">Learn More</span>
+                      <span className="hidden sm:inline">Explore Service</span>
                       <ArrowRight
-                        className="w-4 h-4 group-hover:translate-x-0.5 transition-transform"
+                        className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-0.5 transition-transform"
                         strokeWidth={2}
                         aria-hidden="true"
                       />
@@ -266,7 +268,7 @@ export function ServicesPage({
                     <button
                       type="button"
                       onClick={() => onOpenContact(service.contactCategory)}
-                      className="px-3.5 py-2 rounded-lg bg-[#EEF3FF] hover:bg-[#002BFF] text-[#07133B] hover:text-white text-xs font-semibold transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#002BFF]"
+                      className="hidden sm:inline-flex px-3.5 py-2 rounded-lg bg-[#EEF3FF] hover:bg-[#002BFF] text-[#07133B] hover:text-white text-xs font-semibold transition-colors whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#002BFF]"
                     >
                       Request Quote
                     </button>
@@ -283,9 +285,9 @@ export function ServicesPage({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal direction="bottom">
             <div className="relative overflow-hidden rounded-2xl bg-[#051033] text-white shadow-[0_20px_45px_rgba(4,11,41,0.22)] border border-[#1E3A8A]/40">
-              <div className="flex flex-col sm:grid sm:grid-cols-12 sm:items-center">
+              <div className="grid grid-cols-12 items-stretch">
                 <div
-                  className="hidden sm:block sm:col-span-4 lg:col-span-3 relative h-full min-h-[140px] lg:min-h-[155px]"
+                  className="col-span-4 sm:col-span-4 lg:col-span-3 relative min-h-[120px] sm:min-h-[140px] lg:min-h-[155px]"
                   style={{ clipPath: 'polygon(0 0, 100% 0, 82% 100%, 0 100%)' }}
                 >
                   <ResilientImage
@@ -295,32 +297,36 @@ export function ServicesPage({
                     width={SERVICES_SHOWCASE_MEDIA.ctaHq.width}
                     height={SERVICES_SHOWCASE_MEDIA.ctaHq.height}
                     darkSkeleton
+                    wrapperClassName="absolute inset-0 w-full h-full"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#051033]/75" />
                 </div>
 
-                <div className="sm:col-span-5 lg:col-span-6 p-5 pb-3 sm:py-6 sm:px-4 lg:px-6 space-y-1.5">
-                  <div className="text-[11px] sm:text-xs font-semibold text-[#60A5FA]">
-                    Ready to get started?
+                <div className="col-span-8 sm:col-span-8 lg:col-span-9 flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:py-6 sm:px-5 lg:px-8">
+                  <div className="space-y-1 sm:space-y-1.5 min-w-0">
+                    <div className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold text-[#60A5FA]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8]" aria-hidden="true" />
+                      <span>Ready to get started?</span>
+                    </div>
+                    <h2 className="text-sm sm:text-xl lg:text-2xl font-extrabold tracking-tight text-white leading-tight">
+                      Let’s Build Something Great Together
+                    </h2>
+                    <p className="text-[11px] sm:text-xs lg:text-sm text-slate-300 leading-snug">
+                      Partner with SAMITECH Corporation for innovative and reliable tech solutions.
+                    </p>
                   </div>
-                  <h2 className="text-lg sm:text-xl lg:text-2xl font-extrabold tracking-tight text-white leading-tight">
-                    Let’s Build Something Great Together
-                  </h2>
-                  <p className="text-xs lg:text-sm text-slate-300 leading-snug">
-                    Partner with SAMITECH Corporation for software, networking, maintenance, security, teams, and tracking.
-                  </p>
-                </div>
 
-                <div className="sm:col-span-3 flex items-center sm:justify-end px-5 pb-5 pt-1 sm:p-4 sm:pr-7 lg:pr-10">
-                  <button
-                    type="button"
-                    onClick={() => onOpenContact('Software Services')}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-bold text-[#07133B] bg-white hover:bg-[#E3EEFF] rounded-full shadow-md transition-all duration-150 active:scale-[0.98] whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                  >
-                    <span>Contact Us</span>
-                    <ArrowRight className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
-                  </button>
+                  <div className="shrink-0 self-start sm:self-center">
+                    <button
+                      type="button"
+                      onClick={() => onOpenContact('Software Services')}
+                      className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm font-bold text-[#07133B] bg-white hover:bg-[#E3EEFF] rounded-full shadow-md transition-all duration-150 active:scale-[0.98] whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                    >
+                      <span>Contact Us</span>
+                      <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" strokeWidth={2} aria-hidden="true" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

@@ -9,12 +9,12 @@ import {
 } from 'lucide-react';
 import {
   EXTRA_PROJECT_FILTERS,
-  PORTFOLIO_PROJECTS,
   PRIMARY_PROJECT_FILTERS,
   PROJECTS_PAGE_MEDIA,
   type ProjectFilterId,
   type ShowcaseProject,
 } from '../data/projectsData';
+import { useSiteContent } from '../context/SiteContentContext';
 import type { CaseStudy } from '../data/samitechData';
 import { Reveal } from './MotionPrimitives';
 import { ResilientImage } from './ResilientImage';
@@ -48,13 +48,14 @@ export function ProjectsPage({
   onSelectProject,
   onOpenContact,
 }: ProjectsPageProps) {
+  const { projects } = useSiteContent();
   const [activeFilter, setActiveFilter] = useState<ProjectFilterId>('all');
   const [showMoreFilters, setShowMoreFilters] = useState(false);
 
   const visibleProjects: ShowcaseProject[] =
     activeFilter === 'all'
-      ? PORTFOLIO_PROJECTS
-      : PORTFOLIO_PROJECTS.filter((project) => project.filterCategory === activeFilter);
+      ? projects
+      : projects.filter((project) => project.filterCategory === activeFilter);
 
   const isExtraFilterSelected = EXTRA_PROJECT_FILTERS.some(
     (item) => item.id === activeFilter
@@ -88,13 +89,13 @@ export function ProjectsPage({
           </svg>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 lg:pt-36 pb-16 sm:pb-24 lg:pb-28">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-32 lg:pt-36 pb-12 sm:pb-24 lg:pb-28">
           <div className="grid grid-cols-12 items-center">
             <Reveal
               immediate
               direction="left"
               wrapperClassName="col-span-12 lg:col-span-7"
-              className="space-y-4 sm:space-y-5"
+              className="space-y-3.5 sm:space-y-5"
             >
               {/* Dark-Mode Pill Tag ("Our Portfolio") */}
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B235B]/85 border border-[#38BDF8]/35 text-xs font-semibold text-white">
@@ -106,7 +107,7 @@ export function ProjectsPage({
 
               <h1
                 className="font-extrabold tracking-tight leading-[1.06] text-balance"
-                style={{ fontSize: 'clamp(2rem, 4.5vw, 3.85rem)' }}
+                style={{ fontSize: 'clamp(1.65rem, 4.5vw, 3.85rem)' }}
               >
                 <span className="text-white">Our </span>
                 <span className="text-[#22D3EE]">Projects</span>
@@ -119,22 +120,22 @@ export function ProjectsPage({
 
               {/* Dark Frosted Glass 3-Stat Strip ("10+ Completed Projects · 1K+ Active Users · 3+ Countries Impacted") */}
               <div className="pt-1">
-                <div className="grid grid-cols-3 divide-x divide-white/15 rounded-2xl bg-[#091A4A]/78 border border-[#38BDF8]/25 backdrop-blur-md px-2.5 py-3 sm:px-5 sm:py-3.5 shadow-xl max-w-lg">
+                <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-xl">
                   {PORTFOLIO_STATS.map((stat) => {
                     const Icon = stat.icon;
                     return (
                       <div
                         key={stat.label}
-                        className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 px-2 sm:px-4 first:pl-0.5 last:pr-0.5 min-w-0"
+                        className="flex flex-col min-[380px]:flex-row items-center min-[380px]:items-center gap-1.5 sm:gap-2.5 rounded-xl sm:rounded-2xl bg-[#091A4A]/82 border border-[#38BDF8]/30 backdrop-blur-md px-2 py-2 sm:px-3.5 sm:py-3 shadow-lg min-w-0 text-center min-[380px]:text-left"
                       >
-                        <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg bg-[#22D3EE]/12 border border-[#22D3EE]/30 text-[#22D3EE] flex items-center justify-center shrink-0">
+                        <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg bg-[#22D3EE]/15 border border-[#22D3EE]/35 text-[#22D3EE] flex items-center justify-center shrink-0">
                           <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" strokeWidth={1.85} aria-hidden="true" />
                         </div>
                         <div className="min-w-0">
                           <div className="font-display font-extrabold text-sm sm:text-lg lg:text-xl text-white tabular-nums leading-none">
                             {stat.value}
                           </div>
-                          <div className="mt-0.5 text-[10px] sm:text-[11px] font-medium text-slate-300 leading-tight">
+                          <div className="mt-0.5 text-[9.5px] sm:text-[11px] font-medium text-slate-300 leading-tight">
                             {stat.label}
                           </div>
                         </div>
@@ -164,7 +165,7 @@ export function ProjectsPage({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-7 sm:space-y-9">
           {/* Interactive Category Filter Row */}
           <Reveal direction="top" className="space-y-3">
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5">
               {PRIMARY_PROJECT_FILTERS.map((filter) => {
                 const active = activeFilter === filter.id;
                 return (
@@ -172,10 +173,10 @@ export function ProjectsPage({
                     key={filter.id}
                     type="button"
                     onClick={() => setActiveFilter(filter.id)}
-                    className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-150 cursor-pointer ${
+                    className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-150 cursor-pointer ${
                       active
                         ? 'bg-gradient-to-r from-[#002BFF] to-[#0055FF] text-white shadow-sm shadow-[#002BFF]/25'
-                        : 'bg-white border border-[#DCE8FF] text-[#07133B] hover:border-[#0044FF]/45 hover:bg-[#F2F6FF]'
+                        : 'bg-[#EEF3FF] border border-[#DCE8FF]/80 text-[#07133B] hover:border-[#0044FF]/45 hover:bg-[#E2ECFF]'
                     }`}
                   >
                     {filter.label}
@@ -187,10 +188,10 @@ export function ProjectsPage({
                 type="button"
                 onClick={() => setShowMoreFilters((prev) => !prev)}
                 aria-expanded={showMoreFilters}
-                className={`inline-flex items-center gap-1 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold border transition-all duration-150 cursor-pointer ${
+                className={`inline-flex items-center gap-1 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold border transition-all duration-150 cursor-pointer ${
                   showMoreFilters || isExtraFilterSelected
-                    ? 'bg-[#EEF3FF] border-[#0044FF]/35 text-[#002BFF]'
-                    : 'bg-white border-[#DCE8FF] text-[#07133B] hover:border-[#0044FF]/45 hover:bg-[#F2F6FF]'
+                    ? 'bg-[#DCE8FF] border-[#0044FF]/35 text-[#002BFF]'
+                    : 'bg-[#EEF3FF] border-[#DCE8FF]/80 text-[#07133B] hover:border-[#0044FF]/45 hover:bg-[#E2ECFF]'
                 }`}
               >
                 <span>More</span>
@@ -227,8 +228,8 @@ export function ProjectsPage({
             )}
           </Reveal>
 
-          {/* 3x2 Showcase Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          {/* Showcase Cards Grid (2-col on Mobile, 3-col on Desktop) */}
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {visibleProjects.map((project, index) => (
               <Reveal
                 key={project.id}
@@ -237,7 +238,7 @@ export function ProjectsPage({
                 wrapperClassName="h-full"
                 className="h-full"
               >
-                <article className="group h-full flex flex-col rounded-2xl bg-white border border-[#DCE8FF] hover:border-[#0044FF]/45 shadow-[0_8px_24px_rgba(4,11,41,0.06)] hover:shadow-[0_18px_36px_rgba(0,68,255,0.12)] hover:-translate-y-1 transition-all duration-200 overflow-hidden">
+                <article className="group h-full flex flex-col rounded-2xl bg-[#F4F8FF]/60 sm:bg-white border border-[#DCE8FF] hover:border-[#0044FF]/45 shadow-[0_8px_24px_rgba(4,11,41,0.06)] hover:shadow-[0_18px_36px_rgba(0,68,255,0.12)] hover:-translate-y-1 transition-all duration-200 overflow-hidden">
                   {/* Top Project Thumbnail */}
                   <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#040B29]">
                     <ResilientImage
@@ -249,37 +250,43 @@ export function ProjectsPage({
                       darkSkeleton
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    {project.featured && (
-                      <div className="absolute top-3 right-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gradient-to-r from-[#0EA5E9] to-[#0284C7] text-white text-[11px] font-bold shadow-md">
-                        <Star className="w-3 h-3 fill-white" aria-hidden="true" />
+                    {project.featured ? (
+                      <div className="absolute top-2 right-2 sm:top-3 sm:right-3 inline-flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-gradient-to-r from-[#0EA5E9] to-[#0284C7] text-white text-[10px] sm:text-[11px] font-bold shadow-md">
+                        <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-white" aria-hidden="true" />
                         <span>Featured</span>
+                      </div>
+                    ) : (
+                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3 inline-flex items-center px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-[#082B7A]/88 backdrop-blur-xs border border-white/20 text-white text-[9.5px] sm:text-[11px] font-semibold shadow-sm max-w-[calc(100%-16px)] truncate">
+                        {project.sector}
                       </div>
                     )}
                   </div>
 
                   {/* Card Body */}
-                  <div className="flex-1 flex flex-col justify-between p-5 space-y-3">
-                    <div className="space-y-1.5">
-                      <h2 className="text-base sm:text-lg font-extrabold text-[#07133B] group-hover:text-[#002BFF] transition-colors">
+                  <div className="flex-1 flex flex-col justify-between p-3 sm:p-5 space-y-2 sm:space-y-3">
+                    <div className="space-y-1 sm:space-y-1.5">
+                      <h2 className="text-sm sm:text-lg font-extrabold text-[#07133B] group-hover:text-[#002BFF] transition-colors leading-tight">
                         {project.title}
                       </h2>
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      <p className="text-[11px] sm:text-sm text-slate-600 leading-snug sm:leading-relaxed line-clamp-3 sm:line-clamp-none">
                         {project.summary}
                       </p>
                     </div>
 
-                    <div className="pt-1">
+                    <div className="pt-0.5 sm:pt-1">
                       <button
                         type="button"
                         onClick={() => onSelectProject(project)}
                         className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0038FF] hover:text-[#DC0914] transition-colors cursor-pointer"
                       >
                         <span>View Project</span>
-                        <ArrowRight
-                          className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
-                          strokeWidth={2}
-                          aria-hidden="true"
-                        />
+                        <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#DCE8FF] group-hover:bg-[#0038FF] text-[#0038FF] group-hover:text-white inline-flex items-center justify-center transition-colors shrink-0">
+                          <ArrowRight
+                            className="w-2.5 h-2.5 sm:w-3 sm:h-3 group-hover:translate-x-0.5 transition-transform"
+                            strokeWidth={2.4}
+                            aria-hidden="true"
+                          />
+                        </span>
                       </button>
                     </div>
                   </div>
@@ -301,16 +308,16 @@ export function ProjectsPage({
                 className="pointer-events-none absolute -left-10 -top-10 w-40 h-40 rounded-full bg-[#22D3EE]/12 blur-2xl"
                 aria-hidden="true"
               />
-              <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div className="flex items-center gap-4">
-                  <div className="shrink-0 flex items-center justify-center">
+              <div className="relative z-10 flex flex-col min-[420px]:flex-row min-[420px]:items-center justify-between gap-3.5 sm:gap-4">
+                <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                  <div className="shrink-0 flex items-center justify-center scale-90 sm:scale-100">
                     <ProjectGoldTrophyIcon />
                   </div>
-                  <div className="space-y-0.5">
-                    <h2 className="text-base sm:text-xl font-extrabold tracking-tight text-white">
+                  <div className="space-y-0.5 min-w-0">
+                    <h2 className="text-sm sm:text-xl font-extrabold tracking-tight text-white leading-tight">
                       Have a Project in Mind?
                     </h2>
-                    <p className="text-xs sm:text-sm text-slate-200">
+                    <p className="text-[11px] sm:text-sm text-slate-200 leading-snug">
                       Let’s turn your ideas into powerful digital solutions.
                     </p>
                   </div>
@@ -319,10 +326,10 @@ export function ProjectsPage({
                 <button
                   type="button"
                   onClick={() => onOpenContact('Software Services (Web, App, UI/UX, Graphics)')}
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-bold text-[#07133B] bg-white hover:bg-[#E3EEFF] rounded-full shadow-md transition-all duration-150 active:scale-[0.98] whitespace-nowrap shrink-0 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm font-bold text-[#07133B] bg-white hover:bg-[#E3EEFF] rounded-full shadow-md transition-all duration-150 active:scale-[0.98] whitespace-nowrap shrink-0 self-start min-[420px]:self-auto cursor-pointer"
                 >
                   <span>Start a Project</span>
-                  <ArrowRight className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" strokeWidth={2} aria-hidden="true" />
                 </button>
               </div>
             </div>

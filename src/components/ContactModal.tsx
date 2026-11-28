@@ -10,8 +10,10 @@ import {
   Send,
   X,
 } from 'lucide-react';
-import { COMPANY_CONTACT, SERVICE_CATEGORY_OPTIONS } from '../data/samitechData';
+import { SERVICE_CATEGORY_OPTIONS } from '../data/samitechData';
+import { useSiteContent } from '../context/SiteContentContext';
 import { SAMITECH_EASE, useMotionConfigValues } from './MotionPrimitives';
+import { WhatsAppBrandIcon } from './WhatsAppFloatingButton';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -36,9 +38,16 @@ export function ContactModal({
   defaultCategory,
   onClose,
 }: ContactModalProps) {
+  const { settings, services, buildWhatsAppUrl } = useSiteContent();
+  const categoryOptions = Array.from(
+    new Set([
+      ...SERVICE_CATEGORY_OPTIONS,
+      ...services.map((s) => s.contactCategory),
+    ])
+  );
   const resolveCategoryAndMessage = (rawCategory?: string) => {
     if (!rawCategory) {
-      return { category: SERVICE_CATEGORY_OPTIONS[0], prefillMessage: '' };
+      return { category: categoryOptions[0], prefillMessage: '' };
     }
     if (rawCategory.startsWith('Careers:')) {
       const roleTitle = rawCategory.replace('Careers:', '').trim();
@@ -61,9 +70,9 @@ export function ContactModal({
       'Authorized Equipment Tracking': 'Tracking',
     };
     const normalizedCategory = legacyCategoryMap[rawCategory] ?? rawCategory;
-    const matched = SERVICE_CATEGORY_OPTIONS.includes(normalizedCategory)
+    const matched = categoryOptions.includes(normalizedCategory)
       ? normalizedCategory
-      : SERVICE_CATEGORY_OPTIONS[0];
+      : categoryOptions[0];
     return { category: matched, prefillMessage: '' };
   };
 
@@ -207,7 +216,7 @@ export function ContactModal({
                     Thank you, <span className="font-semibold text-[#07133B]">{values.fullName}</span>. Our engineering team in Cameroon has logged your inquiry regarding{' '}
                     <span className="font-semibold text-[#002BFF]">{values.serviceCategory}</span> and will respond to{' '}
                     <span className="font-medium text-[#07133B]">{values.workEmail}</span> shortly. For urgent 24/7 assistance, call{' '}
-                    <span className="font-semibold text-[#DC0914]">{COMPANY_CONTACT.phone}</span>.
+                    <span className="font-semibold text-[#DC0914]">{settings.phone}</span>.
                   </p>
                 </div>
                 <div className="pt-2">
@@ -235,45 +244,62 @@ export function ContactModal({
                 </div>
 
                 {/* Structured Direct Contact Container Strip */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   <a
-                    href={`tel:${COMPANY_CONTACT.phone.replace(/\s+/g, '')}`}
-                    className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-[#F4F7FF] border border-[#0044FF]/12 hover:border-[#002BFF]/35 transition-colors"
+                    href={`tel:${settings.phone.replace(/\s+/g, '')}`}
+                    className="flex items-center gap-2 px-2.5 py-2.5 rounded-xl bg-[#F4F7FF] border border-[#0044FF]/12 hover:border-[#002BFF]/35 transition-colors"
                   >
                     <div className="w-8 h-8 rounded-lg bg-white border border-[#0044FF]/10 flex items-center justify-center shrink-0">
                       <Phone className="w-4 h-4 text-[#002BFF]" strokeWidth={1.75} aria-hidden="true" />
                     </div>
                     <div className="min-w-0">
-                      <div className="text-[11px] font-medium text-slate-500">Phone / WhatsApp</div>
-                      <div className="text-xs font-semibold text-[#07133B] truncate">
-                        {COMPANY_CONTACT.phone}
+                      <div className="text-[11px] font-medium text-slate-500">Call Desk</div>
+                      <div className="text-[11px] font-semibold text-[#07133B] truncate">
+                        {settings.phone}
                       </div>
                     </div>
                   </a>
 
                   <a
-                    href={`mailto:${COMPANY_CONTACT.email}`}
-                    className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-[#F4F7FF] border border-[#0044FF]/12 hover:border-[#002BFF]/35 transition-colors"
+                    href={buildWhatsAppUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-2.5 py-2.5 rounded-xl bg-[#25D366]/10 border border-[#25D366]/30 hover:border-[#1EBE5D] transition-colors"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-[#25D366] text-white flex items-center justify-center shrink-0">
+                      <WhatsAppBrandIcon className="w-4 h-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-[11px] font-medium text-[#146C43]">WhatsApp</div>
+                      <div className="text-[11px] font-bold text-[#07133B] truncate">
+                        Chat Now
+                      </div>
+                    </div>
+                  </a>
+
+                  <a
+                    href={`mailto:${settings.email}`}
+                    className="flex items-center gap-2 px-2.5 py-2.5 rounded-xl bg-[#F4F7FF] border border-[#0044FF]/12 hover:border-[#002BFF]/35 transition-colors"
                   >
                     <div className="w-8 h-8 rounded-lg bg-white border border-[#0044FF]/10 flex items-center justify-center shrink-0">
                       <Mail className="w-4 h-4 text-[#002BFF]" strokeWidth={1.75} aria-hidden="true" />
                     </div>
                     <div className="min-w-0">
                       <div className="text-[11px] font-medium text-slate-500">Direct Email</div>
-                      <div className="text-xs font-semibold text-[#07133B] truncate">
-                        {COMPANY_CONTACT.email}
+                      <div className="text-[11px] font-semibold text-[#07133B] truncate">
+                        {settings.email}
                       </div>
                     </div>
                   </a>
 
-                  <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-[#F4F7FF] border border-[#0044FF]/12">
+                  <div className="flex items-center gap-2 px-2.5 py-2.5 rounded-xl bg-[#F4F7FF] border border-[#0044FF]/12">
                     <div className="w-8 h-8 rounded-lg bg-white border border-[#0044FF]/10 flex items-center justify-center shrink-0">
                       <MapPin className="w-4 h-4 text-[#DC0914]" strokeWidth={1.75} aria-hidden="true" />
                     </div>
                     <div className="min-w-0">
                       <div className="text-[11px] font-medium text-slate-500">Headquarters</div>
-                      <div className="text-xs font-semibold text-[#07133B] truncate flex items-center gap-1">
-                        <span>{COMPANY_CONTACT.location}</span>
+                      <div className="text-[11px] font-semibold text-[#07133B] truncate flex items-center gap-1">
+                        <span>{settings.location}</span>
                       </div>
                     </div>
                   </div>
@@ -367,7 +393,7 @@ export function ContactModal({
                       onChange={(e) => handleFieldChange('serviceCategory', e.target.value)}
                       className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 hover:border-[#0044FF]/40 bg-[#F4F7FF]/50 text-[#07133B] transition-colors focus:outline-none focus:bg-white focus:border-[#002BFF] focus:ring-2 focus:ring-[#002BFF]/20"
                     >
-                      {SERVICE_CATEGORY_OPTIONS.map((option) => (
+                      {categoryOptions.map((option) => (
                         <option key={option} value={option}>
                           {option}
                         </option>
@@ -404,7 +430,7 @@ export function ContactModal({
                 <div className="pt-3 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200">
                   <div className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500">
                     <Clock className="w-3.5 h-3.5 text-[#002BFF]" strokeWidth={1.75} aria-hidden="true" />
-                    <span>24/7 Support Desk · Cameroon</span>
+                    <span>{settings.availability} · {settings.location}</span>
                   </div>
                   <div className="flex items-center gap-2.5 ml-auto">
                     <button

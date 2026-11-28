@@ -373,7 +373,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         title: 'Professional Installation & Technical Support',
         description:
-          'On-site and remote hardware/software installation, workstation commissioning, troubleshooting, and responsive 24/7 technical support via +237 674 137 259.',
+          'On-site and remote hardware/software installation, workstation commissioning, troubleshooting, and responsive 24/7 technical support via +237 6 95 20 03 61.',
       },
       {
         title: 'Computer Maintenance & Hardware Servicing',
@@ -728,11 +728,11 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         step: '04.',
         title: 'Status Updates & Recovery',
-        detail: 'Receive direct progress updates via +237 674 137 259 through case closure.',
+        detail: 'Receive direct progress updates via +237 6 95 20 03 61 through case closure.',
       },
     ],
     deliverables: [
-      '24/7 Direct Operations Escalation (+237 674 137 259)',
+      '24/7 Direct Operations Escalation (+237 6 95 20 03 61)',
       'Verified Equipment Tracking Case Documentation',
       'Structured Case Intake & Progress Reporting',
       'Law Enforcement Liaison (Vehicle Recovery Cases)',
@@ -757,7 +757,7 @@ export const ALL_SERVICES_CATALOG: ServiceDetail[] = [
       {
         question: 'How do I start a tracking case quickly?',
         answer:
-          'Call or WhatsApp +237 674 137 259 or submit your device details through our contact form with your proof of ownership ready.',
+          'Call or WhatsApp +237 6 95 20 03 61 or submit your device details through our contact form with your proof of ownership ready.',
       },
     ],
     relatedCaseStudyId: 'authorized-tracking-system',

@@ -17,7 +17,7 @@ import {
   ABOUT_PAGE_MILESTONES,
   ABOUT_PAGE_VALUES,
 } from '../data/samitechData';
-import { TEAM_MEMBERS } from '../data/teamData';
+import { useSiteContent } from '../context/SiteContentContext';
 
 interface AboutPageProps {
   onNavigateServices: () => void;
@@ -84,6 +84,8 @@ export function AboutPage({
   onSelectTeamMember,
   onOpenContact,
 }: AboutPageProps) {
+  const { teamMembers } = useSiteContent();
+
   const scrollToStoryDetails = () => {
     const el = document.getElementById('about-story-details');
     if (el) {
@@ -144,7 +146,7 @@ export function AboutPage({
               <div className="space-y-1.5">
                 <h1
                   className="font-extrabold tracking-tight leading-[1.06] text-balance"
-                  style={{ fontSize: 'clamp(1.9rem, 3.85vw, 3.45rem)' }}
+                  style={{ fontSize: 'clamp(1.6rem, 3.85vw, 3.45rem)' }}
                 >
                   <span className="text-[#07133B] block">About</span>
                   <span className="block">
@@ -499,7 +501,7 @@ export function AboutPage({
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
-            {TEAM_MEMBERS.map((member, index) => (
+            {teamMembers.map((member, index) => (
               <Reveal
                 key={member.id}
                 direction="bottom"

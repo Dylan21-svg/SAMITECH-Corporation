@@ -17,11 +17,13 @@ import { CareersPage } from './components/CareersPage';
 import { CommunitiesPage } from './components/CommunitiesPage';
 import { ContactPage } from './components/ContactPage';
 import { ProductsPage } from './components/ProductsPage';
+import { ProductDetailPage } from './components/ProductDetailPage';
 import { ProjectsPage } from './components/ProjectsPage';
 import { ServicesPage } from './components/ServicesPage';
 import { ServiceDetailPage } from './components/ServiceDetailPage';
 import { TeamPage } from './components/TeamPage';
 import { TeamMemberProfilePage } from './components/TeamMemberProfilePage';
+import { ControlPanelPage } from './components/control-panel/ControlPanelPage';
 import { Navbar, type AppPage } from './components/Navbar';
 import { Reveal, SAMITECH_EASE } from './components/MotionPrimitives';
 import { ResilientImage } from './components/ResilientImage';
@@ -30,21 +32,19 @@ import { ContactModal } from './components/ContactModal';
 import { StoryModal } from './components/StoryModal';
 import { BackToTopButton } from './components/BackToTopButton';
 import {
+  WhatsAppBrandIcon,
+  WhatsAppFloatingButton,
+} from './components/WhatsAppFloatingButton';
+import {
   CareersCapIcon,
   DarkPillarIcon,
   HomeKpiIcon,
   MissionBadgeIcon,
   VisionBadgeIcon,
 } from './components/ShowcaseIcons';
-import { getServiceBySlug, ALL_SERVICES_CATALOG } from './data/servicesCatalog';
-import { SAMITECH_COMMUNITIES } from './data/communitiesData';
-import { getTeamMemberBySlug, TEAM_MEMBERS } from './data/teamData';
+import { useSiteContent } from './context/SiteContentContext';
 import {
   ABOUT_MEDIA,
-  CASE_STUDIES,
-  COMPANY_CONTACT,
-  FAQ_ITEMS,
-  SERVICES,
   WHY_PILLARS,
   type CaseStudy,
 } from './data/samitechData';
@@ -95,68 +95,96 @@ interface RouteResolution {
   page: AppPage;
   serviceSlug: string | null;
   memberSlug: string | null;
+  productId: string | null;
 }
 
 function resolveRouteFromLocation(): RouteResolution {
   if (typeof window === 'undefined') {
-    return { page: 'home', serviceSlug: null, memberSlug: null };
+    return { page: 'home', serviceSlug: null, memberSlug: null, productId: null };
   }
   const hash = window.location.hash.toLowerCase();
   const path = window.location.pathname.toLowerCase();
   const combined = hash.startsWith('#/') ? hash.slice(1) : path;
 
+  if (combined === '/control-panel' || hash === '#/control-panel') {
+    return { page: 'control-panel', serviceSlug: null, memberSlug: null, productId: null };
+  }
+
   if (combined === '/about' || hash === '#/about') {
-    return { page: 'about', serviceSlug: null, memberSlug: null };
+    return { page: 'about', serviceSlug: null, memberSlug: null, productId: null };
   }
 
   if (combined.startsWith('/team/')) {
     const slug = combined.replace('/team/', '').replace(/\/+$/, '');
-    if (getTeamMemberBySlug(slug)) {
-      return { page: 'team-member', serviceSlug: null, memberSlug: slug };
+    if (slug) {
+      return { page: 'team-member', serviceSlug: null, memberSlug: slug, productId: null };
     }
-    return { page: 'team', serviceSlug: null, memberSlug: null };
+    return { page: 'team', serviceSlug: null, memberSlug: null, productId: null };
   }
 
   if (combined === '/team' || hash === '#/team') {
-    return { page: 'team', serviceSlug: null, memberSlug: null };
+    return { page: 'team', serviceSlug: null, memberSlug: null, productId: null };
   }
 
   if (combined === '/projects' || hash === '#/projects') {
-    return { page: 'projects', serviceSlug: null, memberSlug: null };
+    return { page: 'projects', serviceSlug: null, memberSlug: null, productId: null };
   }
 
   if (combined === '/contact' || hash === '#/contact') {
-    return { page: 'contact', serviceSlug: null, memberSlug: null };
+    return { page: 'contact', serviceSlug: null, memberSlug: null, productId: null };
   }
 
   if (combined === '/careers' || hash === '#/careers') {
-    return { page: 'careers', serviceSlug: null, memberSlug: null };
+    return { page: 'careers', serviceSlug: null, memberSlug: null, productId: null };
   }
 
   if (combined === '/communities' || hash === '#/communities') {
-    return { page: 'communities', serviceSlug: null, memberSlug: null };
+    return { page: 'communities', serviceSlug: null, memberSlug: null, productId: null };
+  }
+
+  if (combined.startsWith('/products/')) {
+    const productSlug = combined.replace('/products/', '').replace(/\/+$/, '');
+    if (productSlug) {
+      return { page: 'product-detail', serviceSlug: null, memberSlug: null, productId: productSlug };
+    }
+    return { page: 'products', serviceSlug: null, memberSlug: null, productId: null };
   }
 
   if (combined === '/products' || hash === '#/products') {
-    return { page: 'products', serviceSlug: null, memberSlug: null };
+    return { page: 'products', serviceSlug: null, memberSlug: null, productId: null };
   }
 
   if (combined.startsWith('/services/')) {
     const slug = combined.replace('/services/', '').replace(/\/+$/, '');
-    if (getServiceBySlug(slug)) {
-      return { page: 'service-detail', serviceSlug: slug, memberSlug: null };
+    if (slug) {
+      return { page: 'service-detail', serviceSlug: slug, memberSlug: null, productId: null };
     }
-    return { page: 'services', serviceSlug: null, memberSlug: null };
+    return { page: 'services', serviceSlug: null, memberSlug: null, productId: null };
   }
 
   if (combined === '/services' || hash === '#/services') {
-    return { page: 'services', serviceSlug: null, memberSlug: null };
+    return { page: 'services', serviceSlug: null, memberSlug: null, productId: null };
   }
 
-  return { page: 'home', serviceSlug: null, memberSlug: null };
+  return { page: 'home', serviceSlug: null, memberSlug: null, productId: null };
 }
 
 export default function App() {
+  const {
+    settings,
+    products,
+    services,
+    homeServices,
+    homeCaseStudies,
+    teamMembers,
+    communities,
+    faqs,
+    getProductById,
+    getServiceBySlug,
+    getTeamMemberBySlug,
+    buildWhatsAppUrl,
+  } = useSiteContent();
+
   const [routeState, setRouteState] = useState<RouteResolution>(resolveRouteFromLocation);
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<CaseStudy | null>(null);
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -168,6 +196,7 @@ export default function App() {
   const activePage = routeState.page;
   const selectedServiceSlug = routeState.serviceSlug;
   const selectedMemberSlug = routeState.memberSlug;
+  const selectedProductId = routeState.productId;
 
   useEffect(() => {
     const syncRouteFromLocation = () => {
@@ -183,8 +212,17 @@ export default function App() {
   }, []);
 
   const handleNavigate = (page: AppPage, target?: string) => {
+    if (page === 'control-panel') {
+      setRouteState({ page: 'control-panel', serviceSlug: null, memberSlug: null, productId: null });
+      if (window.location.hash !== '#/control-panel') {
+        window.history.pushState(null, '', '#/control-panel');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     if (page === 'about') {
-      setRouteState({ page: 'about', serviceSlug: null, memberSlug: null });
+      setRouteState({ page: 'about', serviceSlug: null, memberSlug: null, productId: null });
       if (window.location.hash !== '#/about') {
         window.history.pushState(null, '', '#/about');
       }
@@ -193,9 +231,9 @@ export default function App() {
     }
 
     if (page === 'team-member') {
-      const validMember = target ? getTeamMemberBySlug(target) : TEAM_MEMBERS[0];
-      const slug = validMember ? validMember.id : TEAM_MEMBERS[0].id;
-      setRouteState({ page: 'team-member', serviceSlug: null, memberSlug: slug });
+      const validMember = target ? getTeamMemberBySlug(target) : teamMembers[0];
+      const slug = validMember ? validMember.id : teamMembers[0]?.id ?? '';
+      setRouteState({ page: 'team-member', serviceSlug: null, memberSlug: slug, productId: null });
       const nextHash = `#/team/${slug}`;
       if (window.location.hash !== nextHash) {
         window.history.pushState(null, '', nextHash);
@@ -205,7 +243,7 @@ export default function App() {
     }
 
     if (page === 'team') {
-      setRouteState({ page: 'team', serviceSlug: null, memberSlug: null });
+      setRouteState({ page: 'team', serviceSlug: null, memberSlug: null, productId: null });
       if (window.location.hash !== '#/team') {
         window.history.pushState(null, '', '#/team');
       }
@@ -214,7 +252,7 @@ export default function App() {
     }
 
     if (page === 'projects') {
-      setRouteState({ page: 'projects', serviceSlug: null, memberSlug: null });
+      setRouteState({ page: 'projects', serviceSlug: null, memberSlug: null, productId: null });
       if (window.location.hash !== '#/projects') {
         window.history.pushState(null, '', '#/projects');
       }
@@ -223,7 +261,7 @@ export default function App() {
     }
 
     if (page === 'contact') {
-      setRouteState({ page: 'contact', serviceSlug: null, memberSlug: null });
+      setRouteState({ page: 'contact', serviceSlug: null, memberSlug: null, productId: null });
       if (window.location.hash !== '#/contact') {
         window.history.pushState(null, '', '#/contact');
       }
@@ -232,7 +270,7 @@ export default function App() {
     }
 
     if (page === 'careers') {
-      setRouteState({ page: 'careers', serviceSlug: null, memberSlug: null });
+      setRouteState({ page: 'careers', serviceSlug: null, memberSlug: null, productId: null });
       if (window.location.hash !== '#/careers') {
         window.history.pushState(null, '', '#/careers');
       }
@@ -241,7 +279,7 @@ export default function App() {
     }
 
     if (page === 'communities') {
-      setRouteState({ page: 'communities', serviceSlug: null, memberSlug: null });
+      setRouteState({ page: 'communities', serviceSlug: null, memberSlug: null, productId: null });
       if (window.location.hash !== '#/communities') {
         window.history.pushState(null, '', '#/communities');
       }
@@ -249,8 +287,20 @@ export default function App() {
       return;
     }
 
+    if (page === 'product-detail') {
+      const validProduct = target ? getProductById(target) : products[0];
+      const pid = validProduct ? validProduct.id : products[0]?.id ?? '';
+      setRouteState({ page: 'product-detail', serviceSlug: null, memberSlug: null, productId: pid });
+      const nextHash = `#/products/${pid}`;
+      if (window.location.hash !== nextHash) {
+        window.history.pushState(null, '', nextHash);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     if (page === 'products') {
-      setRouteState({ page: 'products', serviceSlug: null, memberSlug: null });
+      setRouteState({ page: 'products', serviceSlug: null, memberSlug: null, productId: null });
       if (window.location.hash !== '#/products') {
         window.history.pushState(null, '', '#/products');
       }
@@ -259,7 +309,7 @@ export default function App() {
     }
 
     if (page === 'services') {
-      setRouteState({ page: 'services', serviceSlug: null, memberSlug: null });
+      setRouteState({ page: 'services', serviceSlug: null, memberSlug: null, productId: null });
       if (window.location.hash !== '#/services') {
         window.history.pushState(null, '', '#/services');
       }
@@ -268,9 +318,9 @@ export default function App() {
     }
 
     if (page === 'service-detail') {
-      const validService = target ? getServiceBySlug(target) : ALL_SERVICES_CATALOG[0];
-      const slug = validService ? validService.slug : ALL_SERVICES_CATALOG[0].slug;
-      setRouteState({ page: 'service-detail', serviceSlug: slug, memberSlug: null });
+      const validService = target ? getServiceBySlug(target) : services[0];
+      const slug = validService ? validService.slug : services[0]?.slug ?? '';
+      setRouteState({ page: 'service-detail', serviceSlug: slug, memberSlug: null, productId: null });
       const nextHash = `#/services/${slug}`;
       if (window.location.hash !== nextHash) {
         window.history.pushState(null, '', nextHash);
@@ -279,7 +329,7 @@ export default function App() {
       return;
     }
 
-    setRouteState({ page: 'home', serviceSlug: null, memberSlug: null });
+    setRouteState({ page: 'home', serviceSlug: null, memberSlug: null, productId: null });
     const targetHash = target ? `#${target}` : '#home';
     if (window.location.hash !== targetHash) {
       window.history.pushState(null, '', targetHash);
@@ -333,7 +383,17 @@ export default function App() {
 
         <main className="flex-1">
           <AnimatePresence mode="wait">
-            {activePage === 'about' ? (
+            {activePage === 'control-panel' ? (
+              <motion.div
+                key="control-panel-page"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.16, ease: SAMITECH_EASE }}
+              >
+                <ControlPanelPage onExitToSite={() => handleNavigate('home')} />
+              </motion.div>
+            ) : activePage === 'about' ? (
               <motion.div
                 key="about-page"
                 initial={{ opacity: 0, y: 6 }}
@@ -366,14 +426,14 @@ export default function App() {
               </motion.div>
             ) : activePage === 'team-member' ? (
               <motion.div
-                key={`team-member-${selectedMemberSlug || TEAM_MEMBERS[0].id}`}
+                key={`team-member-${selectedMemberSlug || teamMembers[0]?.id}`}
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.22, ease: SAMITECH_EASE }}
               >
                 <TeamMemberProfilePage
-                  member={getTeamMemberBySlug(selectedMemberSlug || '') ?? TEAM_MEMBERS[0]}
+                  member={getTeamMemberBySlug(selectedMemberSlug || '') ?? teamMembers[0]}
                   onBackToTeam={() => handleNavigate('team')}
                   onSelectMember={(slug) => handleNavigate('team-member', slug)}
                   onNavigateHome={() => handleNavigate('home')}
@@ -438,7 +498,24 @@ export default function App() {
                 transition={{ duration: 0.22, ease: SAMITECH_EASE }}
               >
                 <ProductsPage
+                  onSelectProduct={(product) => handleNavigate('product-detail', product.id)}
                   onNavigateServices={() => handleNavigate('services')}
+                  onOpenContact={handleOpenContact}
+                />
+              </motion.div>
+            ) : activePage === 'product-detail' ? (
+              <motion.div
+                key={`product-detail-${selectedProductId || products[0]?.id}`}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.22, ease: SAMITECH_EASE }}
+              >
+                <ProductDetailPage
+                  product={getProductById(selectedProductId || '') ?? products[0]}
+                  onBackToProducts={() => handleNavigate('products')}
+                  onSelectProduct={(pid) => handleNavigate('product-detail', pid)}
+                  onNavigateHome={() => handleNavigate('home')}
                   onOpenContact={handleOpenContact}
                 />
               </motion.div>
@@ -458,14 +535,14 @@ export default function App() {
               </motion.div>
             ) : activePage === 'service-detail' ? (
               <motion.div
-                key={`service-detail-${selectedServiceSlug || ALL_SERVICES_CATALOG[0].slug}`}
+                key={`service-detail-${selectedServiceSlug || services[0]?.slug}`}
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.22, ease: SAMITECH_EASE }}
               >
                 <ServiceDetailPage
-                  service={getServiceBySlug(selectedServiceSlug || '') ?? ALL_SERVICES_CATALOG[0]}
+                  service={getServiceBySlug(selectedServiceSlug || '') ?? services[0]}
                   onBackToServices={() => handleNavigate('services')}
                   onSelectService={(slug) => handleNavigate('service-detail', slug)}
                   onOpenContact={handleOpenContact}
@@ -481,7 +558,7 @@ export default function App() {
                 transition={{ duration: 0.22, ease: SAMITECH_EASE }}
               >
                 {/* HERO SECTION, Crystal-Clear Full-Bleed Video Stage Across Mobile, Tablet, and Desktop */}
-                <section id="home" className="relative min-h-[92svh] md:min-h-0 flex flex-col justify-between overflow-x-clip bg-white">
+                <section id="home" className="relative min-h-[60svh] sm:min-h-[70svh] md:min-h-0 flex flex-col justify-between overflow-x-clip bg-white">
                   <div className="relative flex-1 flex items-center overflow-hidden bg-[#040B29] md:bg-white md:min-h-[480px] lg:h-[calc(100svh-88px)] lg:min-h-[560px] lg:max-h-[760px]">
                     {/* Full-Bleed Looping Hero Video Background With Instant Poster First Frame */}
                     <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -531,7 +608,7 @@ export default function App() {
                           {/* Hero Headline */}
                           <h1
                             className="font-extrabold tracking-[-0.025em] leading-[1.06]"
-                            style={{ fontSize: 'clamp(2rem, 3.65vw, 3.65rem)' }}
+                            style={{ fontSize: 'clamp(1.65rem, 3.65vw, 3.65rem)' }}
                           >
                             <span className="text-white md:text-[#07133B] drop-shadow-[0_2px_10px_rgba(2,6,23,0.6)] md:drop-shadow-none block md:whitespace-nowrap">
                               Building a Smarter
@@ -626,7 +703,7 @@ export default function App() {
                 </section>
 
                 {/* ABOUT SECTION, Vertical Mobile Flow Reveals As You Scroll; 3-Column Split on Desktop */}
-                <section id="about" className="py-14 sm:py-16 lg:py-24 bg-[#F2F6FF] border-b border-[#0044FF]/10 overflow-x-clip">
+                <section id="about" className="py-9 sm:py-14 lg:py-24 bg-[#F2F6FF] border-b border-[#0044FF]/10 overflow-x-clip">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 lg:gap-12 items-center">
                       {/* Narrative Column */}
@@ -719,23 +796,24 @@ export default function App() {
                   </div>
                 </section>
 
-                {/* SERVICES SECTION, Staggered 5-Column Cards on Desktop, Scroll-Revealed Grid on Mobile */}
-                <section id="services" className="py-14 sm:py-16 lg:py-24 bg-white overflow-x-clip">
+                {/* SERVICES SECTION, Staggered 5-Column Cards on Desktop, Compact 2-Column Grid on Mobile */}
+                <section id="services" className="py-9 sm:py-14 lg:py-24 bg-white overflow-x-clip">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <Reveal direction="top" delay={0} className="max-w-2xl mx-auto text-center space-y-2.5 sm:space-y-3 mb-8 sm:mb-12 lg:mb-14">
+                    <Reveal direction="top" delay={0} className="max-w-2xl mx-auto text-center space-y-2 sm:space-y-3 mb-6 sm:mb-12 lg:mb-14">
                       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#07133B] text-balance">
                         Our Core{' '}
                         <span className="text-[#002BFF]">Services</span>
                       </h2>
-                      <p className="text-sm lg:text-base text-slate-600 leading-relaxed">
+                      <p className="text-xs sm:text-sm lg:text-base text-slate-600 leading-relaxed">
                         End to end delivery across Software Development, Networking Solutions, Cybersecurity,
                         Data &amp; AI, and 24/7 Infrastructure Support.
                       </p>
                     </Reveal>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-5 items-start pb-2 sm:pb-6 lg:pb-8">
-                      {SERVICES.map((service, index) => {
+                    <div className="grid grid-cols-2 lg:grid-cols-5 gap-2.5 sm:gap-4 lg:gap-5 items-start pb-2 sm:pb-6 lg:pb-8">
+                      {homeServices.map((service, index) => {
                         const isOffsetLower = index % 2 === 1;
+                        const isFifthOnMobile = index === homeServices.length - 1;
                         const serviceDirection =
                           service.id === 'networking-solutions' || service.id === 'data-ai-ux'
                             ? 'bottom'
@@ -743,13 +821,17 @@ export default function App() {
                         return (
                           <div
                             key={service.id}
-                            className={isOffsetLower ? 'lg:translate-y-8' : ''}
+                            className={`${isOffsetLower ? 'lg:translate-y-8' : ''} ${
+                              isFifthOnMobile ? 'col-span-2 lg:col-span-1' : ''
+                            }`}
                           >
                             <Reveal direction={serviceDirection} delay={0.05 + index * 0.06}>
                               <button
                                 type="button"
                                 onClick={() => handleNavigate('service-detail', service.detailSlug)}
-                                className="floating-frame-card group relative aspect-[16/10] sm:aspect-[3/4] w-full rounded-2xl overflow-hidden bg-[#040B29] text-center cursor-pointer hover:scale-[1.03] active:scale-[0.98] motion-reduce:hover:scale-100 motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF]"
+                                className={`floating-frame-card group relative w-full rounded-2xl overflow-hidden bg-[#040B29] text-center cursor-pointer hover:scale-[1.03] active:scale-[0.98] motion-reduce:hover:scale-100 motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF] ${
+                                  isFifthOnMobile ? 'aspect-[16/7] sm:aspect-[16/8] lg:aspect-[3/4]' : 'aspect-[4/3.6] sm:aspect-[3/4]'
+                                }`}
                               >
                                 <ResilientImage
                                   src={service.image}
@@ -762,9 +844,9 @@ export default function App() {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#040B29]/40 via-transparent to-transparent" />
 
-                                <div className="absolute inset-x-3 bottom-3">
-                                  <div className="bg-white/95 backdrop-blur-sm rounded-xl px-3 py-2.5 lg:py-3 shadow-lg border border-[#0044FF]/10 group-hover:border-[#002BFF]/35 transition-colors">
-                                    <h3 className="text-sm font-bold text-[#07133B] group-hover:text-[#002BFF] transition-colors leading-tight">
+                                <div className="absolute inset-x-2 sm:inset-x-3 bottom-2 sm:bottom-3">
+                                  <div className="bg-white/95 backdrop-blur-sm rounded-xl px-2 py-2 sm:px-3 sm:py-2.5 lg:py-3 shadow-lg border border-[#0044FF]/10 group-hover:border-[#002BFF]/35 transition-colors">
+                                    <h3 className="text-xs sm:text-sm font-bold text-[#07133B] group-hover:text-[#002BFF] transition-colors leading-tight">
                                       {service.title}
                                     </h3>
                                   </div>
@@ -790,7 +872,7 @@ export default function App() {
                 </section>
 
                 {/* WHY CHOOSE SAMITECH, Clean Dark Card on Mobile, Chamfered Folder-Tab Cutout on Desktop */}
-                <section id="why-samitech" className="py-14 sm:py-16 lg:py-24 bg-[#F8FAFF] overflow-x-clip">
+                <section id="why-samitech" className="py-9 sm:py-14 lg:py-24 bg-[#F8FAFF] overflow-x-clip">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <Reveal direction="none" delay={0}>
                       <div
@@ -894,27 +976,27 @@ export default function App() {
                   </div>
                 </section>
 
-                {/* PROJECTS / CASE STUDIES SECTION, Scroll-Revealed 1->2->4 Columns */}
-                <section id="projects" className="py-14 sm:py-16 lg:py-24 bg-white overflow-x-clip">
+                {/* PROJECTS / CASE STUDIES SECTION, Compact 2-Column Mobile, 4-Column Desktop */}
+                <section id="projects" className="py-9 sm:py-14 lg:py-24 bg-white overflow-x-clip">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <Reveal direction="right" delay={0} className="max-w-2xl mx-auto text-center space-y-2.5 sm:space-y-3 mb-8 sm:mb-10 lg:mb-12">
+                    <Reveal direction="right" delay={0} className="max-w-2xl mx-auto text-center space-y-2 sm:space-y-3 mb-6 sm:mb-10 lg:mb-12">
                       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#07133B] text-balance">
                         Featured{' '}
                         <span className="text-[#002BFF]">Projects</span>
                       </h2>
-                      <p className="text-sm lg:text-base text-slate-600 leading-relaxed">
+                      <p className="text-xs sm:text-sm lg:text-base text-slate-600 leading-relaxed">
                         Select any deployment below to inspect architecture scope, deliverables, and
                         verified production outcomes.
                       </p>
                     </Reveal>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-                      {CASE_STUDIES.map((study, index) => (
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-5">
+                      {homeCaseStudies.map((study, index) => (
                         <Reveal key={study.id} direction="right" delay={0.05 + index * 0.06}>
                           <button
                             type="button"
                             onClick={() => setSelectedCaseStudy(study)}
-                            className="floating-frame-card group relative aspect-[16/10] sm:aspect-[3/4] w-full rounded-2xl overflow-hidden bg-[#040B29] text-left cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF]"
+                            className="floating-frame-card group relative aspect-[4/4.3] sm:aspect-[3/4] w-full rounded-2xl overflow-hidden bg-[#040B29] text-left cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000FF]"
                           >
                             <ResilientImage
                               src={study.image}
@@ -926,22 +1008,22 @@ export default function App() {
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#040B29]/95 via-[#040B29]/45 to-transparent" />
-                            <div className="absolute inset-x-0 bottom-0 p-4 lg:p-5 space-y-2">
-                              <div className="flex items-center gap-2 text-xs text-[#DBEAFE]">
+                            <div className="absolute inset-x-0 bottom-0 p-2.5 sm:p-4 lg:p-5 space-y-1 sm:space-y-2">
+                              <div className="flex items-center gap-1.5 text-[10px] sm:text-xs text-[#DBEAFE]">
                                 <span className="truncate">{study.sector}</span>
                                 <span aria-hidden="true">·</span>
                                 <span>{study.year}</span>
                               </div>
-                              <h3 className="text-base lg:text-lg font-bold text-white leading-snug line-clamp-2">
+                              <h3 className="text-xs sm:text-base lg:text-lg font-bold text-white leading-snug line-clamp-2">
                                 {study.title}
                               </h3>
-                              <div className="pt-1 flex items-center justify-between gap-2 border-t border-white/15">
-                                <span className="font-mono tabular-nums text-xs font-semibold text-[#93C5FD] truncate">
+                              <div className="pt-1 flex items-center justify-between gap-1.5 border-t border-white/15">
+                                <span className="font-mono tabular-nums text-[10px] sm:text-xs font-semibold text-[#93C5FD] truncate">
                                   {study.metrics[0].value} {study.metrics[0].label}
                                 </span>
-                                <span className="inline-flex items-center gap-1 text-xs font-semibold text-white group-hover:text-[#93C5FD] transition-colors whitespace-nowrap shrink-0">
+                                <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-white group-hover:text-[#93C5FD] transition-colors whitespace-nowrap shrink-0">
                                   <span>Preview</span>
-                                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" strokeWidth={1.75} aria-hidden="true" />
+                                  <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:translate-x-0.5 transition-transform" strokeWidth={1.75} aria-hidden="true" />
                                 </span>
                               </div>
                             </div>
@@ -971,7 +1053,7 @@ export default function App() {
                 </section>
 
                 {/* CAREERS & INTERNSHIPS SECTION */}
-                <section id="careers" className="py-14 sm:py-16 lg:py-20 bg-[#F2F6FF] border-y border-[#0044FF]/10 overflow-x-clip">
+                <section id="careers" className="py-9 sm:py-14 lg:py-20 bg-[#F2F6FF] border-y border-[#0044FF]/10 overflow-x-clip">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                       <div className="lg:col-span-5 space-y-4 lg:space-y-5">
@@ -1037,7 +1119,7 @@ export default function App() {
                 </section>
 
                 {/* OUR COMMUNITIES SECTION */}
-                <section id="communities" className="py-14 sm:py-16 lg:py-20 bg-white border-b border-slate-200/70 overflow-x-clip">
+                <section id="communities" className="py-9 sm:py-14 lg:py-20 bg-white border-b border-slate-200/70 overflow-x-clip">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-10">
                       <Reveal direction="left" className="space-y-2 max-w-2xl">
@@ -1067,7 +1149,7 @@ export default function App() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
-                      {SAMITECH_COMMUNITIES.map((community, index) => (
+                      {communities.map((community, index) => (
                         <Reveal
                           key={community.id}
                           direction="bottom"
@@ -1155,7 +1237,7 @@ export default function App() {
                 </section>
 
                 {/* FAQ SECTION, Responsive Dark Card on Mobile, Chamfered Asymmetric Folder-Tab on Desktop */}
-                <section id="faq" className="py-14 sm:py-16 lg:py-24 bg-white overflow-x-clip">
+                <section id="faq" className="py-9 sm:py-14 lg:py-24 bg-white overflow-x-clip">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <Reveal direction="none" delay={0}>
                       <div
@@ -1223,7 +1305,7 @@ export default function App() {
 
                             {/* Right Column: Sequential Animated FAQ Accordion Boxes */}
                             <div className="md:col-span-7 space-y-3 md:pt-10 lg:pt-14">
-                              {FAQ_ITEMS.map((item, index) => {
+                              {faqs.map((item, index) => {
                                 const isOpen = openFaqId === item.id;
                                 return (
                                   <Reveal key={item.id} direction="right" delay={0.05 + index * 0.05}>
@@ -1293,111 +1375,124 @@ export default function App() {
         </main>
 
         {/* ULTRA-COMPACT CORPORATE FOOTER, Slim & Proportional Across Every Device */}
-        <footer id="contact-footer" className="relative bg-[#071235] text-white border-t border-white/10 overflow-hidden">
-          <svg
-            viewBox="0 0 260 110"
-            className="pointer-events-none absolute right-0 bottom-0 w-14 sm:w-24 lg:w-28 h-auto opacity-85"
-            aria-hidden="true"
-          >
-            <path d="M 110,110 L 260,30 L 260,110 Z" fill="#0038FF" fillOpacity="0.65" />
-            <path d="M 145,110 L 260,46 L 260,110 Z" fill="#DC0914" />
-          </svg>
+        {activePage !== 'control-panel' && (
+          <footer id="contact-footer" className="relative bg-[#071235] text-white border-t border-white/10 overflow-hidden">
+            <svg
+              viewBox="0 0 260 110"
+              className="pointer-events-none absolute right-0 bottom-0 w-14 sm:w-24 lg:w-28 h-auto opacity-85"
+              aria-hidden="true"
+            >
+              <path d="M 110,110 L 260,30 L 260,110 Z" fill="#0038FF" fillOpacity="0.65" />
+              <path d="M 145,110 L 260,46 L 260,110 Z" fill="#DC0914" />
+            </svg>
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3.5 lg:gap-6">
-              {/* Brand & Direct Contact */}
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 min-w-0">
-                <button
-                  type="button"
-                  onClick={() => handleNavigate('home')}
-                  aria-label="SAMITECH Corporation Home"
-                  className="inline-flex items-center shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white cursor-pointer"
-                >
-                  <img
-                    src="/assets/aistudio/Samitech_Corporation_Logo2_7401e1c3.png"
-                    alt="SAMITECH Corporation"
-                    width={2172}
-                    height={724}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-6 sm:h-7 w-auto object-contain footer-logo-glow"
-                  />
-                </button>
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3.5 lg:gap-6">
+                {/* Brand & Direct Contact */}
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 min-w-0">
+                  <button
+                    type="button"
+                    onClick={() => handleNavigate('home')}
+                    aria-label={`${settings.legalName} Home`}
+                    className="inline-flex items-center shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white cursor-pointer"
+                  >
+                    <img
+                      src="/assets/aistudio/Samitech_Corporation_Logo2_7401e1c3.png"
+                      alt={settings.legalName}
+                      width={2172}
+                      height={724}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-6 sm:h-7 w-auto object-contain footer-logo-glow"
+                    />
+                  </button>
 
-                <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1 text-[11px] sm:text-xs text-slate-200/90">
-                  <a
-                    href={`tel:${COMPANY_CONTACT.phone.replace(/\s+/g, '')}`}
-                    className="inline-flex items-center gap-1 hover:text-[#60A5FA] transition-colors whitespace-nowrap tabular-nums"
+                  <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1 text-[11px] sm:text-xs text-slate-200/90">
+                    <a
+                      href={`tel:${settings.phone.replace(/\s+/g, '')}`}
+                      className="inline-flex items-center gap-1 hover:text-[#60A5FA] transition-colors whitespace-nowrap tabular-nums"
+                    >
+                      <Phone className="w-3 h-3 text-[#60A5FA] shrink-0" strokeWidth={1.75} aria-hidden="true" />
+                      <span>{settings.phone}</span>
+                    </a>
+                    <a
+                      href={buildWhatsAppUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Chat on WhatsApp"
+                      className="inline-flex items-center gap-1 text-[#4ADE80] hover:text-[#86EFAC] font-semibold transition-colors whitespace-nowrap"
+                    >
+                      <WhatsAppBrandIcon className="w-3.5 h-3.5 shrink-0" />
+                      <span>WhatsApp</span>
+                    </a>
+                    <a
+                      href={`mailto:${settings.email}`}
+                      className="inline-flex items-center gap-1 hover:text-[#60A5FA] transition-colors whitespace-nowrap"
+                    >
+                      <Mail className="w-3 h-3 text-[#60A5FA] shrink-0" strokeWidth={1.75} aria-hidden="true" />
+                      <span>{settings.email}</span>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Inline Compact Site Links */}
+                <nav aria-label="Footer navigation" className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-[11px] sm:text-xs text-slate-200/90">
+                  <button type="button" onClick={() => handleNavigate('home')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                    Home
+                  </button>
+                  <button type="button" onClick={() => handleNavigate('about')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                    About
+                  </button>
+                  <button type="button" onClick={() => handleNavigate('team')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                    Team
+                  </button>
+                  <button type="button" onClick={() => handleNavigate('services')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                    Services
+                  </button>
+                  <button type="button" onClick={() => handleNavigate('products')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                    Products
+                  </button>
+                  <button type="button" onClick={() => handleNavigate('projects')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                    Projects
+                  </button>
+                  <button type="button" onClick={() => handleNavigate('communities')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                    Communities
+                  </button>
+                  <button type="button" onClick={() => handleNavigate('careers')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                    Careers
+                  </button>
+                  <button type="button" onClick={() => handleNavigate('contact')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
+                    Contact
+                  </button>
+                </nav>
+              </div>
+
+              {/* Slim Legal Bar */}
+              <div className="mt-3 pt-2.5 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-300/75 pr-12 sm:pr-20">
+                <div>© 2026 {settings.legalName} · {settings.location} · {settings.availability}</div>
+                <div className="flex items-center gap-4 shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => setLegalDoc('privacy')}
+                    className="hover:text-white transition-colors cursor-pointer"
                   >
-                    <Phone className="w-3 h-3 text-[#60A5FA] shrink-0" strokeWidth={1.75} aria-hidden="true" />
-                    <span>{COMPANY_CONTACT.phone}</span>
-                  </a>
-                  <a
-                    href={`mailto:${COMPANY_CONTACT.email}`}
-                    className="inline-flex items-center gap-1 hover:text-[#60A5FA] transition-colors whitespace-nowrap"
+                    Privacy Policy
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLegalDoc('terms')}
+                    className="hover:text-white transition-colors cursor-pointer"
                   >
-                    <Mail className="w-3 h-3 text-[#60A5FA] shrink-0" strokeWidth={1.75} aria-hidden="true" />
-                    <span>{COMPANY_CONTACT.email}</span>
-                  </a>
+                    Terms of Service
+                  </button>
                 </div>
               </div>
-
-              {/* Inline Compact Site Links */}
-              <nav aria-label="Footer navigation" className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-[11px] sm:text-xs text-slate-200/90">
-                <button type="button" onClick={() => handleNavigate('home')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
-                  Home
-                </button>
-                <button type="button" onClick={() => handleNavigate('about')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
-                  About
-                </button>
-                <button type="button" onClick={() => handleNavigate('team')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
-                  Team
-                </button>
-                <button type="button" onClick={() => handleNavigate('services')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
-                  Services
-                </button>
-                <button type="button" onClick={() => handleNavigate('products')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
-                  Products
-                </button>
-                <button type="button" onClick={() => handleNavigate('projects')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
-                  Projects
-                </button>
-                <button type="button" onClick={() => handleNavigate('communities')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
-                  Communities
-                </button>
-                <button type="button" onClick={() => handleNavigate('careers')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
-                  Careers
-                </button>
-                <button type="button" onClick={() => handleNavigate('contact')} className="hover:text-[#60A5FA] transition-colors whitespace-nowrap cursor-pointer">
-                  Contact
-                </button>
-              </nav>
             </div>
+          </footer>
+        )}
 
-            {/* Slim Legal Bar */}
-            <div className="mt-3 pt-2.5 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-300/75 pr-12 sm:pr-20">
-              <div>© 2026 SAMITECH Corporation · Cameroon · 24/7 Support</div>
-              <div className="flex items-center gap-4 shrink-0">
-                <button
-                  type="button"
-                  onClick={() => setLegalDoc('privacy')}
-                  className="hover:text-white transition-colors cursor-pointer"
-                >
-                  Privacy Policy
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setLegalDoc('terms')}
-                  className="hover:text-white transition-colors cursor-pointer"
-                >
-                  Terms of Service
-                </button>
-              </div>
-            </div>
-          </div>
-        </footer>
-
-        <BackToTopButton />
+        {activePage !== 'control-panel' && <BackToTopButton />}
+        {activePage !== 'control-panel' && <WhatsAppFloatingButton />}
 
         {/* INTERACTIVE MODALS */}
         <CaseStudyModal

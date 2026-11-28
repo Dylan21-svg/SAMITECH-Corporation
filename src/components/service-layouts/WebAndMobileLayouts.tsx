@@ -46,7 +46,7 @@ export function WebDevelopmentLayout({
   return (
     <div className="bg-white text-[#07133B] overflow-x-clip">
       {/* HERO, Bright Blue-White Surface With Sweeping Royal-Blue Top-Right Wave */}
-      <section className="relative bg-gradient-to-br from-[#F7FAFF] via-white to-[#EAF2FF] pt-10 pb-20 sm:pt-14 sm:pb-24 lg:pt-16 lg:pb-28 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#F7FAFF] via-white to-[#EAF2FF] pt-7 pb-14 sm:pt-14 sm:pb-24 lg:pt-16 lg:pb-28 overflow-hidden">
         {/* Top-Right Sweeping Royal-Blue Curve */}
         <svg
           viewBox="0 0 640 420"
@@ -75,7 +75,7 @@ export function WebDevelopmentLayout({
 
               <h1
                 className="font-extrabold tracking-tight leading-[1.03] text-balance"
-                style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4rem)' }}
+                style={{ fontSize: 'clamp(1.65rem, 4.8vw, 4rem)' }}
               >
                 <span className="block text-[#07133B]">Software</span>
                 <span className="block text-[#0038FF]">Services</span>
@@ -390,7 +390,7 @@ export function MobileAppLayout({
   return (
     <div className="bg-white text-[#07133B] overflow-x-clip">
       {/* HERO, Centered-Top Statement + Dual Tilted Android & iOS Device Frames */}
-      <section className="relative bg-gradient-to-b from-[#EFF5FF] via-[#F7FAFF] to-white pt-10 pb-16 sm:pt-14 sm:pb-20 border-b border-[#D8E5FF]">
+      <section className="relative bg-gradient-to-b from-[#EFF5FF] via-[#F7FAFF] to-white pt-7 pb-12 sm:pt-14 sm:pb-20 border-b border-[#D8E5FF]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Left Dual Phone Mockup Showcase (Visual First on Desktop!) */}
@@ -476,7 +476,7 @@ export function MobileAppLayout({
 
               <h1
                 className="font-extrabold tracking-tight leading-[1.05] text-balance text-[#07133B]"
-                style={{ fontSize: 'clamp(2.2rem, 4.4vw, 3.6rem)' }}
+                style={{ fontSize: 'clamp(1.6rem, 4.4vw, 3.6rem)' }}
               >
                 Native Speed{' '}
                 <span className="text-[#0038FF]">Android &amp; iOS</span>{' '}

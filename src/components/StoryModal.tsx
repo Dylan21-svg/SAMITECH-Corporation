@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowRight, CheckCircle2, Globe2, GraduationCap, Shield, X } from 'lucide-react';
-import { ABOUT_MEDIA, COMPANY_CONTACT } from '../data/samitechData';
+import { ABOUT_MEDIA } from '../data/samitechData';
+import { useSiteContent } from '../context/SiteContentContext';
 import { SAMITECH_EASE, useMotionConfigValues } from './MotionPrimitives';
 import { ResilientImage } from './ResilientImage';
 
@@ -12,6 +13,7 @@ interface StoryModalProps {
 }
 
 export function StoryModal({ isOpen, onClose, onGetInTouch }: StoryModalProps) {
+  const { settings } = useSiteContent();
   const { shouldReduceMotion } = useMotionConfigValues();
 
   useEffect(() => {
@@ -72,7 +74,7 @@ export function StoryModal({ isOpen, onClose, onGetInTouch }: StoryModalProps) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#040B29]/90 via-[#040B29]/25 to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5 text-white">
-                  <div className="text-xs font-medium text-[#93C5FD]">Founded 2019 · Cameroon</div>
+                  <div className="text-xs font-medium text-[#93C5FD]">Founded {settings.founded} · {settings.location}</div>
                   <div className="text-lg font-bold leading-snug mt-1">
                     Where Technology Meets Excellence
                   </div>
@@ -115,7 +117,7 @@ export function StoryModal({ isOpen, onClose, onGetInTouch }: StoryModalProps) {
                 <div className="flex items-center justify-between gap-3 pt-3 border-t border-slate-200">
                   <div className="flex items-center gap-2 text-xs font-medium text-slate-600">
                     <CheckCircle2 className="w-4 h-4 text-[#002BFF]" strokeWidth={1.75} aria-hidden="true" />
-                    <span>{COMPANY_CONTACT.phone} · 24/7</span>
+                    <span>{settings.phone} · 24/7</span>
                   </div>
                   <button
                     type="button"

@@ -8,6 +8,8 @@ import {
   X,
 } from 'lucide-react';
 import { CAREERS_SHOWCASE_MEDIA } from '../data/servicesCatalog';
+import type { CareerOpening } from '../data/careersData';
+import { useSiteContent } from '../context/SiteContentContext';
 import { Reveal, SAMITECH_EASE } from './MotionPrimitives';
 import { ResilientImage } from './ResilientImage';
 import { CareerFeatureIcon, SolidBriefcaseIcon } from './ShowcaseIcons';
@@ -15,16 +17,6 @@ import { CareerFeatureIcon, SolidBriefcaseIcon } from './ShowcaseIcons';
 interface CareersPageProps {
   onOpenContact: (defaultCategory?: string) => void;
   onNavigateTeam: () => void;
-}
-
-interface CareerOpening {
-  id: string;
-  title: string;
-  location: string;
-  department: string;
-  type: string;
-  summary: string;
-  requirements: string[];
 }
 
 const WHY_WORK_ITEMS = [
@@ -50,38 +42,9 @@ const WHY_WORK_ITEMS = [
   },
 ];
 
-const CAREER_OPENINGS: CareerOpening[] = [
-  {
-    id: 'software-department-internship',
-    title: 'Software Department Internship',
-    location: 'Cameroon / Hybrid',
-    department: 'Software Department',
-    type: 'Internship (3 to 6 Mo)',
-    summary:
-      'Join our Software Department to assist with real web, mobile, and UI/UX engineering projects using React, TypeScript, Node.js, and Flutter under senior mentor guidance.',
-    requirements: [
-      'Foundational knowledge of HTML, CSS, JavaScript/TypeScript, or mobile app development',
-      'Eagerness to learn Git workflows, component architecture, and clean UI implementation',
-      'Enrolled in or recently graduated from a Computer Science / Software Engineering track in Cameroon',
-    ],
-  },
-  {
-    id: 'networking-department-internship',
-    title: 'Networking Department Internship',
-    location: 'Cameroon / On-Site',
-    department: 'Networking Department',
-    type: 'Internship (3 to 6 Mo)',
-    summary:
-      'Train alongside our field engineers on Starlink deployments, Wi-Fi hotspot zones, MikroTik/UniFi routing, structured LAN cabling, and network maintenance.',
-    requirements: [
-      'Basic understanding of IP addressing, LAN/WLAN fundamentals, and network hardware',
-      'Willingness to participate in hands on field installations and hardware diagnostics',
-      'Studying or recently trained in Networking, Telecoms, or IT Systems Administration',
-    ],
-  },
-];
-
 export function CareersPage({ onOpenContact, onNavigateTeam }: CareersPageProps) {
+  const { careers } = useSiteContent();
+  const openCareers = careers.filter((job) => job.isOpen !== false);
   const [selectedOpening, setSelectedOpening] = useState<CareerOpening | null>(null);
 
   useEffect(() => {
@@ -121,13 +84,13 @@ export function CareersPage({ onOpenContact, onNavigateTeam }: CareersPageProps)
           <div className="absolute inset-0 bg-gradient-to-r from-white/88 via-white/70 to-transparent lg:from-white/30 lg:via-transparent lg:to-transparent" />
         </div>
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-28">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-11 sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-28">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
             <Reveal
               immediate
               direction="left"
               wrapperClassName="lg:col-span-6"
-              className="space-y-4 sm:space-y-5 max-w-xl"
+              className="space-y-3.5 sm:space-y-5 max-w-xl"
             >
               {/* Join Our Team Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/90 border border-[#0044FF]/15 shadow-xs text-xs font-semibold text-[#002BFF]">
@@ -137,7 +100,7 @@ export function CareersPage({ onOpenContact, onNavigateTeam }: CareersPageProps)
 
               <h1
                 className="font-extrabold tracking-tight leading-[1.06] text-balance text-[#07133B]"
-                style={{ fontSize: 'clamp(1.85rem, 4.2vw, 3.6rem)' }}
+                style={{ fontSize: 'clamp(1.6rem, 4.2vw, 3.6rem)' }}
               >
                 <span className="block">Build Your Career</span>
                 <span className="block">
@@ -300,40 +263,51 @@ export function CareersPage({ onOpenContact, onNavigateTeam }: CareersPageProps)
 
                   {/* Clean Bordered Internship Rows */}
                   <div className="space-y-3">
-                    {CAREER_OPENINGS.map((job) => (
-                      <button
-                        key={job.id}
-                        type="button"
-                        onClick={() => setSelectedOpening(job)}
-                        className="group w-full px-3.5 py-3.5 rounded-xl bg-white hover:bg-[#F2F6FF] border border-slate-200/90 hover:border-[#0044FF]/40 flex items-center justify-between gap-3 text-left transition-all duration-150 cursor-pointer"
-                      >
-                        <div className="flex items-center gap-3 min-w-0">
-                          <div className="flex items-center justify-center shrink-0">
-                            <SolidBriefcaseIcon />
-                          </div>
-                          <div className="min-w-0">
-                            <div className="text-xs sm:text-sm font-bold text-[#07133B] group-hover:text-[#002BFF] transition-colors truncate">
-                              {job.title}
-                            </div>
-                            <div className="text-[11px] font-medium text-slate-500 truncate">
-                              {job.department} · {job.type}
-                            </div>
-                          </div>
+                    {openCareers.length === 0 ? (
+                      <div className="rounded-xl border border-slate-200 bg-[#F8FAFF] p-5 text-center space-y-2">
+                        <div className="text-sm font-bold text-[#07133B]">
+                          All Scheduled Cohort Slots Are Currently Filled
                         </div>
+                        <p className="text-xs text-slate-600 leading-relaxed">
+                          Send an open application or share your portfolio to be considered for our next cohort.
+                        </p>
+                      </div>
+                    ) : (
+                      openCareers.map((job) => (
+                        <button
+                          key={job.id}
+                          type="button"
+                          onClick={() => setSelectedOpening(job)}
+                          className="group w-full px-3.5 py-3.5 rounded-xl bg-white hover:bg-[#F2F6FF] border border-slate-200/90 hover:border-[#0044FF]/40 flex items-center justify-between gap-3 text-left transition-all duration-150 cursor-pointer"
+                        >
+                          <div className="flex items-center gap-3 min-w-0">
+                            <div className="flex items-center justify-center shrink-0">
+                              <SolidBriefcaseIcon />
+                            </div>
+                            <div className="min-w-0">
+                              <div className="text-xs sm:text-sm font-bold text-[#07133B] group-hover:text-[#002BFF] transition-colors truncate">
+                                {job.title}
+                              </div>
+                              <div className="text-[11px] font-medium text-slate-500 truncate">
+                                {job.department} · {job.type}
+                              </div>
+                            </div>
+                          </div>
 
-                        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-                          <span className="hidden sm:inline-flex items-center gap-1 text-xs font-medium text-slate-500">
-                            <MapPin className="w-3.5 h-3.5 text-[#3B82F6] shrink-0" strokeWidth={1.85} aria-hidden="true" />
-                            <span>{job.location}</span>
-                          </span>
-                          <ChevronRight
-                            className="w-4 h-4 text-[#002BFF] group-hover:translate-x-0.5 transition-transform"
-                            strokeWidth={1.85}
-                            aria-hidden="true"
-                          />
-                        </div>
-                      </button>
-                    ))}
+                          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                            <span className="hidden sm:inline-flex items-center gap-1 text-xs font-medium text-slate-500">
+                              <MapPin className="w-3.5 h-3.5 text-[#3B82F6] shrink-0" strokeWidth={1.85} aria-hidden="true" />
+                              <span>{job.location}</span>
+                            </span>
+                            <ChevronRight
+                              className="w-4 h-4 text-[#002BFF] group-hover:translate-x-0.5 transition-transform"
+                              strokeWidth={1.85}
+                              aria-hidden="true"
+                            />
+                          </div>
+                        </button>
+                      ))
+                    )}
                   </div>
                 </div>
 

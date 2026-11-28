@@ -13,10 +13,12 @@ import {
   User,
 } from 'lucide-react';
 import { CONTACT_PAGE_MEDIA } from '../data/projectsData';
-import { COMPANY_CONTACT, SERVICE_CATEGORY_OPTIONS } from '../data/samitechData';
+import { SERVICE_CATEGORY_OPTIONS } from '../data/samitechData';
+import { useSiteContent } from '../context/SiteContentContext';
 import { Reveal } from './MotionPrimitives';
 import { ResilientImage } from './ResilientImage';
 import { MapMarkerPinIcon } from './ShowcaseIcons';
+import { WhatsAppBrandIcon } from './WhatsAppFloatingButton';
 
 interface ContactPageProps {
   onNavigateHome: () => void;
@@ -33,9 +35,15 @@ type ContactFormErrors = Partial<Record<keyof ContactFormState, string>>;
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const SUBJECT_OPTIONS = ['General Inquiry', ...SERVICE_CATEGORY_OPTIONS];
-
 export function ContactPage({ onNavigateHome }: ContactPageProps) {
+  const { settings, services, buildWhatsAppUrl } = useSiteContent();
+  const subjectOptions = Array.from(
+    new Set([
+      'General Inquiry',
+      ...SERVICE_CATEGORY_OPTIONS,
+      ...services.map((s) => s.contactCategory),
+    ])
+  );
   const [form, setForm] = useState<ContactFormState>({
     name: '',
     email: '',
@@ -125,7 +133,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
           </svg>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-28">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-11 sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-28">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
             <Reveal
               immediate
@@ -141,7 +149,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
 
               <h1
                 className="font-extrabold tracking-tight leading-[1.05] text-balance text-[#07133B]"
-                style={{ fontSize: 'clamp(2rem, 4.5vw, 3.85rem)' }}
+                style={{ fontSize: 'clamp(1.65rem, 4.5vw, 3.85rem)' }}
               >
                 <span>Contact </span>
                 <span className="text-[#002BFF]">Us</span>
@@ -152,7 +160,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                 need technical support, our team is here to help.
               </p>
 
-              <div className="pt-1">
+              <div className="pt-1 flex flex-wrap items-center gap-2.5 sm:gap-3">
                 <button
                   type="button"
                   onClick={scrollToForm}
@@ -161,6 +169,15 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                   <span>Send Us a Message</span>
                   <ArrowRight className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
                 </button>
+                <a
+                  href={buildWhatsAppUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold text-white rounded-full bg-[#25D366] hover:bg-[#1EBE5D] shadow-md shadow-[#25D366]/25 transition-all duration-150 active:scale-[0.98] whitespace-nowrap"
+                >
+                  <WhatsAppBrandIcon className="w-4 h-4" />
+                  <span>WhatsApp Chat</span>
+                </a>
               </div>
             </Reveal>
           </div>
@@ -193,7 +210,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                 {/* Card 1: Phone */}
                 <Reveal direction="bottom" delay={0.04}>
                   <a
-                    href={`tel:${COMPANY_CONTACT.phone.replace(/\s+/g, '')}`}
+                    href={`tel:${settings.phone.replace(/\s+/g, '')}`}
                     className="group flex flex-col items-center text-center rounded-2xl bg-gradient-to-b from-[#EDF4FF] to-[#F8FAFF] border border-[#DCE8FF] hover:border-[#0044FF]/45 p-5 sm:p-6 space-y-2.5 shadow-[0_6px_18px_rgba(0,68,255,0.05)] hover:-translate-y-0.5 transition-all"
                   >
                     <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#0055FF] to-[#0022CC] text-white flex items-center justify-center shadow-sm">
@@ -201,7 +218,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                     </div>
                     <h3 className="text-sm sm:text-base font-bold text-[#07133B]">Phone</h3>
                     <div className="text-xs sm:text-sm font-semibold text-[#002BFF] group-hover:text-[#DC0914] transition-colors tabular-nums">
-                      {COMPANY_CONTACT.phone}
+                      {settings.phone}
                     </div>
                     <div className="text-[11px] sm:text-xs text-slate-500">
                       Mon to Fri: 8AM to 6PM (WAT)
@@ -212,7 +229,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                 {/* Card 2: Email */}
                 <Reveal direction="bottom" delay={0.08}>
                   <a
-                    href={`mailto:${COMPANY_CONTACT.email}`}
+                    href={`mailto:${settings.email}`}
                     className="group flex flex-col items-center text-center rounded-2xl bg-gradient-to-b from-[#EDF4FF] to-[#F8FAFF] border border-[#DCE8FF] hover:border-[#0044FF]/45 p-5 sm:p-6 space-y-2.5 shadow-[0_6px_18px_rgba(0,68,255,0.05)] hover:-translate-y-0.5 transition-all"
                   >
                     <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#0055FF] to-[#0022CC] text-white flex items-center justify-center shadow-sm">
@@ -220,7 +237,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                     </div>
                     <h3 className="text-sm sm:text-base font-bold text-[#07133B]">Email</h3>
                     <div className="text-xs sm:text-sm font-semibold text-[#002BFF] group-hover:text-[#DC0914] transition-colors break-all">
-                      {COMPANY_CONTACT.email}
+                      {settings.email}
                     </div>
                     <div className="text-[11px] sm:text-xs text-slate-500">
                       We reply within 24h
@@ -240,7 +257,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                     </div>
                     <h3 className="text-sm sm:text-base font-bold text-[#07133B]">Our Office</h3>
                     <div className="text-xs sm:text-sm font-semibold text-[#07133B] group-hover:text-[#002BFF] transition-colors">
-                      {COMPANY_CONTACT.location}
+                      {settings.location}
                     </div>
                     <div className="text-[11px] sm:text-xs text-slate-500">
                       Nationwide Technology Hub
@@ -260,7 +277,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                     </div>
                     <h3 className="text-sm sm:text-base font-bold text-[#07133B]">Website</h3>
                     <div className="text-xs sm:text-sm font-semibold text-[#002BFF] group-hover:text-[#DC0914] transition-colors">
-                      www.{COMPANY_CONTACT.domain}
+                      www.{settings.domain}
                     </div>
                     <div className="text-[11px] sm:text-xs text-slate-500">
                       Visit our official site
@@ -387,7 +404,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                           className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm rounded-xl border border-[#DCE8FF] hover:border-[#0044FF]/45 bg-[#F8FAFF] text-[#07133B] transition-colors focus:outline-none focus:bg-white focus:border-[#002BFF] focus:ring-2 focus:ring-[#002BFF]/20"
                         >
                           <option value="">Select a Subject</option>
-                          {SUBJECT_OPTIONS.map((option) => (
+                          {subjectOptions.map((option) => (
                             <option key={option} value={option}>
                               {option}
                             </option>
@@ -470,10 +487,10 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
 
                     <div className="rounded-xl bg-white/95 backdrop-blur-sm border border-[#DCE8FF] shadow-lg px-3.5 py-2.5 sm:px-4 sm:py-3 space-y-0.5">
                       <div className="text-xs sm:text-sm font-extrabold text-[#07133B]">
-                        {COMPANY_CONTACT.legalName}
+                        {settings.legalName}
                       </div>
                       <div className="text-[11px] sm:text-xs text-slate-600">
-                        {COMPANY_CONTACT.location}
+                        {settings.location}
                       </div>
                       <a
                         href="https://www.google.com/maps/search/?api=1&query=Cameroon"
@@ -509,7 +526,7 @@ export function ContactPage({ onNavigateHome }: ContactPageProps) {
                     <span>Our Location</span>
                   </div>
                   <div className="text-sm sm:text-base font-bold text-[#93C5FD]">
-                    {COMPANY_CONTACT.location}
+                    {settings.location}
                   </div>
                   <p className="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-xs">
                     A hub of innovation in the heart of Cameroon.

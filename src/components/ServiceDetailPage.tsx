@@ -1,8 +1,6 @@
-import { CASE_STUDIES, type CaseStudy } from '../data/samitechData';
-import {
-  ALL_SERVICES_CATALOG,
-  type ServiceDetail,
-} from '../data/servicesCatalog';
+import type { CaseStudy } from '../data/samitechData';
+import type { ServiceDetail } from '../data/servicesCatalog';
+import { useSiteContent } from '../context/SiteContentContext';
 import {
   ServiceBottomPager,
   ServiceTopSwitcher,
@@ -67,15 +65,16 @@ export function ServiceDetailPage({
   onOpenContact,
   onOpenCaseStudy,
 }: ServiceDetailPageProps) {
-  const currentIndex = ALL_SERVICES_CATALOG.findIndex((s) => s.slug === service.slug);
+  const { services, projects } = useSiteContent();
+  const currentIndex = services.findIndex((s) => s.slug === service.slug);
   const safeIndex = currentIndex >= 0 ? currentIndex : 0;
   const prevService =
-    ALL_SERVICES_CATALOG[(safeIndex - 1 + ALL_SERVICES_CATALOG.length) % ALL_SERVICES_CATALOG.length];
+    services[(safeIndex - 1 + services.length) % services.length];
   const nextService =
-    ALL_SERVICES_CATALOG[(safeIndex + 1) % ALL_SERVICES_CATALOG.length];
+    services[(safeIndex + 1) % services.length];
 
   const relatedStudy =
-    CASE_STUDIES.find((c) => c.id === service.relatedCaseStudyId) ?? CASE_STUDIES[0];
+    projects.find((c) => c.id === service.relatedCaseStudyId) ?? projects[0];
 
   const isDarkHeroService = DARK_TOP_BAR_SLUGS.has(service.slug);
 

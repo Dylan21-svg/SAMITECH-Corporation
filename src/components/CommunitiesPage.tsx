@@ -10,9 +10,9 @@ import {
 } from 'lucide-react';
 import {
   COMMUNITY_FILTERS,
-  SAMITECH_COMMUNITIES,
   type CommunityPlatform,
 } from '../data/communitiesData';
+import { useSiteContent } from '../context/SiteContentContext';
 import { Reveal } from './MotionPrimitives';
 import { ResilientImage } from './ResilientImage';
 
@@ -35,9 +35,10 @@ export function CommunitiesPage({
   onOpenContact,
   onNavigateCareers,
 }: CommunitiesPageProps) {
+  const { communities } = useSiteContent();
   const [activeFilter, setActiveFilter] = useState<'all' | 'websites' | 'whatsapp'>('all');
 
-  const filteredCommunities = SAMITECH_COMMUNITIES.filter((item) => {
+  const filteredCommunities = communities.filter((item) => {
     if (activeFilter === 'websites') return item.platform === 'website';
     if (activeFilter === 'whatsapp') {
       return item.platform === 'whatsapp-group' || item.platform === 'whatsapp-channel';
@@ -50,7 +51,7 @@ export function CommunitiesPage({
       {/* DARK ARCHITECTURAL COMMUNITIES HERO */}
       <section
         id="communities-dark-hero"
-        className="relative overflow-hidden bg-gradient-to-br from-[#040B29] via-[#07194E] to-[#0A256E] text-white pt-24 sm:pt-32 lg:pt-36 pb-16 sm:pb-24"
+        className="relative overflow-hidden bg-gradient-to-br from-[#040B29] via-[#07194E] to-[#0A256E] text-white pt-20 sm:pt-32 lg:pt-36 pb-11 sm:pb-24"
       >
         <div
           className="pointer-events-none absolute inset-0 opacity-20"
@@ -63,12 +64,12 @@ export function CommunitiesPage({
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-10 items-center">
             <Reveal
               immediate
               direction="left"
               wrapperClassName="lg:col-span-7"
-              className="space-y-5"
+              className="space-y-4 sm:space-y-5"
             >
               <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#7DD3FC]">
                 <Users className="w-4 h-4" strokeWidth={1.85} aria-hidden="true" />
@@ -77,7 +78,7 @@ export function CommunitiesPage({
 
               <h1
                 className="font-extrabold tracking-tight leading-[1.06] text-balance text-white"
-                style={{ fontSize: 'clamp(2rem, 4.3vw, 3.6rem)' }}
+                style={{ fontSize: 'clamp(1.65rem, 4.3vw, 3.6rem)' }}
               >
                 Where Builders, Learners &amp;{' '}
                 <span className="text-[#60A5FA]">Innovators Connect</span>
@@ -115,7 +116,7 @@ export function CommunitiesPage({
                   Active Hubs &amp; Channels
                 </div>
                 <div className="divide-y divide-white/10">
-                  {SAMITECH_COMMUNITIES.map((community) => (
+                  {communities.map((community) => (
                     <a
                       key={community.id}
                       href={community.url}

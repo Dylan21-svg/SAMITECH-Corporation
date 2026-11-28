@@ -1,0 +1,556 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Default-Deny Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // Hardened Global Primitives
+    // -------------------------------------------------------------------------
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn()
+        && request.auth.token.email is string
+        && request.auth.token.email_verified == true;
+    }
+
+    function isValidId(id) {
+      return id is string
+        && id.size() >= 1
+        && id.size() <= 128
+        && id.matches('^[a-zA-Z0-9_-]+$');
+    }
+
+    function isValidEmailDocId(id) {
+      return id is string
+        && id.size() >= 3
+        && id.size() <= 180
+        && id.matches('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$');
+    }
+
+    function isStr(val, minLen, maxLen) {
+      return val is string && val.size() >= minLen && val.size() <= maxLen;
+    }
+
+    function isOptStr(data, key, maxLen) {
+      return !(key in data) || (data[key] is string && data[key].size() <= maxLen);
+    }
+
+    function isOptBool(data, key) {
+      return !(key in data) || (data[key] is bool);
+    }
+
+    function isOptNum(data, key) {
+      return !(key in data) || (data[key] is number);
+    }
+
+    function isStrList(val, maxItems) {
+      return val is list
+        && val.size() <= maxItems
+        && (val.size() == 0 || val[0] is string);
+    }
+
+    function isMapList(val, maxItems) {
+      return val is list
+        && val.size() <= maxItems
+        && (val.size() == 0 || val[0] is map);
+    }
+
+    // Bootstrapped Super Admin + Firestore Admin Allowlist
+    function isSuperAdmin() {
+      return isVerifiedUser()
+        && request.auth.token.email.lower() == 'chediland266@gmail.com';
+    }
+
+    function isListedAdmin() {
+      return isVerifiedUser()
+        && exists(/databases/$(database)/documents/admin_users/$(request.auth.token.email.lower()))
+        && get(/databases/$(database)/documents/admin_users/$(request.auth.token.email.lower())).data.active == true;
+    }
+
+    function isAdmin() {
+      return isSuperAdmin() || isListedAdmin();
+    }
+
+    // -------------------------------------------------------------------------
+    // Entity Validation Blueprints
+    // -------------------------------------------------------------------------
+    function isValidSiteSettings(data) {
+      return data.keys().hasAll([
+          'brandName', 'legalName', 'domain', 'email', 'phone',
+          'whatsappNumber', 'whatsappDefaultMessage', 'location',
+          'regions', 'founded', 'availability', 'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'brandName', 'legalName', 'domain', 'email', 'phone',
+          'whatsappNumber', 'whatsappDefaultMessage', 'location',
+          'regions', 'founded', 'availability', 'updatedAt'
+        ])
+        && isStr(data.brandName, 1, 80)
+        && isStr(data.legalName, 1, 120)
+        && isStr(data.domain, 1, 120)
+        && isStr(data.email, 3, 160)
+        && isStr(data.phone, 5, 40)
+        && isStr(data.whatsappNumber, 8, 20)
+        && data.whatsappNumber.matches('^[0-9]+$')
+        && isStr(data.whatsappDefaultMessage, 1, 300)
+        && isStr(data.location, 1, 100)
+        && isStr(data.regions, 1, 140)
+        && isStr(data.founded, 4, 20)
+        && isStr(data.availability, 1, 80)
+        && data.updatedAt == request.time;
+    }
+
+    function isValidSiteProduct(data, productId) {
+      return data.keys().hasAll([
+          'id', 'sku', 'name', 'category', 'categoryLabel', 'availability',
+          'pricingType', 'priceAmount', 'shortDesc', 'specs', 'heroHighlights',
+          'longDescription', 'aboutBullets', 'whatsInBox', 'image', 'imageAlt',
+          'gallery', 'trustStrip', 'keyFeatures', 'technicalSpecs',
+          'includedVisuals', 'promoBanner', 'faqs', 'sortOrder', 'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'id', 'sku', 'name', 'category', 'categoryLabel', 'availability',
+          'pricingType', 'pricePrefix', 'priceAmount', 'unitPriceXaf',
+          'shortDesc', 'specs', 'heroHighlights', 'longDescription',
+          'aboutBullets', 'whatsInBox', 'image', 'imageAlt', 'studioWhiteBg',
+          'featured', 'featuredHighlights', 'gallery', 'trustStrip',
+          'keyFeatures', 'technicalSpecs', 'includedVisuals', 'promoBanner',
+          'faqs', 'sortOrder', 'updatedAt'
+        ])
+        && isValidId(data.id)
+        && data.id == productId
+        && isStr(data.sku, 1, 40)
+        && isStr(data.name, 1, 140)
+        && data.category in ['networking-starlink', 'cctv-security', 'computers-labs']
+        && isStr(data.categoryLabel, 1, 80)
+        && data.availability in ['In Stock', 'Pre-Order', 'Request Quote']
+        && data.pricingType in ['fixed', 'quote']
+        && isOptStr(data, 'pricePrefix', 30)
+        && isStr(data.priceAmount, 1, 60)
+        && isOptNum(data, 'unitPriceXaf')
+        && isStr(data.shortDesc, 1, 400)
+        && isStrList(data.specs, 12)
+        && isStrList(data.heroHighlights, 10)
+        && isStr(data.longDescription, 1, 2400)
+        && isStrList(data.aboutBullets, 12)
+        && isStrList(data.whatsInBox, 20)
+        && isStr(data.image, 1, 350000)
+        && isStr(data.imageAlt, 0, 240)
+        && isOptBool(data, 'studioWhiteBg')
+        && isOptBool(data, 'featured')
+        && (!('featuredHighlights' in data) || isMapList(data.featuredHighlights, 6))
+        && isMapList(data.gallery, 10)
+        && isMapList(data.trustStrip, 6)
+        && isMapList(data.keyFeatures, 8)
+        && isMapList(data.technicalSpecs, 24)
+        && isMapList(data.includedVisuals, 10)
+        && data.promoBanner is map
+        && data.promoBanner.keys().hasAll(['title', 'subtitle', 'image'])
+        && data.promoBanner.keys().hasOnly(['title', 'subtitle', 'image'])
+        && isStr(data.promoBanner.title, 1, 140)
+        && isStr(data.promoBanner.subtitle, 1, 400)
+        && isStr(data.promoBanner.image, 1, 350000)
+        && isMapList(data.faqs, 16)
+        && data.sortOrder is number
+        && data.updatedAt == request.time;
+    }
+
+    function isValidSiteService(data, serviceId) {
+      return data.keys().hasAll([
+          'slug', 'number', 'group', 'groupLabel', 'title', 'shortDesc',
+          'offerings', 'tagline', 'heroTitle', 'heroAccent', 'heroDescription',
+          'timelineLabel', 'engagementModel', 'contactCategory', 'image',
+          'imageAlt', 'accentColor', 'metrics', 'capabilities', 'processSteps',
+          'deliverables', 'techStack', 'idealFor', 'faqs', 'sortOrder', 'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'slug', 'number', 'group', 'groupLabel', 'title', 'shortDesc',
+          'offerings', 'tagline', 'heroTitle', 'heroAccent', 'heroDescription',
+          'timelineLabel', 'engagementModel', 'contactCategory', 'image',
+          'imageAlt', 'imageWidth', 'imageHeight', 'accentColor', 'metrics',
+          'capabilities', 'processSteps', 'deliverables', 'techStack',
+          'idealFor', 'faqs', 'relatedCaseStudyId', 'sortOrder', 'updatedAt'
+        ])
+        && isValidId(data.slug)
+        && data.slug == serviceId
+        && isStr(data.number, 1, 16)
+        && data.group in ['software-teams', 'networks-support', 'security-tracking']
+        && isStr(data.groupLabel, 1, 80)
+        && isStr(data.title, 1, 120)
+        && isStr(data.shortDesc, 1, 400)
+        && isStrList(data.offerings, 20)
+        && isStr(data.tagline, 1, 200)
+        && isStr(data.heroTitle, 1, 140)
+        && isStr(data.heroAccent, 1, 140)
+        && isStr(data.heroDescription, 1, 1200)
+        && isStr(data.timelineLabel, 1, 80)
+        && isStr(data.engagementModel, 1, 120)
+        && isStr(data.contactCategory, 1, 80)
+        && isStr(data.image, 1, 350000)
+        && isStr(data.imageAlt, 0, 240)
+        && isOptNum(data, 'imageWidth')
+        && isOptNum(data, 'imageHeight')
+        && isStr(data.accentColor, 4, 20)
+        && isMapList(data.metrics, 8)
+        && isMapList(data.capabilities, 12)
+        && isMapList(data.processSteps, 10)
+        && isStrList(data.deliverables, 20)
+        && isStrList(data.techStack, 24)
+        && isMapList(data.idealFor, 10)
+        && isMapList(data.faqs, 16)
+        && isOptStr(data, 'relatedCaseStudyId', 128)
+        && data.sortOrder is number
+        && data.updatedAt == request.time;
+    }
+
+    function isValidSiteProject(data, projectId) {
+      return data.keys().hasAll([
+          'id', 'title', 'sector', 'location', 'year', 'serviceCategory',
+          'filterCategory', 'summary', 'challenge', 'solution', 'deliverables',
+          'metrics', 'image', 'imageAlt', 'sortOrder', 'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'id', 'title', 'sector', 'location', 'year', 'serviceCategory',
+          'filterCategory', 'featured', 'summary', 'challenge', 'solution',
+          'deliverables', 'metrics', 'image', 'imageAlt', 'imageWidth',
+          'imageHeight', 'sortOrder', 'updatedAt'
+        ])
+        && isValidId(data.id)
+        && data.id == projectId
+        && isStr(data.title, 1, 140)
+        && isStr(data.sector, 1, 100)
+        && isStr(data.location, 1, 100)
+        && isStr(data.year, 2, 20)
+        && isStr(data.serviceCategory, 1, 100)
+        && data.filterCategory in [
+          'web-apps', 'ai-automation', 'business-tools',
+          'ecommerce', 'cloud-networking', 'education-dev'
+        ]
+        && isOptBool(data, 'featured')
+        && isStr(data.summary, 1, 400)
+        && isStr(data.challenge, 1, 1600)
+        && isStr(data.solution, 1, 1600)
+        && isStrList(data.deliverables, 16)
+        && isMapList(data.metrics, 8)
+        && isStr(data.image, 1, 350000)
+        && isStr(data.imageAlt, 0, 240)
+        && isOptNum(data, 'imageWidth')
+        && isOptNum(data, 'imageHeight')
+        && data.sortOrder is number
+        && data.updatedAt == request.time;
+    }
+
+    function isValidSiteTeamMember(data, memberId) {
+      return data.keys().hasAll([
+          'id', 'executiveTitle', 'name', 'firstNamePart', 'accentNamePart',
+          'role', 'heroTagline', 'focusLabel', 'location', 'email', 'phone',
+          'image', 'imageAlt', 'bio', 'aboutMe', 'specialties', 'skills',
+          'languages', 'interests', 'experience', 'education', 'achievements',
+          'focusAreas', 'contactTopic', 'socials', 'sortOrder', 'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'id', 'executiveTitle', 'name', 'firstNamePart', 'accentNamePart',
+          'shortName', 'role', 'heroTagline', 'focusLabel', 'location', 'email',
+          'phone', 'website', 'websiteUrl', 'image', 'imageAlt', 'width',
+          'height', 'bio', 'aboutMe', 'specialties', 'skills', 'languages',
+          'interests', 'experience', 'educationSectionTitle', 'education',
+          'achievementsSectionTitle', 'achievements', 'focusAreas',
+          'contactTopic', 'socials', 'sortOrder', 'updatedAt'
+        ])
+        && isValidId(data.id)
+        && data.id == memberId
+        && isStr(data.executiveTitle, 1, 40)
+        && isStr(data.name, 1, 120)
+        && isStr(data.firstNamePart, 1, 100)
+        && isStr(data.accentNamePart, 0, 80)
+        && isOptStr(data, 'shortName', 80)
+        && isStr(data.role, 1, 120)
+        && isStr(data.heroTagline, 1, 400)
+        && isStr(data.focusLabel, 1, 120)
+        && isStr(data.location, 1, 100)
+        && isStr(data.email, 3, 160)
+        && isStr(data.phone, 5, 40)
+        && isOptStr(data, 'website', 160)
+        && isOptStr(data, 'websiteUrl', 300)
+        && isStr(data.image, 1, 350000)
+        && isStr(data.imageAlt, 0, 240)
+        && isOptNum(data, 'width')
+        && isOptNum(data, 'height')
+        && isStr(data.bio, 1, 1000)
+        && isStr(data.aboutMe, 1, 2400)
+        && isStrList(data.specialties, 12)
+        && isStrList(data.skills, 24)
+        && isStrList(data.languages, 10)
+        && isMapList(data.interests, 12)
+        && isMapList(data.experience, 16)
+        && isOptStr(data, 'educationSectionTitle', 100)
+        && isMapList(data.education, 10)
+        && isOptStr(data, 'achievementsSectionTitle', 100)
+        && isStrList(data.achievements, 16)
+        && isStr(data.focusAreas, 0, 800)
+        && isStr(data.contactTopic, 0, 120)
+        && data.socials is map
+        && data.sortOrder is number
+        && data.updatedAt == request.time;
+    }
+
+    function isValidSiteCommunity(data, communityId) {
+      return data.keys().hasAll([
+          'id', 'number', 'name', 'subtitle', 'platform', 'platformLabel',
+          'domainOrHandle', 'url', 'ctaLabel', 'description', 'highlights',
+          'accentColor', 'sortOrder', 'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'id', 'number', 'name', 'subtitle', 'platform', 'platformLabel',
+          'domainOrHandle', 'url', 'ctaLabel', 'description', 'highlights',
+          'accentColor', 'image', 'imageAlt', 'imageFit', 'imageBg',
+          'imageWidth', 'imageHeight', 'sortOrder', 'updatedAt'
+        ])
+        && isValidId(data.id)
+        && data.id == communityId
+        && isStr(data.number, 1, 16)
+        && isStr(data.name, 1, 120)
+        && isStr(data.subtitle, 1, 200)
+        && data.platform in ['website', 'whatsapp-group', 'whatsapp-channel']
+        && isStr(data.platformLabel, 1, 60)
+        && isStr(data.domainOrHandle, 1, 120)
+        && isStr(data.url, 1, 400)
+        && isStr(data.ctaLabel, 1, 80)
+        && isStr(data.description, 1, 1200)
+        && isStrList(data.highlights, 12)
+        && isStr(data.accentColor, 4, 20)
+        && isOptStr(data, 'image', 350000)
+        && isOptStr(data, 'imageAlt', 240)
+        && (!('imageFit' in data) || data.imageFit in ['cover', 'contain'])
+        && isOptStr(data, 'imageBg', 30)
+        && isOptNum(data, 'imageWidth')
+        && isOptNum(data, 'imageHeight')
+        && data.sortOrder is number
+        && data.updatedAt == request.time;
+    }
+
+    function isValidSiteCareer(data, careerId) {
+      return data.keys().hasAll([
+          'id', 'title', 'location', 'department', 'type',
+          'summary', 'requirements', 'isOpen', 'sortOrder', 'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'id', 'title', 'location', 'department', 'type',
+          'summary', 'requirements', 'isOpen', 'sortOrder', 'updatedAt'
+        ])
+        && isValidId(data.id)
+        && data.id == careerId
+        && isStr(data.title, 1, 140)
+        && isStr(data.location, 1, 100)
+        && isStr(data.department, 1, 100)
+        && isStr(data.type, 1, 80)
+        && isStr(data.summary, 1, 1200)
+        && isStrList(data.requirements, 16)
+        && data.isOpen is bool
+        && data.sortOrder is number
+        && data.updatedAt == request.time;
+    }
+
+    function isValidSiteFaq(data, faqId) {
+      return data.keys().hasAll(['id', 'question', 'answer', 'sortOrder', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'question', 'answer', 'sortOrder', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == faqId
+        && isStr(data.question, 3, 280)
+        && isStr(data.answer, 3, 1800)
+        && data.sortOrder is number
+        && data.updatedAt == request.time;
+    }
+
+    function isValidAdminUser(data, adminEmail) {
+      return data.keys().hasAll([
+          'email', 'displayName', 'role', 'active', 'addedByEmail', 'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'email', 'displayName', 'role', 'active', 'addedByEmail', 'updatedAt'
+        ])
+        && isValidEmailDocId(adminEmail)
+        && isStr(data.email, 3, 180)
+        && data.email.lower() == adminEmail
+        && isStr(data.displayName, 1, 120)
+        && data.role in ['super_admin', 'editor']
+        && data.active is bool
+        && isStr(data.addedByEmail, 3, 180)
+        && data.updatedAt == request.time;
+    }
+
+    function isValidSiteBackup(data, backupId) {
+      return data.keys().hasAll([
+          'id', 'projectName', 'databaseId', 'storageBucket', 'storageSynced',
+          'syncedByEmail', 'recordCount', 'assetCount', 'collections',
+          'assets', 'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'id', 'projectName', 'databaseId', 'storageBucket', 'storageSynced',
+          'storageUrl', 'syncedByEmail', 'recordCount', 'assetCount',
+          'collections', 'assets', 'updatedAt'
+        ])
+        && isValidId(data.id)
+        && data.id == backupId
+        && isStr(data.projectName, 1, 120)
+        && isStr(data.databaseId, 1, 140)
+        && isStr(data.storageBucket, 1, 160)
+        && data.storageSynced is bool
+        && isOptStr(data, 'storageUrl', 500)
+        && isStr(data.syncedByEmail, 3, 180)
+        && data.recordCount is number
+        && data.assetCount is number
+        && data.collections is map
+        && isMapList(data.assets, 60)
+        && data.updatedAt == request.time;
+    }
+
+    // -------------------------------------------------------------------------
+    // Public Content Collections (Public Read, Admin-Only Verified Writes)
+    // -------------------------------------------------------------------------
+    match /site_settings/{settingId} {
+      allow get: if isValidId(settingId);
+      allow list: if true;
+      allow create: if isAdmin() && settingId == 'global' && isValidSiteSettings(incoming());
+      allow update: if isAdmin()
+        && settingId == 'global'
+        && isValidSiteSettings(incoming())
+        && incoming().diff(existing()).addedKeys().hasOnly([
+          'brandName', 'legalName', 'domain', 'email', 'phone',
+          'whatsappNumber', 'whatsappDefaultMessage', 'location',
+          'regions', 'founded', 'availability', 'updatedAt'
+        ])
+        && incoming().diff(existing()).changedKeys().hasOnly([
+          'brandName', 'legalName', 'domain', 'email', 'phone',
+          'whatsappNumber', 'whatsappDefaultMessage', 'location',
+          'regions', 'founded', 'availability', 'updatedAt'
+        ]);
+      allow delete: if false;
+    }
+
+    match /site_products/{productId} {
+      allow get: if isValidId(productId);
+      allow list: if true;
+      allow create: if isAdmin() && isValidId(productId) && isValidSiteProduct(incoming(), productId);
+      allow update: if isAdmin()
+        && isValidId(productId)
+        && isValidSiteProduct(incoming(), productId)
+        && (!('id' in existing()) || incoming().id == existing().id);
+      allow delete: if isAdmin() && isValidId(productId);
+    }
+
+    match /site_services/{serviceId} {
+      allow get: if isValidId(serviceId);
+      allow list: if true;
+      allow create: if isAdmin() && isValidId(serviceId) && isValidSiteService(incoming(), serviceId);
+      allow update: if isAdmin()
+        && isValidId(serviceId)
+        && isValidSiteService(incoming(), serviceId)
+        && (!('slug' in existing()) || incoming().slug == existing().slug);
+      allow delete: if isAdmin() && isValidId(serviceId);
+    }
+
+    match /site_projects/{projectId} {
+      allow get: if isValidId(projectId);
+      allow list: if true;
+      allow create: if isAdmin() && isValidId(projectId) && isValidSiteProject(incoming(), projectId);
+      allow update: if isAdmin()
+        && isValidId(projectId)
+        && isValidSiteProject(incoming(), projectId)
+        && (!('id' in existing()) || incoming().id == existing().id);
+      allow delete: if isAdmin() && isValidId(projectId);
+    }
+
+    match /site_team/{memberId} {
+      allow get: if isValidId(memberId);
+      allow list: if true;
+      allow create: if isAdmin() && isValidId(memberId) && isValidSiteTeamMember(incoming(), memberId);
+      allow update: if isAdmin()
+        && isValidId(memberId)
+        && isValidSiteTeamMember(incoming(), memberId)
+        && (!('id' in existing()) || incoming().id == existing().id);
+      allow delete: if isAdmin() && isValidId(memberId);
+    }
+
+    match /site_communities/{communityId} {
+      allow get: if isValidId(communityId);
+      allow list: if true;
+      allow create: if isAdmin() && isValidId(communityId) && isValidSiteCommunity(incoming(), communityId);
+      allow update: if isAdmin()
+        && isValidId(communityId)
+        && isValidSiteCommunity(incoming(), communityId)
+        && (!('id' in existing()) || incoming().id == existing().id);
+      allow delete: if isAdmin() && isValidId(communityId);
+    }
+
+    match /site_careers/{careerId} {
+      allow get: if isValidId(careerId);
+      allow list: if true;
+      allow create: if isAdmin() && isValidId(careerId) && isValidSiteCareer(incoming(), careerId);
+      allow update: if isAdmin()
+        && isValidId(careerId)
+        && isValidSiteCareer(incoming(), careerId)
+        && (!('id' in existing()) || incoming().id == existing().id);
+      allow delete: if isAdmin() && isValidId(careerId);
+    }
+
+    match /site_faqs/{faqId} {
+      allow get: if isValidId(faqId);
+      allow list: if true;
+      allow create: if isAdmin() && isValidId(faqId) && isValidSiteFaq(incoming(), faqId);
+      allow update: if isAdmin()
+        && isValidId(faqId)
+        && isValidSiteFaq(incoming(), faqId)
+        && (!('id' in existing()) || incoming().id == existing().id);
+      allow delete: if isAdmin() && isValidId(faqId);
+    }
+
+    // -------------------------------------------------------------------------
+    // Admin Allowlist (PII Restricted to Authenticated Verified Admins / Self)
+    // -------------------------------------------------------------------------
+    match /admin_users/{adminEmail} {
+      allow get: if isValidEmailDocId(adminEmail) && (
+        isAdmin() ||
+        (isVerifiedUser() && adminEmail == request.auth.token.email.lower())
+      );
+      allow list: if isAdmin();
+      allow create: if isSuperAdmin() && isValidEmailDocId(adminEmail) && isValidAdminUser(incoming(), adminEmail);
+      allow update: if isSuperAdmin()
+        && isValidEmailDocId(adminEmail)
+        && isValidAdminUser(incoming(), adminEmail)
+        && (!('email' in existing()) || existing().email.lower() == adminEmail);
+      allow delete: if isSuperAdmin()
+        && isValidEmailDocId(adminEmail)
+        && adminEmail != 'chediland266@gmail.com';
+    }
+
+    // -------------------------------------------------------------------------
+    // Full Project Cloud Manifest & Snapshots (Verified Admin Only)
+    // -------------------------------------------------------------------------
+    match /site_backups/{backupId} {
+      allow get: if isAdmin() && isValidId(backupId);
+      allow list: if isAdmin();
+      allow create: if isAdmin() && isValidId(backupId) && isValidSiteBackup(incoming(), backupId);
+      allow update: if isAdmin()
+        && isValidId(backupId)
+        && isValidSiteBackup(incoming(), backupId)
+        && (!('id' in existing()) || incoming().id == existing().id);
+      allow delete: if isSuperAdmin() && isValidId(backupId);
+    }
+  }
+}

@@ -5,12 +5,13 @@ import {
   Mail,
   Phone,
 } from 'lucide-react';
-import { COMPANY_CONTACT } from '../data/samitechData';
+import { useSiteContent } from '../context/SiteContentContext';
 import {
   createRevealVariants,
   SAMITECH_EASE,
   useMotionConfigValues,
 } from './MotionPrimitives';
+import { WhatsAppBrandIcon } from './WhatsAppFloatingButton';
 
 export type AppPage =
   | 'home'
@@ -20,10 +21,12 @@ export type AppPage =
   | 'services'
   | 'service-detail'
   | 'products'
+  | 'product-detail'
   | 'careers'
   | 'communities'
   | 'projects'
-  | 'contact';
+  | 'contact'
+  | 'control-panel';
 
 interface NavbarProps {
   activePage: AppPage;
@@ -38,6 +41,7 @@ export function Navbar({
   onNavigate,
   onOpenContact,
 }: NavbarProps) {
+  const { settings, buildWhatsAppUrl } = useSiteContent();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [overDarkSection, setOverDarkSection] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -137,6 +141,11 @@ export function Navbar({
   const isAboutActive =
     activePage === 'about' || activePage === 'team' || activePage === 'team-member';
   const isServicesActive = activePage === 'services' || activePage === 'service-detail';
+  const isProductsActive = activePage === 'products' || activePage === 'product-detail';
+
+  if (activePage === 'control-panel') {
+    return null;
+  }
 
   return (
     <header
@@ -202,7 +211,7 @@ export function Navbar({
           <button
             type="button"
             onClick={() => handleMobileNav('products')}
-            className={activePage === 'products' ? activeLinkClass : navLinkClass}
+            className={isProductsActive ? activeLinkClass : navLinkClass}
           >
             Products
           </button>
@@ -384,13 +393,13 @@ export function Navbar({
                 type="button"
                 onClick={() => handleMobileNav('products')}
                 className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-sm font-semibold transition-colors cursor-pointer ${
-                  activePage === 'products'
+                  isProductsActive
                     ? 'bg-[#EEF3FF] text-[#002BFF]'
                     : 'text-[#07133B] hover:bg-slate-50'
                 }`}
               >
                 <span>Products</span>
-                {activePage === 'products' && (
+                {isProductsActive && (
                   <span className="text-[11px] font-medium text-[#002BFF]">Active</span>
                 )}
               </button>
@@ -456,23 +465,32 @@ export function Navbar({
               </button>
 
               {/* Mobile Direct Contact Summary Container */}
-              <div className="pt-3 mt-2 border-t border-slate-200/80 space-y-2.5">
+              <div className="pt-3 mt-2 border-t border-slate-200/80 space-y-2">
                 <div className="grid grid-cols-2 gap-2">
                   <a
-                    href={`tel:${COMPANY_CONTACT.phone.replace(/\s+/g, '')}`}
+                    href={`tel:${settings.phone.replace(/\s+/g, '')}`}
                     className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-[#F2F6FF] border border-[#0044FF]/12 text-xs font-medium text-[#07133B]"
                   >
                     <Phone className="w-3.5 h-3.5 text-[#002BFF] shrink-0" strokeWidth={1.75} aria-hidden="true" />
-                    <span className="truncate">{COMPANY_CONTACT.phone}</span>
+                    <span className="truncate">{settings.phone}</span>
                   </a>
                   <a
-                    href={`mailto:${COMPANY_CONTACT.email}`}
+                    href={`mailto:${settings.email}`}
                     className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-[#F2F6FF] border border-[#0044FF]/12 text-xs font-medium text-[#07133B]"
                   >
                     <Mail className="w-3.5 h-3.5 text-[#002BFF] shrink-0" strokeWidth={1.75} aria-hidden="true" />
-                    <span className="truncate">{COMPANY_CONTACT.email}</span>
+                    <span className="truncate">{settings.email}</span>
                   </a>
                 </div>
+                <a
+                  href={buildWhatsAppUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-[#25D366]/12 border border-[#25D366]/35 hover:bg-[#25D366]/20 text-xs font-bold text-[#0F5132] transition-colors"
+                >
+                  <WhatsAppBrandIcon className="w-4 h-4 text-[#1EBE5D]" />
+                  <span>Chat on WhatsApp ({settings.phone})</span>
+                </a>
               </div>
             </nav>
           </motion.div>
